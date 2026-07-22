@@ -16,6 +16,9 @@ import * as cube from './cubes.js';
 import * as cube3d from './cube3d.js';
 import * as solid from './solids.js';
 import * as radial from './radial.js';
+import * as vrpair from './vr-word-pairs.js';
+import * as vrlogic from './vr-logic.js';
+import * as maths from './maths.js';
 import * as hid from './hidden-shapes.js';
 
 // Ordered the way a child should meet them: pattern-spotting first, spatial
@@ -35,6 +38,9 @@ export const REGISTRY = {
   [cube3d.meta.id]: cube3d,
   [solid.meta.id]: solid,
   [radial.meta.id]: radial,
+  [vrpair.meta.id]: vrpair,
+  [vrlogic.meta.id]: vrlogic,
+  [maths.meta.id]: maths,
   [hid.meta.id]: hid,
 };
 
@@ -55,9 +61,21 @@ export const TYPES = Object.values(REGISTRY).map((g) => g.meta);
 export const GROUPS = [
   {
     id: 'quest',
-    name: 'Bexley test types',
-    note: 'These match the question types in the official Bexley familiarisation booklet.',
-    types: TYPES.filter((t) => t.group === 'quest'),
+    name: 'Bexley non-verbal',
+    note: 'These match the non-verbal question types in the official Bexley familiarisation booklet. Non-verbal reasoning is 25% of the test.',
+    types: TYPES.filter((t) => t.group === 'quest' && !t.subject),
+  },
+  {
+    id: 'verbal',
+    name: 'Bexley verbal reasoning',
+    note: 'Verbal ability and English comprehension together are 50% of the test, the largest part of it. These match the verbal question types in the official booklet.',
+    types: TYPES.filter((t) => t.subject === 'verbal'),
+  },
+  {
+    id: 'maths',
+    name: 'Bexley numerical reasoning',
+    note: 'Numerical reasoning is 25% of the test. Pitched at what is covered by the end of Year 5, which is what the test assumes.',
+    types: TYPES.filter((t) => t.subject === 'maths'),
   },
   {
     id: 'general',
@@ -68,7 +86,7 @@ export const GROUPS = [
 ];
 
 /** Ids used to build a Bexley-shaped mock paper. */
-export const PAPER_TYPES = TYPES.filter((t) => t.group === 'quest').map((t) => t.id);
+export const PAPER_TYPES = TYPES.filter((t) => t.group === 'quest' && !t.subject).map((t) => t.id);
 
 export function generateFor(id, rng, difficulty) {
   const gen = REGISTRY[id];

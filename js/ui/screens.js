@@ -8,6 +8,7 @@
 // never leak a handler. Screens that own a timer clean it up in destroy.
 
 import { TYPES, GROUPS, PAPER_TYPES, REGISTRY, generateFor } from '../generators/index.js';
+import { correctSet, needed, isMulti, isCorrect, instruction } from '../core/answer.js';
 import { makeRng, hashSeed, shuffle } from '../core/rng.js';
 import { Store } from '../core/store.js';
 import { teachFor } from '../core/teach.js';
@@ -54,16 +55,31 @@ function makeQuestion(typeId, difficulty, salt) {
 
 function questionBody(q) {
   const stim = q.noStimulus ? '' : (q.stimulus || '');
-  return `<p class="qprompt">${q.prompt}</p>${stim}${q.optionsHTML}`;
+  return `<p class="qprompt">${q.prompt}</p>${instruction(q) ? `<p class="qpick">${instruction(q)}</p>` : ''}${stim}${q.optionsHTML}`;
 }
 
-/** Mark the tapped option and lock the rest. Used by practice and learn. */
+/**
+ * Mark the chosen options and lock the rest.
+ * `chosen` and `answer` are both arrays, so this covers "choose two" as well
+ * as single-answer questions: every right option is marked right, and any
+ * wrong pick the child made is marked wrong.
+ */
 function markOptions(root, chosen, answer) {
-  const opts = root.querySelectorAll('.opt');
-  opts.forEach((el, i) => {
+  const want = new Set(answer);
+  const got = new Set(chosen);
+  root.querySelectorAll('.opt').forEach((el, i) => {
     el.disabled = true;
-    if (i === answer) el.classList.add('is-correct');
-    else if (i === chosen) el.classList.add('is-wrong');
+    el.classList.remove('is-picked');
+    if (want.has(i)) el.classList.add('is-correct');
+    else if (got.has(i)) el.classList.add('is-wrong');
+  });
+}
+
+/** Show a part-made choice on a "choose two" question. */
+function paintPicked(root, chosen) {
+  const got = new Set(chosen);
+  root.querySelectorAll('.opt').forEach((el, i) => {
+    el.classList.toggle('is-picked', got.has(i));
   });
 }
 
@@ -266,6 +282,7 @@ export function teachScreen(typeId) {
 
   let q = makeQuestion(typeId, 1, 'teach');
   let done = false;
+  let picked = [];
 
   function body() {
     const steps = t ? `<ol>${t.steps.map((s) => `<li>${esc(s)}</li>`).join('')}</ol>` : '';
@@ -298,18 +315,23 @@ export function teachScreen(typeId) {
       if (el.dataset.act === 'another') {
         q = makeQuestion(typeId, 1, `teach-${Date.now()}`);
         done = false;
+        picked = [];
         ctx.paint(body());
         return;
       }
       const opt = el.closest ? el.closest('.opt') : null;
       if (opt && !done) {
-        const chosen = Number(opt.dataset.opt);
-        Store.recordAnswer({ type: q.type, correct: chosen === q.answer, difficulty: 1, ms: 0 });
+        const i = Number(opt.dataset.opt);
+        // On a "choose two" question the first taps only build the choice up.
+        picked = picked.includes(i) ? picked.filter((v) => v !== i) : [...picked, i];
+        if (picked.length < needed(q)) { paintPicked(ctx.root, picked); return; }
+        Store.recordAnswer({ type: q.type, correct: isCorrect(q, picked), difficulty: 1, ms: 0 });
         done = true;
+        const chosen = picked;
         // Repaint first so the explanation and buttons appear, then mark the
         // freshly drawn options.
         ctx.paint(body());
-        markOptions(ctx.root, chosen, q.answer);
+        markOptions(ctx.root, chosen, correctSet(q));
       }
     },
   };
@@ -363,7 +385,7 @@ export function practiseRunScreen(typeId) {
   let i = 0;
   let right = 0;
   let answered = false;
-  let chosen = -1;
+  let chosen = [];
   let q = null;
   let startedAt = 0;
 
@@ -377,7 +399,7 @@ export function practiseRunScreen(typeId) {
   function next() {
     q = makeQuestion(typeId, difficultyFor(i), `run-${i}-${Date.now()}`);
     answered = false;
-    chosen = -1;
+    chosen = [];
     startedAt = Date.now();
   }
 
@@ -431,8 +453,11 @@ export function practiseRunScreen(typeId) {
       }
       const opt = el.closest ? el.closest('.opt') : null;
       if (opt && !answered && i < RUN_LENGTH) {
-        chosen = Number(opt.dataset.opt);
-        const correct = chosen === q.answer;
+        const tapped = Number(opt.dataset.opt);
+        chosen = chosen.includes(tapped)
+          ? chosen.filter((v) => v !== tapped) : [...chosen, tapped];
+        if (chosen.length < needed(q)) { paintPicked(ctx.root, chosen); return; }
+        const correct = isCorrect(q, chosen);
         if (correct) right += 1;
         Store.recordAnswer({
           type: q.type,
@@ -442,7 +467,7 @@ export function practiseRunScreen(typeId) {
         });
         answered = true;
         ctx.paint(body());
-        markOptions(ctx.root, chosen, q.answer);
+        markOptions(ctx.root, chosen, correctSet(q));
       }
     },
   };
@@ -508,7 +533,7 @@ export function paperScreen() {
     questions.forEach((q, n) => {
       if (!breakdown[q.type]) breakdown[q.type] = { right: 0, total: 0 };
       breakdown[q.type].total += 1;
-      const got = answers[n] === q.answer;
+      const got = isCorrect(q, answers[n] || []);
       if (got) { breakdown[q.type].right += 1; score += 1; }
     });
     Store.recordPaper({
@@ -553,7 +578,7 @@ export function paperScreen() {
     questions.forEach((q, n) => {
       if (!breakdown[q.type]) breakdown[q.type] = { right: 0, total: 0 };
       breakdown[q.type].total += 1;
-      if (answers[n] === q.answer) { breakdown[q.type].right += 1; score += 1; }
+      if (isCorrect(q, answers[n] || [])) { breakdown[q.type].right += 1; score += 1; }
     });
 
     const rows = Object.keys(breakdown).map((t) => {
@@ -564,11 +589,11 @@ export function paperScreen() {
     }).join('');
 
     const review = questions.map((q, n) => {
-      const got = answers[n] === q.answer;
+      const got = isCorrect(q, answers[n] || []);
       return `<div class="card">
         <div class="bar-label"><span>Question ${n + 1}</span>
         <span class="tag ${got ? '' : 'tag--salmon'}">${got ? 'Right' : 'Wrong'}</span></div>
-        <p class="qprompt">${q.prompt}</p>
+        <p class="qprompt">${q.prompt}</p>${instruction(q) ? `<p class="qpick">${instruction(q)}</p>` : ''}
         ${q.noStimulus ? '' : (q.stimulus || '')}
         ${q.optionsHTML}
         <div class="explain">${q.explain}</div>
@@ -618,12 +643,19 @@ export function paperScreen() {
 
       const opt = el.closest ? el.closest('.opt') : null;
       if (opt && phase === 'running') {
-        const chosen = Number(opt.dataset.opt);
+        const tapped = Number(opt.dataset.opt);
         const q = questions[i];
-        answers[i] = chosen;
+        const so_far = answers[i] || [];
+        const picked = so_far.includes(tapped)
+          ? so_far.filter((v) => v !== tapped) : [...so_far, tapped];
+        answers[i] = picked;
+        // On a "choose two" question the child can change their mind until
+        // the second tap, then it moves on, the same as tapping once does on
+        // a single-answer question.
+        if (picked.length < needed(q)) { paintPicked(ctx.root, picked); return; }
         // Under test conditions there is no feedback, so the marked options
         // in the review at the end are the first thing the child sees.
-        Store.recordAnswer({ type: q.type, correct: chosen === q.answer, difficulty: 2, ms: 0 });
+        Store.recordAnswer({ type: q.type, correct: isCorrect(q, picked), difficulty: 2, ms: 0 });
         i += 1;
         if (i >= PAPER_LENGTH) finish();
         else ctx.paint(body());

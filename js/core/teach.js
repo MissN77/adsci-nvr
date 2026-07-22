@@ -160,6 +160,39 @@ export const TEACH = {
     tip: 'The wrong answers usually get all but one band right, so do not stop as soon as the middle matches. Check every band before you choose.',
   },
 
+  vrpair: {
+    what: 'Two groups of words are shown in brackets. You pick one word from each group so that the pair means the same thing, or means the opposite.',
+    steps: [
+      'Read which one it wants: closest in meaning, or opposite meanings.',
+      'Take the first word in the left group and try it against all three on the right.',
+      'If none fit, move to the second word on the left and do the same.',
+      'Remember to choose TWO answers, one from each group.',
+    ],
+    tip: 'Only one pairing works. If two seem to fit, look again at the exact shade of meaning, and be careful of words that are related but not quite the same.',
+  },
+
+  vrlogic: {
+    what: 'You are given some facts, and you work out what else has to be true because of them.',
+    steps: [
+      'Write the names out in a line as you read each fact.',
+      'Slide each name left or right until the line fits every fact.',
+      'Some names may not have a fixed place, and that is normal.',
+      'Check each answer against your line before choosing.',
+    ],
+    tip: 'Watch the difference between something that MIGHT be true and something that MUST be true. If you can arrange the names in a way that fits the facts but makes an answer false, that answer is not certain.',
+  },
+
+  maths: {
+    what: 'Number questions. Some are quick calculations to do in your head, and others take several steps.',
+    steps: [
+      'Read the whole question before starting, especially whether it wants one answer or all of them.',
+      'For a missing box, work out which operation undoes the one shown.',
+      'For fractions of an amount, divide by the bottom then times by the top.',
+      'Put your answer back into the question and check it works.',
+    ],
+    tip: 'Half the paper is quick arithmetic with no words at all, so speed on times tables and number bonds is worth as much as the harder problems at the end.',
+  },
+
   hid: {
     what: 'A small shape is hidden inside a bigger, busier picture. You find the picture that contains it.',
     steps: [

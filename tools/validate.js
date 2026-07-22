@@ -10,6 +10,7 @@
 import { makeRng } from '../js/core/rng.js';
 import { REGISTRY } from '../js/generators/index.js';
 import { OPTION_COUNT } from '../js/core/format.js';
+import { correctSet, needed } from '../js/core/answer.js';
 
 const PER_TYPE = Number(process.env.N || 4000);
 
@@ -106,7 +107,7 @@ function fail(type, seed, msg, extra = '') {
 
 for (const [id, gen] of Object.entries(REGISTRY)) {
   let generated = 0;
-  const answerCounts = new Array(OPTION_COUNT).fill(0);
+  const answerCounts = new Array((gen.meta && gen.meta.optionCount) || OPTION_COUNT).fill(0);
 
   for (let i = 0; i < PER_TYPE; i++) {
     const seed = i + 1;
@@ -123,16 +124,25 @@ for (const [id, gen] of Object.entries(REGISTRY)) {
 
     const opts = extractOptions(q.optionsHTML);
 
-    // The real paper offers five options, A to E. Four would train the wrong
-    // guess rate and the wrong scanning habit, so this is an exact check.
-    if (opts.length !== OPTION_COUNT) {
-      fail(id, seed, `${opts.length} options, expected ${OPTION_COUNT}`);
+    // Five options on the non-verbal paper. The verbal paper uses six on its
+    // word-pair questions, so a type may declare its own count.
+    const want = gen.meta.optionCount || OPTION_COUNT;
+    if (opts.length !== want) {
+      fail(id, seed, `${opts.length} options, expected ${want}`);
     }
-    if (!(q.answer >= 0 && q.answer < opts.length)) {
-      fail(id, seed, `answer index ${q.answer} out of range (${opts.length} options)`);
+
+    const answer = correctSet(q);
+    if (answer.some((a) => !(a >= 0 && a < opts.length))) {
+      fail(id, seed, `answer ${JSON.stringify(answer)} out of range (${opts.length} options)`);
       continue;
     }
-    answerCounts[q.answer]++;
+    if (new Set(answer).size !== answer.length) {
+      fail(id, seed, `answer ${JSON.stringify(answer)} repeats an option`);
+    }
+    if (gen.meta.picks && needed(q) !== gen.meta.picks) {
+      fail(id, seed, `expected ${gen.meta.picks} picks, got ${needed(q)}`);
+    }
+    answer.forEach((a) => { answerCounts[a] = (answerCounts[a] || 0) + 1; });
 
     // THE critical check: no two options may look the same.
     const keys = opts.map(visualKey);

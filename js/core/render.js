@@ -4,7 +4,9 @@
 
 import { figureMarkup, figureSVG } from './figure.js';
 
-export const LETTERS = ['A', 'B', 'C', 'D', 'E'];
+// Six, not five. The non-verbal paper stops at E, but the verbal paper's
+// word-pair questions offer six options, A to F.
+export const LETTERS = ['A', 'B', 'C', 'D', 'E', 'F'];
 
 /** One boxed figure. */
 export function box(f, size = 96, cls = '') {

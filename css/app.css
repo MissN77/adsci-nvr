@@ -689,3 +689,48 @@ a { color: var(--teal-dark); }
   font-size: 15px;
   line-height: 1.45;
 }
+
+/* ── Choose-two questions ──────────────────────────────────────────────── */
+/* Quest's verbal paper asks for two answers on most questions and its maths
+   asks for all that apply, so the instruction is shown every time and a
+   part-made choice is visible while the child decides. */
+.qpick {
+  margin: -6px 0 12px;
+  padding: 8px 12px;
+  background: #F5CE6A;
+  color: #1A3A4A;
+  font-size: 16px;
+}
+
+.opt.is-picked {
+  background: #A8D5CF;
+  border-width: 4px;
+}
+
+/* ── Verbal and numerical ──────────────────────────────────────────────── */
+.wordgroups {
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: .01em;
+  margin: 4px 0 16px;
+}
+
+.opt-word, .opt-sum { font-size: 19px; font-weight: bold; }
+.opt-sentence { font-size: 16px; font-weight: normal; line-height: 1.35; text-align: left; }
+
+.facts {
+  margin: 4px 0 16px;
+  padding: 12px 16px 12px 32px;
+  background: #FFFFFF;
+  border-left: 6px solid #2A7B6F;
+}
+.facts li { margin: 4px 0; }
+
+/* Word and sentence options read as text, so they stack rather than sitting
+   in a five-across grid built for pictures. */
+.opts:has(.opt-sentence) { grid-template-columns: 1fr; }
+@media (min-width: 560px) {
+  .opts:has(.opt-sentence) { grid-template-columns: 1fr; }
+  .opts:has(.opt-word) { grid-template-columns: repeat(3, 1fr); }
+}
