@@ -10,7 +10,7 @@
 import { pick, int, shuffle } from '../core/rng.js';
 import { options, LETTERS } from '../core/render.js';
 import { attempt, explain } from './_util.js';
-import { ACTION_OBJECTS } from '../core/vocab.js';
+import { ACTION_OBJECTS, MASS_NOUNS } from '../core/vocab.js';
 
 export const meta = {
   id: 'vrana',
@@ -21,6 +21,9 @@ export const meta = {
   optionCount: 6,
   picks: 2,
 };
+
+/** "a", "an", or nothing at all for the uncountable ones. */
+const art = (w) => (MASS_NOUNS.has(w) ? '' : /^[aeiou]/.test(w) ? 'an ' : 'a ');
 
 export function generate(rng) {
   return attempt(() => {
@@ -54,7 +57,7 @@ export function generate(rng) {
       explain: explain(
         `The answers are <strong>${LETTERS[answers[0]]}</strong> and <strong>${LETTERS[answers[1]]}</strong>.`,
         [
-          `You ${verbA} a ${objA}, and you ${verbB} ${objB.match(/^[aeiou]/) ? 'an' : 'a'} ${objB}. The link is what the action is done to.`,
+          `You ${verbA} ${art(objA)}${objA}, and you ${verbB} ${art(objB)}${objB}. The link is what the action is done to.`,
           'Work out the link from the first pair before you look at the second group. Deciding the rule first is much faster than trying every combination.',
           'Say the whole sentence with your two words in it. If it does not read properly, the link is wrong.',
         ],

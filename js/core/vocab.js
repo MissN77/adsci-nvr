@@ -164,6 +164,14 @@ export const LETTER_GAPS = [
 // "Wring is to (finger, twist, cloth) as knead is to (kicked, dough, require)"
 // The link is always the same on both sides: what the action is done TO.
 
+// Objects that take no article: you bake bread, not "a bread". Without this
+// the analogy explanation reads "you knead a dough" and "you brew a tea",
+// which is wrong in front of a child being told to check their sentence
+// reads properly.
+export const MASS_NOUNS = new Set([
+  'dough', 'coffee', 'tea', 'corn', 'hay', 'iron', 'bread', 'wood', 'paper',
+]);
+
 export const ACTION_OBJECTS = [
   // [action, its object, OTHER objects in this table the action also fits]
   //

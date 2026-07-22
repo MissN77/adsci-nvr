@@ -60,14 +60,20 @@ function oddPairs(figs) {
   return pairs;
 }
 
+// Derived from the paper format, never written out. This said "three" while
+// the paper offers five options, so every child was told to compare against a
+// number that did not match what was in front of them. A visual pass caught
+// it; no correctness test could, because the answer itself was right.
+const OTHERS = ['zero', 'one', 'two', 'three', 'four', 'five'][DISTRACTOR_COUNT];
+
 const PHRASE = {
-  shape: () => 'The other three are all the same shape as each other. This one is a different shape',
-  sides: (p) => `The other three all have ${p.common} sides. This one has ${p.value}`,
-  fill: () => 'The other three are shaded the same way. This one is shaded differently',
-  rot: () => 'The other three are turned the same way. This one is turned differently',
-  scale: () => 'The other three are the same size. This one is a different size',
-  dots: (p) => `The other three have ${p.common} dot${p.common === 1 ? '' : 's'} inside. This one has ${p.value}`,
-  stroke: () => 'The other three have the same kind of outline. This one is drawn differently',
+  shape: () => `The other ${OTHERS} are all the same shape as each other. This one is a different shape`,
+  sides: (p) => `The other ${OTHERS} all have ${p.common} sides. This one has ${p.value}`,
+  fill: () => `The other ${OTHERS} are shaded the same way. This one is shaded differently`,
+  rot: () => `The other ${OTHERS} are turned the same way. This one is turned differently`,
+  scale: () => `The other ${OTHERS} are the same size. This one is a different size`,
+  dots: (p) => `The other ${OTHERS} have ${p.common} dot${p.common === 1 ? '' : 's'} inside. This one has ${p.value}`,
+  stroke: () => `The other ${OTHERS} have the same kind of outline. This one is drawn differently`,
 };
 
 export function generate(rng, difficulty = 2) {
@@ -167,7 +173,7 @@ export function generate(rng, difficulty = 2) {
         `The answer is <strong>${LETTERS[oddIdx]}</strong>.`,
         [
           `${PHRASE[reason.key](reason)}.`,
-          'The other features change too, but they change in pairs, so they cannot be the answer. Only one feature separates a single shape from the other three.',
+          `The other features change too, but they change in pairs, so they cannot be the answer. Only one feature separates a single shape from the other ${OTHERS}.`,
         ],
       ),
       teachRef: 'ooo',

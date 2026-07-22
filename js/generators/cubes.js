@@ -209,7 +209,7 @@ function validityQuestion(rng) {
       `The answer is <strong>${LETTERS[idx]}</strong>.`,
       [
         'Fold the net up in your head one square at a time and keep track of where each square lands.',
-        'A net only works if all six squares land on six different faces. In the other three, two squares end up trying to cover the same face, so the cube cannot close.',
+        `A net only works if all six squares land on six different faces. In the other ${['zero','one','two','three','four','five'][DISTRACTOR_COUNT]}, two squares end up trying to cover the same face, so the cube cannot close.`,
         'A quick check: a row of four squares wraps right around the cube like a belt, so it needs exactly one square above and one below, and they must not be in the same column.',
       ],
     ),

@@ -14,7 +14,7 @@ export const TEACH = {
       'For each feature, ask whether three match and one is different.',
       'The shape that breaks a rule three others follow is the odd one out.',
     ],
-    tip: 'If two features both seem to pick out a different shape, look again. Only one feature will separate a single shape from the other three.',
+    tip: 'If two features both seem to pick out a different shape, look again. Only one feature will separate a single shape from the other four.',
   },
 
   sim: {
