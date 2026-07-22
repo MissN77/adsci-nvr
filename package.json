@@ -1,0 +1,10 @@
+{
+  "name": "adsci-nvr",
+  "version": "1.0.0",
+  "description": "Advisory Science 11+ Non-Verbal Reasoning trainer",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "validate": "node tools/validate.js"
+  }
+}

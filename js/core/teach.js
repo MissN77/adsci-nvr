@@ -1,0 +1,138 @@
+// ── Teaching content ──────────────────────────────────────────────────────
+//
+// One entry per question type id in the generator registry. Written for the
+// child, not the parent, so it is short, plain and calm. Six of these types
+// have generators today; ref, rot, fold, cube and hid are here ready for the
+// generators being added next, so the learn screen never opens a blank page.
+//
+// Each entry: { what, steps: [4 short steps], tip }
+
+export const TEACH = {
+  ooo: {
+    what: 'Four shapes are shown. Three of them share something. One does not, and that one is your answer.',
+    steps: [
+      'Look at the four shapes without deciding anything yet.',
+      'Check one feature at a time: shape, shading, size, number of dots, line style.',
+      'For each feature, ask whether three match and one is different.',
+      'The shape that breaks a rule three others follow is the odd one out.',
+    ],
+    tip: 'If two features both seem to pick out a different shape, look again. Only one feature will separate a single shape from the other three.',
+  },
+
+  sim: {
+    what: 'A small group of shapes belong together for one reason. You choose the shape from the options that joins the group.',
+    steps: [
+      'Work out what the group shapes have in common, not what makes them different.',
+      'Say the rule out loud in your head, for example every one has four sides.',
+      'Test each option against that rule.',
+      'Pick the only option that obeys the rule.',
+    ],
+    tip: 'The right answer often looks nothing like the group at first glance. Trust the rule, not how similar it looks.',
+  },
+
+  seq: {
+    what: 'Shapes are shown in order and something changes each step. You work out what comes next.',
+    steps: [
+      'Compare the first shape with the second and name one change.',
+      'Check that same change happens again from the second to the third.',
+      'Look for a second change running at the same time, such as a turn plus a shade.',
+      'Apply every change once more to the last shape shown.',
+    ],
+    tip: 'Two or three rules can run together. Deal with them one at a time and only then look at the options.',
+  },
+
+  ana: {
+    what: 'The first shape changes into the second. You do exactly the same thing to the third shape.',
+    steps: [
+      'Say what happened between the first shape and the second.',
+      'Be exact about it, for example turned a quarter turn clockwise.',
+      'Do that same change to the third shape in your head.',
+      'Find the option that matches what you pictured.',
+    ],
+    tip: 'Describe the change, not the shapes. Once you can say the change in one short sentence the answer is quick.',
+  },
+
+  mat: {
+    what: 'A three by three grid has one square missing. You work out what belongs in the gap.',
+    steps: [
+      'Read the top row from left to right and name what changes.',
+      'Check the middle row follows the same pattern.',
+      'Now read down the column that has the gap.',
+      'The answer must fit both its row and its column.',
+    ],
+    tip: 'If the rows look confusing, start with the columns instead. One direction is usually easier to see than the other.',
+  },
+
+  cod: {
+    what: 'Some shapes are labelled with a code. You work out what each letter stands for, then write the code for a new shape.',
+    steps: [
+      'Look only at the first letter of every code and find what it matches.',
+      'Do the same for the second letter, and any letter after that.',
+      'Write down what each letter position controls, such as first letter equals shading.',
+      'Build the code for the new shape one letter at a time.',
+    ],
+    tip: 'Each letter position always controls one feature. Never mix positions, so a first letter and a second letter never mean the same thing.',
+  },
+
+  ref: {
+    what: 'A shape is flipped over a mirror line. You choose the shape that is the true reflection.',
+    steps: [
+      'Find the mirror line and notice which side of it the shape sits on.',
+      'Pick a corner that sticks out and see how far it is from the line.',
+      'That corner lands the same distance on the other side.',
+      'Check the whole shape has swapped sides, not just turned round.',
+    ],
+    tip: 'A reflection swaps left and right. If an option could be reached by turning the shape instead, it is not a reflection.',
+  },
+
+  rot: {
+    what: 'A shape is turned round a point. You choose the shape that shows the right turn.',
+    steps: [
+      'Decide how far the turn is: a quarter, a half, or three quarters.',
+      'Decide the direction, clockwise or anticlockwise.',
+      'Pick one part of the shape and follow only that part round.',
+      'Check the rest of the shape has come with it in the same way.',
+    ],
+    tip: 'Turning never swaps left and right. If the shape has come out back to front, that option is a reflection and it is wrong.',
+  },
+
+  fold: {
+    what: 'A sheet of paper is folded, then holes are punched through it. You choose what the paper looks like unfolded.',
+    steps: [
+      'Note where the fold line is and how many folds there are.',
+      'Mark the holes you can see on the folded sheet.',
+      'Unfold the last fold and mirror every hole across that line.',
+      'Keep unfolding one fold at a time until the sheet is flat.',
+    ],
+    tip: 'Each fold doubles the holes. One fold and two holes gives four holes, so count before you look at the options.',
+  },
+
+  cube: {
+    what: 'A flat net is folded into a cube. You work out which cube it makes, or which face ends up opposite another.',
+    steps: [
+      'Choose one face and imagine it as the base of the cube.',
+      'Fold the faces next to it up to make the sides.',
+      'Faces with one square between them on the net end up opposite each other.',
+      'Check the pattern on each face is the right way up as well as in the right place.',
+    ],
+    tip: 'Opposite faces can never be seen at the same time. If an option shows two faces together that must be opposite, rule it out straight away.',
+  },
+
+  hid: {
+    what: 'A small shape is hidden inside a bigger, busier picture. You find the picture that contains it.',
+    steps: [
+      'Look hard at the small shape and count its sides and corners.',
+      'Notice the length of each side and any unusual angle.',
+      'Search each option for that exact outline, the same size and the same way up.',
+      'Trace the outline with your finger to be sure every side is there.',
+    ],
+    tip: 'The hidden shape is never turned or resized. If you have to tilt your head to see it, that is the wrong option.',
+  },
+};
+
+/** Safe lookup so the learn screen can never blow up on a new type id. */
+export function teachFor(id) {
+  return TEACH[id] || null;
+}
+
+export default TEACH;
