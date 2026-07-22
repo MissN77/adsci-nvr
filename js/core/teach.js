@@ -193,6 +193,50 @@ export const TEACH = {
     tip: 'Half the paper is quick arithmetic with no words at all, so speed on times tables and number bonds is worth as much as the harder problems at the end.',
   },
 
+  vrsent: {
+    what: 'A sentence has a word missing. You choose the word that fits it best.',
+    steps: [
+      'Read the whole sentence first, including the end.',
+      'Try each option in the gap and read the sentence back to yourself.',
+      'Rule out any that change what the sentence is saying.',
+      'Choose the one that fits the meaning, not just the grammar.',
+    ],
+    tip: 'All five options are the right kind of word, so grammar will not narrow it down. It always comes down to meaning, and the end of the sentence usually holds the clue.',
+  },
+
+  vrgap: {
+    what: 'A word in the sentence has some letters missing. You choose the letters that finish both the word and the sentence.',
+    steps: [
+      'Look at the letters either side of the gap.',
+      'Try each option and say the whole word out loud.',
+      'Keep the ones that make a real word.',
+      'Of those, choose the one that also makes sense in the sentence.',
+    ],
+    tip: 'More than one option can make a real word, so do not stop at the first one that spells something. It has to fit the sentence too.',
+  },
+
+  vrodd: {
+    what: 'Five words are shown. Three of them are the same kind of thing, and two are not.',
+    steps: [
+      'Look for the group of three first, not the odd ones.',
+      'Ask what kind of thing each word is: a colour, a bird, a tool.',
+      'Once you find three that match, the other two are your answer.',
+      'Remember to choose TWO answers.',
+    ],
+    tip: 'Finding the three is faster than testing each word on its own, and there is always exactly one group of three.',
+  },
+
+  vrana: {
+    what: 'The first pair of words go together in a certain way. You complete the second pair so it goes together in the same way.',
+    steps: [
+      'Work out the link in the first pair before looking at the second group.',
+      'Say the link out loud, for example "you wring a cloth".',
+      'Apply the same link to the second word.',
+      'Remember to choose TWO answers, one from each group.',
+    ],
+    tip: 'Decide the rule first. Trying every combination of six words takes far longer than working out the link and then looking for it.',
+  },
+
   hid: {
     what: 'A small shape is hidden inside a bigger, busier picture. You find the picture that contains it.',
     steps: [

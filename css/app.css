@@ -734,3 +734,19 @@ a { color: var(--teal-dark); }
   .opts:has(.opt-sentence) { grid-template-columns: 1fr; }
   .opts:has(.opt-word) { grid-template-columns: repeat(3, 1fr); }
 }
+
+/* ── Sentence questions ────────────────────────────────────────────────── */
+.sentence {
+  font-size: 19px;
+  line-height: 1.5;
+  margin: 4px 0 16px;
+  padding: 12px 14px;
+  background: #FFFFFF;
+  border-left: 6px solid #2A7B6F;
+}
+
+.gap {
+  letter-spacing: .08em;
+  color: #A45D50;
+  font-weight: bold;
+}
