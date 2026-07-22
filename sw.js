@@ -5,7 +5,7 @@
 // shipping the old app forever unless the name changes. Changing the name is
 // the only signal that tells a returning device to fetch fresh copies.
 
-const CACHE_NAME = 'adsci-nvr-v15';
+const CACHE_NAME = 'adsci-nvr-v16';
 
 // Everything the app needs to run with no network at all. Kept explicit
 // rather than generated, because a missed file means a broken offline start
@@ -51,9 +51,20 @@ const PRECACHE = [
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME)
-      // addAll is atomic, so a typo in PRECACHE fails the install instead of
-      // leaving a half-populated cache that only breaks once offline.
-      .then((cache) => cache.addAll(PRECACHE))
+      // Fetch every file with cache: 'reload' so the precache is filled from
+      // the network, not from the browser's own HTTP cache.
+      //
+      // Without this, bumping CACHE_NAME is not enough: addAll happily reads
+      // stale files out of the HTTP cache and bakes them into the shiny new
+      // cache, so the new version serves the old app and buyers never see the
+      // fix. This cost an hour of chasing a change that was correctly written,
+      // correctly committed and correctly deployed, and still did not appear.
+      //
+      // addAll stays atomic, so a typo in PRECACHE fails the install rather
+      // than leaving a half-filled cache that only breaks once offline.
+      .then((cache) => cache.addAll(
+        PRECACHE.map((url) => new Request(url, { cache: 'reload' })),
+      ))
       .then(() => self.skipWaiting()),
   );
 });
