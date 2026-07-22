@@ -63,9 +63,17 @@ export function generate(rng, difficulty = 2) {
   return attempt(() => {
     // 45 and 135 are the diagonals. Quest uses these, and children find them
     // markedly harder than the upright cases, so they carry real weight here.
+    // Angle is the parameter p in the transform R(2p) then flip, NOT the
+    // visual angle of the drawn line. Worked out from the geometry rather
+    // than guessed, because I had it backwards first time and every
+    // reflection question was silently the wrong axis:
+    //   p = 0   leaves a VERTICAL line fixed
+    //   p = 45  leaves the / diagonal fixed
+    //   p = 90  leaves a HORIZONTAL line fixed
+    //   p = 135 leaves the \ diagonal fixed
     const AXES = difficulty === 1
-      ? [{ id: 'v', angle: 90 }, { id: 'h', angle: 0 }]
-      : [{ id: 'v', angle: 90 }, { id: 'h', angle: 0 },
+      ? [{ id: 'v', angle: 0 }, { id: 'h', angle: 90 }]
+      : [{ id: 'v', angle: 0 }, { id: 'h', angle: 90 },
         { id: 'd1', angle: 45 }, { id: 'd2', angle: 135 }];
     const axis = pick(rng, AXES);
     const shape = pick(rng, CHIRAL);
