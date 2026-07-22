@@ -88,7 +88,11 @@ export function generate(rng, difficulty = 2) {
     if (possible.length < 2) return null;
 
     const statedKey = new Set(facts.map(([a, b]) => `${a}>${b}`));
-    const asMust = rng() < 0.6;
+    // Weighted toward CANNOT at the attempt stage, because most cannot
+    // candidates are now rejected for being one-step reversals of a stated
+    // fact. Without this the surviving mix was 84/16 and a child would hardly
+    // ever meet the wording, which is in the Quest booklet.
+    const asMust = rng() < 0.32;
 
     // Sort every candidate statement by how the facts constrain it.
     const must = []; const cannot = []; const might = [];
@@ -110,12 +114,40 @@ export function generate(rng, difficulty = 2) {
     const correct = pick(rng, correctPool);
     // Lead with a "might be true" wrong answer where there is one, because
     // that is the one worth explaining: it feels right and is not forced.
-    const wrong = shuffle(rng, wrongPool)
-      .sort((a, b) => (might.includes(b) ? 1 : 0) - (might.includes(a) ? 1 : 0))
-      .slice(0, DISTRACTOR_COUNT);
+    // No two options may be about the same PAIR of people. If "Ben is faster
+    // than Hari" and "Hari is faster than Ben" both appear they contradict, so
+    // at most one can be forced and a child can strike both out without
+    // reading a single fact. One sampled item was answerable in five seconds
+    // with the facts covered up.
+    //
+    // Done by construction rather than by rejecting the attempt: the wrong
+    // pool is full of reversals, so rejecting simply exhausted the generator.
+    // Only for MUST questions. On a CANNOT question a reversal pair is not a
+    // free elimination: one of the two may well be the impossible one and the
+    // other perfectly possible, so the child still has to read the facts.
+    // Applying it to both starved the cannot pool and silently drove those
+    // questions to zero, which a distinct-count check would not have caught.
+    const usedPair = asMust
+      ? new Set([[correct.a, correct.b].sort().join('|')])
+      : new Set();
+    const ordered = shuffle(rng, wrongPool)
+      .sort((a, b) => (might.includes(b) ? 1 : 0) - (might.includes(a) ? 1 : 0));
+    const wrong = [];
+    for (const w of ordered) {
+      const key = [w.a, w.b].sort().join('|');
+      if (asMust && usedPair.has(key)) continue;
+      usedPair.add(key);
+      wrong.push(w);
+      if (wrong.length >= DISTRACTOR_COUNT) break;
+    }
+    if (wrong.length < DISTRACTOR_COUNT) return null;
     const idx = int(rng, 0, DISTRACTOR_COUNT);
     const opts = wrong.slice();
     opts.splice(idx, 0, correct);
+
+    // A "cannot be true" answer that simply reverses a stated fact is a
+    // one-step lookup, not a deduction.
+    if (!asMust && statedKey.has(`${correct.b}>${correct.a}`)) return null;
 
     // For the explanation: an ordering that fits the facts but breaks the
     // statement, which is the proof a "might be true" answer is not certain.
@@ -140,9 +172,17 @@ export function generate(rng, difficulty = 2) {
           asMust
             ? `Put everyone in order of ${scale.of} from the facts. However you fill in the gaps, ${correct.a} always ends up ${scale.more} ${correct.b}, so that one has to be true.`
             : `Put everyone in order of ${scale.of} from the facts. There is no way to arrange them that makes ${correct.a} ${scale.more} ${correct.b}, so that one is impossible.`,
+          // "Not forced by the facts" is the reason a MUST question's distractors
+          // are wrong. For a CANNOT question the point is the opposite: the
+          // others are wrong because they CAN be true. The same sentence was
+          // being printed for both, so half the time it taught the wrong test.
           example
-            ? `The other answers are not forced by the facts. For instance ${example.slice().reverse().join(', then ')} fits every fact given, and it makes "${wrong[0].text.replace(/\.$/, '')}" ${asMust ? 'false' : 'true'}.`
-            : 'The other answers are not forced by the facts given.',
+            ? (asMust
+              ? `The other answers are not forced by the facts. For instance ${example.slice().reverse().join(', then ')} fits every fact given, and it makes "${wrong[0].text.replace(/\.$/, '')}" false.`
+              : `The other answers are all possible. For instance ${example.slice().reverse().join(', then ')} fits every fact given, and it makes "${wrong[0].text.replace(/\.$/, '')}" true.`)
+            : (asMust
+              ? 'The other answers are not forced by the facts given.'
+              : 'The other answers can all be true under some arrangement.'),
           'Write the names in a line as you read each fact. Guessing from memory is where marks go here.',
         ],
       ),

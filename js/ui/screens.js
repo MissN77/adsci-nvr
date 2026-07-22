@@ -396,8 +396,22 @@ export function practiseRunScreen(typeId) {
     return 3;
   }
 
+  // A generator may expose generateSet when its questions belong together.
+  // Comprehension does: the real English paper is ONE passage with twelve
+  // questions on it, so a run of ten reads one passage, not ten.
+  let queue = null;
+
   function next() {
-    q = makeQuestion(typeId, difficultyFor(i), `run-${i}-${Date.now()}`);
+    const gen = REGISTRY[typeId];
+    if (typeof gen.generateSet === 'function') {
+      if (!queue) {
+        const rng = makeRng(hashSeed(`set-${typeId}-${Date.now()}-${Math.random()}`));
+        queue = gen.generateSet(rng, RUN_LENGTH);
+      }
+      q = queue[i % queue.length];
+    } else {
+      q = makeQuestion(typeId, difficultyFor(i), `run-${i}-${Date.now()}`);
+    }
     answered = false;
     chosen = [];
     startedAt = Date.now();
@@ -441,7 +455,7 @@ export function practiseRunScreen(typeId) {
     click(el) {
       const act = el.dataset.act;
       if (act === 'again') {
-        i = 0; right = 0; next();
+        i = 0; right = 0; queue = null; next();
         ctx.paint(body());
         return;
       }
@@ -516,7 +530,17 @@ export function paperScreen() {
     while (order.length < PAPER_LENGTH) order.push(order[order.length - 1]);
     order.length = PAPER_LENGTH;
 
+    // Comprehension in the paper also comes from a single passage, for the
+    // same reason: a twenty question paper should not contain two unrelated
+    // seven hundred word texts.
+    const compCount = order.filter((id) => id === 'comp').length;
+    const compSet = compCount
+      ? REGISTRY.comp.generateSet(makeRng(hashSeed(`paperset-${Date.now()}`)), compCount)
+      : [];
+    let compAt = 0;
+
     questions = order.map((id, n) => {
+      if (id === 'comp' && compSet[compAt]) return compSet[compAt++];
       // Scaled to the paper length. This read `n < 12 ? 1 : n < 28 ? 2 : 3`,
       // and with a twenty question paper the n < 28 branch always won, so
       // difficulty 3 was unreachable and every mock was easy-then-medium

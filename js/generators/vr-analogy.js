@@ -41,8 +41,16 @@ export function generate(rng) {
     const fillB = pool.filter((o) => !alsoB.includes(o) && !fillA.includes(o))[0];
     if (!fillB) return null;
 
+    // The second bracket used to contain verbA, the verb from the first half.
+    // It was in every single question, it was never the answer, and it was
+    // semantic nonsense ("you shear a brew"), so after two items a child knew
+    // to ignore it and the bracket collapsed from three options to two.
+    const fillB2 = pool.filter(
+      (o) => !alsoB.includes(o) && !fillA.includes(o) && o !== fillB,
+    )[0];
+    if (!fillB2) return null;
     const groupA = shuffle(rng, [objA, ...fillA]);
-    const groupB = shuffle(rng, [objB, fillB, verbA]);
+    const groupB = shuffle(rng, [objB, fillB, fillB2]);
 
     const all = [...groupA, ...groupB];
     if (new Set(all).size !== all.length) return null;

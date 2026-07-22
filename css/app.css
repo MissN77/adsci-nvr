@@ -757,9 +757,11 @@ a { color: var(--teal-dark); }
   border-left: 6px solid #2A7B6F;
   padding: 14px 16px;
   margin: 4px 0 16px;
-  max-height: 46vh;
-  overflow-y: auto;
 }
+/* The passage used to be a 46vh box with its own scrollbar. With passages now
+   around 700 words that meant a nested scroll inside a scrolling page, with
+   the question above it and the options below it both off screen, and on iOS
+   no visible scrollbar to say there was more. One passage, one scroll. */
 .passage p { font-size: 17px; line-height: 1.6; margin: 0 0 12px; }
 .passage-title {
   margin: 0 0 10px;

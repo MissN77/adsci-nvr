@@ -12,6 +12,12 @@
 //
 // Because the questions are fixed, a run never repeats one until the pool is
 // used up, which is what the shuffling below is for.
+//
+// generateSet is the one that matters. The real English paper is ONE passage
+// with twelve questions on it. Serving one question per passage meant a ten
+// question run made a child read ten passages, about seven thousand words,
+// for ten marks, and it trained none of the actual skill: holding one text in
+// your head and going back to it again and again.
 
 import { pick, int, shuffle } from '../core/rng.js';
 import { options, LETTERS } from '../core/render.js';
@@ -35,11 +41,9 @@ function passageHTML(p) {
     </div>`;
 }
 
-export function generate(rng) {
-  return attempt(() => {
-    const p = pick(rng, PASSAGES);
-    const item = pick(rng, p.questions);
-
+/** Build one question object from a passage and one of its authored items. */
+function build(rng, p, item) {
+  {
     const answers = item.answers || [item.answer];
     const all = shuffle(rng, [...answers, ...item.wrong]);
     const idx = answers.map((a) => all.indexOf(a)).sort((a, b) => a - b);
@@ -51,6 +55,7 @@ export function generate(rng) {
 
     return {
       type: 'comp',
+      passageId: p.id,
       prompt: item.q,
       stimulus: passageHTML(p),
       optionsHTML: options(all.map((a) => `<span class="opt-text opt-sentence">${a}</span>`)),
@@ -61,5 +66,22 @@ export function generate(rng) {
       ]),
       teachRef: 'comp',
     };
+  }
+}
+
+export function generate(rng) {
+  return attempt(() => {
+    const p = pick(rng, PASSAGES);
+    return build(rng, p, pick(rng, p.questions));
   });
+}
+
+/**
+ * A passage set: one passage, `count` different questions about it, in the
+ * order the child meets them. This is the shape of the real paper.
+ */
+export function generateSet(rng, count = 10) {
+  const p = pick(rng, PASSAGES);
+  const items = shuffle(rng, p.questions).slice(0, Math.min(count, p.questions.length));
+  return items.map((item) => build(rng, p, item));
 }
