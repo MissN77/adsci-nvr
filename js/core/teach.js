@@ -204,6 +204,61 @@ export const TEACH = {
     tip: 'All five options are the right kind of word, so grammar will not narrow it down. It always comes down to meaning, and the end of the sentence usually holds the clue.',
   },
 
+  spaggram: {
+    what: 'A sentence has a word missing. Here it is grammar that decides the answer, not meaning.',
+    steps: [
+      'Find who or what the sentence is about. That is the subject.',
+      'Check whether the subject is one thing or more than one.',
+      'Choose the form of the verb that matches it.',
+      'Read the whole sentence back to check it sounds right.',
+    ],
+    tip: 'Words like "everyone", "each" and "neither" feel like they mean lots of people, but they count as one, so they take "is", "was" and "has".',
+  },
+
+  spagerr: {
+    what: 'A sentence is split into four parts. One part may contain a mistake, or the sentence may be perfectly correct.',
+    steps: [
+      'Read the whole sentence once, at normal speed.',
+      'Then read each part on its own and say it to yourself.',
+      'Look hardest at word endings, apostrophes and words that sound alike.',
+      'If all four parts are right, choose "No mistake".',
+    ],
+    tip: 'Some sentences really have no mistake. Do not talk yourself into finding one just because you were asked to look.',
+  },
+
+  spagpunc: {
+    what: 'Five versions of the same sentence. Only one is punctuated correctly.',
+    steps: [
+      'Check the capital letters first, at the start and on any names.',
+      'Then check the commas.',
+      'Then check the mark at the very end.',
+      'Rule out each version the moment you find one thing wrong with it.',
+    ],
+    tip: 'Work down one kind of mark at a time across all five. Comparing whole sentences at once is where mistakes creep in.',
+  },
+
+  spagcomma: {
+    what: 'A sentence needs one comma. You choose the word it should follow.',
+    steps: [
+      'Find the part at the start that sets the scene or gives a condition.',
+      'Find where that part stops and the main sentence begins.',
+      'The comma goes on the join, straight after the last word of the opening part.',
+      'Read it back with a pause there to check.',
+    ],
+    tip: 'Opening words like "Although", "Because", "When", "After" and "If" nearly always need a comma before the main part of the sentence arrives.',
+  },
+
+  spagsyn: {
+    what: 'You are given one word and asked for another that means the same, or the opposite.',
+    steps: [
+      'Read the question word and note whether it asks for SAME or OPPOSITE.',
+      'Say the given word in a short sentence of your own.',
+      'Try each option in that same sentence.',
+      'Choose the one that keeps the meaning, or flips it, as asked.',
+    ],
+    tip: 'Check whether the question said same or opposite before you answer. Choosing a perfect opposite when it asked for a synonym is the commonest way to lose this mark.',
+  },
+
   vrgap: {
     what: 'A word in the sentence has some letters missing. You choose the letters that finish both the word and the sentence.',
     steps: [

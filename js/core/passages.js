@@ -4,24 +4,31 @@
 // questions about it: twelve on the passage and eight on spelling, punctuation
 // and grammar.
 //
-// This comment used to claim the mix here "leans the same way" as Quest's. It
-// does not, and saying so was worse than saying nothing, because it stopped
-// anyone checking. Measured across all 320 questions on 22 July 2026:
+// An earlier version of this comment claimed the mix "leans the same way" as
+// Quest's. It did not, and saying so was worse than saying nothing, because it
+// stopped anyone checking. Measured, it was 35% retrieval and 17% language and
+// effect, against Quest's roughly seven items in twelve on language and effect.
 //
-//   retrieval             35%
-//   inference             27%
-//   language and effect   17%
+// Rebalanced on 22 July 2026 by adding four language and effect questions to
+// every passage. Measured across all 480 questions:
+//
+//   language and effect   28%
+//   retrieval             23%
+//   inference             23%
+//   word-level retrieval  15%
 //   vocabulary in context 11%
-//   word-level retrieval  11%
 //
-// Quest's twelve comprehension items run closer to seven of twelve on
-// language and effect. So this bank is materially retrieval-heavy against the
-// real paper and the effect questions need roughly to treble. The passages are
-// also short: median 400 words here against roughly 750 in the Quest booklet
-// and 688 to 1008 in GL's published English papers.
+// Taking the last three together as Quest does, the language and effect group
+// is 54% against Quest's roughly 58%. That is close enough to stop.
 //
-// Recorded rather than quietly fixed, because rebalancing means writing about
-// a hundred new questions and that is a decision, not a tidy-up.
+// Each passage now carries TWELVE questions, which is also Quest's number for
+// the comprehension half of its English paper.
+//
+// Still short of the real thing in one respect, and left that way on purpose:
+// the passages run 310 to 617 words, median 400, against roughly 750 in the
+// Quest booklet and 688 to 1008 in GL's published English papers. Lengthening
+// them means re-extracting all forty and re-checking every quotation, so it is
+// recorded here rather than half done.
 //
 // The passages are genuinely out of copyright, taken from Project Gutenberg:
 //
@@ -214,6 +221,30 @@ export const PASSAGES = [
         why: ['The author says his hearing was "dulled" by "the seclusion of the cellarage he had lived in so long".',
           'The change is in the Mole, not in the birds. That is the point being made.'],
       },
+      {
+        q: "What is the effect of the phrase \"soft breezes caressed his heated brow\"?",
+        answer: "It makes the breeze seem gentle and comforting, as though it were a living thing soothing him",
+        wrong: ["It shows the wind was strong enough to knock the Mole over", "It shows the Mole was ill and had a fever", "It suggests the weather was about to turn cold and wet", "It shows the Mole was still covered in whitewash"],
+        why: ["The passage says \"soft breezes caressed his heated brow\" just after the Mole comes up into the sunshine.", "To caress is something a gentle person does, so the breeze is described as if it were alive and kind to him."],
+      },
+      {
+        q: "Why does the author include the Mole shouting \"Onion-sauce! Onion-sauce!\" at the rabbits?",
+        answer: "To show the Mole teasing the rabbits in a cheeky, mocking way",
+        wrong: ["To show the Mole was hungry and wanted his dinner", "To show the Mole was calling the rabbits by their proper names", "To show the Mole was frightened of the rabbits", "To show the Mole was apologising for knocking the rabbit over"],
+        why: ["The passage tells us \"he remarked jeeringly\", which means he was mocking them.", "Onion sauce is served with rabbit, so the Mole is making a joke at their expense before running off."],
+      },
+      {
+        q: "Which word in the first paragraph shows that the Mole felt he was being ordered to come outside?",
+        answer: "imperiously",
+        wrong: ["penetrating", "muttering", "longing", "scrabbled"],
+        why: ["The passage says \"Something up above was calling him imperiously\".", "Imperiously means in a commanding way, so the call felt like an order the Mole had to obey."],
+      },
+      {
+        q: "What does the Mole saying \"This is better than whitewashing!\" tell you about him?",
+        answer: "He is delighted to be outdoors and glad to have escaped his chores",
+        wrong: ["He wishes he had finished the whitewashing before leaving", "He thinks whitewashing is the best part of spring", "He is worried about the mess he has left behind at home", "He is planning to whitewash something out in the meadow"],
+        why: ["He says \"This is better than whitewashing!\" as soon as he is rolling in the warm grass.", "He is comparing the sunshine with the hard morning's work he has just run away from."],
+      },
     ],
   },
 
@@ -297,6 +328,30 @@ export const PASSAGES = [
         why: ['"I have never forgotten my mother\'s advice; I knew she was a wise old horse."',
           'The narrator tells you directly here, so this one is retrieval rather than inference.'],
       },
+      {
+        q: "What does it tell you about the master that he often called Duchess \"Pet\"?",
+        answer: "He was fond of her and treated her with affection",
+        wrong: ["He could not remember her real name", "He thought she was not worth a grand name", "He was planning to sell her", "He was annoyed by the way she behaved"],
+        why: ["The passage says \"Her name was Duchess, but he often called her Pet.\"", "The narrator also says the master thought a great deal of her, so the nickname is a sign of fondness."],
+      },
+      {
+        q: "What is the effect of the words \"round and round\" in the third paragraph?",
+        answer: "They make the colts' galloping sound endless and full of energy",
+        wrong: ["They show the colts were lost and could not find their way out", "They suggest the field was extremely small", "They show the colts were tired and moving slowly", "They suggest the colts were being chased by the master"],
+        why: ["The passage says \"we used to gallop all together round and round the field as hard as we could go\".", "Repeating the word makes the reader picture lap after lap of lively play."],
+      },
+      {
+        q: "Which word in the fourth paragraph shows that the mother wanted the narrator to listen carefully?",
+        answer: "attention",
+        wrong: ["manners", "whinnied", "gentle", "temper"],
+        why: ["The mother begins by saying \"I wish you to pay attention to what I am going to say to you.\"", "Asking for attention shows she wants him to concentrate on the advice that follows."],
+      },
+      {
+        q: "What is another way of saying \"wise\" as it is used in the final paragraph?",
+        answer: "sensible",
+        wrong: ["elderly", "strict", "cheerful", "healthy"],
+        why: ["The narrator says \"I knew she was a wise old horse\" straight after remembering her advice.", "He means her advice was good and sensible, not simply that she had lived a long time."],
+      },
     ],
   },
   {
@@ -360,6 +415,30 @@ export const PASSAGES = [
         wrong: ["Too fast to see anything at all.", "Fast at first and then not at all.", "Fast enough to frighten her badly.", "So slowly that she almost stopped."],
         why: ["She has \"plenty of time\" to look about, read a label and put a jar away as she passes.", "The author even offers two explanations: either the well was very deep, or she fell very slowly."],
       },
+      {
+        q: "\"The rabbit-hole went straight on like a tunnel for some way\" is an example of which kind of language?",
+        answer: "a simile",
+        wrong: ["a metaphor", "personification", "alliteration", "a rhetorical question"],
+        why: ["The passage reads \"The rabbit-hole went straight on like a tunnel for some way\".", "The word 'like' is used to compare the hole with a tunnel, and that comparison is what makes it a simile."],
+      },
+      {
+        q: "What is the effect of the phrase \"it flashed across her mind\"?",
+        answer: "It shows the thought came to Alice very suddenly",
+        wrong: ["It shows Alice had been thinking it over all day", "It shows Alice was frightened of the lightning", "It shows Alice had completely forgotten what she was doing", "It shows Alice was slow and muddled in her thinking"],
+        why: ["The passage says \"it flashed across her mind that she had never before seen a rabbit with either a waistcoat-pocket, or a watch to take out of it\".", "A flash lasts only an instant, so the word suggests the realisation arrived in a split second."],
+      },
+      {
+        q: "Why does the author include the detail that the hot day made Alice feel \"very sleepy and stupid\"?",
+        answer: "To explain why Alice was bored and not thinking clearly before the Rabbit appeared",
+        wrong: ["To show that Alice was unwell and needed a doctor", "To show that Alice had stayed up all night reading", "To show that Alice was cleverer than her sister", "To explain why Alice disliked picking daisies"],
+        why: ["The passage says \"the hot day made her feel very sleepy and stupid\".", "It helps to explain why she does not find a talking rabbit at all strange at first."],
+      },
+      {
+        q: "What is another way of saying \"considering\" in \"never once considering how in the world she was to get out again\"?",
+        answer: "thinking about",
+        wrong: ["asking about", "looking for", "worrying about her sister", "explaining"],
+        why: ["The passage says \"never once considering how in the world she was to get out again\".", "It means Alice jumped in without once thinking about the problem of climbing back out."],
+      },
     ],
   },
   {
@@ -420,6 +499,30 @@ export const PASSAGES = [
         answers: ["stopped him to ask how he was", "asked him what the time was", "asked him the way"],
         wrong: ["offered to shake his hand", "wished him a happy birthday"],
         why: ["\"Nobody ever stopped him in the street\" with gladsome looks, and \"no children asked him what it was o'clock\".", "The third is \"no man or woman ever once in all his life inquired the way to such and such a place\"."],
+      },
+      {
+        q: "\"Hard and sharp as flint\" is an example of which kind of language?",
+        answer: "a simile",
+        wrong: ["a metaphor", "personification", "onomatopoeia", "alliteration"],
+        why: ["The passage reads \"Hard and sharp as flint, from which no steel had ever struck out generous fire\".", "Scrooge is compared to flint using the word 'as', which is how a simile works."],
+      },
+      {
+        q: "What is the effect of the sentence \"He carried his own low temperature always about with him\"?",
+        answer: "It makes Scrooge's coldness seem part of who he is rather than something outside him",
+        wrong: ["It shows Scrooge was often ill with a chill", "It shows Scrooge always carried a thermometer with him", "It suggests Scrooge lived somewhere very far north", "It shows Scrooge enjoyed the heat of the summer"],
+        why: ["The passage says \"He carried his own low temperature always about with him\".", "The coldness travels with him wherever he goes, so it belongs to his character and not to the weather."],
+      },
+      {
+        q: "Which word in the first paragraph does the author use for becoming warmer, something Scrooge never did at Christmas?",
+        answer: "thaw",
+        wrong: ["shrivelled", "nipped", "grating", "solitary"],
+        why: ["The passage says he \"didn't thaw it one degree at Christmas\".", "To thaw means to warm up and soften, which is exactly what Scrooge refuses to do."],
+      },
+      {
+        q: "What does \"Foul weather didn't know where to have him\" tell you about Scrooge?",
+        answer: "Even the worst weather could not affect him because he was already as harsh as it was",
+        wrong: ["He always stayed safely indoors when it rained", "He greatly enjoyed walking about in storms", "He often got lost when the weather closed in", "He dressed in warm clothes to keep the cold out"],
+        why: ["The passage says \"No wind that blew was bitterer than he, no falling snow was more intent upon its purpose, no pelting rain less open to entreaty.\"", "The weather cannot get the better of him because he is colder and harder than the weather itself."],
       },
     ],
   },
@@ -482,6 +585,30 @@ export const PASSAGES = [
         wrong: ["To show the family were extremely rich.", "To suggest the house was old and falling down.", "To explain why the children liked railways.", "To show that the house was hard to keep clean."],
         why: ["The list ends with \"every modern convenience, as the house-agents say\", which gently mocks how ordinary it all is.", "The details are there to set up the comfortable life the children are about to lose."],
       },
+      {
+        q: "What is the effect of the opening sentence \"They were not railway children to begin with.\"?",
+        answer: "It hints that something is going to change the children's lives later on",
+        wrong: ["It tells us that the children hated trains", "It shows that the story is set inside a railway station", "It suggests that the children were badly behaved", "It explains that the children were adopted"],
+        why: ["The story opens with \"They were not railway children to begin with.\"", "The words 'to begin with' promise the reader that they will become railway children by the end."],
+      },
+      {
+        q: "Why does the author include the remark that if their Mother had had a favourite, it might have been Roberta?",
+        answer: "To hint that Roberta was especially loved without saying so directly",
+        wrong: ["To show that Mother was unfair to Peter and Phyllis", "To show that Roberta was the naughtiest of the three", "To explain that Mother did not really like her children", "To show that Roberta was the youngest child"],
+        why: ["The passage says \"Of course, Mothers never have favourites, but if their Mother HAD had a favourite, it might have been Roberta.\"", "The narrator pretends to deny favourites and then names one anyway, which is a gentle, joking way of telling us."],
+      },
+      {
+        q: "Which word in the fourth paragraph shows that the narrator thinks the children were fortunate?",
+        answer: "lucky",
+        wrong: ["merry", "kind", "perfect", "pretty"],
+        why: ["The passage says \"These three lucky children always had everything they needed\".", "Lucky means fortunate, so the narrator is telling us how well off the children were."],
+      },
+      {
+        q: "What is the effect of listing the christening of the kittens, the refurnishing of the doll's house and getting over the mumps?",
+        answer: "It shows that Mother turned small, everyday events into special occasions",
+        wrong: ["It shows that the family were ill very often", "It shows that Mother was too busy to spend time with the children", "It shows that the children were spoilt and greedy", "It shows that the family kept a great many pets"],
+        why: ["The passage says she made up \"funny pieces of poetry for their birthdays and for other great occasions\" before listing them.", "Calling such ordinary happenings 'great occasions' shows how much fun Mother made of family life."],
+      },
     ],
   },
   {
@@ -543,6 +670,30 @@ export const PASSAGES = [
         wrong: ["Somebody has told her the garden was destroyed.", "The robin has been pulling at the stems.", "She can see that the walls have fallen down.", "She has never seen a rose before."],
         why: ["The grass is \"a wintry brown\" and there are \"neither leaves nor roses on them now\", so there is nothing to judge by.", "She says outright that she does not know whether they were dead or alive."],
       },
+      {
+        q: "What is the effect of saying the climbing roses \"had crept from one tree to another\"?",
+        answer: "It makes the plants sound alive, as though they had moved across the garden by themselves",
+        wrong: ["It shows that someone had tied the roses between the trees", "It suggests that the roses were certainly dead", "It shows that the garden had been carefully looked after", "It suggests that the trees had been planted in neat rows"],
+        why: ["The passage says they \"had crept from one tree to another and made lovely bridges of themselves\".", "Creeping is something a living creature does, so the roses seem to have taken over the garden on their own."],
+      },
+      {
+        q: "Which word in the first paragraph does the author use to describe the brown colour of the grass?",
+        answer: "wintry",
+        wrong: ["leafless", "hazy", "matted", "swaying"],
+        why: ["The passage says \"All the ground was covered with grass of a wintry brown\".", "Wintry tells us the brown is the dull, cold colour of grass in winter."],
+      },
+      {
+        q: "What is another way of saying \"matted\" as it is used in the first paragraph?",
+        answer: "tangled together",
+        wrong: ["trimmed short", "growing straight upwards", "faded in colour", "covered in flowers"],
+        why: ["The passage says the stems were \"so thick that they were matted together\".", "Matted means knotted and tangled into a thick mass, which is why the walls are completely hidden."],
+      },
+      {
+        q: "Why does the author end the description by saying the garden was different from any other place Mary had ever seen?",
+        answer: "To stress how special and unlike anywhere else the garden felt to her",
+        wrong: ["To show that Mary had travelled to very few places", "To suggest that Mary did not like the garden at all", "To show that the garden was ugly and badly overgrown", "To explain that Mary had never seen a garden before"],
+        why: ["The passage says \"it was different from any other place she had ever seen in her life\".", "Placing this at the end of a long description leaves the reader with a strong sense of how extraordinary the garden is."],
+      },
     ],
   },
   {
@@ -603,6 +754,30 @@ export const PASSAGES = [
         wrong: ["They travel often and do not stay long.", "They prefer living simply by choice.", "They have recently moved in.", "They are saving up for a larger farm."],
         why: ["One room, four walls, no garret and no cellar, and the lumber had to be carried many miles by wagon.", "Nothing suggests they chose it. The wagon detail shows how far they are from anywhere."],
       },
+      {
+        q: "What is the effect of describing the flat country as reaching \"to the edge of the sky in all directions\"?",
+        answer: "It makes the prairie seem enormous and empty, with nothing to break it up",
+        wrong: ["It shows that there were hills rising in the distance", "It suggests the land was crowded with other farms", "It shows that a storm was gathering overhead", "It suggests the prairie was only a short walk across"],
+        why: ["The passage says \"Not a tree nor a house broke the broad sweep of flat country that reached to the edge of the sky in all directions.\"", "If the land runs all the way to the sky on every side, Dorothy's home feels tiny and lost in it."],
+      },
+      {
+        q: "What is the effect of saying the sun and wind had \"taken the sparkle from her eyes\"?",
+        answer: "It suggests that Aunt Em has lost her liveliness and happiness",
+        wrong: ["It suggests that Aunt Em cannot see very well any more", "It shows that Aunt Em is much older than Uncle Henry", "It shows that Aunt Em was blinded by the bright sunlight", "It suggests that Aunt Em is about to burst into tears"],
+        why: ["The passage says \"They had taken the sparkle from her eyes and left them a sober gray\".", "A sparkle stands for cheerfulness, so losing it shows the hard life on the prairie has worn her spirits away."],
+      },
+      {
+        q: "Which word in the first paragraph tells you the cookstove was old and worn?",
+        answer: "rusty",
+        wrong: ["small", "dark", "mighty", "little"],
+        why: ["The passage says \"this room contained a rusty looking cookstove\".", "Rust only forms on metal that is old and has not been looked after, so the word shows the family's things were far from new."],
+      },
+      {
+        q: "Why does the author include the detail that the sun blistered the paint and the rains washed it away?",
+        answer: "To show how the harsh weather had worn everything down until it was grey",
+        wrong: ["To show that Uncle Henry was too lazy to make repairs", "To explain why the family were planning to move away", "To show that the house had only just been built", "To explain why the house had no proper cellar"],
+        why: ["The passage says \"Once the house had been painted, but the sun blistered the paint and the rains washed it away, and now the house was as dull and gray as everything else.\"", "The house has been stripped of colour by the weather, just as the land and Aunt Em have been."],
+      },
     ],
   },
   {
@@ -661,6 +836,30 @@ export const PASSAGES = [
         answer: "To make them seem grand and a little forbidding.",
         wrong: ["To show that they are covered in snow.", "To suggest they are dangerous to climb in June.", "To explain why nobody lives on them.", "To show that they are further away than they look."],
         why: ["\"Stern\" gives them a severe, unsmiling quality, and \"lofty\" makes them tower over the valley.", "The gentle meadows come first, so the mountains feel like a change in mood."],
+      },
+      {
+        q: "What is the effect of saying the child was \"clothed as if to keep off the bitterest frost\"?",
+        answer: "It stresses how strange and uncomfortable her many layers were on such a hot day",
+        wrong: ["It shows that the weather had suddenly turned icy", "It suggests that the child would be outdoors all winter", "It shows that the child owned no warm clothes at all", "It suggests that the child was ill with a fever"],
+        why: ["The passage says \"for in spite of the hot June sun the child was clothed as if to keep off the bitterest frost\".", "Mentioning frost right beside the hot June sun creates a contrast that makes her clothing seem ridiculous."],
+      },
+      {
+        q: "What does it tell you about Dete that she did not pause when the villagers called out to her?",
+        answer: "She was in a hurry and determined to keep going",
+        wrong: ["She was far too tired to speak to anybody", "She did not know a single person in the hamlet", "She was angry with the child she was leading", "She had lost her way and was searching for the path"],
+        why: ["The passage says \"She did not, however, pause in her walk to respond to her friends' welcoming cries and questions\".", "Walking straight past people she knows shows that finishing the journey mattered more to her than stopping to chat."],
+      },
+      {
+        q: "What is another way of saying \"fragrance\" as it is used in the first paragraph?",
+        answer: "scent",
+        wrong: ["dampness", "coolness", "softness", "roughness"],
+        why: ["The passage says \"he begins to inhale the fragrance of the short grass and sturdy mountain-plants\".", "The climber breathes it in, so fragrance must mean the sweet smell of the plants."],
+      },
+      {
+        q: "Which word in the first paragraph shows that the land becomes wilder little by little rather than all at once?",
+        answer: "gradually",
+        wrong: ["steep", "directly", "winds", "lofty"],
+        why: ["The passage says \"The land grows gradually wilder as the path ascends\".", "Gradually means by slow degrees, so the change happens step by step as the climber goes higher."],
       },
     ],
   },
@@ -729,6 +928,30 @@ export const PASSAGES = [
         wrong: ["To show that the room was very noisy.", "To suggest her sisters were being unkind.", "To show that Beth was sitting outside.", "To suggest the objects were more important to her."],
         why: ["Naming two household objects as the only listeners is a gentle way of saying nobody noticed her.", "It fits Beth, who is described sitting quietly in her corner."],
       },
+      {
+        q: "What is the effect of the phrase \"brightened at the cheerful words, but darkened again\"?",
+        answer: "It shows the sisters' mood lifting for a moment and then sinking back into sadness.",
+        wrong: ["It shows the firelight in the room slowly going out.", "It shows the sisters beginning to argue with one another.", "It shows that the girls have fallen asleep beside the fire.", "It shows that the room grew colder as the evening went on."],
+        why: ["The four faces \"brightened at the cheerful words, but darkened again\" as soon as Jo mentions their absent father.", "The words about light and dark describe the girls' feelings, not the lighting in the room."],
+      },
+      {
+        q: "What does \"examining the heels of her shoes in a gentlemanly manner\" tell you about Jo?",
+        answer: "She behaves in a boyish way rather than a ladylike one.",
+        wrong: ["She is worried that her shoes cost too much money.", "She is a careful, tidy girl who checks her clothes often.", "She is planning to walk into town to buy her book.", "She is ashamed of how poor her family has become."],
+        why: ["Jo is shown \"examining the heels of her shoes in a gentlemanly manner\", which was not how a girl of the time was expected to sit.", "The word \"gentlemanly\" points to Jo's boyish manner rather than to the state of her shoes."],
+      },
+      {
+        q: "Which word in the first line of the passage shows that Jo spoke in a discontented, complaining way?",
+        answer: "grumbled",
+        wrong: ["sighed", "added", "cried", "said"],
+        why: ["The first line ends \"grumbled Jo, lying on the rug\", and to grumble is to complain in a low, moaning voice.", "The other words are used later for the way the other sisters speak."],
+      },
+      {
+        q: "Why does the author include the words \"with an injured sniff\" when Amy speaks?",
+        answer: "To show that Amy feels hard done by and is feeling sorry for herself.",
+        wrong: ["To show that Amy has caught a bad cold.", "To show that Amy has hurt herself falling over.", "To show that Amy is trying to make her sisters laugh.", "To show that Amy is the eldest of the four sisters."],
+        why: ["Amy complains that some girls have \"plenty of pretty things, and other girls nothing at all\", and the sniff shows she feels wronged.", "The word \"injured\" here means her feelings are hurt, not her body."],
+      },
     ],
   },
   {
@@ -790,6 +1013,30 @@ export const PASSAGES = [
         answer: "Orphans.",
         wrong: ["Soldiers standing in a row.", "A crowd of old women.", "Ghosts in the moonlight.", "A line of green candles."],
         why: ["\"They just looked like orphans themselves, those trees did. It used to make me want to cry to look at them.\"", "The comparison is Anne's own, said aloud, so it is stated in the passage rather than worked out."],
+      },
+      {
+        q: "What is the effect of describing Anne as \"this freckled witch\"?",
+        answer: "It suggests she is unusual and lively, with a kind of magic about her, unlike other girls.",
+        wrong: ["It suggests Matthew is frightened of her and wants her sent away.", "It suggests Anne is unkind and likes playing tricks on Matthew.", "It suggests Anne is very quiet and perfectly well behaved.", "It suggests Anne is much older than Matthew first thought."],
+        why: ["Matthew notices that \"this freckled witch was very different\" from the well-behaved girls of Avonlea.", "He also says he \"kind of liked her chatter\", so the description is affectionate rather than unkind."],
+      },
+      {
+        q: "Why does the author include the detail that little girls behave \"as if they expected him to gobble them up at a mouthful\"?",
+        answer: "To show in an exaggerated, comic way how nervous other little girls are around Matthew.",
+        wrong: ["To show that Matthew has a habit of shouting at children.", "To show that Matthew is greedy at mealtimes.", "To show that Matthew once frightened a child on purpose.", "To show that the girls of Avonlea are badly behaved."],
+        why: ["The girls are described \"sidling past him timidly, with sidewise glances\", which shows how shy they are of him.", "The exaggeration is funny because Matthew is shy himself and frightens nobody."],
+      },
+      {
+        q: "Which word in the first paragraph shows that Matthew's own thinking was less quick than Anne's?",
+        answer: "slower",
+        wrong: ["brisk", "timidly", "shyly", "quiet"],
+        why: ["The passage says it was \"rather difficult for his slower intelligence to keep up with her brisk mental processes\".", "The word \"brisk\" describes Anne's quick thinking, not Matthew's."],
+      },
+      {
+        q: "What is another way of saying \"attached\", as Anne uses it near the end of the passage?",
+        answer: "fond of something",
+        wrong: ["fastened on with glue", "tired of something", "frightened of something", "sent through the post"],
+        why: ["Anne says \"I felt sorry to leave them behind this morning\", which shows how fond of the little trees she had grown.", "Being attached to something here means caring about it, not being fixed to it."],
       },
     ],
   },
@@ -865,6 +1112,30 @@ export const PASSAGES = [
         wrong: ["She is angry with the neighbours.", "She thinks Tom is foolish.", "She believes she is getting too old to look after him.", "She is repeating something Tom said to her."],
         why: ["She is scolding herself, not Tom, for falling for a trick she has seen before.", "She goes on to admit she can never guess which trick is coming, which is a fond kind of complaint."],
       },
+      {
+        q: "What is the effect of saying Aunt Polly spoke \"loud enough for the furniture to hear\"?",
+        answer: "It is a humorous way of showing how loudly she shouted into an empty room.",
+        wrong: ["It shows that the furniture in the room was old and creaky.", "It shows that Aunt Polly was whispering so Tom would not hear.", "It shows that Aunt Polly was speaking to a visitor sitting nearby.", "It shows that Aunt Polly had become hard of hearing."],
+        why: ["She speaks \"not fiercely, but still loud enough for the furniture to hear\", which is a joke about the empty room.", "Furniture cannot hear anything, so the writer is exaggerating for comic effect."],
+      },
+      {
+        q: "Why does the author include the remark that Aunt Polly \"could have seen through a pair of stove-lids just as well\"?",
+        answer: "To joke that her best spectacles were chosen for show rather than for seeing clearly.",
+        wrong: ["To show that Aunt Polly cooked using the lids of her stove.", "To show that Aunt Polly had gone completely blind.", "To show that the room was filled with smoke from the stove.", "To show that the spectacles had been broken earlier that day."],
+        why: ["The spectacles were \"her state pair, the pride of her heart\", and she seldom or never looked through them.", "Stove-lids are solid metal, so the writer is joking that the spectacles were no help at all for seeing."],
+      },
+      {
+        q: "Which single word in the passage makes finding the cat under the bed sound grand and dramatic?",
+        answer: "resurrected",
+        wrong: ["punching", "perplexed", "seize", "whirled"],
+        why: ["The passage says \"She resurrected nothing but the cat\", using a very grand word for a very small event.", "To resurrect means to bring back from the dead, so an ordinary discovery is made to sound dramatic."],
+      },
+      {
+        q: "What does \"lifted up her voice at an angle calculated for distance\" tell you about Aunt Polly?",
+        answer: "She is well practised at calling Tom from far away and aims her shout carefully.",
+        wrong: ["She has a very quiet and gentle speaking voice.", "She is using a measuring instrument out in the garden.", "She has given up all hope of finding Tom.", "She is singing to herself rather than shouting."],
+        why: ["She \"lifted up her voice at an angle calculated for distance and shouted\" out over the garden.", "The mock-scientific wording makes her shouting sound like a skill she has perfected."],
+      },
     ],
   },
   {
@@ -929,6 +1200,30 @@ export const PASSAGES = [
         wrong: ["Because it was the cheapest along the coast.", "Because he knew the family who kept it.", "Because it was closest to the harbour.", "Because the mail coach stopped outside it."],
         why: ["He asked what inns there were along the coast and chose this one after hearing it described as lonely.", "Wanting somewhere out of the way is another clue that he is hiding from something."],
       },
+      {
+        q: "The captain drinks his rum \"like a connoisseur\". Which technique is the author using here?",
+        answer: "a simile",
+        wrong: ["a metaphor", "personification", "alliteration", "rhyme"],
+        why: ["The passage says he \"drank slowly, like a connoisseur, lingering on the taste\", and a comparison using the word like is a simile.", "Nothing lifeless is given human qualities and there is no rhyme in the description."],
+      },
+      {
+        q: "What is the effect of describing the captain's voice as \"high, old tottering\"?",
+        answer: "It suggests a worn, unsteady voice roughened by years of hard work at sea.",
+        wrong: ["It suggests he is a trained singer with a beautiful voice.", "It suggests he is a young boy who has never been to sea.", "It suggests he is too shy to sing in front of other people.", "It suggests he has a heavy cold that day."],
+        why: ["The voice \"seemed to have been tuned and broken at the capstan bars\", which links it to years of labour on ships.", "Tottering suggests something unsteady and worn out rather than strong and tuneful."],
+      },
+      {
+        q: "What does \"he threw down three or four gold pieces on the threshold\" tell you about the captain?",
+        answer: "He has money and wants to show he can pay for whatever he wants.",
+        wrong: ["He has stolen the money and is trying to hide it.", "He is too poor to pay for a room at the inn.", "He has dropped the coins by accident and not noticed.", "He is giving the money away as a gift to the village."],
+        why: ["He throws the coins down while \"looking as fierce as a commander\" and tells the landlord to say when the money has run out.", "Flinging the gold onto the threshold shows he expects no argument about payment."],
+      },
+      {
+        q: "Which word in the first paragraph shows that the captain walked heavily and with effort?",
+        answer: "plodding",
+        wrong: ["trundled", "whistling", "rapped", "lingering"],
+        why: ["The narrator remembers him \"as he came plodding to the inn door\" with his sea-chest behind him.", "To plod is to walk slowly and heavily, which suits a big, tired man."],
+      },
     ],
   },
   {
@@ -991,6 +1286,30 @@ export const PASSAGES = [
         answer: "It makes him seem calm and strangely unchanging.",
         wrong: ["It shows that he was a famous poet.", "It suggests he was much older than he looked.", "It tells the reader he was in poor health.", "It shows that he was vain about his appearance."],
         why: ["Byron was known for storminess, so a tranquil Byron is a deliberate contradiction.", "The thousand years exaggerates how little he ever seems to alter, which fits the rest of the description."],
+      },
+      {
+        q: "What is the effect of the short sentence \"Phileas Fogg was a member of the Reform, and that was all.\"?",
+        answer: "After the long list of what he was not, it sums him up sharply and adds to the mystery.",
+        wrong: ["It tells the reader that Fogg had a great many other interests.", "It shows that Fogg was about to leave the club for good.", "It proves that Fogg was in fact a poor man.", "It explains at last how Fogg had made his fortune."],
+        why: ["The sentence \"Phileas Fogg was a member of the Reform, and that was all.\" stands alone after a whole paragraph of everything he was not.", "The blunt ending leaves the reader knowing almost nothing about him."],
+      },
+      {
+        q: "Why does the author say the societies \"swarm in the English capital\"?",
+        answer: "To suggest there were huge numbers of them, busy and crowded like insects.",
+        wrong: ["To suggest that all the societies were about insects.", "To suggest that the societies were dangerous to visitors.", "To suggest that London had only a few small clubs.", "To suggest that Fogg was in charge of all of them."],
+        why: ["Fogg belonged to \"none of the numerous societies which swarm in the English capital\".", "Swarm is normally used of insects, so it makes the clubs sound countless and busy."],
+      },
+      {
+        q: "What does \"he supplied it quietly and sometimes anonymously\" tell you about Fogg?",
+        answer: "He was generous but did not want praise or attention for his giving.",
+        wrong: ["He was mean with his money and gave nothing away.", "He gave money only when other people were watching him.", "He borrowed money from good causes.", "He kept a careful public record of every gift he made."],
+        why: ["Whenever money was needed for a \"noble, useful, or benevolent purpose\", he handed it over without putting his name to it.", "He also \"seemed always to avoid attracting attention\", which fits this quiet way of giving."],
+      },
+      {
+        q: "What is another way of saying \"avaricious\" as it is used in the passage?",
+        answer: "greedy for money",
+        wrong: ["very generous", "wasteful with money", "dishonest", "cheerful and friendly"],
+        why: ["The passage says \"He was not lavish, nor, on the contrary, avaricious\", setting the word against being free with money.", "Because lavish means spending freely, avaricious must mean the opposite, hoarding money greedily."],
       },
     ],
   },
@@ -1056,6 +1375,30 @@ export const PASSAGES = [
         wrong: ["A fairy palace.", "A birdcage.", "A ship's rigging.", "A crown."],
         why: ["\"Father used to say that the ironwork on the roof and coping was like an architect's nightmare.\"", "It is one of several details showing the house was not actually handsome."],
       },
+      {
+        q: "What is the effect of the list of words \"thorny, thistly, briery, brambly\"?",
+        answer: "The piled-up words make the wild ground sound tangled and exciting to explore.",
+        wrong: ["The words show that the garden had been carefully tidied.", "The words show that the children were afraid to go outside.", "The words show that the garden was mostly smooth lawn.", "The words show that all the plants were dying."],
+        why: ["The children rush round \"the thorny, thistly, briery, brambly wilderness beyond the broken gate\".", "Four rough-sounding words one after another make the wilderness feel thick and overgrown."],
+      },
+      {
+        q: "What is the effect of the sentence \"But the children were wiser, for once.\"?",
+        answer: "It hints that the children saw the joy in the house even though the grown-ups saw only its faults.",
+        wrong: ["It shows that the children were older than their mother.", "It shows that the children had stayed in the house before.", "It shows that the children were sorry they had come.", "It shows that the children agreed with father about the ironwork."],
+        why: ["The narrator admits \"It was not really a pretty house at all\", yet to the children it seemed a Fairy Palace.", "The words \"for once\" are a joke, because children are not usually the sensible ones."],
+      },
+      {
+        q: "What does the Baby saying \"Wanty go walky\" tell you about the Baby?",
+        answer: "The Baby is very young and cannot speak properly yet.",
+        wrong: ["The Baby is the eldest of the children.", "The Baby is refusing to leave the carriage.", "The Baby has been made unwell by the journey.", "The Baby is speaking in a foreign language."],
+        why: ["The passage says: The Baby said, \"Wanty go walky\"; and the fly stopped with a last rattle and jolt.", "The half-formed words show a child too little to speak in full sentences."],
+      },
+      {
+        q: "Why does the author describe the carriage stopping \"with a last rattle and jolt\"?",
+        answer: "To show that the journey had been bumpy and noisy right to the very end.",
+        wrong: ["To show that the carriage had crashed into the gate.", "To show that the carriage was brand new and beautifully smooth.", "To show that the horse had run away with them.", "To show that the children had slept all the way there."],
+        why: ["The carriage is \"the dusty hired fly\" that had \"rattled along\" ever since the station.", "One final rattle and jolt ends the uncomfortable ride just as the children arrive."],
+      },
     ],
   },
   {
@@ -1115,6 +1458,30 @@ export const PASSAGES = [
         wrong: ["They walk up to the central springs.", "They wait for the yearly rains.", "They follow the tortoise paths to the coast.", "They collect dew from the plants."],
         why: ["\"The inhabitants, when walking in the lower district, and overcome with thirst, often take advantage of this circumstance.\"", "The writer even reports which fluid is considered best, which shows how commonly it was done."],
       },
+      {
+        q: "What is the effect of describing the tracks as \"broad and well-beaten paths\"?",
+        answer: "It shows the tortoises have used the same routes over and over for a very long time.",
+        wrong: ["It shows that people made the paths for the tortoises to use.", "It shows that the paths were narrow and hard to find.", "It shows that the paths had only just been made that year.", "It shows that the paths led away from the water."],
+        why: ["The passage says \"broad and well-beaten paths branch off in every direction from the wells down to the sea-coast\".", "A path only becomes broad and beaten when it is travelled again and again."],
+      },
+      {
+        q: "Why does the author include the detail of \"one set eagerly travelling onwards with outstretched necks, and another set returning\"?",
+        answer: "To create a picture of constant two-way traffic of tortoises around the spring.",
+        wrong: ["To show that the tortoises were fighting over the water.", "To show that the tortoises never managed to find the water.", "To show that the tortoises only travelled at night.", "To show that the tortoises were racing one another."],
+        why: ["Darwin calls it \"a curious spectacle to behold many of these huge creatures\" coming and going near the springs.", "One group is arriving thirsty while the other heads home \"after having drunk their fill\"."],
+      },
+      {
+        q: "Which word in the passage shows that the tortoise drinks in a hungry, eager way?",
+        answer: "greedily",
+        wrong: ["slowly", "politely", "gradually", "carefully"],
+        why: ["The passage says he \"greedily swallows great mouthfuls, at the rate of about ten in a minute\".", "Greedily shows how eagerly the thirsty tortoise takes in the water."],
+      },
+      {
+        q: "What is another way of saying \"limpid\" as it is used in the passage?",
+        answer: "clear",
+        wrong: ["cloudy", "bitter", "warm", "salty"],
+        why: ["Darwin writes that \"the fluid was quite limpid, and had only a very slightly bitter taste\".", "Limpid describes how clear the liquid looked, and its taste is described separately."],
+      },
     ],
   },
   {
@@ -1172,6 +1539,30 @@ export const PASSAGES = [
         answer: "He covers it with his free left hand.",
         wrong: ["He shuts his eyes and lies still.", "He rolls onto his side.", "He shouts at the creatures to stop.", "He pulls his other arm free."],
         why: ["\"Some on my face, which I immediately covered with my left hand.\"", "His left hand is the only one he has managed to free, which is why he can do it at all."],
+      },
+      {
+        q: "What is the effect of \"I could only look upwards; the sun began to grow hot, and the light offended my eyes\"?",
+        answer: "It makes the reader feel how helpless and uncomfortable the narrator is.",
+        wrong: ["It shows that he is enjoying a pleasant day on the beach.", "It shows that night is beginning to fall on the island.", "It shows that he can see everything going on around him.", "It shows that he has been asleep for many days."],
+        why: ["He says \"I heard a confused noise about me; but in the posture I lay, could see nothing except the sky\".", "Being pinned down and unable even to shade his eyes shows how completely helpless he is."],
+      },
+      {
+        q: "Why does the author include the comparison \"as we do bombs in Europe\"?",
+        answer: "To help the reader picture the arrows being fired high into the air, using something familiar.",
+        wrong: ["To show that the little people had brought bombs with them.", "To show that a war had broken out in Europe.", "To show that the arrows were completely harmless.", "To show that the narrator had made the weapons himself."],
+        why: ["The little people \"shot another flight into the air, as we do bombs in Europe\".", "The comparison explains a strange sight by matching it to something the reader already knows."],
+      },
+      {
+        q: "What is the effect of the words \"as the reader may believe\"?",
+        answer: "The narrator speaks directly to the reader, which makes the story feel like a true account.",
+        wrong: ["The narrator is unsure about what really happened to him.", "The narrator is speaking aloud to the little creatures.", "The narrator expects nobody to believe a word of it.", "The narrator is writing a letter to a close friend."],
+        why: ["He writes \"I lay all this while, as the reader may believe, in great uneasiness\".", "Turning to address the reader makes the account sound like an eyewitness report."],
+      },
+      {
+        q: "Which word in the passage shows that the narrator was completely amazed?",
+        answer: "astonishment",
+        wrong: ["uneasiness", "fright", "admiration", "excessive"],
+        why: ["He says \"I was in the utmost astonishment, and roared so loud, that they all ran back in a fright\".", "Astonishment means very great surprise, which is why he roars out loud."],
       },
     ],
   },
@@ -1235,6 +1626,30 @@ export const PASSAGES = [
         wrong: ["To show that the girls enjoyed arguing.", "To suggest the girls were ungrateful.", "To explain why the teachers were angry.", "To show that the girls had no friends."],
         why: ["They had no breakfast and only a quarter of an hour of freedom, and grumbling was all they got out of it.", "The words \"Poor things!\" just before it tell you where the narrator's sympathy lies."],
       },
+      {
+        q: "What is the effect of describing the schoolroom as being in \"a glorious tumult\"?",
+        answer: "It makes the noisy uproar sound joyful, because complaining together is the only pleasure the girls have",
+        wrong: ["It shows that the girls were frightened of being punished", "It shows that the teachers had lost control of the school for good", "It suggests the girls were celebrating a special occasion", "It suggests the schoolroom was a beautiful and grand place"],
+        why: ["The narrator says the schoolroom was in a glorious tumult and that the girls were allowed \"to talk loud and more freely, and they used their privilege\".", "\"Glorious\" is a happy, shining word, so putting it with the noise of the uproar makes the racket sound like a treat rather than bad behaviour."],
+      },
+      {
+        q: "Why does the author include the moment when a teacher tastes the porridge?",
+        answer: "To prove the porridge really was inedible, and not just the girls being fussy",
+        wrong: ["To show that the teachers were as hungry as the girls were", "To show that the teacher wanted to check nothing had been stolen", "To show that the teachers were served better food than the pupils", "To show that Mr Brocklehurst had ordered the porridge to be tested"],
+        why: ["The teacher tastes it and one of them whispers, \"Abominable stuff! How shameful!\", so the adults agree with the girls.", "Once the grown-ups react the same way, the reader knows the complaints are completely fair."],
+      },
+      {
+        q: "Which word in the final paragraph shows how angry the girls felt?",
+        answer: "wrath",
+        wrong: ["privilege", "chanted", "consolation", "gestures"],
+        why: ["The narrator says Miss Miller \"made no great effort to check the general wrath\".", "\"Wrath\" means great anger, and \"general\" shows the whole room felt it."],
+      },
+      {
+        q: "What does \"famine itself soon sickens over it\" tell you about the porridge?",
+        answer: "It was so revolting that even a starving person could not keep eating it",
+        wrong: ["It was filling enough to stop the girls feeling hungry", "It was the only food available during a famine", "It made the girls physically ill for the rest of the day", "It tasted better once you were hungry enough"],
+        why: ["The narrator writes, \"burnt porridge is almost as bad as rotten potatoes; famine itself soon sickens over it\".", "Hunger normally makes any food bearable, so saying hunger itself gives up is the strongest way of showing how bad it was."],
+      },
     ],
   },
   {
@@ -1296,6 +1711,30 @@ export const PASSAGES = [
         wrong: ["Only a few hours.", "Since the previous evening.", "About a week.", "It has just been arranged that morning."],
         why: ["\"Everything within my view which ought to be white, had been white long ago, and had lost its lustre and was faded and yellow.\"", "The bride has withered like the dress and the flowers, which takes years rather than days."],
       },
+      {
+        q: "Which of these is a simile used in the passage?",
+        answer: "the bride had \"withered like the dress, and like the flowers\"",
+        wrong: ["\"No glimpse of daylight was to be seen in it\"", "\"Her shoes were white\"", "\"Some bright jewels sparkled on her neck and on her hands\"", "\"she had but one shoe on\""],
+        why: ["The narrator writes that \"the bride within the bridal dress had withered like the dress, and like the flowers\".", "A simile compares one thing to another using \"like\" or \"as\", and here the woman is compared to the dead flowers and the faded dress."],
+      },
+      {
+        q: "What is the effect of saying the figure \"had shrunk to skin and bone\"?",
+        answer: "It makes her seem frail and wasted, almost more dead than alive",
+        wrong: ["It shows the dress was made for somebody else entirely", "It suggests she has been working very hard for many years", "It shows she is much taller than the narrator expected", "It suggests the room is too cold for her to eat properly"],
+        why: ["The narrator says the dress \"had been put upon the rounded figure of a young woman, and that the figure upon which it now hung loose had shrunk to skin and bone\".", "Comparing the full young figure with what is left now makes the reader picture a body that has slowly wasted away."],
+      },
+      {
+        q: "Which word in the fourth paragraph shows that the waxwork was horrible to look at?",
+        answer: "ghastly",
+        wrong: ["impossible", "sunken", "splendid", "faded"],
+        why: ["The narrator remembers being taken \"to see some ghastly waxwork at the Fair\".", "\"Ghastly\" means frightful or sickening, so it tells us the waxwork was disturbing rather than simply strange."],
+      },
+      {
+        q: "What does \"no brightness left but the brightness of her sunken eyes\" tell you about the lady?",
+        answer: "Everything about her has faded except her eyes, which are still sharply alive",
+        wrong: ["She has been crying and her eyes are sore", "She is wearing so many jewels that only her eyes can be seen", "She is asleep and her eyes are closed", "The candles are reflecting in her eyes and blinding the narrator"],
+        why: ["The narrator says she \"had no brightness left but the brightness of her sunken eyes\".", "Setting the one bright thing against everything faded makes her stare the only living part of her."],
+      },
     ],
   },
   {
@@ -1353,6 +1792,30 @@ export const PASSAGES = [
         answer: "They grew more worried as the days passed with no change.",
         wrong: ["They were arguing about what to do next.", "They were frightened of the wildlife.", "They were running short of food.", "They had given up hope entirely."],
         why: ["\"We waited through that day and the succeeding days with increasing anxiety.\"", "Nothing else in the passage suggests panic. The worry builds because nothing changes."],
+      },
+      {
+        q: "What is the effect of \"as far as the eye could reach from the masthead\"?",
+        answer: "It shows the ice stretched on endlessly, with no open water anywhere in sight",
+        wrong: ["It shows the crew climbed the mast to look for land", "It shows the ice was only a thin layer around the ship", "It suggests the weather was too foggy to see clearly", "It shows the ship was near the edge of the ice"],
+        why: ["The writer says \"The ice was packed heavily and firmly all round the Endurance in every direction as far as the eye could reach from the masthead\".", "The masthead is the highest lookout on the ship, so if even from there no water can be seen, the ice must go on for miles."],
+      },
+      {
+        q: "Why does the author include \"We kept steam up in readiness for a move if the opportunity offered\"?",
+        answer: "To show that the crew stayed prepared to escape the moment any gap in the ice appeared",
+        wrong: ["To show that the engines were used to keep the crew warm", "To show that the crew had given up hope of moving again", "To show that the ship was racing another vessel to the land", "To show that steam was needed to melt the ice around the ship"],
+        why: ["Keeping steam up means the engines were ready to go at any second, and the writer adds that \"the engines running full speed ahead helped to clear the rudder\".", "It shows patience mixed with hope, since the crew are waiting but are never simply giving in."],
+      },
+      {
+        q: "What is another way of saying \"deceptive\" as it is used here?",
+        answer: "misleading",
+        wrong: ["dazzling", "distant", "colourful", "sudden"],
+        why: ["The writer blames \"the deceptive effect of mirage and refraction\" for making distances hard to judge.", "Something deceptive tricks you into believing what is not true, so \"misleading\" fits the meaning here."],
+      },
+      {
+        q: "Which word in the passage describes the tiring sameness of the Antarctic colouring?",
+        answer: "monotony",
+        wrong: ["undulating", "refraction", "crevassed", "intensity"],
+        why: ["The writer lists \"the clear air, the confusing monotony of colouring, and the deceptive effect of mirage and refraction\".", "\"Monotony\" means dull sameness, which is why one part of the view looks much like another."],
       },
     ],
   },
@@ -1414,6 +1877,30 @@ export const PASSAGES = [
         answer: "To show how far and how quickly the story spread.",
         wrong: ["To show that sailors are easily frightened.", "To suggest that most of them were mistaken.", "To explain why the object was never caught.", "To show how many ships were at sea that year."],
         why: ["Merchants, sailors, captains, officers and whole governments on two continents covers almost everybody who might care.", "He even says the rumours excited the public mind \"even in the interior of continents\", far from any sea."],
+      },
+      {
+        q: "What is the effect of calling the object \"infinitely larger and more rapid in its movements than a whale\"?",
+        answer: "It makes the creature sound greater than anything already known in the sea",
+        wrong: ["It proves the object was definitely a very large whale", "It suggests the sailors could not see the object clearly", "It shows the object was slower than sailors first thought", "It shows scientists had measured the object exactly"],
+        why: ["The passage describes \"a long object, spindle-shaped, occasionally phosphorescent, and infinitely larger and more rapid in its movements than a whale\".", "The whale is the biggest creature readers can imagine, so measuring the thing against a whale and going far beyond it makes it seem impossible."],
+      },
+      {
+        q: "What does \"the untiring rapidity of its movements\" tell you about the creature?",
+        answer: "It moved at great speed and never seemed to grow tired",
+        wrong: ["It moved slowly but never stopped", "It moved quickly only when it was being chased", "It was too tired to escape from the ships", "It moved in a clumsy, uneven way"],
+        why: ["The log-books agreed about \"the untiring rapidity of its movements, its surprising power of locomotion\".", "\"Untiring\" means never wearing out, and \"rapidity\" means speed, so together they show endless fast movement."],
+      },
+      {
+        q: "Which word in the passage means impossible to explain?",
+        answer: "inexplicable",
+        wrong: ["remarkable", "phosphorescent", "intermittent", "aquatic"],
+        why: ["The passage describes \"two columns of water, projected by the inexplicable object\".", "\"Inexplicable\" is used at the exact moment nobody on board can account for what they are seeing."],
+      },
+      {
+        q: "What is another way of saying \"agitated\" as it is used here?",
+        answer: "stirred up",
+        wrong: ["calmed down", "counted", "rescued", "ignored"],
+        why: ["The writer mentions \"rumours which agitated the maritime population and excited the public mind\".", "The rumours set people talking and worrying, so \"stirred up\" matches the sense of the word here."],
       },
     ],
   },
@@ -1477,6 +1964,30 @@ export const PASSAGES = [
         answer: "A letter.",
         wrong: ["The key to the house.", "A sum of money.", "A map of the road to Cramond.", "His share of the furniture."],
         why: ["\"He gave me in charge a certain letter, which he said was your inheritance.\"", "The house has been cleared and the goods disposed of, so the letter is all that is left."],
+      },
+      {
+        q: "What is the effect of \"we began to walk forward in silence\"?",
+        answer: "It creates a sad, awkward mood, as neither of them knows how to speak about the parting",
+        wrong: ["It shows the two of them had quarrelled that morning", "It shows David was too tired from walking to talk", "It shows Mr Campbell was angry with David's father", "It shows they were trying not to wake the village"],
+        why: ["Just before this, Mr Campbell says he will go with David \"as far as the ford, to set you on the way\", and then \"we began to walk forward in silence\".", "The silence lets the reader feel how heavy the goodbye is without anyone saying so."],
+      },
+      {
+        q: "What does David mean by \"I shall be no nearer to in Essendean than in the Kingdom of Hungary\"?",
+        answer: "His parents are dead, so staying at home brings him no closer to them than a faraway country would",
+        wrong: ["He is planning to travel to Hungary to find work", "His parents have moved away to another country", "Essendean and Hungary look very similar to him", "He thinks Hungary would be a happier place to live"],
+        why: ["David says, \"My father and mother, since they are both dead, I shall be no nearer to in Essendean than in the Kingdom of Hungary\".", "Naming somewhere as distant as Hungary shows that nowhere on earth is nearer to them now, which is why leaving costs him little."],
+      },
+      {
+        q: "Which word in the passage means it is my duty?",
+        answer: "behoves",
+        wrong: ["candidly", "inheritance", "worthy", "disposed"],
+        why: ["Mr Campbell says, \"Then it behoves me to tell your fortune; or so far as I may\".", "He has been trusted with the letter, so he is saying he is bound to do what he promised."],
+      },
+      {
+        q: "Why does the author include the words \"good man!\" straight after Mr Campbell's name?",
+        answer: "To show that David looks back on the minister with real warmth and affection",
+        wrong: ["To show that Mr Campbell was the most important man in the village", "To show that David was surprised to find anyone waiting for him", "To show that Mr Campbell was praising himself out loud", "To show that David did not really trust the minister"],
+        why: ["David writes, \"Mr. Campbell, the minister of Essendean, was waiting for me by the garden gate, good man!\"", "The narrator breaks off to add his own fond opinion, which tells us how kindly he remembers him."],
       },
     ],
   },
@@ -1546,6 +2057,30 @@ export const PASSAGES = [
         wrong: ["She is hard of hearing.", "She is often away from the house.", "She is frightened of loud noises.", "She smiles only when she is alone."],
         why: ["She frowns at a clattering knife or a banging door, but silence earns nothing at all.", "The sentence is built to make the absence of the smile the point."],
       },
+      {
+        q: "What is the effect of \"Nancy stifled a sigh\"?",
+        answer: "It shows she is unhappy but does not dare let her mistress see it",
+        wrong: ["It shows she is bored of washing the dishes", "It shows she is about to burst out laughing", "It shows she has a cold and cannot breathe well", "It shows she is relieved the telling-off is over"],
+        why: ["The passage says, \"Nancy stifled a sigh. She was wondering if ever in any way she could please this woman.\"", "To stifle something is to hold it back, so the sigh shows real feeling that she has to hide."],
+      },
+      {
+        q: "Why does the author include the detail that Nancy nearly tips the pitcher over?",
+        answer: "To show how flustered and nervous Miss Polly has made her",
+        wrong: ["To show that Nancy is careless and bad at her job", "To show that the pitcher was too heavy for her", "To show that Nancy wanted to break the pitcher on purpose", "To show that the kitchen floor was slippery"],
+        why: ["Nancy sets the pitcher down \"with the cloth still about it, thereby nearly tipping it over, which did not add to her composure\".", "The small accident happens the instant she is spoken to sharply, so it shows the effect Miss Polly has on her."],
+      },
+      {
+        q: "Which word in the passage describes Miss Polly's voice when she tells Nancy to listen?",
+        answer: "stern",
+        wrong: ["cheerfully", "hurriedly", "miserably", "hastily"],
+        why: ["The passage says her voice \"was very stern now\".", "\"Stern\" means strict and unsmiling, which matches the order she gives next."],
+      },
+      {
+        q: "What does \"I did not ask for explanations. I asked for your attention.\" tell you about Miss Polly?",
+        answer: "She expects to be obeyed at once and has no interest in Nancy's side of things",
+        wrong: ["She has not heard what Nancy said to her", "She is worried that Nancy has misunderstood the task", "She is trying to be gentle with a nervous new servant", "She is joking with Nancy to put her at ease"],
+        why: ["Miss Polly says, \"That will do, Nancy. I did not ask for explanations. I asked for your attention.\"", "Nancy had a perfectly good reason for carrying on, but Miss Polly refuses to hear it, which shows how little she cares for Nancy's view."],
+      },
     ],
   },
   {
@@ -1606,6 +2141,30 @@ export const PASSAGES = [
         answer: "She is trying to sound cross and not quite succeeding.",
         wrong: ["She has a sore throat.", "She is shouting very loudly.", "She is talking to herself.", "She is imitating her sister."],
         why: ["Managing to sound cross is not the same as being cross, and the phrase admits the effort.", "She has just kissed the kitten, so the reader already knows how she really feels."],
+      },
+      {
+        q: "What is the effect of describing the worsted as \"all knots and tangles\"?",
+        answer: "It makes the wool sound hopelessly muddled, showing how much damage the kitten has done",
+        wrong: ["It shows the wool was already spoiled before the kitten touched it", "It suggests Alice had been knitting something complicated", "It shows the kitten had chewed the wool into pieces", "It suggests the wool was neatly wound into a ball"],
+        why: ["The kitten had rolled the ball \"up and down till it had all come undone again; and there it was, spread over the hearth-rug, all knots and tangles\".", "Putting two words for mess side by side makes the reader picture a job that will take Alice ages to undo."],
+      },
+      {
+        q: "What does \"Kitty sat very demurely on her knee\" tell you about the kitten?",
+        answer: "It is putting on a quiet, well-behaved act after causing all the trouble",
+        wrong: ["It is genuinely sorry for what it has done", "It is frightened of Alice and trying to escape", "It has fallen asleep on Alice's knee", "It is too tired to move after playing"],
+        why: ["The kitten sits demurely, \"pretending to watch the progress of the winding\".", "The word \"pretending\" shows the good behaviour is only for show, which is what makes it funny."],
+      },
+      {
+        q: "Which word in the third paragraph describes the wild game the kitten had with the wool?",
+        answer: "romps",
+        wrong: ["tangles", "worsted", "hearth-rug", "mischief"],
+        why: ["The kitten \"had been having a grand game of romps with the ball of worsted\".", "\"Romps\" means lively, boisterous play, which is exactly how the ball came undone."],
+      },
+      {
+        q: "Why does the author include \"no doubt feeling that it was all meant for its good\"?",
+        answer: "It playfully imagines the kitten's thoughts, making it seem patient and obedient",
+        wrong: ["It explains that Dinah was punishing the white kitten", "It shows the narrator knows exactly what cats think", "It proves the white kitten enjoyed being washed", "It warns the reader that the white kitten will misbehave next"],
+        why: ["The white kitten lies \"quite still and trying to purr, no doubt feeling that it was all meant for its good\".", "The narrator gives an animal human thoughts, which is a joke at the expense of the poor kitten having its face rubbed the wrong way."],
       },
     ],
   },
@@ -1668,6 +2227,30 @@ export const PASSAGES = [
         wrong: ["mocking", "conspicuous", "delightful", "puzzling"],
         why: ["\"She was a lovely lady, with a romantic mind and such a sweet mocking mouth.\"", "Mocking describes her mouth and puzzling describes the East, so neither fits the mind."],
       },
+      {
+        q: "What is the effect of \"Two is the beginning of the end\"?",
+        answer: "It makes growing up sound like a sad ending that starts far too early",
+        wrong: ["It shows that Wendy was ill at the age of two", "It suggests children forget everything before the age of two", "It shows that Mrs Darling wanted another baby", "It means most stories about children end when they turn two"],
+        why: ["The narrator writes, \"You always know after you are two. Two is the beginning of the end.\"", "\"The end\" is a very heavy phrase for a toddler, so the joke also carries real sadness about childhood running out."],
+      },
+      {
+        q: "What does \"took a cab and nipped in first\" tell you about Mr Darling?",
+        answer: "He was quick and practical rather than romantic",
+        wrong: ["He was wealthier than all the other gentlemen", "He was the only one who truly loved Mrs Darling", "He arrived late and had to persuade her afterwards", "He was too shy to walk to the house himself"],
+        why: ["The other gentlemen \"all ran to her house to propose to her except Mr. Darling, who took a cab and nipped in first, and so he got her\".", "While everyone else was running on foot, he simply thought of a faster way, which wins him the race but sounds nothing like a love story."],
+      },
+      {
+        q: "Which word in the third paragraph shows that the gentlemen all realised they loved her at the same moment?",
+        answer: "simultaneously",
+        wrong: ["henceforth", "conspicuous", "innermost", "romantic"],
+        why: ["The gentlemen \"discovered simultaneously that they loved her\".", "\"Simultaneously\" means at the very same time, which is what makes the whole crowd set off running at once."],
+      },
+      {
+        q: "Why does the author include Wendy's thought that Napoleon could have won the kiss?",
+        answer: "It is a joke suggesting even a famously powerful man would have gone away defeated",
+        wrong: ["It shows that Mrs Darling had once met Napoleon", "It shows Wendy had been reading a history book", "It proves the kiss could never be seen by anyone", "It suggests Mr Darling was as determined as Napoleon"],
+        why: ["The narrator says, \"I can picture him trying, and then going off in a passion, slamming the door\".", "Naming the most determined man in history and then showing him storming out makes the point that nobody at all could win that kiss."],
+      },
     ],
   },
   {
@@ -1727,6 +2310,30 @@ export const PASSAGES = [
         answer: "The narrator is not certain of her exact age.",
         wrong: ["The child was born in summer.", "The journey lasted several summers.", "The child had never left home before.", "The narrator thinks she is older than she looks."],
         why: ["\"The child might have been ten or eleven years old perhaps.\"", "The narrator then says \"she had an air of being small for her age\", which is a guess rather than a fact."],
+      },
+      {
+        q: "What is the effect of describing Mr Cobb as he \"extended one foot and leg luxuriously over the dashboard\"?",
+        answer: "It makes him seem relaxed and in no hurry at all",
+        wrong: ["It shows he is uncomfortable in his seat", "It shows he is racing to reach Riverboro", "It shows he is angry with the horses", "It shows he is worried about his passenger"],
+        why: ["The reins lay loosely in his hands as he \"lolled back in his seat and extended one foot and leg luxuriously over the dashboard\", which is the picture of a driver taking his ease.", "He is favouring the horses and letting the coach roll along, so nothing about him suggests haste, worry or anger."],
+      },
+      {
+        q: "Which word in the second paragraph shows that the child bounced into the air without meaning to?",
+        answer: "involuntarily",
+        wrong: ["braced", "settled", "firmly", "suddenly"],
+        why: ["The passage says \"she bounded involuntarily into the air\", and involuntarily means it happened without her choosing it.", "The other words describe what she did on purpose to steady herself, not the bouncing she could not help."],
+      },
+      {
+        q: "What does calling her \"this one unnoteworthy little passenger\" tell you about how Mr Cobb sees the child?",
+        answer: "He thinks she is too ordinary to be worth noticing",
+        wrong: ["He thinks she is the most important person on the coach", "He is frightened of her", "He believes she has not paid her fare", "He thinks she is much older than she looks"],
+        why: ["We are told \"Indeed he had forgotten the very existence of this one unnoteworthy little passenger.\", so she has made no impression on him at all.", "His business is to carry people to their destinations, \"not, necessarily, to make them comfortable on the way\", so he pays her no attention."],
+      },
+      {
+        q: "\"The day was as warm as midsummer\" is an example of which technique?",
+        answer: "A simile",
+        wrong: ["A metaphor", "Personification", "Onomatopoeia", "A rhyme"],
+        why: ["The passage says \"The day was as warm as midsummer\", and the word as compares one thing to another, which makes it a simile.", "Nothing is given human behaviour and no word imitates a sound, so it is not personification or onomatopoeia."],
       },
     ],
   },
@@ -1790,6 +2397,30 @@ export const PASSAGES = [
         wrong: ["extremely painful", "very rare", "easily cured", "hard to explain"],
         why: ["He had not even read half the list \"before I had glanced half down the list of\" them when he was convinced.", "A premonitory symptom is one that comes first and warns of what follows."],
       },
+      {
+        q: "What is another way of saying \"seedy\" as it is used here?",
+        answer: "Unwell",
+        wrong: ["Shabbily dressed", "Full of seeds", "Cheerful", "Untidy"],
+        why: ["The narrator says \"We were all feeling seedy\" while they are talking about how bad they were from a medical point of view, so it means unwell.", "The whole passage is about imagined illnesses, not about clothing or appearance."],
+      },
+      {
+        q: "What is the effect of \"frozen with horror\"?",
+        answer: "It suggests he was so frightened he could not move at all",
+        wrong: ["It suggests he was physically cold in the museum", "It suggests he was bored by the book", "It suggests he had fallen asleep", "It suggests he was pretending to be ill"],
+        why: ["He tells us \"I sat for awhile, frozen with horror\", so the fright holds him completely still.", "The comedy is that his terror comes from a book, since he has simply \"read the symptoms\" of a disease."],
+      },
+      {
+        q: "Why does the author include \"I was relieved to find\" when the narrator reaches Bright's disease?",
+        answer: "It is funny because he treats still having an illness as good news",
+        wrong: ["It shows a doctor has finally reassured him", "It shows he is genuinely getting better", "It shows he has been reading the wrong book", "It shows he has decided to leave the museum"],
+        why: ["He only feels better because he has the disease \"in a modified form\", which is still an imaginary illness.", "The joke works because relief and disease do not belong together, and he adds that \"I might live for years\" as though that were cheerful news."],
+      },
+      {
+        q: "Which word in the final paragraph pictures the narrator trudging heavily through the whole alphabet?",
+        answer: "plodded",
+        wrong: ["glanced", "sifted", "turned", "determined"],
+        why: ["The passage says \"I plodded conscientiously through the twenty-six letters\", and plodded suggests slow, heavy effort.", "Glancing and turning are quick, easy actions, so they do not carry the same sense of labour."],
+      },
     ],
   },
   {
@@ -1852,6 +2483,30 @@ export const PASSAGES = [
         wrong: ["A piece of leather from the rubbish-heap.", "Nothing at all.", "One of Father Wolf's cubs.", "A dish of milk."],
         why: ["\"where he found the bone of a buck with some meat on it, and sat cracking the end merrily\"", "He had been told there was no food there, which is why the detail matters."],
       },
+      {
+        q: "What is the effect of describing Tabaqui as \"a little shadow with a bushy tail\"?",
+        answer: "It makes him seem sly and easy to miss as he slips in",
+        wrong: ["It makes him seem huge and powerful", "It shows he is one of the wolf cubs", "It shows the cave was completely dark inside", "It shows he is a trusted friend of the family"],
+        why: ["Father Wolf is about to spring down hill \"when a little shadow with a bushy tail crossed the threshold and whined\", so Tabaqui arrives quietly and uninvited.", "A shadow slips in unnoticed, which suits an animal the wolves say \"runs about making mischief, and telling tales\"."],
+      },
+      {
+        q: "What does \"said Father Wolf stiffly\" tell you about Father Wolf?",
+        answer: "He is being cold and unwelcoming towards Tabaqui",
+        wrong: ["He is delighted that Tabaqui has arrived", "He is terrified of Tabaqui", "He is too sleepy to speak clearly", "He is joking with Tabaqui"],
+        why: ["He answers \"Enter, then, and look,\" said Father Wolf stiffly, \"but there is no food here.\" which is an invitation given without any warmth.", "The wolves despise Tabaqui, so the stiffness shows dislike rather than fear, sleepiness or fun."],
+      },
+      {
+        q: "Why does the author include \"Even the tiger runs and hides when little Tabaqui goes mad\"?",
+        answer: "To show how dangerous madness makes even a small animal",
+        wrong: ["To show that tigers are cowardly by nature", "To show that Tabaqui is larger than a tiger", "To show that tigers and jackals hunt together", "To show that Tabaqui often attacks tigers for food"],
+        why: ["The word Even is the clue, since the passage explains that \"madness is the most disgraceful thing that can overtake a wild creature\".", "If the jungle's strongest hunter avoids him, the danger comes from the madness and not from Tabaqui's size."],
+      },
+      {
+        q: "What is another way of saying \"mean\" in \"for so mean a person as myself\"?",
+        answer: "Lowly",
+        wrong: ["Unkind", "Stingy", "Average", "Clever"],
+        why: ["Tabaqui says \"but for so mean a person as myself a dry bone is a good feast\", so he is calling himself low and unimportant.", "He goes on to ask \"Who are we, the Gidur-log [the jackal people], to pick and choose?\", which is more flattery about his own low rank."],
+      },
     ],
   },
   {
@@ -1910,6 +2565,30 @@ export const PASSAGES = [
         answer: "Both are hunted animals bolting for safety, and that is how he feels.",
         wrong: ["Both are animals he had hunted on the island.", "Both are quick, and he wants to show how fast he ran.", "Both live alone, as he does.", "Both are common in England, which he is homesick for."],
         why: ["\"never frightened hare fled to cover, or fox to earth, with more terror of mind than I to this retreat\"", "He puts himself above them, saying no hunted animal ever fled with more terror than he did."],
+      },
+      {
+        q: "What is the effect of \"innumerable fluttering thoughts\"?",
+        answer: "It suggests his mind was racing with countless unsettled ideas",
+        wrong: ["It suggests birds were flying around his head", "It suggests he thought slowly and carefully", "It suggests he had forgotten everything he knew", "It suggests he felt calm and hopeful again"],
+        why: ["He says that \"after innumerable fluttering thoughts\" he came home \"like a man perfectly confused and out of myself\".", "Fluttering suggests quick, restless movement, matching the \"wild ideas\" he says came into his mind every moment."],
+      },
+      {
+        q: "Which word in the first paragraph shows the narrator wondered whether he had only imagined the print?",
+        answer: "fancy",
+        wrong: ["apparition", "impression", "fortification", "shore"],
+        why: ["He goes back to the print \"to observe if it might not be my fancy\", which means he wondered whether he had imagined it.", "He then rules the idea out, because \"there was exactly the print of a foot, toes, heel, and every part of a foot\"."],
+      },
+      {
+        q: "What does \"not feeling, as we say, the ground I went on\" tell you about the narrator?",
+        answer: "He was so shocked that he barely noticed himself walking home",
+        wrong: ["He had hurt his feet badly on the sand", "He was wading through deep water", "He had lost his shoes on the shore", "He was walking on a soft, mossy path"],
+        why: ["He goes home \"not feeling, as we say, the ground I went on, but terrified to the last degree\", so terror has swallowed up everything else.", "He is looking behind him \"at every two or three steps\", which shows his attention is on the fear, not on his feet."],
+      },
+      {
+        q: "What is the effect of the narrator calling his home his \"castle\"?",
+        answer: "It shows he thinks of it as a stronghold that will keep him safe",
+        wrong: ["It shows the building was made of stone by builders", "It shows he believes he is a king of the island", "It shows he was joking about how poor it was", "It shows he expected visitors to arrive there"],
+        why: ["He writes \"When I came to my castle (for so I think I called it ever after this), I fled into it like one pursued.\", so the name is tied to the moment he needed protection.", "He has already called the same place \"my fortification\", which is another word for a defended, safe place."],
       },
     ],
   },
@@ -1971,6 +2650,30 @@ export const PASSAGES = [
         wrong: ["It shows the animals all lived close together.", "It explains why elephants live in Africa.", "It proves the relatives were cruel by nature.", "It tells the reader what each animal looks like."],
         why: ["Each one spanks him with something \"hard, hard\" or \"broad, broad\" of its own.", "The pattern is what makes the ending, when he finally gets his trunk, feel earned."],
       },
+      {
+        q: "\"as big as a boot\" is an example of which technique?",
+        answer: "A simile",
+        wrong: ["A metaphor", "Personification", "Onomatopoeia", "A rhyming couplet"],
+        why: ["The Elephant had \"only a blackish, bulgy nose, as big as a boot\", and the words as big as compare one thing with another.", "Nothing is being given human feelings and no word copies a sound, so the other choices do not fit."],
+      },
+      {
+        q: "What is the effect of saying the Elephant's Child \"filled all Africa\" with his questions?",
+        answer: "It exaggerates to show his questions were endless and everywhere",
+        wrong: ["It shows he walked from one end of Africa to the other", "It shows he collected objects from all over Africa", "It shows nobody in Africa could hear him", "It shows Africa had been empty before he was born"],
+        why: ["The passage says \"he filled all Africa with his ‘satiable curtiosities\", which is far too big to be literally true.", "The exaggeration is playful, and it matches the repeated line \"And still he was full of ‘satiable curtiosity!\""],
+      },
+      {
+        q: "What does \"spanked him immediately and directly, without stopping, for a long time\" tell you about how the family felt about his new question?",
+        answer: "They found the question so shocking that it had to be punished at once",
+        wrong: ["They were secretly amused by it", "They had not really heard the question", "They wanted him to ask many more questions", "They were too tired to bother answering him"],
+        why: ["Everybody first said \"Hush!\" in a loud and dretful tone, and then \"they spanked him immediately and directly, without stopping, for a long time\".", "The words immediately and directly show there was no pause for discussion, so the question alarmed them."],
+      },
+      {
+        q: "What is another way of saying \"'satiable\" as Kipling uses it here?",
+        answer: "Never satisfied",
+        wrong: ["Badly behaved", "Very polite", "Easily frightened", "Extremely clever"],
+        why: ["The author explains the invented word himself, saying it \"means he asked ever so many questions\", so his curiosity is never filled up.", "However often he is spanked, he still wants to know \"what the Crocodile has for dinner!\""],
+      },
     ],
   },
   {
@@ -2030,6 +2733,30 @@ export const PASSAGES = [
         answer: "The same word is used for silks and for rags, which puts the whole difference in one line.",
         wrong: ["It shows both babies were the same size.", "It suggests the babies were swapped at birth.", "It tells the reader both were loved equally.", "It is a word used only for royal children."],
         why: ["One is \"lapped in silks and satins\" and the other \"lapped in his poor rags\".", "Repeating the verb and changing only the cloth puts the whole difference into two words."],
+      },
+      {
+        q: "\"the third sticking its elbows out beyond the second\" is an example of which technique?",
+        answer: "Personification",
+        wrong: ["A simile", "A metaphor", "Onomatopoeia", "Alliteration"],
+        why: ["The passage says the houses were built \"with the second story projecting over the first, and the third sticking its elbows out beyond the second\", so a building is given a human body part.", "There is no comparison using like or as, so it is not a simile."],
+      },
+      {
+        q: "What is the effect of \"the people went nearly mad for joy\"?",
+        answer: "It shows the celebrations were wildly excited, far beyond ordinary happiness",
+        wrong: ["It shows the people became genuinely ill", "It shows the people were confused about who had been born", "It shows the rejoicing was quiet and dignified", "It shows the people were angry with the royal family"],
+        why: ["England had \"so longed for him, and hoped for him, and prayed God for him\" that the joy spills over into something like madness.", "The celebrations last \"for days and nights together\", which is anything but quiet or dignified."],
+      },
+      {
+        q: "Why does the author include \"Mere acquaintances hugged and kissed each other and cried\"?",
+        answer: "To show that even people who barely knew each other behaved like close friends",
+        wrong: ["To show that Londoners were normally very affectionate people", "To show that people were weeping over the baby Tom Canty", "To show the streets were crowded and uncomfortable", "To show families were meeting again after years apart"],
+        why: ["The passage states \"Mere acquaintances hugged and kissed each other and cried.\", and the word Mere stresses how slightly they knew one another.", "It is one more sign of how far the joy went, along with \"high and low, rich and poor, feasted and danced and sang\"."],
+      },
+      {
+        q: "Which word in the second paragraph compares the frames of the houses to bones?",
+        answer: "skeletons",
+        wrong: ["crooked", "beams", "plaster", "panes"],
+        why: ["The passage says \"They were skeletons of strong criss-cross beams, with solid material between, coated with plaster.\", and a skeleton is made of bones.", "Beams and plaster are simply building materials, so they make no comparison at all."],
       },
     ],
   },
@@ -2097,6 +2824,30 @@ export const PASSAGES = [
         wrong: ["He forgets the Reed's name.", "He flies away in the middle of it.", "He asks the Reed to come to Egypt.", "He sings instead of speaking."],
         why: ["\"Shall I love you?\" said the Swallow, \"who liked to come to the point at once\".", "The Reed answers with a bow rather than a word, which is just as odd."],
       },
+      {
+        q: "What is another way of saying \"crying for the moon\" as it is used here?",
+        answer: "Begging for something impossible to have",
+        wrong: ["Weeping late at night", "Politely asking for help", "Staring up at the sky", "Complaining about the dark"],
+        why: ["A sensible mother asks her little boy \"who was crying for the moon\" why he cannot be like the Happy Prince, so he wants what nobody can be given.", "She adds that \"The Happy Prince never dreams of crying for anything.\", which contrasts the statue's calm with the boy's impossible demand."],
+      },
+      {
+        q: "What is the effect of \"making silver ripples\"?",
+        answer: "It makes the moving water sound beautiful and shining",
+        wrong: ["It shows the river was full of coins", "It shows the water had frozen over", "It suggests the Swallow had hurt his wings", "It suggests the Reed was frightened of him"],
+        why: ["The Swallow flew round and round her, \"touching the water with his wings, and making silver ripples\", which turns his flight into something lovely to watch.", "Silver describes the shine of the water in the light, not real metal or money."],
+      },
+      {
+        q: "\"the Reed made him a low bow\" is an example of which technique?",
+        answer: "Personification",
+        wrong: ["A simile", "A metaphor", "Onomatopoeia", "Alliteration"],
+        why: ["The passage says \"the Reed made him a low bow\", so a plant is given a polite human action.", "The bow is really the reed bending in the water, but Wilde describes it as good manners."],
+      },
+      {
+        q: "What does \"who liked to come to the point at once\" tell you about the Swallow?",
+        answer: "He was direct and did not waste time on hesitation",
+        wrong: ["He was shy and nervous with strangers", "He was unkind to the Reed", "He was clumsy in the air", "He was always late for everything"],
+        why: ["He opens with \"Shall I love you?\" said the Swallow, who liked to come to the point at once, which is a very quick way to begin a courtship.", "A shy or hesitant bird would not ask such a question the moment he stopped to talk to her."],
+      },
     ],
   },
   {
@@ -2157,6 +2908,30 @@ export const PASSAGES = [
         answer: "Their quarrel is where the book gets its name.",
         wrong: ["The insects tell the story themselves.", "She wants to describe a hot summer day.", "The insects appear again at the end.", "She has forgotten how the story begins."],
         why: ["\"in memory of my two little friends on the bulrush, I give it their name\"", "The last line of the extract is the title of the book, which the insects have been saying all along."],
+      },
+      {
+        q: "\"white clouds, like great swans, went floating over it to and fro\" is an example of which technique?",
+        answer: "A simile",
+        wrong: ["A metaphor", "Personification", "Onomatopoeia", "Alliteration"],
+        why: ["The narrator writes that \"white clouds, like great swans, went floating over it to and fro\", and the word like compares the clouds to birds.", "The comparison suits the scene because both clouds and swans are white and drift slowly."],
+      },
+      {
+        q: "What is the effect of describing the cardinal flower \"as if to see its own beautiful face in the water\"?",
+        answer: "It makes the flower seem like a person admiring its reflection",
+        wrong: ["It shows the flower had been broken by the wind", "It shows the brook was extremely deep", "It shows the flower was dying of thirst", "It shows the narrator had picked the flower"],
+        why: ["The single tall, red cardinal flower is \"bending over the brook as if to see its own beautiful face in the water\", which is something a vain person would do.", "The flower is only leaning over the brook, so the human behaviour is entirely the writer's invention."],
+      },
+      {
+        q: "Why does the author include \"But the cardinal did not seem to be vain.\"?",
+        answer: "It is a gentle joke that takes back the idea of the flower showing off",
+        wrong: ["It explains that the flower was really rather ugly", "It shows the narrator disliked the flower", "It warns readers not to look at their reflections", "It shows the flower had been moved somewhere else"],
+        why: ["Having said the flower bent over \"as if to see its own beautiful face in the water\", the author immediately defends it with \"But the cardinal did not seem to be vain.\"", "The humour comes from treating a plant seriously enough to discuss its character."],
+      },
+      {
+        q: "Which word in the second paragraph shows that the deeper voice sounded certain it was right?",
+        answer: "positive",
+        wrong: ["shrill", "cross", "deeper", "suddenly"],
+        why: ["The passage says the second voice \"sounded very positive and cross\", and positive here means sure of itself.", "Cross tells us the voice was annoyed and shrill describes the other voice, so neither shows certainty."],
       },
     ],
   },
@@ -2223,6 +2998,30 @@ export const PASSAGES = [
         wrong: ["Her father told her before they sailed.", "She counted the servants in the bungalow.", "Her ayah explained it to her.", "She read it in one of her father's letters."],
         why: ["\"she had heard people say so when they thought she was not listening\"", "The passage adds that she did not know all that being rich meant, so nobody had explained it."],
       },
+      {
+        q: "What is the effect of describing Sara's voice as \"a low, mysterious little voice which was almost a whisper\"?",
+        answer: "It makes her question feel serious and slightly frightening to her",
+        wrong: ["It shows she has a sore throat and cannot speak loudly", "It shows she is trying to make her father laugh", "It shows she is angry with her father for bringing her here", "It shows she has forgotten what she wanted to say"],
+        why: ["The words \"low, mysterious little voice which was almost a whisper\" make the moment feel hushed and important.", "A whisper suggests she is anxious about the answer rather than unwell, cross or joking."],
+      },
+      {
+        q: "Why does the author include the detail that Sara had been used to servants who \"made salaams to her and called her \"Missee Sahib,\" and gave her her own way in everything\"?",
+        answer: "To show how comfortable and important her life in India had been",
+        wrong: ["To show that Sara was cruel to the servants", "To show that Sara wanted to become a servant herself", "To show that Sara's father could not afford servants any more", "To show that Sara had learned to speak several languages"],
+        why: ["She \"had always lived in a beautiful bungalow\", which tells us her old life was a very comfortable one.", "The detail is there to contrast her old life with \"the place\" she has now arrived at, not to criticise her."],
+      },
+      {
+        q: "Which word in the third paragraph shows that Sara found her journey hard to understand?",
+        answer: "puzzling",
+        wrong: ["blazing", "strange", "ocean", "moved"],
+        why: ["The passage says \"She found this so puzzling that she moved closer to her father.\"", "\"Puzzling\" is the word that names her confusion, while the other words describe the sun, the streets or her actions."],
+      },
+      {
+        q: "What does \"she knew that he felt sad when he said it\" tell you about Sara?",
+        answer: "She notices feelings that a child of her age might miss",
+        wrong: ["She is able to read her father's letters", "She has been told by the servants that he is sad", "She is sad because she wanted to stay on the ship", "She does not really understand grown-ups at all"],
+        why: ["The passage says \"though she was only seven years old, she knew that he felt sad when he said it\", which points out how unusual this is for her age.", "It fits the opening, where the narrator says her look \"would have been an old look for a child of twelve\"."],
+      },
     ],
   },
   {
@@ -2281,6 +3080,30 @@ export const PASSAGES = [
         answer: "the town where he was born",
         wrong: ["the biggest town nearby", "a town with no roads", "the town where he went to school", "a town he often visited"],
         why: ["\"around my native town of Dunbar, by the stormy North Sea\"", "Being by the sea is given as a separate fact, so it is not part of the meaning."],
+      },
+      {
+        q: "What is the effect of saying the punishments \"followed like shadows\"?",
+        answer: "It suggests the punishments came without fail every single time",
+        wrong: ["It suggests the punishments happened only after dark", "It suggests the punishments were gentle and easy to ignore", "It suggests nobody ever found out what Muir had done", "It suggests Muir was punished by someone he never saw"],
+        why: ["The phrase \"the sure sore punishments that followed like shadows\" compares them to something that always trails behind you.", "A shadow cannot be shaken off, so the comparison stresses how certain the punishment was, not how mild or hidden it was."],
+      },
+      {
+        q: "Why does the author include the sentence \"No hunter could have been more excited on discovering a bear and her cubs in a wilderness den.\"?",
+        answer: "To show how enormous a small discovery felt to him as a child",
+        wrong: ["To show that there were bears living near Dunbar", "To show that his grandfather was a keen hunter", "To show that he wanted to hurt the field mouse", "To show that he preferred hunting to walking"],
+        why: ["He calls the mouse and her young \"a wonderful discovery\", and the hunter comparison measures just how wonderful.", "The bear is an imagined comparison, since what they actually found was \"a mother field mouse with half a dozen naked young hanging to her teats\"."],
+      },
+      {
+        q: "Which word in the first paragraph shows that the countryside around Dunbar was mostly farmed?",
+        answer: "cultivation",
+        wrong: ["wildness", "seashore", "headlands", "vacations"],
+        why: ["The passage says \"most of the land lay in smooth cultivation\".", "\"Cultivation\" means land worked for crops, while the other words describe wild or unfarmed places."],
+      },
+      {
+        q: "What is another way of saying \"awful\" as it is used in \"to watch the waves in awful storms\"?",
+        answer: "Terrifying and grand",
+        wrong: ["Badly made", "Slightly annoying", "Boring and slow", "Warm and gentle"],
+        why: ["The storms are described \"thundering on the black headlands\", which sounds powerful and frightening rather than merely bad.", "Muir chose to watch these storms because he loved them, so \"awful\" here means awe-inspiring, not poor quality."],
       },
     ],
   },
@@ -2350,6 +3173,30 @@ export const PASSAGES = [
         wrong: ["He had not understood what Holmes meant.", "He agreed but did not want to say so.", "He thought Holmes was joking.", "He had made the same point himself earlier."],
         why: ["\"A proposition which I took the liberty of doubting.\"", "Took the liberty is a polite way of admitting he contradicted his friend."],
       },
+      {
+        q: "What is the effect of describing Mr Wilson as having \"fiery red hair\"?",
+        answer: "It makes his hair the most striking thing about him",
+        wrong: ["It shows that his hair had been burned", "It shows that he has a bad temper", "It shows that he is standing too near the fire", "It shows that he has dyed his hair for a disguise"],
+        why: ["Watson describes \"a very stout, florid-faced, elderly gentleman with fiery red hair\", saving the hair for last as the detail that stands out.", "\"Fiery\" describes the bright colour of the hair here, not the man's temper or any accident."],
+      },
+      {
+        q: "What does \"a quick little questioning glance from his small fat-encircled eyes\" tell you about Mr Wilson at this moment?",
+        answer: "He is uncertain about who Watson is and why he is there",
+        wrong: ["He is furious that Watson has arrived", "He is an old friend of Watson's", "He is trying to leave the room unnoticed", "He has already solved his own problem"],
+        why: ["The glance is \"questioning\", which shows he is silently wondering about the newcomer.", "He is polite rather than angry, since he \"half rose from his chair and gave a bob of greeting\"."],
+      },
+      {
+        q: "Why does the author include Holmes \"putting his fingertips together, as was his custom when in judicial moods\"?",
+        answer: "To signal that Holmes is settling into careful, weighing-up thought",
+        wrong: ["To show that Holmes is cold and warming his hands", "To show that Holmes is about to fall asleep", "To show that Holmes is a judge by profession", "To show that Holmes is annoyed with Mr Wilson"],
+        why: ["The habit belongs to his \"judicial moods\", meaning moods in which he judges and weighs things up.", "It happens as he is \"relapsing into his armchair\", settling in to listen rather than dozing off."],
+      },
+      {
+        q: "Which word in the final long speech shows that Holmes thinks real life is bolder than anything invented?",
+        answer: "daring",
+        wrong: ["simple", "presented", "remarked", "extraordinary"],
+        why: ["Holmes says life \"is always far more daring than any effort of the imagination\".", "\"Daring\" is the word that carries the comparison, while \"simple\" describes Miss Sutherland's problem instead."],
+      },
     ],
   },
   {
@@ -2410,6 +3257,30 @@ export const PASSAGES = [
         wrong: ["It shows he had sold all his instruments.", "It tells the reader he was counting his gold.", "It suggests his gold was fake.", "It shows he was about to give the money away."],
         why: ["\"the only music for poor Midas, now, was the chink of one coin against another\"", "It closes a list of losses, roses then music, so it lands as the last thing to go."],
       },
+      {
+        q: "What is the effect of calling the coins \"the immensest pile of yellow, glistening coin, that had ever been heaped together since the world was made\"?",
+        answer: "It shows how wildly exaggerated Midas's ambition had become",
+        wrong: ["It shows that Midas had already collected all this gold", "It shows that the coins were dull and unattractive", "It shows that Marygold had asked her father for money", "It shows that gold was very rare in Midas's kingdom"],
+        why: ["The wording piles up superlatives, and the narrator has already judged him with \"He thought, foolish man!\"", "It is what he hopes to leave her, since he means \"to bequeath her\" this pile rather than owning it already."],
+      },
+      {
+        q: "Why does the author include the detail that Midas wished the sunset clouds \"were real gold, and that they could be squeezed safely into his strong box\"?",
+        answer: "To show that he can no longer enjoy beauty for its own sake",
+        wrong: ["To show that he is planning a journey into the sky", "To show that his strong box was already full", "To show that he had never seen a sunset before", "To show that he was giving his gold away to others"],
+        why: ["He only \"happened to gaze for an instant\" at the clouds before thinking of money.", "The same greed spoils the roses, which he now looks at \"only to calculate how much the garden would be worth\"."],
+      },
+      {
+        q: "Which word in the second paragraph shows that Marygold was happy when she played?",
+        answer: "merrily",
+        wrong: ["footstool", "precious", "glistening", "desire"],
+        why: ["The passage calls her \"the one little maiden who played so merrily around her father's footstool\".", "\"Merrily\" describes her mood, while the other words describe furniture, metal or Midas's feelings."],
+      },
+      {
+        q: "What does the sentence \"the only music for poor Midas, now, was the chink of one coin against another\" tell you about the narrator's view of Midas?",
+        answer: "He pities Midas for the pleasures greed has cost him",
+        wrong: ["He admires Midas for being so hard-working", "He thinks Midas has become an excellent musician", "He believes Midas never enjoyed music at all", "He is frightened of what Midas might do next"],
+        why: ["The word \"poor\" shows sympathy, and the narrator reminds us Midas \"once was fond of music\".", "The sentence measures what Midas has lost rather than praising anything he has gained."],
+      },
     ],
   },
   {
@@ -2469,6 +3340,30 @@ export const PASSAGES = [
         answer: "A grand build-up ends in the smallest possible action.",
         wrong: ["Diamond was always tired.", "He was hiding from his father.", "He had been awake all night.", "The horse had told him to."],
         why: ["\"young Diamond knew what o'clock it was, or at least what was to be done next, which was, to go to sleep again as fast as he could\"", "An earthquake is announced and then nothing happens, which is where the joke sits."],
+      },
+      {
+        q: "What is the effect of saying \"the wind would be after it like a cat after a mouse\"?",
+        answer: "It makes the wind seem quick and eager to get in",
+        wrong: ["It shows that there were cats living in the room", "It shows that the wind was slow and lazy", "It shows that mice had chewed through the boards", "It shows that the room was warm and snug"],
+        why: ["The comparison follows the idea that \"you might run a penknife through into the north wind\", so the wind is waiting on the other side.", "A cat chasing a mouse is fast and determined, which is the opposite of slow or lazy."],
+      },
+      {
+        q: "Why does the author include the detail that Diamond's father \"put old Diamond in the stall under the bed, because he was a quiet horse\"?",
+        answer: "To explain why a boy could sleep peacefully above a stable",
+        wrong: ["To explain why the loft was always cold", "To explain why Diamond was named after the horse", "To explain why the family had so little money", "To explain why the north wind blew through the boards"],
+        why: ["The horse \"did not go to sleep standing, but lay down like a reasonable creature\", so he was not disturbing anyone.", "It also sets up the joke that young Diamond still worried \"old Diamond mightn't eat him up before he knew him in his night-gown\"."],
+      },
+      {
+        q: "Which word in the second paragraph shows that the boards in the wall were far from new?",
+        answer: "old",
+        wrong: ["boards", "sharper", "summer", "penknife"],
+        why: ["The passage says \"the boards were so old that you might run a penknife through into the north wind\".", "\"Old\" is the word explaining why a knife could go through, while the other words name objects or seasons."],
+      },
+      {
+        q: "Which technique does the author use in \"when the sun took the matter into his own hands\"?",
+        answer: "Personification",
+        wrong: ["Simile", "Rhyme", "Alliteration", "Onomatopoeia"],
+        why: ["The sun is given hands and a decision to make in \"except in summer, when the sun took the matter into his own hands\".", "There is no \"like\" or \"as\" here, so it is not a simile."],
       },
     ],
   },
@@ -2532,6 +3427,30 @@ export const PASSAGES = [
         wrong: ["A purse of gold.", "A yew bow.", "A place among his own archers.", "A pardon for any outlaw."],
         why: ["\"offered a prize of a butt of ale to whosoever should shoot the best shaft in Nottinghamshire\"", "A butt is a large barrel, which is why it is worth the journey."],
       },
+      {
+        q: "What is the effect of the phrase \"went away again with an empty fist\"?",
+        answer: "It shows that Robin always gave people something they needed",
+        wrong: ["It shows that Robin fought everyone who visited him", "It shows that the country people were beggars", "It shows that Robin's men had nothing to give", "It shows that visitors had to pay to enter the forest"],
+        why: ["The passage says \"no one ever came to jolly Robin for help in time of need and went away again with an empty fist\".", "The word \"never\" is carried by \"no one ever\", so the empty fist is what did not happen."],
+      },
+      {
+        q: "Why does the author include the detail that Robin's men lived \"suffering neither care nor want\"?",
+        answer: "To make outlaw life in the forest sound carefree and comfortable",
+        wrong: ["To show that the men were often hungry and cold", "To show that the Sheriff looked after them well", "To show that they had given up archery", "To show that they wished to return to Nottingham"],
+        why: ["They spent their days \"passing the time in merry games of archery or bouts of cudgel play\".", "They also ate well, \"living upon the King's venison, washed down with draughts of ale of October brewing\"."],
+      },
+      {
+        q: "Which word in the fourth paragraph shows that Robin was physically strong?",
+        answer: "stout",
+        wrong: ["bold", "youth", "shaft", "proclaimed"],
+        why: ["Robin is described as \"stout of sinew and bold of heart\".", "\"Stout of sinew\" describes his body, while \"bold of heart\" describes his courage instead."],
+      },
+      {
+        q: "What is another way of saying \"blithely\" as it is used in \"blithely Robin whistled as he trudged along\"?",
+        answer: "Cheerfully",
+        wrong: ["Quietly", "Angrily", "Nervously", "Tunelessly"],
+        why: ["He is \"thinking of Maid Marian and her bright eyes\" as he walks, which is a happy thought.", "Everything around him is pleasant, since \"Sweet was the greenwood as he walked along its paths\"."],
+      },
     ],
   },
   {
@@ -2592,6 +3511,30 @@ export const PASSAGES = [
         wrong: ["It is far too wet to catch light.", "It is the only wood found in bogs.", "It burns without giving any light.", "It has to be soaked in oil first."],
         why: ["\"a hard, strong, excellent wood, evidently fitted for good work as a resister of force, and yet withal burning so well\"", "The and yet is doing the work: the two qualities are not ones you expect together."],
       },
+      {
+        q: "What is the effect of Faraday calling the candle \"no more open door by which you can enter into the study of natural philosophy\"?",
+        answer: "It makes the subject sound like an easy and welcoming way in",
+        wrong: ["It shows that the lecture room door must be left open", "It shows that candles are the only thing worth studying", "It shows that the subject is too difficult for his audience", "It shows that he is about to leave the room"],
+        why: ["He says \"There is no better, there is no more open door\", presenting the candle as the best entrance to the subject.", "A door you can enter suggests welcome and ease, not difficulty or a real doorway."],
+      },
+      {
+        q: "Why does the author include the words \"my boys and girls\" at the start of the third paragraph?",
+        answer: "To speak warmly and directly to the young people in his audience",
+        wrong: ["To show that the children are his own family", "To tell the children off for being noisy", "To show that no adults were allowed in", "To announce that the lecture has finished"],
+        why: ["It matches his promise to keep \"speaking in the same familiar way to those whom I esteem nearest to me on this occasion\".", "He has already said \"I claim the privilege of speaking to juveniles as a juvenile myself\"."],
+      },
+      {
+        q: "Which word in the first paragraph shows that Faraday thinks the subject offers a great deal of interest?",
+        answer: "abundant",
+        wrong: ["former", "governed", "phenomena", "disappoint"],
+        why: ["He writes \"so abundant is the interest that attaches itself to the subject\".", "\"Abundant\" means plentiful, while the other words refer to time, laws or events."],
+      },
+      {
+        q: "What does calling candle-wood \"a natural candle\" tell you about how Faraday wants his audience to think?",
+        answer: "That the science of a candle can be seen in ordinary things too",
+        wrong: ["That candles should always be made of Irish wood", "That shop-bought candles are dangerous to burn", "That the wood had been shaped into a candle by hand", "That the wood gives no light when it burns"],
+        why: ["He calls the wood \"one of the most beautiful illustrations of the general nature of a candle that I can possibly give\".", "It burns \"like a candle, and gives a very good light indeed\" without anyone making it into one."],
+      },
     ],
   },
   {
@@ -2651,6 +3594,30 @@ export const PASSAGES = [
         answer: "attacked and damaged again and again",
         wrong: ["travelled across quickly", "hunted in secret", "frightened without harming", "lived quietly in"],
         why: ["\"a remarkable pack of gray wolves, that had ravaged the Currumpaw Valley for a number of years\"", "The result each morning was that fresh and serious inroads had been made among the herds."],
+      },
+      {
+        q: "What is the effect of describing Lobo's howl as \"the deep roar of the old king came booming down the canon\"?",
+        answer: "It makes his howl sound powerful and threatening",
+        wrong: ["It shows that Lobo was actually a lion", "It shows that the howl was faint and easily missed", "It shows that a storm was coming to the valley", "It shows that Lobo was calling to the herdsmen for food"],
+        why: ["\"Roar\" and \"booming\" are heavy, powerful sounds compared with an ordinary wolf that might \"howl half the night\" unnoticed.", "The sound made \"the watcher bestirred himself\", so it clearly carried a warning."],
+      },
+      {
+        q: "Why does the author include the sentence about an ordinary wolf howling \"without attracting more than a passing notice\"?",
+        answer: "To show by contrast how unmistakable Lobo's voice was",
+        wrong: ["To show that the herdsmen were deaf", "To show that ordinary wolves were more dangerous", "To show that wolves rarely howled at night", "To show that Lobo was afraid to make a sound"],
+        why: ["The passage says \"His voice at night was well-known and easily distinguished from that of any of his fellows.\"", "The ordinary wolf is the comparison that makes Lobo's roar stand out, not a claim about danger or silence."],
+      },
+      {
+        q: "Which word in the second paragraph shows that Lobo's followers could be trusted to stay with him?",
+        answer: "trusty",
+        wrong: ["remarkable", "cunning", "gigantic", "supreme"],
+        why: ["The passage says \"wherever he appeared with his trusty band, terror reigned supreme among the cattle\".", "\"Trusty\" describes their loyalty, while \"gigantic\" and \"cunning\" describe Lobo himself."],
+      },
+      {
+        q: "What does \"terror reigned supreme among the cattle, and wrath and despair among their owners\" tell you about Lobo's effect on the valley?",
+        answer: "He frightened the animals and left the ranchers angry and hopeless",
+        wrong: ["He was welcomed by the ranchers as a useful hunter", "He only troubled the cattle and never the people", "He made the cattle and the ranchers work together happily", "He was too small a threat for anyone to notice"],
+        why: ["The pack \"had ravaged the Currumpaw Valley for a number of years\", so the harm was long-running.", "\"Wrath and despair\" names two feelings of the owners, anger and hopelessness, alongside the cattle's terror."],
       },
     ],
   },

@@ -25,6 +25,11 @@ import * as vrodd from './vr-odd-words.js';
 import * as vrana from './vr-analogy.js';
 import * as maths from './maths.js';
 import * as hid from './hidden-shapes.js';
+import * as spagerr from './spag-error.js';
+import * as spagpunc from './spag-punctuation.js';
+import * as spagcomma from './spag-comma.js';
+import * as spaggram from './spag-grammar.js';
+import * as spagsyn from './spag-synonym.js';
 
 // Ordered the way a child should meet them: pattern-spotting first, spatial
 // visualisation last.
@@ -49,6 +54,11 @@ export const REGISTRY = {
   [vrsent.meta.id]: vrsent,
   [vrgap.meta.id]: vrgap,
   [vrlogic.meta.id]: vrlogic,
+  [spaggram.meta.id]: spaggram,
+  [spagerr.meta.id]: spagerr,
+  [spagpunc.meta.id]: spagpunc,
+  [spagcomma.meta.id]: spagcomma,
+  [spagsyn.meta.id]: spagsyn,
   [comp.meta.id]: comp,
   [maths.meta.id]: maths,
   [hid.meta.id]: hid,
@@ -78,7 +88,7 @@ export const GROUPS = [
   {
     id: 'verbal',
     name: 'Bexley verbal reasoning',
-    note: 'Verbal ability and English comprehension together are 50% of the test, the largest part of it. These match the verbal question types in the official Quest familiarisation booklets.',
+    note: 'Verbal ability and English comprehension together are 50% of the test, the largest part of it. These match the verbal question types in the official Quest familiarisation booklets, including the eight spelling, punctuation and grammar questions that make up 40% of the English paper.',
     types: TYPES.filter((t) => t.subject === 'verbal'),
   },
   {
@@ -120,7 +130,8 @@ export const PAPER_SECTIONS = [
   {
     subject: 'Verbal and English',
     share: 0.5,
-    ids: ['vrpair', 'vrana', 'vrodd', 'vrsent', 'vrgap', 'vrlogic'],
+    ids: ['vrpair', 'vrana', 'vrodd', 'vrsent', 'vrgap', 'vrlogic',
+      'spaggram', 'spagerr', 'spagpunc', 'spagcomma', 'spagsyn'],
     alsoUpTo: { id: 'comp', max: 2 },
   },
   { subject: 'Numerical', share: 0.25, ids: ['maths'] },
