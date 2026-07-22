@@ -17,12 +17,26 @@
 //   Heidi,                    Johanna Spyri,              1881, died 1901
 //   Little Women,             Louisa May Alcott,          1868, died 1888
 //   Anne of Green Gables,     L. M. Montgomery,           1908, died 1942
+//   The Adventures of Tom Sawyer, Mark Twain,             1876, died 1910
+//   Treasure Island,          Robert Louis Stevenson,     1883, died 1894
+//   Around the World in Eighty Days, Jules Verne,         1873, died 1905
+//   Five Children and It,     E. Nesbit,                  1902, died 1924
+//   The Voyage of the Beagle, Charles Darwin,             1839, died 1882
 //
-// Two more were extracted and then dropped rather than used. The Tom Sawyer
-// whitewashing scene runs straight into Jim's dialect speech, and the opening
-// of A Little Princess describes Lascars on the voyage from Bombay. Both are
-// the same problem as the Secret Garden opening: authentic period writing that
-// needs an adult in the room, which a screen cannot provide.
+// The Darwin is non-fiction on purpose. Quest's English paper says questions
+// may cover one or two texts, and a child who has only ever practised on
+// stories is meeting an information text for the first time on the day.
+//
+// Extracts screened and rejected, so nobody has to rediscover why:
+//
+//   The Secret Garden, opening chapter: Indian servants in 1911 language.
+//   Tom Sawyer, whitewashing scene: runs into Jim's dialect speech, and one
+//     line carries a racial slur. The book is fine; that scene is not, so the
+//     extract used is Aunt Polly hunting for Tom instead.
+//   A Little Princess, opening: Lascars on the voyage from Bombay.
+//
+// The point is that a book is not ruled out by one bad extract. Screen the
+// extract, not the author.
 //
 // Both are far past life of the author plus seventy years, so they are in the
 // public domain in the UK. The text is the author's, not Gutenberg's, and
@@ -333,7 +347,7 @@ export const PASSAGES = [
         q: "Which TWO of these does the passage say nobody ever did to Scrooge in the street?",
         answers: ["stopped him to ask how he was", "asked him what the time was"],
         wrong: ["offered to shake his hand", "wished him a happy birthday", "asked to borrow money from him"],
-        why: ["\"Nobody ever stopped him in the street to say... how are you?\" and \"no children asked him what it was o'clock\".", "The other three are not mentioned anywhere, so they cannot be right however likely they sound."],
+        why: ["\"Nobody ever stopped him in the street\" with gladsome looks, and \"no children asked him what it was o'clock\".", "The other three are not mentioned anywhere, so they cannot be right however likely they sound."],
       },
     ],
   },
@@ -431,7 +445,7 @@ export const PASSAGES = [
         q: "Why does Mary whisper rather than speak normally?",
         answer: "The garden feels secret and undisturbed, and she does not want to break it.",
         wrong: ["She is afraid the robin will fly away.", "Somebody has told her to keep quiet.", "She has hurt her throat climbing in.", "She is hiding from a gardener nearby."],
-        why: ["She also steps softly \"as if she were afraid of awakening someone\", so the whisper is part of the same feeling.", "Nobody else is there. The hush comes from the place, not from any danger."],
+        why: ["She says \"How still it is!\" twice before she works out why, so the hush is the first thing she notices.", "Nobody else is there. The quiet comes from the place, not from any danger, which is why she treats it so carefully."],
       },
       {
         q: "What does Mary mean by \"I am the first person who has spoken in here for ten years\"?",
@@ -682,10 +696,10 @@ export const PASSAGES = [
         why: ["She imagines a whole better life for them, with mosses and a brook and birds, and then says she knows how they feel.", "The trees stand in for her own situation, which is why the speech matters."],
       },
       {
-        q: "Which TWO things does Anne say people do because of the way she talks?",
-        answers: ["tell her she talks too much", "laugh at her for using big words"],
+        q: "Which TWO things does Anne say people do to her because of the way she talks?",
+        answers: ["laugh at her for using big words", "tell her children should be seen and not heard"],
         wrong: ["refuse to answer her at all", "send her out of the room", "correct her spelling"],
-        why: ["\"People are always telling me I do\" and \"people laugh at me because I use big words\".", "The other three are not in the passage, though they sound like things that might happen."],
+        why: ["\"people laugh at me because I use big words\", and she has been told \"children should be seen and not heard\" a million times.", "The other three are not in the passage, though they sound like things that might happen."],
       },
       {
         q: "What does \"detested\" mean in the first paragraph?",
@@ -704,6 +718,330 @@ export const PASSAGES = [
         answer: "Because she is an orphan herself and feels for them.",
         wrong: ["Because they had been planted by orphans.", "Because they were the smallest trees she had seen.", "Because nobody had given them names.", "Because they were about to be cut down."],
         why: ["\"They just looked like orphans themselves, those trees did. It used to make me want to cry to look at them.\"", "She then tells them she knows exactly how they feel, which only makes sense if she does."],
+      },
+    ],
+  },
+  {
+    id: "tom",
+    title: "Aunt Polly hunts for Tom",
+    source: "from The Adventures of Tom Sawyer by Mark Twain, 1876",
+    paragraphs: [
+      "The old lady pulled her spectacles down and looked over them about the room; then she put them up and looked out under them. She seldom or never looked through them for so small a thing as a boy; they were her state pair, the pride of her heart, and were built for “style,” not service, she could have seen through a pair of stove-lids just as well. She looked perplexed for a moment, and then said, not fiercely, but still loud enough for the furniture to hear:",
+      "“Well, I lay if I get hold of you I’ll, ”",
+      "She did not finish, for by this time she was bending down and punching under the bed with the broom, and so she needed breath to punctuate the punches with. She resurrected nothing but the cat.",
+      "“I never did see the beat of that boy!”",
+      "She went to the open door and stood in it and looked out among the tomato vines and “jimpson” weeds that constituted the garden. No Tom. So she lifted up her voice at an angle calculated for distance and shouted:",
+      "“Y-o-u-u TOM!”",
+      "There was a slight noise behind her and she turned just in time to seize a small boy by the slack of his roundabout and arrest his flight.",
+      "“There! I might ’a’ thought of that closet. What you been doing in there?”",
+      "“Nothing.”",
+      "“Nothing! Look at your hands. And look at your mouth. What is that truck?”",
+      "“I don’t know, aunt.”",
+      "“Well, I know. It’s jam, that’s what it is. Forty times I’ve said if you didn’t let that jam alone I’d skin you. Hand me that switch.”",
+      "The switch hovered in the air, the peril was desperate,",
+      "“My! Look behind you, aunt!”",
+      "The old lady whirled round, and snatched her skirts out of danger. The lad fled on the instant, scrambled up the high board-fence, and disappeared over it.",
+      "His aunt Polly stood surprised a moment, and then broke into a gentle laugh.",
+      "“Hang the boy, can’t I never learn anything? Ain’t he played me tricks enough like that for me to be looking out for him by this time? But old fools is the biggest fools there is. Can’t learn an old dog new tricks, as the saying is. But my goodness, he never plays them alike, two days, and how is a body to know what’s coming? He ’pears to know just how long he can torment me before I get my dander up, and he knows if he can make out to put me off for a minute or make me laugh, it’s all down again and I can’t hit him a lick. I ain’t doing my duty by that boy, and that’s the Lord’s truth, goodness knows. Spare the rod and spile the child, as the Good Book says. I’m a laying up sin and suffering for us both, I know. He’s full of the Old Scratch, but laws-a-me! he’s my own dead sister’s boy, poor thing, and I ain’t got the heart to lash him, somehow. Every time I let him off, my conscience does hurt me so, and every time I hit him my old heart most breaks. Well-a-well, man that is born of woman is of few days and full of trouble, as the Scripture says, and I reckon it’s so. He’ll play hookey this evening,[*] and I’ll just be obleeged to make him work, tomorrow, to punish him. It’s mighty hard to make him work Saturdays, when all the boys is having holiday, but he hates work more than he hates anything else, and I’ve got to do some of my duty by him, or I’ll be the ruination of the child.”",
+    ],
+    questions: [
+      {
+        q: "Why does Aunt Polly look over her spectacles rather than through them?",
+        answer: "They were for show rather than for seeing.",
+        wrong: ["They were broken across one lens.", "She had left her reading pair upstairs.", "The room was too dark to see through them.", "She only needed them for close work."],
+        why: ["\"They were her state pair, the pride of her heart, and were built for style, not service.\"", "She could have seen through a pair of stove lids just as well, which is the joke."],
+      },
+      {
+        q: "What did Aunt Polly find when she punched under the bed with the broom?",
+        answer: "The cat.",
+        wrong: ["Tom's shoes.", "Nothing at all.", "A pot of jam.", "The missing switch."],
+        why: ["\"She resurrected nothing but the cat.\"", "The word resurrected is doing comic work here, as though she had raised the dead."],
+      },
+      {
+        q: "Which word in the passage means to stop something from happening?",
+        answer: "arrest",
+        wrong: ["resurrected", "punctuate", "constituted", "calculated"],
+        why: ["\"Turned just in time to seize a small boy by the slack of his roundabout and arrest his flight.\"", "It is the same word used for stopping a person, which is why it fits a boy running away."],
+      },
+      {
+        q: "How does Aunt Polly know Tom has been at the jam?",
+        answer: "By looking at his hands and his mouth.",
+        wrong: ["The jar has been left open.", "Sid has told her about it.", "She heard him in the closet.", "There is jam on the floor."],
+        why: ["\"Look at your hands. And look at your mouth. What is that truck?\"", "She works it out from the evidence in front of her rather than being told."],
+      },
+      {
+        q: "What is the effect of \"The switch hovered in the air, the peril was desperate\"?",
+        answer: "It builds a moment of tension just before the trick.",
+        wrong: ["It shows that Tom is badly hurt.", "It suggests Aunt Polly has lost her temper completely.", "It tells the reader that Tom deserves the punishment.", "It shows how long Aunt Polly hesitates every time."],
+        why: ["The sentence stops short, and the very next line is Tom's escape trick, so the tension is set up to be popped.", "Notice the sentence is left hanging rather than finished, which holds the moment still."],
+      },
+      {
+        q: "Which TWO places does Aunt Polly search for Tom?",
+        answers: ["under the bed", "out in the garden"],
+        wrong: ["in the closet", "up the chimney", "behind the door"],
+        why: ["She punches under the bed with the broom, then goes to the open door and looks out among the tomato vines and weeds.", "She does NOT look in the closet, which is why she says afterwards that she might have thought of it."],
+      },
+      {
+        q: "What does Aunt Polly's gentle laugh show about her feelings for Tom?",
+        answer: "She is fond of him and not really angry.",
+        wrong: ["She is relieved that he has gone.", "She is pleased that he told the truth.", "She thinks he will not do it again.", "She is too tired to chase him."],
+        why: ["She has just been tricked and lost her chance to punish him, and she laughs instead of shouting.", "The passage moves straight from the switch in the air to a gentle laugh, which tells you where her real feelings sit."],
+      },
+      {
+        q: "What does \"old fools is the biggest fools there is\" tell us about Aunt Polly?",
+        answer: "She is laughing at herself for being caught out again.",
+        wrong: ["She is angry with the neighbours.", "She thinks Tom is foolish.", "She believes she is getting too old to look after him.", "She is repeating something Tom said to her."],
+        why: ["She is scolding herself, not Tom, for falling for a trick she has seen before.", "She goes on to admit she can never guess which trick is coming, which is a fond kind of complaint."],
+      },
+    ],
+  },
+  {
+    id: "island",
+    title: "The captain comes to the inn",
+    source: "from Treasure Island by Robert Louis Stevenson, 1883",
+    paragraphs: [
+      "I remember him as if it were yesterday, as he came plodding to the inn door, his sea-chest following behind him in a hand-barrow, a tall, strong, heavy, nut-brown man, his tarry pigtail falling over the shoulder of his soiled blue coat, his hands ragged and scarred, with black, broken nails, and the sabre cut across one cheek, a dirty, livid white. I remember him looking round the cove and whistling to himself as he did so, and then breaking out in that old sea-song that he sang so often afterwards:",
+      "“Fifteen men on the dead man’s chest, Yo-ho-ho, and a bottle of rum!”",
+      "in the high, old tottering voice that seemed to have been tuned and broken at the capstan bars. Then he rapped on the door with a bit of stick like a handspike that he carried, and when my father appeared, called roughly for a glass of rum. This, when it was brought to him, he drank slowly, like a connoisseur, lingering on the taste and still looking about him at the cliffs and up at our signboard.",
+      "“This is a handy cove,” says he at length; “and a pleasant sittyated grog-shop. Much company, mate?”",
+      "My father told him no, very little company, the more was the pity.",
+      "“Well, then,” said he, “this is the berth for me. Here you, matey,” he cried to the man who trundled the barrow; “bring up alongside and help up my chest. I’ll stay here a bit,” he continued. “I’m a plain man; rum and bacon and eggs is what I want, and that head up there for to watch ships off. What you mought call me? You mought call me captain. Oh, I see what you’re at, there”; and he threw down three or four gold pieces on the threshold. “You can tell me when I’ve worked through that,” says he, looking as fierce as a commander.",
+      "And indeed bad as his clothes were and coarsely as he spoke, he had none of the appearance of a man who sailed before the mast, but seemed like a mate or skipper accustomed to be obeyed or to strike. The man who came with the barrow told us the mail had set him down the morning before at the Royal George, that he had inquired what inns there were along the coast, and hearing ours well spoken of, I suppose, and described as lonely, had chosen it from the others for his place of residence. And that was all we could learn of our guest.",
+    ],
+    questions: [
+      {
+        q: "Which word describes the colour of the captain's skin?",
+        answer: "nut-brown",
+        wrong: ["livid", "tarry", "soiled", "ragged"],
+        why: ["\"A tall, strong, heavy, nut-brown man.\"", "The other words describe his scar, his pigtail, his coat and his hands."],
+      },
+      {
+        q: "Which TWO things does the captain say he wants at the inn?",
+        answers: ["rum, bacon and eggs", "somewhere to watch ships from"],
+        wrong: ["a horse and cart", "a letter to be posted", "a doctor to be sent for"],
+        why: ["\"I'm a plain man; rum and bacon and eggs is what I want, and that head up there for to watch ships off.\"", "He says it as a list of two things, which is how the question is framed."],
+      },
+      {
+        q: "What is the effect of the captain singing about a dead man's chest?",
+        answer: "It hints that he has a violent past at sea.",
+        wrong: ["It shows he is in a cheerful mood.", "It suggests he is a trained singer.", "It tells the reader he is drunk already.", "It shows he wants to entertain the family."],
+        why: ["A song about fifteen men on a dead man's chest is not an ordinary sailor's tune, and he sings it often afterwards.", "It arrives before he has said a word to anybody, so it works as a warning to the reader."],
+      },
+      {
+        q: "Why does the narrator think the captain was not an ordinary sailor?",
+        answer: "He seemed like a mate or skipper who was used to being obeyed.",
+        wrong: ["His clothes were far too fine for a sailor.", "He did not know any sea-songs.", "He arrived by mail coach rather than by ship.", "He could not carry his own sea-chest."],
+        why: ["\"He had none of the appearance of a man who sailed before the mast, but seemed like a mate or skipper accustomed to be obeyed or to strike.\"", "His clothes were bad and his speech was rough, so it is his manner that gives it away."],
+      },
+      {
+        q: "What does \"coarsely\" mean in the last paragraph?",
+        answer: "roughly and without politeness",
+        wrong: ["quietly and shyly", "quickly and clearly", "kindly and warmly", "slowly and carefully"],
+        why: ["It is paired with \"bad as his clothes were\", so both are things you might expect to make him seem lowly.", "The sentence then says that in spite of both, he seemed like a man used to command."],
+      },
+      {
+        q: "What did the captain use to knock on the door?",
+        answer: "A bit of stick like a handspike.",
+        wrong: ["The handle of his sea-chest.", "His fist.", "A gold coin.", "The end of his pigtail."],
+        why: ["\"Then he rapped on the door with a bit of stick like a handspike that he carried.\"", "A handspike is a heavy wooden bar used on a ship, which is another hint about who he is."],
+      },
+      {
+        q: "What is the effect of describing the sabre cut as \"a dirty, livid white\"?",
+        answer: "It makes the scar vivid and suggests a violent past.",
+        wrong: ["It shows the wound is very recent.", "It suggests he is unwell and needs a doctor.", "It tells the reader he works outdoors.", "It shows he has been in an accident at sea."],
+        why: ["A sabre is a weapon, so the scar was not an accident, and the colour makes it stand out against the nut-brown face.", "The detail comes in the middle of a list of ordinary features, which makes it land harder."],
+      },
+      {
+        q: "Why had the captain chosen this particular inn?",
+        answer: "Because he had heard it was lonely.",
+        wrong: ["Because it was the cheapest along the coast.", "Because he knew the family who kept it.", "Because it was closest to the harbour.", "Because the mail coach stopped outside it."],
+        why: ["He asked what inns there were along the coast and chose this one after hearing it described as lonely.", "Wanting somewhere out of the way is another clue that he is hiding from something."],
+      },
+    ],
+  },
+  {
+    id: "fogg",
+    title: "A most mysterious gentleman",
+    source: "from Around the World in Eighty Days by Jules Verne, 1873",
+    paragraphs: [
+      "Mr. Phileas Fogg lived, in 1872, at No. 7, Saville Row, Burlington Gardens, the house in which Sheridan died in 1814. He was one of the most noticeable members of the Reform Club, though he seemed always to avoid attracting attention; an enigmatical personage, about whom little was known, except that he was a polished man of the world. People said that he resembled Byron, at least that his head was Byronic; but he was a bearded, tranquil Byron, who might live on a thousand years without growing old.",
+      "Certainly an Englishman, it was more doubtful whether Phileas Fogg was a Londoner. He was never seen on ’Change, nor at the Bank, nor in the counting-rooms of the “City”; no ships ever came into London docks of which he was the owner; he had no public employment; he had never been entered at any of the Inns of Court, either at the Temple, or Lincoln’s Inn, or Gray’s Inn; nor had his voice ever resounded in the Court of Chancery, or in the Exchequer, or the Queen’s Bench, or the Ecclesiastical Courts. He certainly was not a manufacturer; nor was he a merchant or a gentleman farmer. His name was strange to the scientific and learned societies, and he never was known to take part in the sage deliberations of the Royal Institution or the London Institution, the Artisan’s Association, or the Institution of Arts and Sciences. He belonged, in fact, to none of the numerous societies which swarm in the English capital, from the Harmonic to that of the Entomologists, founded mainly for the purpose of abolishing pernicious insects.",
+      "Phileas Fogg was a member of the Reform, and that was all.",
+      "The way in which he got admission to this exclusive club was simple enough.",
+      "He was recommended by the Barings, with whom he had an open credit. His cheques were regularly paid at sight from his account current, which was always flush.",
+      "Was Phileas Fogg rich? Undoubtedly. But those who knew him best could not imagine how he had made his fortune, and Mr. Fogg was the last person to whom to apply for the information. He was not lavish, nor, on the contrary, avaricious; for, whenever he knew that money was needed for a noble, useful, or benevolent purpose, he supplied it quietly and sometimes anonymously. He was, in short, the least communicative of men. He talked very little, and seemed all the more mysterious for his taciturn manner. His daily habits were quite open to observation; but whatever he did was so exactly the same thing that he had always done before, that the wits of the curious were fairly puzzled.",
+    ],
+    questions: [
+      {
+        q: "Which THREE of these does the passage say Phileas Fogg was NOT?",
+        answers: ["a manufacturer", "a merchant", "a gentleman farmer"],
+        wrong: ["a member of the Reform Club", "a rich man"],
+        why: ["\"He certainly was not a manufacturer; nor was he a merchant or a gentleman farmer.\"", "He was both a member of the Reform Club and undoubtedly rich, so those two are the wrong answers."],
+      },
+      {
+        q: "What is the effect of the long list of places Fogg was never seen?",
+        answer: "It shows how little anybody actually knew about him.",
+        wrong: ["It shows that he disliked the city of London.", "It suggests he was too poor to belong anywhere.", "It proves that he was not really English.", "It shows how much travelling he did."],
+        why: ["Bank, docks, courts, societies: the list rules out every ordinary explanation of who a man like that might be.", "Ruling things out one by one leaves a mystery, which is exactly the effect being aimed at."],
+      },
+      {
+        q: "What does \"taciturn\" mean in the last paragraph?",
+        answer: "saying very little",
+        wrong: ["easily angered", "extremely wealthy", "always punctual", "fond of company"],
+        why: ["The same sentence says \"He talked very little, and seemed all the more mysterious for his taciturn manner.\"", "The meaning is given right beside the word, which is often true of a hard word in a passage."],
+      },
+      {
+        q: "How did Fogg give money to good causes?",
+        answer: "Quietly, and sometimes without giving his name.",
+        wrong: ["Only when he was asked directly.", "In public, at meetings of the Reform Club.", "By leaving it in his will.", "Through the Barings bank."],
+        why: ["\"He supplied it quietly and sometimes anonymously.\"", "The passage is careful to say he was neither lavish nor mean, which makes the quietness the point."],
+      },
+      {
+        q: "Which club was Phileas Fogg a member of?",
+        answer: "The Reform.",
+        wrong: ["The Royal Institution.", "The Harmonic.", "The Artisan's Association.", "The Institution of Arts and Sciences."],
+        why: ["\"Phileas Fogg was a member of the Reform, and that was all.\"", "The others are named only as societies he did NOT belong to."],
+      },
+      {
+        q: "Which word in the first paragraph means puzzling or mysterious?",
+        answer: "enigmatical",
+        wrong: ["polished", "noticeable", "tranquil", "Byronic"],
+        why: ["\"An enigmatical personage, about whom little was known.\"", "The rest of the sentence explains it: little was known about him."],
+      },
+      {
+        q: "Why were \"the wits of the curious fairly puzzled\"?",
+        answer: "Because he did exactly the same things every day and gave nothing away.",
+        wrong: ["Because he changed his habits constantly.", "Because he refused to speak to anyone at all.", "Because he was never seen in daylight.", "Because nobody knew where he lived."],
+        why: ["\"His daily habits were quite open to observation; but whatever he did was so exactly the same thing that he had always done before.\"", "Being completely predictable turns out to hide more than being secretive would."],
+      },
+      {
+        q: "What is the effect of calling him \"a bearded, tranquil Byron, who might live on a thousand years without growing old\"?",
+        answer: "It makes him seem calm and strangely unchanging.",
+        wrong: ["It shows that he was a famous poet.", "It suggests he was much older than he looked.", "It tells the reader he was in poor health.", "It shows that he was vain about his appearance."],
+        why: ["Byron was known for storminess, so a tranquil Byron is a deliberate contradiction.", "The thousand years exaggerates how little he ever seems to alter, which fits the rest of the description."],
+      },
+    ],
+  },
+  {
+    id: "sand",
+    title: "The White House",
+    source: "from Five Children and It by E. Nesbit, 1902",
+    paragraphs: [
+      "The house was three miles from the station, but before the dusty hired fly had rattled along for five minutes the children began to put their heads out of the carriage window and to say, 'Aren't we nearly there?' And every time they passed a house, which was not very often, they all said, 'Oh, is THIS it?' But it never was, till they reached the very top of the hill, just past the chalk-quarry and before you come to the gravel-pit. And then there was a white house with a green garden and an orchard beyond, and mother said, 'Here we are!'",
+      "'How white the house is,' said Robert.",
+      "'And look at the roses,' said Anthea.",
+      "'And the plums,' said Jane.",
+      "'It is rather decent,' Cyril admitted.",
+      "The Baby said, 'Wanty go walky'; and the fly stopped with a last rattle and jolt.",
+      "Everyone got its legs kicked or its feet trodden on in the scramble to get out of the carriage that very minute, but no one seemed to mind. Mother, curiously enough, was in no hurry to get out; and even when she had come down slowly and by the step, and with no jump at all, she seemed to wish to see the boxes carried in, and even to pay the driver, instead of joining in that first glorious rush round the garden and the orchard and the thorny, thistly, briery, brambly wilderness beyond the broken gate and the dry fountain at the side of the house. But the children were wiser, for once. It was not really a pretty house at all; it was quite ordinary, and mother thought it was rather inconvenient, and was quite annoyed at there being no shelves, to speak of, and hardly a cupboard in the place. Father used to say that the ironwork on the roof and coping was like an architect's nightmare. But the house was deep in the country, with no other house in sight, and the children had been in London for two years, without so much as once going to the seaside even for a day by an excursion train, and so the White House seemed to them a sort of Fairy Palace set down in an Earthly Paradise. For London is like prison for children, especially if their relations are not rich.",
+    ],
+    questions: [
+      {
+        q: "How far was the house from the station?",
+        answer: "Three miles.",
+        wrong: ["Five miles.", "Just past the station.", "Two years' journey.", "On the other side of London."],
+        why: ["\"The house was three miles from the station.\"", "Straight retrieval from the first sentence."],
+      },
+      {
+        q: "What is the effect of the children asking \"Oh, is THIS it?\" every time they pass a house?",
+        answer: "It shows how impatient they are to arrive.",
+        wrong: ["It shows that they are lost.", "It suggests the houses all look the same.", "It tells the reader they do not want to be there.", "It shows they are frightened of the journey."],
+        why: ["They ask after five minutes and then at every house, which is what impatience looks like from the outside.", "The narrator adds \"which was not very often\", so there were not many houses and they asked about all of them."],
+      },
+      {
+        q: "Which THREE things did the children call out about when they first saw the house?",
+        answers: ["how white it was", "the roses", "the plums"],
+        wrong: ["the orchard wall", "the front door"],
+        why: ["Robert says how white the house is, Anthea points out the roses and Jane the plums.", "Cyril only says it is rather decent, and the Baby wants to walk, so those two do not count."],
+      },
+      {
+        q: "Why was Mother in no hurry to get out of the carriage?",
+        answer: "She had grown-up jobs to do and did not share their excitement.",
+        wrong: ["She was unwell after the journey.", "She was disappointed by the house.", "She was waiting for Father to arrive.", "She had fallen asleep on the way."],
+        why: ["She saw to the boxes and paid the driver instead of rushing round the garden.", "The narrator says the children \"were wiser, for once\", which is a joke at the grown-ups' expense."],
+      },
+      {
+        q: "Which word shows that Cyril was less enthusiastic than the others?",
+        answer: "admitted",
+        wrong: ["glorious", "curiously", "scramble", "ordinary"],
+        why: ["\"It is rather decent, Cyril admitted.\"", "You admit something you would rather not say, so the word shows he is holding back."],
+      },
+      {
+        q: "Why does the author call the house \"a sort of Fairy Palace set down in an Earthly Paradise\"?",
+        answer: "To show how it looked to children who had been shut up in London.",
+        wrong: ["To show that the house was very grand.", "To suggest the house was haunted.", "To tell the reader the story is not real.", "To show that Mother had chosen well."],
+        why: ["The narrator has just said the house was ordinary, and that Mother found it inconvenient.", "The grand words describe the children's view, not the house, which is the joke."],
+      },
+      {
+        q: "What does \"For London is like prison for children\" tell us about the narrator?",
+        answer: "The narrator is on the children's side.",
+        wrong: ["The narrator dislikes the countryside.", "The narrator has never been to London.", "The narrator thinks the children are ungrateful.", "The narrator is describing a real prison."],
+        why: ["It is an aside to the reader explaining why the children were so wild with delight.", "The narrator adds \"especially if their relations are not rich\", which is sympathy rather than criticism."],
+      },
+      {
+        q: "What did Father say the ironwork on the roof looked like?",
+        answer: "An architect's nightmare.",
+        wrong: ["A fairy palace.", "A birdcage.", "A ship's rigging.", "A crown."],
+        why: ["\"Father used to say that the ironwork on the roof and coping was like an architect's nightmare.\"", "It is one of several details showing the house was not actually handsome."],
+      },
+    ],
+  },
+  {
+    id: "beagle",
+    title: "The tortoises and the springs",
+    source: "from The Voyage of the Beagle by Charles Darwin, 1839",
+    paragraphs: [
+      "The tortoise is very fond of water, drinking large quantities, and wallowing in the mud. The larger islands alone possess springs, and these are always situated towards the central parts, and at a considerable height. The tortoises, therefore, which frequent the lower districts, when thirsty, are obliged to travel from a long distance. Hence broad and well-beaten paths branch off in every direction from the wells down to the sea-coast; and the Spaniards by following them up, first discovered the watering-places. When I landed at Chatham Island, I could not imagine what animal travelled so methodically along well-chosen tracks. Near the springs it was a curious spectacle to behold many of these huge creatures, one set eagerly travelling onwards with outstretched necks, and another set returning, after having drunk their fill. When the tortoise arrives at the spring, quite regardless of any spectator, he buries his head in the water above his eyes, and greedily swallows great mouthfuls, at the rate of about ten in a minute. The inhabitants say each animal stays three or four days in the neighbourhood of the water, and then returns to the lower country; but they differed respecting the frequency of these visits. The animal probably regulates them according to the nature of the food on which it has lived. It is, however, certain, that tortoises can subsist even on these islands where there is no other water than what falls during a few rainy days in the year.",
+      "I believe it is well ascertained, that the bladder of the frog acts as a reservoir for the moisture necessary to its existence: such seems to be the case with the tortoise. For some time after a visit to the springs, their urinary bladders are distended with fluid, which is said gradually to decrease in volume, and to become less pure. The inhabitants, when walking in the lower district, and overcome with thirst, often take advantage of this circumstance, and drink the contents of the bladder if full: in one I saw killed, the fluid was quite limpid, and had only a very slightly bitter taste. The inhabitants, however, always first drink the water in the pericardium, which is described as being best.",
+    ],
+    questions: [
+      {
+        q: "Where are the springs found on the larger islands?",
+        answer: "Towards the middle, high up.",
+        wrong: ["Along the sea-coast.", "In the mud where the tortoises wallow.", "On the smaller islands only.", "At the bottom of the well-beaten paths."],
+        why: ["\"These are always situated towards the central parts, and at a considerable height.\"", "That is why the tortoises in the low districts have to travel so far."],
+      },
+      {
+        q: "How did the Spaniards first discover the watering places?",
+        answer: "By following the tortoises' well-beaten paths.",
+        wrong: ["By digging wells in the central parts.", "By asking the inhabitants of the islands.", "By watching where the rain collected.", "By exploring the coast in boats."],
+        why: ["\"Broad and well-beaten paths branch off in every direction from the wells down to the sea-coast; and the Spaniards by following them up, first discovered the watering-places.\"", "The animals had already solved the problem, which is the point of the observation."],
+      },
+      {
+        q: "Which TWO things does the passage say the tortoise does when it reaches the spring?",
+        answers: ["buries its head in the water above its eyes", "swallows great mouthfuls"],
+        wrong: ["washes the mud from its shell", "calls to the other tortoises", "sleeps beside the water"],
+        why: ["\"He buries his head in the water above his eyes, and greedily swallows great mouthfuls, at the rate of about ten in a minute.\"", "The wallowing in mud happens elsewhere, not at the spring."],
+      },
+      {
+        q: "Which word means in an orderly, planned way?",
+        answer: "methodically",
+        wrong: ["greedily", "eagerly", "curiously", "gradually"],
+        why: ["\"I could not imagine what animal travelled so methodically along well-chosen tracks.\"", "It is the regularity of the tracks that puzzles him, not the speed or the number."],
+      },
+      {
+        q: "Why could the writer not imagine what animal had made the tracks?",
+        answer: "The paths were so regular and well chosen that they seemed planned.",
+        wrong: ["The tracks were far too small for a large animal.", "He had never landed on the island before.", "The tracks disappeared into the sea.", "There were no animals to be seen anywhere."],
+        why: ["He describes them as \"well-chosen tracks\" travelled \"methodically\", which does not look like the work of an animal.", "He does see the tortoises later, at the springs, which is how the puzzle is solved."],
+      },
+      {
+        q: "What is the effect of \"quite regardless of any spectator\"?",
+        answer: "It shows how single-minded the tortoise is about drinking.",
+        wrong: ["It shows the tortoise cannot see very well.", "It suggests the tortoise is tame and friendly.", "It tells the reader that nobody was watching.", "It shows the tortoise is frightened of people."],
+        why: ["A wild animal would normally take notice of a person standing over it, and this one does not even pause.", "The phrase sits just before the description of ten mouthfuls a minute, which makes the same point."],
+      },
+      {
+        q: "How many mouthfuls a minute does the tortoise swallow?",
+        answer: "About ten.",
+        wrong: ["About three.", "About twenty.", "About fifty.", "About one hundred."],
+        why: ["\"Greedily swallows great mouthfuls, at the rate of about ten in a minute.\"", "Precise numbers like this are typical of writing that records observations."],
+      },
+      {
+        q: "What does the passage suggest the islanders do when they are overcome with thirst?",
+        answer: "They drink fluid taken from a tortoise.",
+        wrong: ["They walk up to the central springs.", "They wait for the yearly rains.", "They follow the tortoise paths to the coast.", "They collect dew from the plants."],
+        why: ["\"The inhabitants, when walking in the lower district, and overcome with thirst, often take advantage of this circumstance.\"", "The writer even reports which fluid is considered best, which shows how commonly it was done."],
       },
     ],
   },

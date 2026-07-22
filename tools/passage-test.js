@@ -56,6 +56,24 @@ for (const p of PASSAGES) {
       }
     }
 
+    // Anything the explanation puts in quotation marks must actually be in
+    // the passage. This is the check that would have caught a trimmed extract
+    // whose ending two questions still referred to: the questions looked fine
+    // on their own, and the answers were unfindable.
+    for (const line of q.why || []) {
+      // Split on the quote mark and take the odd segments, so the text
+      // BETWEEN two separate quotations is never treated as one itself.
+      const segments = line.split('"').filter((_, n) => n % 2 === 1);
+      const hay = lower.replace(/[^a-z0-9 ]/g, ' ').replace(/\s+/g, ' ');
+      for (const seg of segments) {
+        if (seg.length < 15) continue;
+        const quoted = seg.toLowerCase().replace(/[^a-z0-9 ]/g, ' ').replace(/\s+/g, ' ').trim();
+        if (!hay.includes(quoted)) {
+          fail(`${p.id}: explanation quotes "${seg.slice(0, 45)}" which is not in the passage`);
+        }
+      }
+    }
+
     // Single-word retrieval answers must be verbatim in the passage. Longer
     // ones are allowed to paraphrase, because "asked him what the time was"
     // is a fair option for a passage that says "asked him what it was
