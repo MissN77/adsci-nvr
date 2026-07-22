@@ -45,7 +45,12 @@ export function generate(rng) {
     // they would form a linked pair of their own and muddy the question.
     const otherTags = shuffle(rng, TAGS.filter((t) => t !== tag));
     const odd = [];
+    // Not just the chosen tag: the odd word must not share ANY tag with any
+    // of the three linked words. A blind reader found scarlet, bronze and
+    // copper sitting together, because bronze and copper are metals AND
+    // colours, and only the metal tag was being guarded.
     const usedTags = new Set([tag]);
+    for (const w of linked) (WORD_TAGS[w] || []).forEach((x) => usedTags.add(x));
     for (const t of otherTags) {
       if (odd.length >= 2) break;
       const candidate = pick(rng, BY_TAG[t].filter(
