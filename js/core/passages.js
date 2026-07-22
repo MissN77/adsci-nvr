@@ -1,9 +1,27 @@
 // ── Reading passages and their questions ──────────────────────────────────
 //
 // Quest's English paper puts a reading passage at the front, then asks twenty
-// questions about it. Six of their twelve comprehension items ask about the
-// EFFECT of a choice the author made, not about what happened, so the mix
-// here leans the same way.
+// questions about it: twelve on the passage and eight on spelling, punctuation
+// and grammar.
+//
+// This comment used to claim the mix here "leans the same way" as Quest's. It
+// does not, and saying so was worse than saying nothing, because it stopped
+// anyone checking. Measured across all 320 questions on 22 July 2026:
+//
+//   retrieval             35%
+//   inference             27%
+//   language and effect   17%
+//   vocabulary in context 11%
+//   word-level retrieval  11%
+//
+// Quest's twelve comprehension items run closer to seven of twelve on
+// language and effect. So this bank is materially retrieval-heavy against the
+// real paper and the effect questions need roughly to treble. The passages are
+// also short: median 400 words here against roughly 750 in the Quest booklet
+// and 688 to 1008 in GL's published English papers.
+//
+// Recorded rather than quietly fixed, because rebalancing means writing about
+// a hundred new questions and that is a decision, not a tidy-up.
 //
 // The passages are genuinely out of copyright, taken from Project Gutenberg:
 //

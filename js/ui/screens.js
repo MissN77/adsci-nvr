@@ -7,7 +7,7 @@
 // listener on #app and hands events down, which is why switching screens can
 // never leak a handler. Screens that own a timer clean it up in destroy.
 
-import { TYPES, GROUPS, PAPER_TYPES, REGISTRY, generateFor } from '../generators/index.js';
+import { TYPES, GROUPS, PAPER_SECTIONS, REGISTRY, generateFor } from '../generators/index.js';
 import { correctSet, needed, isMulti, isCorrect, instruction } from '../core/answer.js';
 import { makeRng, hashSeed, shuffle } from '../core/rng.js';
 import { Store } from '../core/store.js';
@@ -491,19 +491,38 @@ export function paperScreen() {
   let startedAt = 0;
 
   function buildPaper() {
-    // Only the types that are actually in the Bexley paper. Practising the
-    // general types is useful, but a mock made of them would give a
-    // misleading score.
-    const ids = PAPER_TYPES.slice();
+    // Built to the real weighting: half verbal and English, a quarter
+    // numerical, a quarter non-verbal. See PAPER_SECTIONS for the source.
     const rng = makeRng(hashSeed(`paper-${Date.now()}-${Math.random()}`));
     const order = [];
-    // Round-robin over a shuffled type list, so the paper is evenly spread
-    // and never gives a child six of the same type in a row.
-    while (order.length < PAPER_LENGTH) {
-      shuffle(rng, ids).forEach((id) => { if (order.length < PAPER_LENGTH) order.push(id); });
+
+    for (const section of PAPER_SECTIONS) {
+      const quota = Math.round(PAPER_LENGTH * section.share);
+      const picks = [];
+      if (section.alsoUpTo) {
+        const n = Math.min(section.alsoUpTo.max, Math.floor(quota / 4));
+        for (let k = 0; k < n; k += 1) picks.push(section.alsoUpTo.id);
+      }
+      while (picks.length < quota) {
+        shuffle(rng, section.ids).forEach((id) => {
+          if (picks.length < quota) picks.push(id);
+        });
+      }
+      order.push(...picks);
     }
+    // Interleave so a child never gets a long run of one type, while the
+    // section quotas above stay exactly as allocated.
+    shuffle(rng, order);
+    while (order.length < PAPER_LENGTH) order.push(order[order.length - 1]);
+    order.length = PAPER_LENGTH;
+
     questions = order.map((id, n) => {
-      const d = n < 12 ? 1 : n < 28 ? 2 : 3;
+      // Scaled to the paper length. This read `n < 12 ? 1 : n < 28 ? 2 : 3`,
+      // and with a twenty question paper the n < 28 branch always won, so
+      // difficulty 3 was unreachable and every mock was easy-then-medium
+      // with no ceiling to separate the strongest children.
+      const frac = n / PAPER_LENGTH;
+      const d = frac < 0.4 ? 1 : frac < 0.75 ? 2 : 3;
       return makeQuestion(id, d, `paper-${n}`);
     });
     answers = questions.map(() => -1);

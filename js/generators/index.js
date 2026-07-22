@@ -72,13 +72,13 @@ export const GROUPS = [
   {
     id: 'quest',
     name: 'Bexley non-verbal',
-    note: 'These match the non-verbal question types in the official Bexley familiarisation booklet. Non-verbal reasoning is 25% of the test.',
+    note: 'These match the non-verbal question types in the official Quest familiarisation booklets, which Bexley directs parents to. Quest publishes no Bexley-specific paper. Non-verbal reasoning is 25% of the test.',
     types: TYPES.filter((t) => t.group === 'quest' && !t.subject),
   },
   {
     id: 'verbal',
     name: 'Bexley verbal reasoning',
-    note: 'Verbal ability and English comprehension together are 50% of the test, the largest part of it. These match the verbal question types in the official booklet.',
+    note: 'Verbal ability and English comprehension together are 50% of the test, the largest part of it. These match the verbal question types in the official Quest familiarisation booklets.',
     types: TYPES.filter((t) => t.subject === 'verbal'),
   },
   {
@@ -97,6 +97,39 @@ export const GROUPS = [
 
 /** Ids used to build a Bexley-shaped mock paper. */
 export const PAPER_TYPES = TYPES.filter((t) => t.group === 'quest' && !t.subject).map((t) => t.id);
+
+// ── Mock paper composition ────────────────────────────────────────────────
+//
+// Verified 22 July 2026 against the London Borough of Bexley "About the test"
+// page, which states the total weighted age-standardised score is built from
+// 50% of the verbal ability score, 25% of the numerical ability score and 25%
+// of the non-verbal ability score.
+//
+// This existed as PAPER_TYPES, which selected the non-verbal types ONLY. A
+// mock paper built from it rehearsed 25% of the test and silently omitted the
+// other 75%, so a child could score 18 out of 20 and learn nothing about how
+// they would actually do. That is a worse failure than any wrong answer,
+// because it is confidently wrong about the thing the product is for.
+//
+// `comp` is capped deliberately. Each comprehension item currently brings its
+// own passage, so an unrestricted share would put several hundred words of
+// reading into a twenty minute paper. The cap goes away when comprehension is
+// restructured to ask several questions about one passage, which is how the
+// real English paper works.
+export const PAPER_SECTIONS = [
+  {
+    subject: 'Verbal and English',
+    share: 0.5,
+    ids: ['vrpair', 'vrana', 'vrodd', 'vrsent', 'vrgap', 'vrlogic'],
+    alsoUpTo: { id: 'comp', max: 2 },
+  },
+  { subject: 'Numerical', share: 0.25, ids: ['maths'] },
+  {
+    subject: 'Non-verbal',
+    share: 0.25,
+    ids: TYPES.filter((t) => t.group === 'quest' && !t.subject).map((t) => t.id),
+  },
+];
 
 export function generateFor(id, rng, difficulty) {
   const gen = REGISTRY[id];
