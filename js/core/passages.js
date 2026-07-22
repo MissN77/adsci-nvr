@@ -246,10 +246,10 @@ export const PASSAGES = [
           'Ask what a list is doing in the argument, not just what is in it.'],
       },
       {
-        q: 'Which word in the last paragraph shows that the master valued the narrator\'s mother?',
+        q: 'Which name does the master call her instead of her real name?',
         answer: 'Pet',
         wrong: ['Duchess', 'advice', 'wise', 'often'],
-        why: ['A working horse given an affectionate nickname is a horse the master is fond of.',
+        why: ['Her name was Duchess, but he often called her Pet.',
           'Duchess is her proper name. It is the nickname that shows the feeling.'],
       },
       {
@@ -400,7 +400,7 @@ export const PASSAGES = [
       {
         q: "Which TWO of these does the passage say nobody ever did to Scrooge in the street?",
         answers: ["stopped him to ask how he was", "asked him what the time was"],
-        wrong: ["offered to shake his hand", "wished him a happy birthday", "asked to borrow money from him"],
+        wrong: ["offered to shake his hand", "wished him a happy birthday", "shouted at him across the street"],
         why: ["\"Nobody ever stopped him in the street\" with gladsome looks, and \"no children asked him what it was o'clock\".", "The other three are not mentioned anywhere, so they cannot be right however likely they sound."],
       },
     ],
@@ -431,7 +431,7 @@ export const PASSAGES = [
       {
         q: "What does \"Phyllis, who meant extremely well\" suggest about her?",
         answer: "Her intentions were good but things did not always go right.",
-        wrong: ["She was the cleverest of the three.", "She was always very well behaved.", "She was often unwell.", "She was the eldest of the children."],
+        wrong: ["She was the cleverest of the three.", "She was the quietest of the three.", "She was often unwell.", "She was the eldest of the children."],
         why: ["Saying only that somebody means well is a gentle way of hinting that the results were mixed.", "The narrator is being affectionate and a little bit funny about her here."],
       },
       {
@@ -498,7 +498,7 @@ export const PASSAGES = [
       {
         q: "Why does Mary whisper rather than speak normally?",
         answer: "The garden feels secret and undisturbed, and she does not want to break it.",
-        wrong: ["She is afraid the robin will fly away.", "Somebody has told her to keep quiet.", "She has hurt her throat climbing in.", "She is hiding from a gardener nearby."],
+        wrong: ["She has promised someone not to speak aloud.", "Somebody has told her to keep quiet.", "She has hurt her throat climbing in.", "She is hiding from a gardener nearby."],
         why: ["She says \"How still it is!\" twice before she works out why, so the hush is the first thing she notices.", "Nobody else is there. The quiet comes from the place, not from any danger, which is why she treats it so carefully."],
       },
       {
@@ -769,7 +769,7 @@ export const PASSAGES = [
       },
       {
         q: "Why does Anne compare the little trees to orphans?",
-        answer: "Because she is an orphan herself and feels for them.",
+        answer: "Because nobody has looked after them, just as nobody looked after her.",
         wrong: ["Because they had been planted by orphans.", "Because they were the smallest trees she had seen.", "Because nobody had given them names.", "Because they were about to be cut down."],
         why: ["\"They just looked like orphans themselves, those trees did. It used to make me want to cry to look at them.\"", "She then tells them she knows exactly how they feel, which only makes sense if she does."],
       },
@@ -832,7 +832,7 @@ export const PASSAGES = [
       {
         q: "Which TWO places does Aunt Polly search for Tom?",
         answers: ["under the bed", "out in the garden"],
-        wrong: ["in the closet", "up the chimney", "behind the door"],
+        wrong: ["in the barn", "up the chimney", "behind the door"],
         why: ["She punches under the bed with the broom, then goes to the open door and looks out among the tomato vines and weeds.", "She does NOT look in the closet, which is why she says afterwards that she might have thought of it."],
       },
       {
@@ -878,7 +878,7 @@ export const PASSAGES = [
       {
         q: "What is the effect of the captain singing about a dead man's chest?",
         answer: "It hints that he has a violent past at sea.",
-        wrong: ["It shows he is in a cheerful mood.", "It suggests he is a trained singer.", "It tells the reader he is drunk already.", "It shows he wants to entertain the family."],
+        wrong: ["It shows he has been at sea a long time.", "It suggests he is a trained singer.", "It tells the reader he is drunk already.", "It shows he wants to entertain the family."],
         why: ["A song about fifteen men on a dead man's chest is not an ordinary sailor's tune, and he sings it often afterwards.", "It arrives before he has said a word to anybody, so it works as a warning to the reader."],
       },
       {
@@ -1011,7 +1011,7 @@ export const PASSAGES = [
       {
         q: "Why was Mother in no hurry to get out of the carriage?",
         answer: "She had grown-up jobs to do and did not share their excitement.",
-        wrong: ["She was unwell after the journey.", "She was disappointed by the house.", "She was waiting for Father to arrive.", "She had fallen asleep on the way."],
+        wrong: ["She was unwell after the journey.", "She had lost something in the carriage.", "She was waiting for Father to arrive.", "She had fallen asleep on the way."],
         why: ["She saw to the boxes and paid the driver instead of rushing round the garden.", "The narrator says the children \"were wiser, for once\", which is a joke at the grown-ups' expense."],
       },
       {
@@ -1231,9 +1231,9 @@ export const PASSAGES = [
     ],
     questions: [
       {
-        q: "Why was there no daylight in the room?",
-        answer: "The windows were shut away, and the room was lit by candles.",
-        wrong: ["It was the middle of the night.", "A heavy fog had come down outside.", "The candles were brighter than the sun.", "The narrator had entered with his eyes shut."],
+        q: "How was the room lit?",
+        answer: "By wax candles.",
+        wrong: ["By daylight through a tall window.", "By a single oil lamp.", "By a fire in the grate.", "By the jewels sparkling on the table."],
         why: ["\"I entered, therefore, and found myself in a pretty large room, well lighted with wax candles. No glimpse of daylight was to be seen in it.\"", "The absence of daylight is mentioned first, which sets the strangeness before anything else happens."],
       },
       {
@@ -1370,7 +1370,7 @@ export const PASSAGES = [
       {
         q: "What is the effect of putting \"an enormous thing\" in quotation marks?",
         answer: "It shows that nobody could say what it actually was.",
-        wrong: ["It shows that somebody was lying about it.", "It tells the reader the words come from a poem.", "It suggests the object was not really very big.", "It shows that sailors often exaggerate."],
+        wrong: ["It shows that somebody was lying about it.", "It tells the reader the words come from a poem.", "It suggests the object was not really very big.", "It shows the words were painted on a sign."],
         why: ["The phrase is vague on purpose, and the marks show it is what people were saying rather than a description.", "The rest of the paragraph then tries to be precise about shape and speed, which makes the contrast clear."],
       },
       {
@@ -1512,7 +1512,7 @@ export const PASSAGES = [
       },
       {
         q: "Why had Nancy taken the job at the great house?",
-        answer: "Her family needed the money after her father died.",
+        answer: "Her family needed the money after her mother was widowed.",
         wrong: ["She wanted to leave The Corners behind.", "She had always admired Miss Polly.", "She was training to be a cook.", "She had been sent by her mother's employer."],
         why: ["\"A sick mother suddenly widowed and left with three younger children besides Nancy herself, had forced the girl into doing something toward their support.\"", "She had never worked out before, so this was not a career she chose."],
       },
@@ -1548,10 +1548,10 @@ export const PASSAGES = [
         why: ["\"One thing was certain, that the white kitten had had nothing to do with it: it was the black kitten's fault entirely.\"", "The white kitten has an alibi: it was having its face washed the whole time."],
       },
       {
-        q: "Which word does Alice use to tell the kitten it is in trouble?",
+        q: "Which word does the narrator use for the trouble the kitten is in?",
         answer: "disgrace",
         wrong: ["mischief", "reproachfully", "romps", "manners"],
-        why: ["\"Giving it a little kiss to make it understand that it was in disgrace.\"", "Reproachfully describes how she looks at Dinah, not what she calls the kitten."],
+        why: ["\"Giving it a little kiss to make it understand that it was in disgrace.\"", "Reproachfully describes how Alice looks at Dinah, not the trouble the kitten is in."],
       },
       {
         q: "What is amusing about saying the white kitten could not have had \"any hand\" in the mischief?",
@@ -1671,7 +1671,7 @@ export const PASSAGES = [
       {
         q: "Which word in the passage tells you the road was not paved?",
         answer: "dusty",
-        wrong: ["crooked", "narrow", "rutted", "muddy"],
+        wrong: ["crooked", "narrow", "winding", "muddy"],
         why: ["\"The old stage coach was rumbling along the dusty road.\"", "Ruts and stones are mentioned later, but the word describing the road itself is the one asked for."],
       },
       {
@@ -1761,7 +1761,7 @@ export const PASSAGES = [
         why: ["\"the only malady I could conclude I had not got was housemaid's knee\"", "He says he had Bright's disease in a modified form, so that one does not count as a miss."],
       },
       {
-        q: "Why does the narrator work through the diseases alphabetically?",
+        q: "What is the effect of the narrator working through the diseases alphabetically?",
         answer: "It makes his panic sound absurdly organised.",
         wrong: ["The book was arranged that way and he had no choice.", "He wanted to finish before the museum closed.", "He was looking for one disease in particular.", "He was writing a list for his doctor."],
         why: ["\"and so started alphabetically\"", "\"I plodded conscientiously through the twenty-six letters.\""],
@@ -1825,7 +1825,7 @@ export const PASSAGES = [
       {
         q: "What does Father Wolf mean by \"Enter, then, and look, but there is no food here\"?",
         answer: "Tabaqui may come in, but he is not welcome to eat.",
-        wrong: ["The wolves have not hunted for several days.", "Tabaqui should look for food in the village.", "Father Wolf wants Tabaqui to leave at once.", "The cubs have eaten everything already."],
+        wrong: ["The wolves have not hunted for several days.", "Tabaqui should look for food in the village.", "Father Wolf has mistaken Tabaqui for another wolf.", "The cubs have eaten everything already."],
         why: ["\"Enter, then, and look,\" said Father Wolf stiffly.", "Tabaqui finds a bone at the back of the cave anyway, which shows it was not strictly true."],
       },
       {
@@ -1870,7 +1870,7 @@ export const PASSAGES = [
         why: ["\"I listened, I looked round me, but I could hear nothing, nor see anything.\"", "Longer, calmer sentences return only once he is safely inside his castle."],
       },
       {
-        q: "Which TWO ordinary things did his fear turn into a man?",
+        q: "Which TWO ordinary things did his frightened imagination play tricks with?",
         answers: ["every bush and tree", "every stump at a distance"],
         wrong: ["the sound of the sea", "the shadow of his boat", "his own footprints"],
         why: ["\"mistaking every bush and tree, and fancying every stump at a distance to be a man\"", "Both are in the same clause, so both must be found."],
@@ -1950,7 +1950,7 @@ export const PASSAGES = [
       {
         q: "What is the effect of listing the relatives with their hard claws, hooves and paws?",
         answer: "It builds a pattern of the same thing happening again and again.",
-        wrong: ["It shows how large the family was.", "It explains why elephants live in Africa.", "It proves the relatives were cruel by nature.", "It tells the reader what each animal looks like."],
+        wrong: ["It shows the animals all lived close together.", "It explains why elephants live in Africa.", "It proves the relatives were cruel by nature.", "It tells the reader what each animal looks like."],
         why: ["Each one spanks him with something \"hard, hard\" or \"broad, broad\" of its own.", "The pattern is what makes the ending, when he finally gets his trunk, feel earned."],
       },
     ],
@@ -2009,7 +2009,7 @@ export const PASSAGES = [
       },
       {
         q: "What is the effect of using \"lapped\" for both babies?",
-        answer: "The same word shows the same act done with opposite means.",
+        answer: "The same word is used for silks and for rags, which puts the whole difference in one line.",
         wrong: ["It shows both babies were the same size.", "It suggests the babies were swapped at birth.", "It tells the reader both were loved equally.", "It is a word used only for royal children."],
         why: ["One is \"lapped in silks and satins\" and the other \"lapped in his poor rags\".", "Repeating the verb and changing only the cloth puts the whole difference into two words."],
       },
@@ -2111,7 +2111,7 @@ export const PASSAGES = [
         why: ["\"Their eyes seemed to be weak, for they both wore black goggles.\"", "Their legs are then compared to a gig, so the whole description dresses them up as little travellers."],
       },
       {
-        q: "Which TWO things are the insects' long legs compared to?",
+        q: "Which TWO things are used to describe the long legs and the way they moved?",
         answers: ["the springs to buggy-tops", "an old-fashioned gig"],
         wrong: ["a pair of scissors", "the necks of swans", "the stalks of cat-tails"],
         why: ["\"These last legs had joints like the springs to buggy-tops.\"", "\"they moved exactly like an old-fashioned gig\""],
@@ -2229,10 +2229,10 @@ export const PASSAGES = [
         why: ["\"I was fond of everything that was wild, and all my life I've been growing fonder and fonder of wild places and wild creatures.\"", "He uses it of the places, the creatures and his playmates, which is what makes it the key word."],
       },
       {
-        q: "Which THREE places did Muir like to go as a boy?",
-        answers: ["the fields", "the seashore", "the pools among the rocks"],
-        wrong: ["the town market", "his grandfather's house"],
-        why: ["\"I loved to wander in the fields to hear the birds sing, and along the seashore to gaze and wonder at the shells and seaweeds, eels and crabs in the pools among the rocks when the tide was low\"", "All three are in one long sentence, so it has to be read to the end."],
+        q: "Which TWO places did Muir like to go as a boy?",
+        answers: ["the fields", "the seashore"],
+        wrong: ["the town market", "his grandfather's house", "the school playground"],
+        why: ["\"I loved to wander in the fields to hear the birds sing, and along the seashore to gaze and wonder at the shells and seaweeds, eels and crabs in the pools among the rocks when the tide was low\"", "Both are in the same long sentence, so it has to be read to the end."],
       },
       {
         q: "Why did Muir keep running away even though he was punished?",
@@ -2261,7 +2261,7 @@ export const PASSAGES = [
       {
         q: "What does \"native town\" mean in the passage?",
         answer: "the town where he was born",
-        wrong: ["the biggest town nearby", "a town with no roads", "the town where he went to school", "a town by the sea"],
+        wrong: ["the biggest town nearby", "a town with no roads", "the town where he went to school", "a town he often visited"],
         why: ["\"around my native town of Dunbar, by the stormy North Sea\"", "Being by the sea is given as a separate fact, so it is not part of the meaning."],
       },
     ],
@@ -2293,11 +2293,11 @@ export const PASSAGES = [
       {
         q: "Why does Holmes pull Watson into the room?",
         answer: "He believes Watson will be useful to him on the case.",
-        wrong: ["He wants Watson to examine Mr Wilson.", "He is afraid to be alone with Mr Wilson.", "He needs someone to write the story down.", "He has been waiting for Watson all morning."],
+        wrong: ["He wants Watson to examine Mr Wilson.", "He is afraid to be alone with Mr Wilson.", "He wants Watson to fetch a cab.", "He has been waiting for Watson all morning."],
         why: ["\"I have no doubt that he will be of the utmost use to me in yours also\"", "He calls Watson his partner and helper in many of his most successful cases."],
       },
       {
-        q: "Which word describes the way Holmes welcomed Watson?",
+        q: "Which word describes the way Holmes spoke to Watson?",
         answer: "cordially",
         wrong: ["abruptly", "stiffly", "coldly", "anxiously"],
         why: ["\"You could not possibly have come at a better time, my dear Watson,\" he said cordially.", "Abruptly describes how he pulled Watson in, not how he spoke."],
@@ -2321,10 +2321,10 @@ export const PASSAGES = [
         why: ["\"for strange effects and extraordinary combinations we must go to life itself, which is always far more daring than any effort of the imagination\"", "He offers Mr Wilson's story as the proof of it."],
       },
       {
-        q: "Which TWO habits of Holmes does Watson notice?",
+        q: "Which TWO things does Holmes do as he settles back into his chair?",
         answers: ["relapsing into his armchair", "putting his fingertips together"],
         wrong: ["pacing up and down the room", "smoking a pipe", "drawing the curtains"],
-        why: ["\"relapsing into his armchair and putting his fingertips together, as was his custom when in judicial moods\"", "Watson calls it his custom, so it is a habit rather than a one-off."],
+        why: ["\"relapsing into his armchair and putting his fingertips together, as was his custom when in judicial moods\"", "Both are in the same clause, describing one movement into the chair."],
       },
       {
         q: "What does Watson mean by \"a proposition which I took the liberty of doubting\"?",
@@ -2389,7 +2389,7 @@ export const PASSAGES = [
       {
         q: "Why does the passage end on \"the chink of one coin against another\"?",
         answer: "It shows that money has replaced everything he once enjoyed.",
-        wrong: ["It shows he had become deaf to real music.", "It tells the reader he was counting his gold.", "It suggests his gold was fake.", "It shows he was about to give the money away."],
+        wrong: ["It shows he had sold all his instruments.", "It tells the reader he was counting his gold.", "It suggests his gold was fake.", "It shows he was about to give the money away."],
         why: ["\"the only music for poor Midas, now, was the chink of one coin against another\"", "It closes a list of losses, roses then music, so it lands as the last thing to go."],
       },
     ],
@@ -2505,7 +2505,7 @@ export const PASSAGES = [
       {
         q: "What is the effect of the long description of the Maytime countryside?",
         answer: "It makes the world feel bright and safe just before Robin falls foul of the law.",
-        wrong: ["It shows that Robin was in no hurry.", "It explains why the match was held in May.", "It proves the story is set in England.", "It tells the reader how far Nottingham was."],
+        wrong: ["It shows the journey took several days.", "It explains why the match was held in May.", "It proves the story is set in England.", "It tells the reader how far Nottingham was."],
         why: ["\"when hedgerows are green and flowers bedeck the meadows\"", "The narrator has just said he will tell how Robin fell afoul of the law, so the sweetness is deliberately placed."],
       },
       {
@@ -2547,7 +2547,7 @@ export const PASSAGES = [
       {
         q: "What does \"natural philosophy\" mean in the passage?",
         answer: "what we would now call science",
-        wrong: ["the study of candles alone", "a way of thinking about nature poetically", "the history of great scientists", "the study of law and government"],
+        wrong: ["the study of candles alone", "the study of ancient Greek writers", "the history of great scientists", "the study of law and government"],
         why: ["\"There is no better, there is no more open door by which you can enter into the study of natural philosophy, than by considering the physical phenomena of a candle.\"", "He talks about chemical action, air, heat and light, which are all science."],
       },
       {
