@@ -56,12 +56,16 @@ for (const p of PASSAGES) {
       }
     }
 
-    // Retrieval answers phrased as short quotations should also be present.
-    for (const a of answers) {
-      const quoted = a.replace(/^(a|an|the) /i, '');
-      if (a.length < 30 && /^[a-z' -]+$/i.test(a) && !WORD_ANSWER.test(q.q)) {
-        if (!lower.includes(quoted.toLowerCase()) && /which (two|three)/i.test(q.q)) {
-          fail(`${p.id}: retrieval answer "${a}" does not appear in the passage`);
+    // Single-word retrieval answers must be verbatim in the passage. Longer
+    // ones are allowed to paraphrase, because "asked him what the time was"
+    // is a fair option for a passage that says "asked him what it was
+    // o'clock", and demanding a quotation there would rule out most decent
+    // multi-answer questions.
+    if (/which (two|three)/i.test(q.q)) {
+      for (const a of answers) {
+        const oneWord = !a.trim().includes(' ');
+        if (oneWord && !lower.includes(a.toLowerCase())) {
+          fail(`${p.id}: one-word retrieval answer "${a}" is not in the passage`);
         }
       }
     }
