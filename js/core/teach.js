@@ -138,6 +138,17 @@ export const TEACH = {
     tip: 'A cube can show all the right symbols and still be wrong, because one of them has ended up turned the wrong way. Check the turning last, once you have ruled out the impossible pairs.',
   },
 
+  solid: {
+    what: 'A flat net is shown. You work out which 3D shape it folds up into.',
+    steps: [
+      'Do not try to fold it in your head straight away. Count the pieces first.',
+      'Note how many of each shape there are, for example two triangles and three rectangles.',
+      'Every face of the finished shape has to come from the net, so the pieces alone usually give it away.',
+      'Check your answer by counting the faces of the shape you picked.',
+    ],
+    tip: 'On a prism, the run of rectangles wraps round the sides and the two matching shapes at the ends become the top and bottom. On a pyramid, there is one base and the rest are triangles meeting at a point.',
+  },
+
   hid: {
     what: 'A small shape is hidden inside a bigger, busier picture. You find the picture that contains it.',
     steps: [

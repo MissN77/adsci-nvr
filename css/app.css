@@ -291,7 +291,7 @@ a { color: var(--teal-dark); }
 /* Navy background shows through the 6px gaps and acts as the gridlines. */
 .stim-grid {
   display: grid;
-  grid-template-columns: repeat(3, var(--cell, 78px));
+  grid-template-columns: repeat(var(--cols, 3), var(--cell, 78px));
   gap: 6px;
   background: var(--navy);
   border: 6px solid var(--navy);
@@ -661,3 +661,7 @@ a { color: var(--teal-dark); }
   inset: 0;
   pointer-events: none;
 }
+
+/* ── 3D solids and cubes ───────────────────────────────────────────────── */
+.solid, .cube3d { display: block; }
+.opt .solid, .opt .cube3d { max-width: 100%; height: auto; }

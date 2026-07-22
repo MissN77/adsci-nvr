@@ -4,7 +4,7 @@
 import { fig, ALL_SHAPES, ROT_SAFE, SHAPES } from '../core/figure.js';
 import { pick, int } from '../core/rng.js';
 import { chooseRules, applyRules, nearMissPool, describeRules } from '../core/rules.js';
-import { row, figureOptions, LETTERS } from '../core/render.js';
+import { rowWithGap, figureOptions, LETTERS } from '../core/render.js';
 import { chooseDistractors, attempt, explain, joinRules } from './_util.js';
 import { DISTRACTOR_COUNT } from '../core/format.js';
 
@@ -36,19 +36,26 @@ export function generate(rng, difficulty = 2) {
     const rules = chooseRules(rng, base, nRules, RULE_MENU);
     if (rules.length < nRules) return null;
 
-    const steps = [0, 1, 2, 3].map((s) => applyRules(base, rules, s));
+    // Quest shows five cells with the gap fourth, so the run is longer than
+    // the old four and the gap is not always at the end.
+    const length = difficulty === 1 ? 4 : 5;
+    const steps = [...Array(length).keys()].map((s) => applyRules(base, rules, s));
 
     // Reject a sequence where any rule has silently stopped changing
     // anything, e.g. a shade rule that hit the end of the scale, or a
     // scale rule that clamped. A visible sequence must actually progress.
-    for (let i = 1; i < 4; i++) {
+    for (let i = 1; i < length; i++) {
       if (JSON.stringify(steps[i]) === JSON.stringify(steps[i - 1])) return null;
     }
     // Guard scale staying in a sensible printable range.
     if (steps.some((s) => s.scale < 0.45 || s.scale > 1.45)) return null;
 
-    const correct = steps[3];
-    const pool = nearMissPool(base, rules, 3);
+    // The first cell always shows, because it anchors the pattern. Anywhere
+    // after that is fair game, and working backwards to a gap in the middle
+    // is the harder skill.
+    const gap = difficulty === 1 ? length - 1 : int(rng, 1, length - 1);
+    const correct = steps[gap];
+    const pool = nearMissPool(base, rules, gap);
     const distractors = chooseDistractors(rng, correct, pool, DISTRACTOR_COUNT);
     if (!distractors) return null;
 
@@ -58,15 +65,19 @@ export function generate(rng, difficulty = 2) {
 
     return {
       type: 'seq',
-      prompt: 'Which shape comes next in the sequence?',
-      stimulus: row(steps.slice(0, 3), { missing: true }),
+      prompt: gap === length - 1
+        ? 'Which shape comes next in the sequence?'
+        : 'Which image correctly completes this sequence?',
+      stimulus: rowWithGap(steps, gap),
       optionsHTML: figureOptions(opts),
       answer: idx,
       explain: explain(
         `The answer is <strong>${LETTERS[idx]}</strong>.`,
         [
           `There ${rules.length === 1 ? 'is one rule' : `are ${rules.length} rules`} running at the same time: ${joinRules(describeRules(rules))}.`,
-          'Apply every rule one more time to the third shape to get the fourth.',
+          gap === length - 1
+            ? 'Apply every rule one more time to the shape before the gap.'
+            : 'The gap is not at the end, so check it against the shape before it AND the shape after it. Both have to fit.',
         ],
       ),
       teachRef: 'seq',

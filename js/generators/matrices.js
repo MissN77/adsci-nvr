@@ -15,6 +15,10 @@ export const meta = {
   blurb: 'Read across the rows and down the columns to find the missing piece.',
 };
 
+// Quest uses both sizes. A two by two grid gives less evidence per rule, so
+// it is not simply an easier three by three: there is only one other cell in
+// each direction to read the rule from.
+
 export function generate(rng, difficulty = 2) {
   return attempt(() => {
     const wantRot = difficulty >= 2 && rng() < 0.45;
@@ -42,39 +46,41 @@ export function generate(rng, difficulty = 2) {
     // rotation rule, breaking the guarantee that every turn stays visible.
     if (colRules[0].attr === 'shape' && used === 'rot') return null;
 
+    const N = rng() < 0.4 ? 2 : 3;
     const cellAt = (r, c) => applyRules(applyRules(base, rowRules, c), colRules, r);
 
     const cells = [];
-    for (let r = 0; r < 3; r++) for (let c = 0; c < 3; c++) cells.push(cellAt(r, c));
+    for (let r = 0; r < N; r++) for (let c = 0; c < N; c++) cells.push(cellAt(r, c));
 
     if (cells.some((f) => f.scale < 0.5 || f.scale > 1.4)) return null;
 
     // Every row and every column must actually progress, otherwise part of
     // the grid gives no information and the question is guessable.
-    for (let r = 0; r < 3; r++) {
-      if (JSON.stringify(cells[r * 3]) === JSON.stringify(cells[r * 3 + 1])) return null;
+    for (let r = 0; r < N; r++) {
+      if (JSON.stringify(cells[r * N]) === JSON.stringify(cells[r * N + 1])) return null;
     }
-    for (let c = 0; c < 3; c++) {
-      if (JSON.stringify(cells[c]) === JSON.stringify(cells[3 + c])) return null;
+    for (let c = 0; c < N; c++) {
+      if (JSON.stringify(cells[c]) === JSON.stringify(cells[N + c])) return null;
     }
 
     // Hide a cell. Easier papers hide the bottom-right corner (both rules
     // read forwards); harder papers hide one in the middle, which forces the
     // child to work backwards.
-    const hidden = difficulty >= 3 ? int(rng, 0, 8) : 8;
+    const hidden = difficulty >= 3 ? int(rng, 0, N * N - 1) : N * N - 1;
     const correct = cells[hidden];
-    const hr = Math.floor(hidden / 3);
-    const hc = hidden % 3;
+    const hr = Math.floor(hidden / N);
+    const hc = hidden % N;
 
     // Distractors: the cell that satisfies only the row rule, only the
     // column rule, or is off by one step in either direction.
     const pool = [
       applyRules(base, rowRules, hc),
       applyRules(base, colRules, hr),
-      applyRules(applyRules(base, rowRules, (hc + 1) % 3), colRules, hr),
-      applyRules(applyRules(base, rowRules, hc), colRules, (hr + 1) % 3),
-      applyRules(applyRules(base, rowRules, (hc + 2) % 3), colRules, hr),
-      applyRules(applyRules(base, rowRules, hc), colRules, (hr + 2) % 3),
+      applyRules(applyRules(base, rowRules, (hc + 1) % N), colRules, hr),
+      applyRules(applyRules(base, rowRules, hc), colRules, (hr + 1) % N),
+      applyRules(applyRules(base, rowRules, (hc + 2) % N), colRules, hr),
+      applyRules(applyRules(base, rowRules, hc), colRules, (hr + 2) % N),
+      applyRules(applyRules(base, rowRules, hc + 1), colRules, hr + 1),
     ];
     const distractors = chooseDistractors(rng, correct, pool, DISTRACTOR_COUNT);
     if (!distractors) return null;
@@ -88,8 +94,8 @@ export function generate(rng, difficulty = 2) {
 
     return {
       type: 'mat',
-      prompt: 'Which piece is missing from the grid?',
-      stimulus: matrix(display),
+      prompt: 'Which image correctly completes this grid?',
+      stimulus: matrix(display, N === 2 ? 92 : 78, N),
       optionsHTML: figureOptions(opts),
       answer: idx,
       explain: explain(

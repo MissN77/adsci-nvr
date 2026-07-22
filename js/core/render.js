@@ -35,12 +35,25 @@ export function analogyRow(a, b, c, size = 92) {
   </div>`;
 }
 
-/** 3x3 matrix. `cells` is a flat array of 9 figures with one null. */
-export function matrix(cells, size = 78) {
+/**
+ * A run of figures with the gap somewhere other than the end.
+ *
+ * Quest's own sample sequence puts the missing cell fourth out of five, not
+ * last. A child who has only ever seen the gap at the end learns to extend a
+ * pattern forwards and never to work one backwards, which is a different and
+ * harder skill.
+ */
+export function rowWithGap(figs, gapIndex, { size = 92 } = {}) {
+  const parts = figs.map((f, i) => (i === gapIndex ? missingBox(size) : box(f, size)));
+  return `<div class="stim-row">${parts.join('')}</div>`;
+}
+
+/** Square matrix, 2x2 or 3x3. `cells` is a flat array with one null. */
+export function matrix(cells, size = 78, cols = 3) {
   const inner = cells
     .map((f) => (f ? box(f, size) : missingBox(size)))
     .join('');
-  return `<div class="stim-grid" style="--cell:${size}px">${inner}</div>`;
+  return `<div class="stim-grid" style="--cell:${size}px;--cols:${cols}">${inner}</div>`;
 }
 
 /** The lettered answer options. `items` are raw HTML strings. */

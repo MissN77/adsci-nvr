@@ -12,9 +12,10 @@ Supabase project, or its data.
 
 ## What a parent gets
 
-- **Thirteen question types.** Six match question types in the official Quest
+- **Fourteen question types.** Seven match question types in the official Quest
   booklet: sequences, grid rotation, reflection (including diagonal mirror
-  lines), matrices, paper folding, and nets to cubes. The rest, odd one out,
+  lines), matrices (2x2 and 3x3), paper folding, nets to cubes, and nets to
+  solids. The rest, odd one out,
   similarities, analogies, codes and hidden shapes, are GL-era types that do
   NOT appear in the Quest non-verbal paper. They are still worth practising
   for other providers and for most 11+ books, but do not imply otherwise on
@@ -73,6 +74,7 @@ costs you a refund.
 
 ```bash
 node tools/geometry-test.js      # the shape table matches the actual geometry
+node tools/solids-test.js        # solids are closed, and identified uniquely by their faces
 npm run validate                 # generates 30,000 questions per type
 node tools/preview.js 3          # writes preview.html to eyeball the questions
 ```
@@ -83,7 +85,7 @@ actually draws, which is the only way to catch two options that differ in the
 code while looking identical on screen. Both bugs found late in the build were
 of exactly that kind and only this check saw them.
 
-Run all four before any release.
+Run all five before any release.
 
 ---
 
@@ -163,4 +165,4 @@ Static files, no build step. Copy the folder to any host.
 
 **Bump `CACHE_NAME` in `sw.js` on every deploy.** Otherwise the service worker
 keeps serving the old version and buyers never see the fix. Currently
-`adsci-nvr-v10`.
+`adsci-nvr-v11`.
