@@ -925,3 +925,9 @@ body { font-size: calc(17px * var(--text-scale)); }
   vertical-align: -0.08em;
   margin: 0 .12em;
 }
+
+/* Fraction pyramid: two fractions on the bottom add to the one above. */
+.pyramid { text-align: center; margin: 10px 0 14px; font-size: 20px; font-weight: 600; }
+.pyr-top { display: block; margin-bottom: 10px; }
+.pyr-row { display: flex; gap: 26px; justify-content: center; align-items: center; }
+.pyramid .numbox { width: 1.1em; height: 1.1em; }

@@ -33,7 +33,12 @@ export const meta = {
   subject: 'maths',
 };
 
-const num = (n) => (Number.isInteger(n) ? n.toLocaleString('en-GB') : String(+n.toFixed(4)));
+// Most answers are numbers, but the fraction pyramid answers in thirds and
+// quarters, so a string passes straight through rather than being coerced.
+const num = (n) => {
+  if (typeof n === 'string') return n;
+  return Number.isInteger(n) ? n.toLocaleString('en-GB') : String(+n.toFixed(4));
+};
 
 /** Build a question from a computed answer and a list of computed slips. */
 function assemble(rng, { prompt, stimulus, answer, slips, points, chooseAll }) {
@@ -136,6 +141,129 @@ const KINDS = {
       points: [
         `Split the ${b}: ${a} &times; ${b - (b % 10)} = ${a * (b - (b % 10))}, and ${a} &times; ${b % 10} = ${a * (b % 10)}. Add them for <strong>${answer}</strong>.`,
         'Splitting one number into tens and units keeps it in your head without written working.',
+      ],
+    };
+  },
+
+  /**
+   * Decimals. Quest question 4 is 0.4 x 100 and question 7 is 2 - box = 1.67,
+   * so decimal place value and decimal subtraction are both on the paper.
+   * Nothing here produced a decimal on the LEFT of the equals sign before, so
+   * a child could finish the whole bank without meeting one.
+   */
+  decimalCalc(rng) {
+    const style = int(rng, 0, 2);
+    if (style === 0) {
+      const a = int(rng, 2, 9) / 10;
+      const by = pick(rng, [10, 100, 1000]);
+      const answer = Math.round(a * by * 1000) / 1000;
+      return {
+        prompt: `${a} &times; ${num(by)} =`,
+        answer,
+        slips: [a * by * 10, a * by / 10, a + by, Math.round(a * by) + 1, a * by * 100],
+        points: [
+          `Multiplying by ${num(by)} moves every digit ${String(by).length - 1} place${by === 10 ? '' : 's'} to the LEFT.`,
+          `${a} becomes <strong>${num(answer)}</strong>. The digits do not change, only where they sit.`,
+        ],
+      };
+    }
+    if (style === 1) {
+      const a = int(rng, 12, 89) / 10;
+      const by = pick(rng, [10, 100]);
+      const answer = Math.round((a / by) * 10000) / 10000;
+      return {
+        prompt: `${a} &divide; ${num(by)} =`,
+        answer,
+        slips: [a * by, a / (by * 10), a - by, answer * 10, answer / 10],
+        points: [
+          `Dividing by ${num(by)} moves every digit ${String(by).length - 1} place${by === 10 ? '' : 's'} to the RIGHT.`,
+          `${a} becomes <strong>${num(answer)}</strong>.`,
+        ],
+      };
+    }
+    // whole minus decimal, with the missing number in the middle
+    const whole = int(rng, 2, 9);
+    const result = Math.round((whole - 1 - int(rng, 1, 98) / 100) * 100) / 100;
+    const answer = Math.round((whole - result) * 100) / 100;
+    return {
+      prompt: `${whole} &minus; <span class="numbox" aria-label="missing number"></span> = ${result}`,
+      answer,
+      slips: [
+        Math.round((whole + result) * 100) / 100,
+        Math.round((result - whole) * 100) / 100,
+        whole, result,
+        Math.round((answer + 1) * 100) / 100,
+      ],
+      points: [
+        'The missing number is what you take away, so it is the bigger number minus the answer.',
+        `${whole} &minus; ${result} = <strong>${num(answer)}</strong>. Line up the decimal points before you subtract.`,
+      ],
+    };
+  },
+
+  /**
+   * Quest question 13: roll two dice, add them, how many different PRIMES
+   * could the total be. Two steps, and the second one is knowing what a prime
+   * is, which nothing else in the bank tested.
+   */
+  dicePrimes(rng) {
+    const faces = pick(rng, [6, 8]);
+    const totals = new Set();
+    for (let a = 1; a <= faces; a += 1) for (let b = 1; b <= faces; b += 1) totals.add(a + b);
+    const isPrime = (n) => {
+      if (n < 2) return false;
+      for (let d = 2; d * d <= n; d += 1) if (n % d === 0) return false;
+      return true;
+    };
+    const primes = [...totals].filter(isPrime);
+    const answer = primes.length;
+    return {
+      prompt: `I roll two fair ${faces}-sided dice and add the two results together. How many different prime numbers could my total be?`,
+      answer,
+      slips: [answer + 1, answer - 1, answer + 2, totals.size, faces, answer * 2],
+      points: [
+        `The smallest total is 2 and the biggest is ${faces * 2}, so write out every number in between.`,
+        `Now cross out the ones that are not prime. That leaves ${primes.join(', ')}, which is <strong>${answer}</strong> of them.`,
+        'A prime has exactly two factors, itself and 1, so 1 is not prime and 2 is.',
+      ],
+    };
+  },
+
+  /**
+   * Quest question 17: a pyramid where two fractions add up to make the one
+   * above them. Fraction addition with unlike denominators, which the bank
+   * had nowhere else.
+   */
+  fractionPyramid(rng) {
+    const d = pick(rng, [4, 6, 8, 10, 12]);
+    const half = d / 2;
+    const left = int(rng, 1, half - 1);
+    const right = int(rng, 1, half - 1);
+    const topNum = left + right;
+    if (topNum >= d) return null;
+    const simp = (n, den) => {
+      const g = (a, b) => (b ? g(b, a % b) : a);
+      const k = g(n, den);
+      return `${n / k}/${den / k}`;
+    };
+    const answer = simp(right, d);
+    const shown = [
+      `<div class="pyramid"><span class="pyr-top">${simp(topNum, d)}</span>`,
+      `<span class="pyr-row"><span>${simp(left, d)}</span>`,
+      `<span class="numbox" aria-label="missing fraction"></span></span></div>`,
+    ].join('');
+    return {
+      prompt: 'The two fractions on the bottom row add up to make the fraction above them. What is the missing fraction?',
+      stimulus: shown,
+      answer,
+      slips: [
+        simp(topNum + right, d), simp(Math.max(1, left - right + d), d),
+        simp(left, d), simp(topNum, d), `${right}/${d * 2}`,
+      ],
+      points: [
+        `Both bottom fractions are ${d}ths, so take one from the other: ${topNum}/${d} minus ${left}/${d}.`,
+        `That is ${right}/${d}, which simplifies to <strong>${answer}</strong>.`,
+        'Change nothing but the top numbers while the bottom numbers match.',
       ],
     };
   },
@@ -299,9 +427,11 @@ function commonFactors(rng) {
 export function generate(rng, difficulty = 2) {
   return attempt(() => {
     // Easier papers stay on the bare-calculation half of the paper.
-    const easy = ['missingBox', 'quickCalc', 'placeValue', 'fractionToDecimal', 'barChart', 'timetable'];
+    const easy = ['missingBox', 'quickCalc', 'placeValue', 'fractionToDecimal',
+      'decimalCalc', 'barChart', 'timetable'];
     const harder = [...easy, 'fractionOfAmount', 'equivalentFraction', 'anglesStraightLine',
-      'clockAngle', 'compoundArea', 'cubeVolume', 'missingDigit'];
+      'clockAngle', 'compoundArea', 'cubeVolume', 'missingDigit',
+      'dicePrimes', 'fractionPyramid'];
     const menu = difficulty === 1 ? easy : harder;
 
     // The multi-answer factor question is part of the real paper, so it turns
