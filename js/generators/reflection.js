@@ -48,11 +48,16 @@ export function generate(rng, difficulty = 2) {
     const axis = pick(rng, ['v', 'h']);
     const shape = pick(rng, CHIRAL);
 
+    // Vary size, inner dots and outline as well as angle and shading. With
+    // only axis, shape, angle and shade there were just 240 different
+    // reflection questions in the whole app, so a child practising daily
+    // would have seen every one inside a month.
     const base = fig(shape, {
-      fill: pick(rng, difficulty === 1 ? ['white'] : ['white', 'light', 'grey']),
-      rot: difficulty === 1 ? 0 : pick(rng, [0, 45, 90, 135, 180, 225, 270, 315]),
-      scale: 1,
-      dots: 0,
+      fill: pick(rng, difficulty === 1 ? ['white', 'light'] : ['white', 'light', 'grey', 'dark']),
+      rot: difficulty === 1 ? pick(rng, [0, 90, 180, 270]) : pick(rng, [0, 45, 90, 135, 180, 225, 270, 315]),
+      scale: pick(rng, [0.85, 1, 1.15]),
+      dots: difficulty === 1 ? 0 : int(rng, 0, 2),
+      stroke: difficulty >= 3 ? pick(rng, ['thin', 'thick']) : 'thin',
     });
 
     const correct = axis === 'v' ? reflectVertical(base) : reflectHorizontal(base);

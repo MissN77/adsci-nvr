@@ -93,26 +93,35 @@ export function generate(rng, difficulty = 2) {
     const folds = [{ axis: first, line: 0.5 }];
     if (nFolds === 2) folds.push({ axis: first === 'v' ? 'h' : 'v', line: 0.5 });
 
-    // Work out the region of paper left showing after folding. The half that
-    // stays put is always the left or top half, so the visible region is the
-    // low side of each crease.
+    // Which half stays put is part of the puzzle: folding left over right and
+    // right over left leave the holes in different places once opened out.
+    folds.forEach((f) => { f.keepLow = rng() < 0.5; });
+
+    // The region of paper still showing after all the folds.
     let region = [0, 0, 1, 1];
     for (const f of folds) {
-      if (f.axis === 'v') region = [region[0], region[1], f.line, region[3]];
-      else region = [region[0], region[1], region[2], f.line];
+      if (f.axis === 'v') {
+        region = f.keepLow
+          ? [region[0], region[1], f.line, region[3]]
+          : [f.line, region[1], region[2], region[3]];
+      } else {
+        region = f.keepLow
+          ? [region[0], region[1], region[2], f.line]
+          : [region[0], f.line, region[2], region[3]];
+      }
     }
 
-    // Punch one or two holes inside the folded region, on a coarse grid so
-    // they sit clearly rather than ambiguously near a crease.
-    const gx = [0.16, 0.34];
-    const gy = [0.16, 0.34];
+    // Punch holes on a three by three grid inside the folded region. A two by
+    // two grid gave only forty distinct puzzles in the whole type, which a
+    // child would start recognising within a fortnight.
+    const grid = [0.13, 0.25, 0.37];
     const spots = [];
-    for (const x of gx) for (const y of gy) {
+    for (const x of grid) for (const y of grid) {
       const sx = region[0] + (x / 0.5) * (region[2] - region[0]);
       const sy = region[1] + (y / 0.5) * (region[3] - region[1]);
       spots.push([+sx.toFixed(3), +sy.toFixed(3)]);
     }
-    const nHoles = difficulty >= 3 && rng() < 0.5 ? 2 : 1;
+    const nHoles = difficulty === 1 ? 1 : difficulty === 2 ? int(rng, 1, 2) : int(rng, 1, 3);
     const holes = shuffle(rng, spots).slice(0, nHoles);
 
     const correct = unfold(holes, folds);
@@ -155,8 +164,13 @@ export function generate(rng, difficulty = 2) {
     panels.push(`<div class="fold-step"><span class="fold-cap">Start</span>${sheet([], { creases: [folds[0]] })}</div>`);
     let shown = [0, 0, 1, 1];
     folds.forEach((f, i) => {
-      if (f.axis === 'v') shown = [shown[0], shown[1], f.line, shown[3]];
-      else shown = [shown[0], shown[1], shown[2], f.line];
+      if (f.axis === 'v') {
+        shown = f.keepLow ? [shown[0], shown[1], f.line, shown[3]]
+          : [f.line, shown[1], shown[2], shown[3]];
+      } else {
+        shown = f.keepLow ? [shown[0], shown[1], shown[2], f.line]
+          : [shown[0], f.line, shown[2], shown[3]];
+      }
       const next = folds[i + 1];
       panels.push('<div class="fold-arrow">→</div>');
       panels.push(`<div class="fold-step"><span class="fold-cap">Fold ${i + 1}</span>${sheet([], {
@@ -169,7 +183,10 @@ export function generate(rng, difficulty = 2) {
     const optionHTML = opts.map((h) => sheet(h, { size: 92 }));
 
     const foldWords = folds
-      .map((f) => (f.axis === 'v' ? 'left over right' : 'bottom up to the top'))
+      .map((f) => {
+        if (f.axis === 'v') return f.keepLow ? 'right over onto the left' : 'left over onto the right';
+        return f.keepLow ? 'bottom up onto the top' : 'top down onto the bottom';
+      })
       .join(', then ');
 
     return {

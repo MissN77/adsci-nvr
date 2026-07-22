@@ -32,11 +32,14 @@ export function generate(rng, difficulty = 2) {
     const shape = pick(rng, difficulty === 1 ? CHIRAL : [...CHIRAL, ...ROT_SAFE]);
     const turn = pick(rng, difficulty === 1 ? TURNS.slice(0, 2) : TURNS);
 
+    // Same reasoning as reflection: the original had only 252 distinct
+    // rotation questions, which is not enough to practise against.
     const base = fig(shape, {
-      fill: pick(rng, difficulty === 1 ? ['white'] : ['white', 'light', 'grey']),
-      rot: difficulty === 1 ? 0 : pick(rng, [0, 45, 90, 180]),
-      scale: 1,
-      dots: 0,
+      fill: pick(rng, difficulty === 1 ? ['white', 'light'] : ['white', 'light', 'grey', 'dark']),
+      rot: difficulty === 1 ? pick(rng, [0, 90]) : pick(rng, [0, 45, 90, 135, 180, 225, 270, 315]),
+      scale: pick(rng, [0.85, 1, 1.15]),
+      dots: difficulty === 1 ? 0 : int(rng, 0, 2),
+      stroke: difficulty >= 3 ? pick(rng, ['thin', 'thick']) : 'thin',
     });
 
     const correct = { ...base, rot: norm(base.rot + turn.deg) };
