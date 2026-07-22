@@ -15,6 +15,7 @@ import * as fold from './paper-folding.js';
 import * as cube from './cubes.js';
 import * as cube3d from './cube3d.js';
 import * as solid from './solids.js';
+import * as radial from './radial.js';
 import * as hid from './hidden-shapes.js';
 
 // Ordered the way a child should meet them: pattern-spotting first, spatial
@@ -33,10 +34,41 @@ export const REGISTRY = {
   [cube.meta.id]: cube,
   [cube3d.meta.id]: cube3d,
   [solid.meta.id]: solid,
+  [radial.meta.id]: radial,
   [hid.meta.id]: hid,
 };
 
 export const TYPES = Object.values(REGISTRY).map((g) => g.meta);
+
+/**
+ * The two halves of the app.
+ *
+ * `quest` types appear in the official Quest familiarisation booklet, which
+ * is what the Bexley Selection Test uses from the 2026 cycle. `general` types
+ * are the older GL-style families. They are not in the Quest non-verbal paper,
+ * but they are in most 11+ books and in other areas' tests, so they are worth
+ * practising and are kept separate rather than quietly mixed in.
+ *
+ * Keeping them apart is an honesty measure as much as a navigation one: a
+ * parent buying this for Bexley should be able to see which half is which.
+ */
+export const GROUPS = [
+  {
+    id: 'quest',
+    name: 'Bexley test types',
+    note: 'These match the question types in the official Bexley familiarisation booklet.',
+    types: TYPES.filter((t) => t.group === 'quest'),
+  },
+  {
+    id: 'general',
+    name: 'General 11+ practice',
+    note: 'Widely used 11+ reasoning types. They are not in the current Bexley non-verbal paper, but they come up in other areas and in most practice books.',
+    types: TYPES.filter((t) => t.group === 'general'),
+  },
+];
+
+/** Ids used to build a Bexley-shaped mock paper. */
+export const PAPER_TYPES = TYPES.filter((t) => t.group === 'quest').map((t) => t.id);
 
 export function generateFor(id, rng, difficulty) {
   const gen = REGISTRY[id];

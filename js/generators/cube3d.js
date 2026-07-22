@@ -42,6 +42,7 @@ export const meta = {
   id: 'cube3d',
   name: 'Nets to Cubes',
   blurb: 'Fold the net in your head and find the cube it makes.',
+  group: 'quest',
 };
 
 // ── Vector helpers ────────────────────────────────────────────────────────

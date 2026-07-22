@@ -17,6 +17,7 @@ export const meta = {
   id: 'rot',
   name: 'Rotation',
   blurb: 'Turn the shape and work out how it lands.',
+  group: 'general',
 };
 
 const norm = (d) => ((d % 360) + 360) % 360;

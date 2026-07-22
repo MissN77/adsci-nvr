@@ -14,6 +14,7 @@ export const meta = {
   id: 'seq',
   name: 'Sequences',
   blurb: 'Work out what is changing, then say what comes next.',
+  group: 'quest',
 };
 
 export function generate(rng, difficulty = 2) {

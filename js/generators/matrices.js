@@ -13,6 +13,7 @@ export const meta = {
   id: 'mat',
   name: 'Matrices',
   blurb: 'Read across the rows and down the columns to find the missing piece.',
+  group: 'quest',
 };
 
 // Quest uses both sizes. A two by two grid gives less evidence per rule, so

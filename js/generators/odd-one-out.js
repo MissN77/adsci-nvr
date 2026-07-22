@@ -25,6 +25,7 @@ export const meta = {
   id: 'ooo',
   name: 'Odd One Out',
   blurb: 'Three shapes follow a rule. Find the one that breaks it.',
+  group: 'general',
 };
 
 const POLY = Object.values(BY_SIDES);

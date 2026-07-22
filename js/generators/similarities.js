@@ -18,6 +18,7 @@ export const meta = {
   id: 'sim',
   name: 'Similarities',
   blurb: 'Three shapes belong together. Find the one that joins them.',
+  group: 'general',
 };
 
 // The properties a set can be built around. Each has a test and a wording.

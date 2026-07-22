@@ -30,6 +30,7 @@ export const meta = {
   id: 'ref',
   name: 'Reflection',
   blurb: 'Flip the shape over the mirror line and pick the match.',
+  group: 'quest',
 };
 
 const norm = (d) => ((d % 360) + 360) % 360;

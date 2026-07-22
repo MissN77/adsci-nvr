@@ -28,6 +28,7 @@ export const meta = {
   id: 'fold',
   name: 'Paper Folding',
   blurb: 'Fold, punch or cut, then work out what the paper looks like opened out.',
+  group: 'quest',
 };
 
 // Each fold is a crease, which half stays put, and a phrase for the answer.

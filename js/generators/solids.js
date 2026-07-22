@@ -24,6 +24,7 @@ export const meta = {
   id: 'solid',
   name: 'Nets to Solids',
   blurb: 'Work out which 3D shape a flat net folds up into.',
+  group: 'quest',
 };
 
 // ── Geometry helpers ──────────────────────────────────────────────────────

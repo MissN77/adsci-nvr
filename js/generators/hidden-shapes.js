@@ -24,6 +24,7 @@ export const meta = {
   id: 'hid',
   name: 'Hidden Shapes',
   blurb: 'Find the simple shape buried inside a tangle of lines.',
+  group: 'general',
 };
 
 // Shapes that stay readable when overlapped. Each entry has a distinct

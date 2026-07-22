@@ -26,6 +26,7 @@ export const meta = {
   id: 'cube',
   name: 'Nets and Cubes',
   blurb: 'Fold the flat net up in your head and see where each face lands.',
+  group: 'general',
 };
 
 // Faces are unit vectors, written as short keys.

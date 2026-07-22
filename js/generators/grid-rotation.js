@@ -27,6 +27,7 @@ export const meta = {
   id: 'grid',
   name: 'Grid Rotation',
   blurb: 'Turn the whole pattern in your head and see where it lands.',
+  group: 'quest',
 };
 
 // ── Grid maths ────────────────────────────────────────────────────────────

@@ -17,6 +17,7 @@ export const meta = {
   id: 'cod',
   name: 'Codes',
   blurb: 'Crack the letter code, then write the code for a new shape.',
+  group: 'general',
 };
 
 const POLY = Object.values(BY_SIDES);

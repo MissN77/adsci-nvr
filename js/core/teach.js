@@ -149,6 +149,17 @@ export const TEACH = {
     tip: 'On a prism, the run of rectangles wraps round the sides and the two matching shapes at the ends become the top and bottom. On a pyramid, there is one base and the rest are triangles meeting at a point.',
   },
 
+  radial: {
+    what: 'A ring pattern is built from bands split into equal pieces, like slices of a cake. One piece is missing and you choose the one that belongs there.',
+    steps: [
+      'Go round the ring and find how often the pattern starts again.',
+      'Count that many pieces round from the gap, in either direction.',
+      'The piece you land on is the one that belongs in the gap.',
+      'Check every band of it, from the middle outwards.',
+    ],
+    tip: 'The wrong answers usually get all but one band right, so do not stop as soon as the middle matches. Check every band before you choose.',
+  },
+
   hid: {
     what: 'A small shape is hidden inside a bigger, busier picture. You find the picture that contains it.',
     steps: [

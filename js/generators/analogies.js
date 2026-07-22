@@ -14,6 +14,7 @@ export const meta = {
   id: 'ana',
   name: 'Analogies',
   blurb: 'Spot how the first shape changes, then do the same to the third.',
+  group: 'general',
 };
 
 export function generate(rng, difficulty = 2) {

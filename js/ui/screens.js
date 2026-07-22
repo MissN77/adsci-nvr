@@ -7,7 +7,7 @@
 // listener on #app and hands events down, which is why switching screens can
 // never leak a handler. Screens that own a timer clean it up in destroy.
 
-import { TYPES, REGISTRY, generateFor } from '../generators/index.js';
+import { TYPES, GROUPS, PAPER_TYPES, REGISTRY, generateFor } from '../generators/index.js';
 import { makeRng, hashSeed, shuffle } from '../core/rng.js';
 import { Store } from '../core/store.js';
 import { teachFor } from '../core/teach.js';
@@ -204,7 +204,7 @@ export function homeScreen() {
           Practise<small>Ten questions of one type</small>
         </button>
         <button class="btn btn--big" type="button" data-act="go" data-to="#/paper">
-          Mock Paper<small>Forty questions in thirty minutes</small>
+          Mock Paper<small>Twenty questions in twenty minutes</small>
         </button>
         <button class="btn btn--big btn--ghost" type="button" data-act="go" data-to="#/progress">
           Progress<small>Scores, streak and backup</small>
@@ -225,19 +225,24 @@ export function homeScreen() {
 // ── Learn ─────────────────────────────────────────────────────────────────
 
 export function learnScreen() {
-  const cards = TYPES.map((m) => `
-    <div class="card card--accent">
-      <h3>${esc(m.name)}</h3>
-      <p>${esc(m.blurb)}</p>
-      <button class="btn" type="button" data-act="go" data-to="#/learn/${esc(m.id)}">How to do it</button>
-    </div>`).join('');
+  const sections = GROUPS.map((g) => `
+    <section class="group">
+      <h2 class="group-head">${esc(g.name)}</h2>
+      <p class="group-note">${esc(g.note)}</p>
+      ${g.types.map((m) => `
+        <div class="card card--accent">
+          <h3>${esc(m.name)}</h3>
+          <p>${esc(m.blurb)}</p>
+          <button class="btn" type="button" data-act="go" data-to="#/learn/${esc(m.id)}">How to do it</button>
+        </div>`).join('')}
+    </section>`).join('');
 
   return {
     html: `${header('Learn', '#/home')}
       <div class="wrap">
         <p>Pick a question type to see how it works and try one.</p>
         <hr class="rule">
-        ${cards}
+        ${sections}
       </div>
       ${footer()}`,
   };
@@ -314,23 +319,28 @@ export function teachScreen(typeId) {
 
 export function practiseMenuScreen() {
   const stats = Store.stats();
-  const cards = TYPES.map((m) => {
+  const sections = GROUPS.map((g) => `
+    <section class="group">
+      <h2 class="group-head">${esc(g.name)}</h2>
+      <p class="group-note">${esc(g.note)}</p>
+      ${g.types.map((m) => {
     const s = stats.byType[m.id];
     const line = s ? `${s.right} of ${s.attempted} right, ${s.pct}%` : 'Not tried yet';
     return `
-      <div class="card">
-        <h3>${esc(m.name)}</h3>
-        <p class="muted">${esc(line)}</p>
-        <button class="btn" type="button" data-act="go" data-to="#/practise/${esc(m.id)}">Start ten questions</button>
-      </div>`;
-  }).join('');
+        <div class="card">
+          <h3>${esc(m.name)}</h3>
+          <p class="muted">${esc(line)}</p>
+          <button class="btn" type="button" data-act="go" data-to="#/practise/${esc(m.id)}">Start ten questions</button>
+        </div>`;
+  }).join('')}
+    </section>`).join('');
 
   return {
     html: `${header('Practise', '#/home')}
       <div class="wrap">
         <p>Choose a type. You get ten questions and an explanation after each one.</p>
         <hr class="rule">
-        ${cards}
+        ${sections}
       </div>
       ${footer()}`,
   };
@@ -440,8 +450,11 @@ export function practiseRunScreen(typeId) {
 
 // ── Mock paper ────────────────────────────────────────────────────────────
 
-const PAPER_LENGTH = 40;
-const PAPER_SECONDS = 30 * 60;
+// The official Quest non-verbal booklet is twenty questions in twenty
+// minutes, so a mock paper is that, not a round number chosen for us. Pace is
+// a separate skill from reasoning and it only transfers if the pace is right.
+const PAPER_LENGTH = 20;
+const PAPER_SECONDS = 20 * 60;
 
 export function paperScreen() {
   let phase = 'intro'; // intro -> running -> done
@@ -453,7 +466,10 @@ export function paperScreen() {
   let startedAt = 0;
 
   function buildPaper() {
-    const ids = TYPES.map((t) => t.id);
+    // Only the types that are actually in the Bexley paper. Practising the
+    // general types is useful, but a mock made of them would give a
+    // misleading score.
+    const ids = PAPER_TYPES.slice();
     const rng = makeRng(hashSeed(`paper-${Date.now()}-${Math.random()}`));
     const order = [];
     // Round-robin over a shuffled type list, so the paper is evenly spread
@@ -507,7 +523,7 @@ export function paperScreen() {
   function intro() {
     return `${header('Mock Paper', '#/home')}
       <div class="wrap">
-        <h2>Forty questions, thirty minutes</h2>
+        <h2>Twenty questions, twenty minutes</h2>
         <p>This works like the real test. You get no explanations while you go and you cannot go back. Answer, and it moves straight on.</p>
         <p>If you are not sure, choose your best guess and keep moving. There are no marks lost for a wrong answer.</p>
         <hr class="rule">

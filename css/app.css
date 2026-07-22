@@ -665,3 +665,27 @@ a { color: var(--teal-dark); }
 /* ── 3D solids and cubes ───────────────────────────────────────────────── */
 .solid, .cube3d { display: block; }
 .opt .solid, .opt .cube3d { max-width: 100%; height: auto; }
+
+/* ── Grouped type menus ────────────────────────────────────────────────── */
+/* The two halves of the app are kept visually apart, because which half a
+   type belongs to is information a parent buying this needs. */
+.group { margin: 0 0 28px; }
+
+.group-head {
+  font-size: 17px;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  margin: 0;
+  padding: 8px 12px;
+  background: #2A7B6F;
+  color: #FFFFFF;
+}
+
+.group-note {
+  margin: 0 0 14px;
+  padding: 10px 12px;
+  background: #FFFFFF;
+  border-left: 6px solid #F08080;
+  font-size: 15px;
+  line-height: 1.45;
+}
