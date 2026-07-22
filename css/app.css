@@ -839,3 +839,12 @@ a { color: var(--teal-dark); }
 }
 
 .timetable th { background: #DCE3E8; font-weight: bold; }
+
+/* ── Phrase options ────────────────────────────────────────────────────────
+   Spot the mistake shows the four parts of ONE sentence as the options, so
+   they must stack in sentence order and stay compact enough that the child
+   can still see the sentence while choosing. The picture-tile height and the
+   wide letter-spacing used for code answers are both wrong here. */
+.opts:has(.opt-brief) { grid-template-columns: 1fr; }
+.opt:has(.opt-brief) { min-height: 56px; }
+.opt-brief { letter-spacing: normal; line-height: 1.4; }

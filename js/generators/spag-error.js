@@ -35,7 +35,7 @@ export function generate(rng) {
       type: 'spagerr',
       prompt: 'Which part of the sentence contains a mistake? If there is no mistake, choose "No mistake".',
       stimulus: `<p class="sentence">${parts.join(' ')}</p>`,
-      optionsHTML: options(opts.map((w) => `<span class="opt-text opt-sentence">${w}</span>`)),
+      optionsHTML: options(opts.map((w) => `<span class="opt-word opt-brief">${w}</span>`)),
       answer,
       explain: explain(
         `The answer is <strong>${LETTERS[answer]}</strong>.`,

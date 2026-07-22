@@ -274,8 +274,11 @@ export const GRAMMAR = [
     'Comparing everything he has read takes "best", not "better".'],
   ['She sang ___ than her sister.', 'more sweetly', ['sweeter', 'most sweetly', 'more sweeter', 'sweetliest'],
     'It describes how she sang, so it needs the adverb "more sweetly".'],
-  ['The team ___ practising every Thursday.', 'is', ['are being', 'were been', 'has been being', 'be'],
-    'The team is treated as one thing here, so it takes "is".'],
+  // Not a collective noun item. "The team is practising" and "The team are
+  // practising" are both correct in British English, so an item resting on
+  // that distinction would mark a right answer wrong.
+  ['The list of names ___ pinned to the door.', 'was', ['were', 'are', 'have', 'being'],
+    'The subject is "the list", which is singular, so it takes "was". The names are not the subject.'],
   ['I did not tell ___ about the surprise.', 'anyone', ['no one', 'nobody', 'none', 'never'],
     'The sentence already has "not", so a second negative would cancel it out.'],
   ['My coat is older than ___.', 'yours', ['your', 'your\'s', 'yours\'', 'you\'re'],

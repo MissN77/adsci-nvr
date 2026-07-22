@@ -82,7 +82,7 @@ for (const id of ['spagerr', 'spagpunc', 'spagcomma', 'spaggram', 'spagsyn']) {
     stems.add((q.stimulus || '') + q.prompt);
     const a = q.answers !== undefined ? q.answers[0] : q.answer;
     pos[a] = (pos[a] || 0) + 1;
-    const opts = [...String(q.optionsHTML).matchAll(/class="opt-(?:word|text[^"]*)">([^<]*)</g)].map((m) => m[1]);
+    const opts = [...String(q.optionsHTML).matchAll(/class="opt-(?:word|text)[^"]*">([^<]*)</g)].map((m) => m[1]);
     if (opts.length !== OPTION_COUNT) fail(`${id} produced ${opts.length} options`);
     if (new Set(opts).size !== opts.length) fail(`${id} produced two identical options: ${opts.join(' | ')}`);
   }
@@ -124,7 +124,7 @@ for (let s = 1; s <= SEEDS; s += 1) {
   const q = REGISTRY.spagsyn.generate(makeRng(s), 2);
   if (!q) continue;
   const head = (q.prompt.match(/"([^"]+)"/) || [])[1];
-  const opts = [...String(q.optionsHTML).matchAll(/class="opt-word">([^<]*)</g)].map((m) => m[1]);
+  const opts = [...String(q.optionsHTML).matchAll(/class="opt-word[^"]*">([^<]*)</g)].map((m) => m[1]);
   const related = RELATED.get(head) || new Set();
   opts.forEach((w, i) => {
     if (i !== q.answer && related.has(w)) leaks += 1;

@@ -41,7 +41,11 @@ export function generate(rng) {
         [
           why,
           `Reading it back: "${text.replace('___', answerWord)}"`,
-          'Find the subject of the sentence first, then check the verb matches it. Most of these come down to that one question.',
+          // Deliberately NOT a rule of grammar. A fixed third line printed
+          // "find the subject, then check the verb matches" on an item about
+          // adverbs, which is wrong advice given confidently. The only thing
+          // that is true of every item here is that reading it back works.
+          'Say the finished sentence to yourself. Grammar mistakes are much easier to hear than to see.',
         ],
       ),
       teachRef: 'spaggram',
