@@ -13,6 +13,16 @@
 //   A Christmas Carol,        Charles Dickens,            1843, died 1870
 //   The Railway Children,     E. Nesbit,                  1906, died 1924
 //   The Secret Garden,        Frances Hodgson Burnett,    1911, died 1924
+//   The Wonderful Wizard of Oz, L. Frank Baum,            1900, died 1919
+//   Heidi,                    Johanna Spyri,              1881, died 1901
+//   Little Women,             Louisa May Alcott,          1868, died 1888
+//   Anne of Green Gables,     L. M. Montgomery,           1908, died 1942
+//
+// Two more were extracted and then dropped rather than used. The Tom Sawyer
+// whitewashing scene runs straight into Jim's dialect speech, and the opening
+// of A Little Princess describes Lascars on the voyage from Bombay. Both are
+// the same problem as the Secret Garden opening: authentic period writing that
+// needs an adult in the room, which a screen cannot provide.
 //
 // Both are far past life of the author plus seventy years, so they are in the
 // public domain in the UK. The text is the author's, not Gutenberg's, and
@@ -446,6 +456,254 @@ export const PASSAGES = [
         answer: "It is winter, so she cannot tell from the bare branches.",
         wrong: ["Somebody has told her the garden was destroyed.", "The robin has been pulling at the stems.", "She can see that the walls have fallen down.", "She has never seen a rose before."],
         why: ["The grass is \"a wintry brown\" and there are \"neither leaves nor roses on them now\", so there is nothing to judge by.", "She says outright that she does not know whether they were dead or alive."],
+      },
+    ],
+  },
+  {
+    id: "oz",
+    title: "A grey little house on the prairie",
+    source: "from The Wonderful Wizard of Oz by L. Frank Baum, 1900",
+    paragraphs: [
+      "Dorothy lived in the midst of the great Kansas prairies, with Uncle Henry, who was a farmer, and Aunt Em, who was the farmer’s wife. Their house was small, for the lumber to build it had to be carried by wagon many miles. There were four walls, a floor and a roof, which made one room; and this room contained a rusty looking cookstove, a cupboard for the dishes, a table, three or four chairs, and the beds. Uncle Henry and Aunt Em had a big bed in one corner, and Dorothy a little bed in another corner. There was no garret at all, and no cellar, except a small hole dug in the ground, called a cyclone cellar, where the family could go in case one of those great whirlwinds arose, mighty enough to crush any building in its path. It was reached by a trap door in the middle of the floor, from which a ladder led down into the small, dark hole.",
+      "When Dorothy stood in the doorway and looked around, she could see nothing but the great gray prairie on every side. Not a tree nor a house broke the broad sweep of flat country that reached to the edge of the sky in all directions. The sun had baked the plowed land into a gray mass, with little cracks running through it. Even the grass was not green, for the sun had burned the tops of the long blades until they were the same gray color to be seen everywhere. Once the house had been painted, but the sun blistered the paint and the rains washed it away, and now the house was as dull and gray as everything else.",
+      "When Aunt Em came there to live she was a young, pretty wife. The sun and wind had changed her, too. They had taken the sparkle from her eyes and left them a sober gray; they had taken the red from her cheeks and lips, and they were gray also. She was thin and gaunt, and never smiled now. When Dorothy, who was an orphan, first came to her, Aunt Em had been so startled by the child’s laughter that she would scream and press her hand upon her heart whenever Dorothy’s merry voice reached her ears; and she still looked at the little girl with wonder that she could find anything to laugh at.",
+    ],
+    questions: [
+      {
+        q: "What was the cyclone cellar?",
+        answer: "A small hole dug in the ground to shelter in.",
+        wrong: ["A cupboard where the dishes were kept.", "A room built onto the side of the house.", "A deep well for drinking water.", "A shed for storing farm tools."],
+        why: ["\"A small hole dug in the ground, called a cyclone cellar, where the family could go in case one of those great whirlwinds arose.\"", "It is reached by a trap door in the floor, so it is under the house rather than beside it."],
+      },
+      {
+        q: "Which colour is repeated again and again in the second paragraph?",
+        answer: "gray",
+        wrong: ["brown", "green", "yellow", "black"],
+        why: ["The prairie, the plowed land, the grass and the house are all described as gray.", "Only one colour word is used over and over, and that repetition is the point."],
+      },
+      {
+        q: "What is the effect of repeating that colour so often?",
+        answer: "It makes the whole place feel drained of life.",
+        wrong: ["It shows that a storm is coming.", "It suggests the land is covered in dust from the road.", "It tells the reader that Dorothy is colour-blind.", "It shows the family cannot afford paint."],
+        why: ["Land, grass, house and even Aunt Em's eyes and cheeks are all the same colour, so nothing stands out anywhere.", "When one word is repeated this often, ask what feeling it builds rather than what it describes."],
+      },
+      {
+        q: "Why does Aunt Em never smile now?",
+        answer: "The hard life on the prairie has worn her down.",
+        wrong: ["She is angry with Dorothy for laughing.", "She is unwell and in pain.", "She has quarrelled with Uncle Henry.", "She does not like living near the cyclone cellar."],
+        why: ["She arrived young and pretty, and \"the sun and wind had changed her\", taking the sparkle from her eyes.", "The passage links her sadness to the place itself, exactly as it does with the grey house and grass."],
+      },
+      {
+        q: "Which TWO things does the passage say the sun had done to the land?",
+        answers: ["baked the plowed land into a gray mass", "burned the tops of the long blades of grass"],
+        wrong: ["dried up the family's well", "cracked the windows of the house", "set fire to the dry grass"],
+        why: ["\"The sun had baked the plowed land into a gray mass\" and \"the sun had burned the tops of the long blades\".", "The sun also blistered the paint, but the question asks about the land."],
+      },
+      {
+        q: "What does \"gaunt\" mean in the third paragraph?",
+        answer: "very thin and worn",
+        wrong: ["tall and graceful", "cheerful and lively", "pale and frightened", "strong and healthy"],
+        why: ["It sits next to \"thin\" and follows a description of everything the sun and wind took from her.", "The whole paragraph is about how much she has lost, so the word has to point the same way."],
+      },
+      {
+        q: "Why does the author mention that Dorothy's laughter startled Aunt Em?",
+        answer: "To show how unused to happiness Aunt Em had become.",
+        wrong: ["To show that Dorothy was a noisy child.", "To explain why Dorothy was sent to live there.", "To suggest Aunt Em was frightened of children.", "To show that the house had a loud echo."],
+        why: ["Aunt Em would \"scream and press her hand upon her heart\" at a child's laugh, which is not a normal reaction to a happy sound.", "The detail measures how grey her life has become, not what Dorothy is like."],
+      },
+      {
+        q: "What does the description of the house suggest about the family?",
+        answer: "They are poor and life there is hard.",
+        wrong: ["They travel often and do not stay long.", "They prefer living simply by choice.", "They have recently moved in.", "They are saving up for a larger farm."],
+        why: ["One room, four walls, no garret and no cellar, and the lumber had to be carried many miles by wagon.", "Nothing suggests they chose it. The wagon detail shows how far they are from anywhere."],
+      },
+    ],
+  },
+  {
+    id: "heidi",
+    title: "Up the mountain path",
+    source: "from Heidi by Johanna Spyri, 1881",
+    paragraphs: [
+      "From the old and pleasantly situated village of Mayenfeld, a footpath winds through green and shady meadows to the foot of the mountains, which on this side look down from their stern and lofty heights upon the valley below. The land grows gradually wilder as the path ascends, and the climber has not gone far before he begins to inhale the fragrance of the short grass and sturdy mountain-plants, for the way is steep and leads directly up to the summits above.",
+      "On a clear sunny morning in June two figures might be seen climbing the narrow mountain path; one, a tall strong-looking girl, the other a child whom she was leading by the hand, and whose little checks were so aglow with heat that the crimson color could be seen even through the dark, sunburnt skin. And this was hardly to be wondered at, for in spite of the hot June sun the child was clothed as if to keep off the bitterest frost. She did not look more than five years old, if as much, but what her natural figure was like, it would have been hard to say, for she had apparently two, if not three dresses, one above the other, and over these a thick red woollen shawl wound round about her, so that the little body presented a shapeless appearance, as, with its small feet shod in thick, nailed mountain-shoes, it slowly and laboriously plodded its way up in the heat. The two must have left the valley a good hour's walk behind them, when they came to the hamlet known as Dorfli, which is situated half-way up the mountain. Here the wayfarers met with greetings from all sides, some calling to them from windows, some from open doors, others from outside, for the elder girl was now in her old home. She did not, however, pause in her walk to respond to her friends' welcoming cries and questions, but passed on without stopping for a moment until she reached the last of the scattered houses of the hamlet. Here a voice called to her from the door: \"Wait a moment, Dete; if you are going up higher, I will come with you.\"",
+    ],
+    questions: [
+      {
+        q: "In which month are the two figures climbing the mountain?",
+        answer: "June",
+        wrong: ["March", "September", "December", "August"],
+        why: ["\"On a clear sunny morning in June two figures might be seen climbing the narrow mountain path.\"", "Straight retrieval from the second paragraph."],
+      },
+      {
+        q: "What does the passage suggest about the amount of clothing the child is wearing?",
+        answer: "Far more than the weather could possibly need.",
+        wrong: ["Exactly the right amount for a mountain climb.", "Too little for the cold air higher up.", "Clothes that are much too large for her.", "Clothes borrowed from the older girl."],
+        why: ["She has \"two, if not three dresses, one above the other\" and a thick woollen shawl, in the hot June sun.", "The author says she was \"clothed as if to keep off the bitterest frost\", which is the point being made."],
+      },
+      {
+        q: "Which word describes how the child made her way up the path?",
+        answer: "laboriously",
+        wrong: ["gracefully", "hurriedly", "cheerfully", "carelessly"],
+        why: ["\"It slowly and laboriously plodded its way up in the heat.\"", "The word means with great effort, which fits a small child in three dresses on a steep climb."],
+      },
+      {
+        q: "What is the effect of saying \"the little body presented a shapeless appearance\"?",
+        answer: "It shows the clothes are so bulky the child is lost inside them.",
+        wrong: ["It suggests the child is unwell.", "It shows the child is much older than she looks.", "It tells the reader the child is walking oddly.", "It suggests the path is too dark to see clearly."],
+        why: ["The author has just listed the layers, so the shapelessness is the result of them.", "Notice the child is called \"it\" here, which adds to the sense of a bundle rather than a girl."],
+      },
+      {
+        q: "Which TWO of these does the passage say the villagers did as the pair passed?",
+        answers: ["called to them from windows", "called to them from open doors"],
+        wrong: ["ran out to stop them", "offered them food", "waved from a bridge"],
+        why: ["\"Some calling to them from windows, some from open doors, others from outside.\"", "The other three are not in the passage, however likely they sound in a friendly village."],
+      },
+      {
+        q: "What does \"ascends\" mean in the first paragraph?",
+        answer: "goes upwards",
+        wrong: ["turns sharply", "becomes narrower", "grows darker", "runs alongside a river"],
+        why: ["\"The land grows gradually wilder as the path ascends\", and the way \"leads directly up to the summits\".", "The same sentence tells you the path is steep, which points to the meaning."],
+      },
+      {
+        q: "What does the greeting from all sides suggest about the older girl?",
+        answer: "She is well known in the village and has lived there before.",
+        wrong: ["She is famous throughout the whole country.", "She has been away for only a few days.", "She is expected to stop and deliver a message.", "She is a stranger who has lost her way."],
+        why: ["\"The elder girl was now in her old home\", which is why people call out to her from every side.", "She does not stop to answer, which tells you something about her too."],
+      },
+      {
+        q: "Why does the author describe the mountains looking down from \"stern and lofty heights\"?",
+        answer: "To make them seem grand and a little forbidding.",
+        wrong: ["To show that they are covered in snow.", "To suggest they are dangerous to climb in June.", "To explain why nobody lives on them.", "To show that they are further away than they look."],
+        why: ["\"Stern\" gives them a severe, unsmiling quality, and \"lofty\" makes them tower over the valley.", "The gentle meadows come first, so the mountains feel like a change in mood."],
+      },
+    ],
+  },
+  {
+    id: "women",
+    title: "Christmas without presents",
+    source: "from Little Women by Louisa May Alcott, 1868",
+    paragraphs: [
+      "“Christmas won’t be Christmas without any presents,” grumbled Jo, lying on the rug.",
+      "“It’s so dreadful to be poor!” sighed Meg, looking down at her old dress.",
+      "“I don’t think it’s fair for some girls to have plenty of pretty things, and other girls nothing at all,” added little Amy, with an injured sniff.",
+      "“We’ve got Father and Mother, and each other,” said Beth contentedly from her corner.",
+      "The four young faces on which the firelight shone brightened at the cheerful words, but darkened again as Jo said sadly, “We haven’t got Father, and shall not have him for a long time.” She didn’t say “perhaps never,” but each silently added it, thinking of Father far away, where the fighting was.",
+      "Nobody spoke for a minute; then Meg said in an altered tone, “You know the reason Mother proposed not having any presents this Christmas was because it is going to be a hard winter for everyone; and she thinks we ought not to spend money for pleasure, when our men are suffering so in the army. We can’t do much, but we can make our little sacrifices, and ought to do it gladly. But I am afraid I don’t,” and Meg shook her head, as she thought regretfully of all the pretty things she wanted.",
+      "“But I don’t think the little we should spend would do any good. We’ve each got a dollar, and the army wouldn’t be much helped by our giving that. I agree not to expect anything from Mother or you, but I do want to buy Undine and Sintran for myself. I’ve wanted it so long,” said Jo, who was a bookworm.",
+      "“I planned to spend mine in new music,” said Beth, with a little sigh, which no one heard but the hearth brush and kettle-holder.",
+      "“I shall get a nice box of Faber’s drawing pencils; I really need them,” said Amy decidedly.",
+      "“Mother didn’t say anything about our money, and she won’t wish us to give up everything. Let’s each buy what we want, and have a little fun; I’m sure we work hard enough to earn it,” cried Jo, examining the heels of her shoes in a gentlemanly manner.",
+    ],
+    questions: [
+      {
+        q: "Why had Mother suggested having no presents this Christmas?",
+        answer: "Because it will be a hard winter and men are suffering in the army.",
+        wrong: ["Because the girls had behaved badly.", "Because the shops were closed.", "Because Father had forbidden it.", "Because they had already had presents that year."],
+        why: ["Meg explains it: \"it is going to be a hard winter for everyone; and she thinks we ought not to spend money for pleasure, when our men are suffering so in the army\".", "It is stated in the passage, so this one is retrieval."],
+      },
+      {
+        q: "Which sister seems most contented with what they have?",
+        answer: "Beth",
+        wrong: ["Jo", "Meg", "Amy", "Mother"],
+        why: ["\"We've got Father and Mother, and each other,\" said Beth contentedly from her corner.", "Her sigh later is heard by nobody, which fits the same quiet character."],
+      },
+      {
+        q: "Which word tells you that Jo loved reading?",
+        answer: "bookworm",
+        wrong: ["grumbled", "gentlemanly", "contentedly", "regretfully"],
+        why: ["\"Said Jo, who was a bookworm.\"", "The others describe how people spoke or moved, not what Jo liked."],
+      },
+      {
+        q: "What is the effect of beginning the story with four short lines of speech?",
+        answer: "It introduces each sister's character quickly through what she says.",
+        wrong: ["It shows that the sisters are arguing.", "It suggests nobody is listening to anybody else.", "It tells the reader the story is a play.", "It shows the girls are in a great hurry."],
+        why: ["A grumble, a sigh, a sniff and a contented remark give you four different personalities in four lines.", "The author lets them speak before describing any of them, which is a quick way to draw characters."],
+      },
+      {
+        q: "Which THREE things do the sisters say they would like to buy for themselves?",
+        answers: ["a book", "new music", "drawing pencils"],
+        wrong: ["a new dress", "a pair of skates"],
+        why: ["Jo wants a book, Beth wants new music and Amy wants a box of drawing pencils.", "Meg is the one who does not name anything, though she does think of \"all the pretty things she wanted\"."],
+      },
+      {
+        q: "What has happened to the girls' father?",
+        answer: "He is away where the fighting is.",
+        wrong: ["He has gone to find work in another town.", "He is unwell and staying elsewhere.", "He has died during the winter.", "He is travelling and will be home for Christmas."],
+        why: ["\"Thinking of Father far away, where the fighting was.\"", "Jo does not say \"perhaps never\", but each sister silently added it, which is why the mood darkens."],
+      },
+      {
+        q: "What does \"sacrifices\" mean in this passage?",
+        answer: "giving up things you would like",
+        wrong: ["promises made at Christmas", "gifts given to soldiers", "prayers said before a meal", "savings kept for later"],
+        why: ["Meg is talking about not spending money on pleasure while others are suffering.", "She says they \"can't do much, but we can make our little sacrifices\", so it means going without."],
+      },
+      {
+        q: "Why does the author say Beth's sigh was heard by \"no one but the hearth brush and kettle-holder\"?",
+        answer: "To show that Beth keeps her disappointment to herself.",
+        wrong: ["To show that the room was very noisy.", "To suggest her sisters were being unkind.", "To show that Beth was sitting outside.", "To suggest the objects were more important to her."],
+        why: ["Naming two household objects as the only listeners is a gentle way of saying nobody noticed her.", "It fits Beth, who is described sitting quietly in her corner."],
+      },
+    ],
+  },
+  {
+    id: "anne",
+    title: "Matthew and the chatterbox",
+    source: "from Anne of Green Gables by L. M. Montgomery, 1908",
+    paragraphs: [
+      "Matthew, much to his own surprise, was enjoying himself. Like most quiet folks he liked talkative people when they were willing to do the talking themselves and did not expect him to keep up his end of it. But he had never expected to enjoy the society of a little girl. Women were bad enough in all conscience, but little girls were worse. He detested the way they had of sidling past him timidly, with sidewise glances, as if they expected him to gobble them up at a mouthful if they ventured to say a word. That was the Avonlea type of well-bred little girl. But this freckled witch was very different, and although he found it rather difficult for his slower intelligence to keep up with her brisk mental processes he thought that he “kind of liked her chatter.” So he said as shyly as usual:",
+      "“Oh, you can talk as much as you like. I don’t mind.”",
+      "“Oh, I’m so glad. I know you and I are going to get along together fine. It’s such a relief to talk when one wants to and not be told that children should be seen and not heard. I’ve had that said to me a million times if I have once. And people laugh at me because I use big words. But if you have big ideas you have to use big words to express them, haven’t you?”",
+      "“Well now, that seems reasonable,” said Matthew.",
+      "“Mrs. Spencer said that my tongue must be hung in the middle. But it isn’t, it’s firmly fastened at one end. Mrs. Spencer said your place was named Green Gables. I asked her all about it. And she said there were trees all around it. I was gladder than ever. I just love trees. And there weren’t any at all about the asylum, only a few poor weeny-teeny things out in front with little whitewashed cagey things about them. They just looked like orphans themselves, those trees did. It used to make me want to cry to look at them. I used to say to them, ‘Oh, you poor little things! If you were out in a great big woods with other trees all around you and little mosses and June bells growing over your roots and a brook not far away and birds singing in your branches, you could grow, couldn’t you? But you can’t where you are. I know just exactly how you feel, little trees.’ I felt sorry to leave them behind this morning. You do get so attached to things like that, don’t you? Is there a brook anywhere near Green Gables? I forgot to ask Mrs. Spencer that.”",
+    ],
+    questions: [
+      {
+        q: "Why does Matthew enjoy listening to Anne?",
+        answer: "She does all the talking, so he does not have to.",
+        wrong: ["She talks about subjects he knows well.", "She reminds him of himself as a child.", "She asks him questions he can answer easily.", "She talks more quietly than other children."],
+        why: ["\"Like most quiet folks he liked talkative people when they were willing to do the talking themselves.\"", "The narrator explains it directly, which is why Matthew surprises himself."],
+      },
+      {
+        q: "What did Mrs Spencer say about Anne's tongue?",
+        answer: "That it must be hung in the middle.",
+        wrong: ["That it would get her into trouble.", "That it was quicker than her thoughts.", "That it should be kept still at meals.", "That it was the best thing about her."],
+        why: ["Anne repeats it and then argues with it: \"But it isn't, it's firmly fastened at one end.\"", "Anne answering back to the joke is part of what makes her likeable here."],
+      },
+      {
+        q: "Which word does Matthew use for the way Anne talks?",
+        answer: "chatter",
+        wrong: ["nonsense", "argument", "questions", "speeches"],
+        why: ["He thought that he \"kind of liked her chatter\".", "It is a fond word rather than a critical one, which tells you how he feels."],
+      },
+      {
+        q: "What is the effect of Anne speaking to the trees as if they could hear her?",
+        answer: "It shows how strong her imagination is and how much she feels for them.",
+        wrong: ["It shows that she is not telling the truth.", "It suggests she has no friends her own age.", "It shows that she is frightened of the woods.", "It suggests she has been unwell."],
+        why: ["She imagines a whole better life for them, with mosses and a brook and birds, and then says she knows how they feel.", "The trees stand in for her own situation, which is why the speech matters."],
+      },
+      {
+        q: "Which TWO things does Anne say people do because of the way she talks?",
+        answers: ["tell her she talks too much", "laugh at her for using big words"],
+        wrong: ["refuse to answer her at all", "send her out of the room", "correct her spelling"],
+        why: ["\"People are always telling me I do\" and \"people laugh at me because I use big words\".", "The other three are not in the passage, though they sound like things that might happen."],
+      },
+      {
+        q: "What does \"detested\" mean in the first paragraph?",
+        answer: "strongly disliked",
+        wrong: ["did not notice", "secretly admired", "found amusing", "was puzzled by"],
+        why: ["Matthew detested the way little girls sidled past him timidly, which he found uncomfortable.", "The whole sentence lists what he did not enjoy about children, so the word is a strong negative."],
+      },
+      {
+        q: "What does the passage tell us about where Anne has come from?",
+        answer: "An orphanage, which she calls the asylum.",
+        wrong: ["A farm in another part of the island.", "A school in a large town.", "The home of Mrs Spencer.", "A house with a brook near it."],
+        why: ["\"There weren't any at all about the asylum, only a few poor weeny-teeny things out in front.\"", "She compares the trees there to orphans, which is a strong hint about her own situation."],
+      },
+      {
+        q: "Why does Anne compare the little trees to orphans?",
+        answer: "Because she is an orphan herself and feels for them.",
+        wrong: ["Because they had been planted by orphans.", "Because they were the smallest trees she had seen.", "Because nobody had given them names.", "Because they were about to be cut down."],
+        why: ["\"They just looked like orphans themselves, those trees did. It used to make me want to cry to look at them.\"", "She then tells them she knows exactly how they feel, which only makes sense if she does."],
       },
     ],
   },
