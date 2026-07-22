@@ -22,10 +22,17 @@
 //   Around the World in Eighty Days, Jules Verne,         1873, died 1905
 //   Five Children and It,     E. Nesbit,                  1902, died 1924
 //   The Voyage of the Beagle, Charles Darwin,             1839, died 1882
+//   Gulliver's Travels,       Jonathan Swift,             1726, died 1745
+//   Jane Eyre,                Charlotte Bronte,           1847, died 1855
+//   Great Expectations,       Charles Dickens,            1861, died 1870
+//   South,                    Sir Ernest Shackleton,      1919, died 1922
+//   Twenty Thousand Leagues,  Jules Verne,                1870, died 1905
 //
-// The Darwin is non-fiction on purpose. Quest's English paper says questions
-// may cover one or two texts, and a child who has only ever practised on
-// stories is meeting an information text for the first time on the day.
+// Darwin and Shackleton are non-fiction on purpose. Quest's English paper says
+// questions may cover one or two texts, and a child who has only ever
+// practised on stories meets an information text for the first time on the
+// day. The two read quite differently from each other as well: Darwin is
+// patient observation, Shackleton is a log of things going wrong.
 //
 // Extracts screened and rejected, so nobody has to rediscover why:
 //
@@ -1042,6 +1049,306 @@ export const PASSAGES = [
         answer: "They drink fluid taken from a tortoise.",
         wrong: ["They walk up to the central springs.", "They wait for the yearly rains.", "They follow the tortoise paths to the coast.", "They collect dew from the plants."],
         why: ["\"The inhabitants, when walking in the lower district, and overcome with thirst, often take advantage of this circumstance.\"", "The writer even reports which fluid is considered best, which shows how commonly it was done."],
+      },
+    ],
+  },
+  {
+    id: "gulliver",
+    title: "Tied to the ground",
+    source: "from Gulliver’s Travels by Jonathan Swift, 1726",
+    paragraphs: [
+      "I attempted to rise, but was not able to stir: for, as I happened to lie on my back, I found my arms and legs were strongly fastened on each side to the ground; and my hair, which was long and thick, tied down in the same manner. I likewise felt several slender ligatures across my body, from my arm-pits to my thighs. I could only look upwards; the sun began to grow hot, and the light offended my eyes. I heard a confused noise about me; but in the posture I lay, could see nothing except the sky. In a little time I felt something alive moving on my left leg, which advancing gently forward over my breast, came almost up to my chin; when, bending my eyes downwards as much as I could, I perceived it to be a human creature not six inches high, with a bow and arrow in his hands, and a quiver at his back. In the mean time, I felt at least forty more of the same kind (as I conjectured) following the first. I was in the utmost astonishment, and roared so loud, that they all ran back in a fright; and some of them, as I was afterwards told, were hurt with the falls they got by leaping from my sides upon the ground. However, they soon returned, and one of them, who ventured so far as to get a full sight of my face, lifting up his hands and eyes by way of admiration, cried out in a shrill but distinct voice, Hekinah degul: the others repeated the same words several times, but then I knew not what they meant. I lay all this while, as the reader may believe, in great uneasiness. At length, struggling to get loose, I had the fortune to break the strings, and wrench out the pegs that fastened my left arm to the ground; for, by lifting it up to my face, I discovered the methods they had taken to bind me, and at the same time with a violent pull, which gave me excessive pain, I a little loosened the strings that tied down my hair on the left side, so that I was just able to turn my head about two inches. But the creatures ran off a second time, before I could seize them; whereupon there was a great shout in a very shrill accent, and after it ceased I heard one of them cry aloud Tolgo phonac; when in an instant I felt above a hundred arrows discharged on my left hand, which, pricked me like so many needles; and besides, they shot another flight into the air, as we do bombs in Europe, whereof many, I suppose, fell on my body, (though I felt them not), and some on my face, which I immediately covered with my left hand.",
+    ],
+    questions: [
+      {
+        q: "Why is the narrator unable to move?",
+        answer: "His arms, legs and hair are tied to the ground.",
+        wrong: ["He has been badly injured in a fall.", "He is trapped under a fallen tree.", "He is too weak from hunger to stand.", "He is buried up to his waist in sand."],
+        why: ["\"I found my arms and legs were strongly fastened on each side to the ground; and my hair, which was long and thick, tied down in the same manner.\"", "He also feels slender ligatures across his body, so he is pinned at every point."],
+      },
+      {
+        q: "Which word in the passage means the thin cords tying him down?",
+        answer: "ligatures",
+        wrong: ["quiver", "posture", "astonishment", "conjectured"],
+        why: ["\"I likewise felt several slender ligatures across my body, from my arm-pits to my thighs.\"", "The other words are in the passage but describe a case for arrows, the way he was lying, his feeling, and his guessing."],
+      },
+      {
+        q: "Which TWO things is the first little creature carrying?",
+        answers: ["a bow and arrow", "a quiver"],
+        wrong: ["a lantern", "a length of rope", "a small hammer"],
+        why: ["\"A human creature not six inches high, with a bow and arrow in his hands, and a quiver at his back.\"", "The other three are not mentioned anywhere in the passage."],
+      },
+      {
+        q: "What is the effect of telling us the creature is \"not six inches high\"?",
+        answer: "It makes the strangeness of the scene clear in a single detail.",
+        wrong: ["It shows the narrator is looking from far away.", "It suggests the creature is a child.", "It explains why the narrator cannot move.", "It shows that the narrator is dreaming."],
+        why: ["Everything up to that point could be an ordinary capture. The measurement is the moment it stops being ordinary.", "Swift gives an exact size rather than saying tiny, which makes it harder to dismiss."],
+      },
+      {
+        q: "Why do the creatures run away the first time?",
+        answer: "The narrator roared very loudly.",
+        wrong: ["He broke one of his arms free.", "The sun grew too hot for them.", "He fired an arrow back at them.", "Their leader called them away."],
+        why: ["\"I was in the utmost astonishment, and roared so loud, that they all ran back in a fright.\"", "Some were hurt leaping from his sides, which tells you how fast they fled."],
+      },
+      {
+        q: "What does \"conjectured\" mean in the passage?",
+        answer: "guessed",
+        wrong: ["counted exactly", "remembered", "hoped", "shouted"],
+        why: ["He says at least forty more followed \"as I conjectured\", because he could not turn his head to count them.", "He can only look upwards, so an exact count is impossible and he has to estimate."],
+      },
+      {
+        q: "Why does the author say the arrows \"pricked me like so many needles\"?",
+        answer: "It shows the tiny weapons hurt without being deadly.",
+        wrong: ["It shows the narrator is being sewn to the ground.", "It suggests the arrows are made of metal.", "It tells the reader he cannot feel anything.", "It shows that the creatures are skilled hunters."],
+        why: ["A hundred arrows from six-inch archers would sting rather than wound, and a needle is exactly that kind of pain.", "The comparison keeps the scene comic rather than frightening, which is the tone Swift wants."],
+      },
+      {
+        q: "What does the narrator do when arrows begin to fall on his face?",
+        answer: "He covers it with his free left hand.",
+        wrong: ["He shuts his eyes and lies still.", "He rolls onto his side.", "He shouts at the creatures to stop.", "He pulls his other arm free."],
+        why: ["\"Some on my face, which I immediately covered with my left hand.\"", "His left hand is the only one he has managed to free, which is why he can do it at all."],
+      },
+    ],
+  },
+  {
+    id: "lowood",
+    title: "Burnt porridge",
+    source: "from Jane Eyre by Charlotte Bronte, 1847",
+    paragraphs: [
+      "Disgusting! The porridge is burnt again!”",
+      "“Silence!” ejaculated a voice; not that of Miss Miller, but one of the upper teachers, a little and dark personage, smartly dressed, but of somewhat morose aspect, who installed herself at the top of one table, while a more buxom lady presided at the other. I looked in vain for her I had first seen the night before; she was not visible: Miss Miller occupied the foot of the table where I sat, and a strange, foreign-looking, elderly lady, the French teacher, as I afterwards found, took the corresponding seat at the other board. A long grace was said and a hymn sung; then a servant brought in some tea for the teachers, and the meal began.",
+      "Ravenous, and now very faint, I devoured a spoonful or two of my portion without thinking of its taste; but the first edge of hunger blunted, I perceived I had got in hand a nauseous mess; burnt porridge is almost as bad as rotten potatoes; famine itself soon sickens over it. The spoons were moved slowly: I saw each girl taste her food and try to swallow it; but in most cases the effort was soon relinquished. Breakfast was over, and none had breakfasted. Thanks being returned for what we had not got, and a second hymn chanted, the refectory was evacuated for the schoolroom. I was one of the last to go out, and in passing the tables, I saw one teacher take a basin of the porridge and taste it; she looked at the others; all their countenances expressed displeasure, and one of them, the stout one, whispered,",
+      "“Abominable stuff! How shameful!”",
+      "A quarter of an hour passed before lessons again began, during which the schoolroom was in a glorious tumult; for that space of time it seemed to be permitted to talk loud and more freely, and they used their privilege. The whole conversation ran on the breakfast, which one and all abused roundly. Poor things! it was the sole consolation they had. Miss Miller was now the only teacher in the room: a group of great girls standing about her spoke with serious and sullen gestures. I heard the name of Mr. Brocklehurst pronounced by some lips; at which Miss Miller shook her head disapprovingly; but she made no great effort to check the general wrath; doubtless she shared in it.",
+    ],
+    questions: [
+      {
+        q: "Why did almost none of the girls eat their breakfast?",
+        answer: "The porridge was burnt and sickening.",
+        wrong: ["They were not given enough time.", "They were told to wait for the teachers.", "They had already eaten earlier.", "They were too nervous to eat."],
+        why: ["\"I perceived I had got in hand a nauseous mess; burnt porridge is almost as bad as rotten potatoes.\"", "Each girl tastes it and tries to swallow, but in most cases the effort is soon given up."],
+      },
+      {
+        q: "Which word in the passage shows how hungry the narrator was?",
+        answer: "Ravenous",
+        wrong: ["morose", "buxom", "nauseous", "sullen"],
+        why: ["\"Ravenous, and now very faint, I devoured a spoonful or two of my portion without thinking of its taste.\"", "The other words describe two of the teachers, the food, and the older girls."],
+      },
+      {
+        q: "What is the effect of \"Breakfast was over, and none had breakfasted\"?",
+        answer: "It states plainly, in one line, that they were given nothing they could eat.",
+        wrong: ["It shows the meal was finished very quickly.", "It suggests the girls were being punished.", "It tells the reader breakfast was cancelled.", "It shows that the narrator arrived too late."],
+        why: ["The sentence contradicts itself on purpose: the meal happened, the eating did not.", "Putting it so briefly makes it land harder than a long complaint would."],
+      },
+      {
+        q: "What do the teachers think of the porridge?",
+        answer: "They find it as disgusting as the girls do.",
+        wrong: ["They think the girls are being fussy.", "They have not noticed anything wrong.", "They blame the girls for complaining.", "They think it is good enough for children."],
+        why: ["One tastes it, and their faces \"expressed displeasure\"; the stout one whispers \"Abominable stuff! How shameful!\"", "The narrator sees this on her way out, which is why we learn it at all."],
+      },
+      {
+        q: "Which TWO things happened before the meal began?",
+        answers: ["a long grace was said", "a hymn was sung"],
+        wrong: ["the windows were opened", "the girls washed their hands", "a register was called"],
+        why: ["\"A long grace was said and a hymn sung; then a servant brought in some tea for the teachers, and the meal began.\"", "The other three are not in the passage."],
+      },
+      {
+        q: "What does \"nauseous\" mean in the passage?",
+        answer: "sickening to eat",
+        wrong: ["far too hot", "very plain", "strangely sweet", "cold and lumpy"],
+        why: ["It is followed straight away by a comparison with rotten potatoes.", "The whole sentence is about food that hunger itself cannot get down."],
+      },
+      {
+        q: "Why does Miss Miller not stop the girls complaining?",
+        answer: "She probably agreed with them.",
+        wrong: ["She could not hear them over the noise.", "She had been told to let them talk.", "She was too frightened of the older girls.", "She had left the room already."],
+        why: ["\"She made no great effort to check the general wrath; doubtless she shared in it.\"", "The narrator is guessing, but says so, which is why the word doubtless is there."],
+      },
+      {
+        q: "Why does the narrator call the complaining \"the sole consolation they had\"?",
+        answer: "To show how little comfort the girls were given.",
+        wrong: ["To show that the girls enjoyed arguing.", "To suggest the girls were ungrateful.", "To explain why the teachers were angry.", "To show that the girls had no friends."],
+        why: ["They had no breakfast and only a quarter of an hour of freedom, and grumbling was all they got out of it.", "The words \"Poor things!\" just before it tell you where the narrator's sympathy lies."],
+      },
+    ],
+  },
+  {
+    id: "havisham",
+    title: "The stopped clock of a room",
+    source: "from Great Expectations by Charles Dickens, 1861",
+    paragraphs: [
+      "I entered, therefore, and found myself in a pretty large room, well lighted with wax candles. No glimpse of daylight was to be seen in it. It was a dressing-room, as I supposed from the furniture, though much of it was of forms and uses then quite unknown to me. But prominent in it was a draped table with a gilded looking-glass, and that I made out at first sight to be a fine lady’s dressing-table.",
+      "Whether I should have made out this object so soon if there had been no fine lady sitting at it, I cannot say. In an arm-chair, with an elbow resting on the table and her head leaning on that hand, sat the strangest lady I have ever seen, or shall ever see.",
+      "She was dressed in rich materials, satins, and lace, and silks, all of white. Her shoes were white. And she had a long white veil dependent from her hair, and she had bridal flowers in her hair, but her hair was white. Some bright jewels sparkled on her neck and on her hands, and some other jewels lay sparkling on the table. Dresses, less splendid than the dress she wore, and half-packed trunks, were scattered about. She had not quite finished dressing, for she had but one shoe on, the other was on the table near her hand, her veil was but half arranged, her watch and chain were not put on, and some lace for her bosom lay with those trinkets, and with her handkerchief, and gloves, and some flowers, and a Prayer-Book all confusedly heaped about the looking-glass.",
+      "It was not in the first few moments that I saw all these things, though I saw more of them in the first moments than might be supposed. But I saw that everything within my view which ought to be white, had been white long ago, and had lost its lustre and was faded and yellow. I saw that the bride within the bridal dress had withered like the dress, and like the flowers, and had no brightness left but the brightness of her sunken eyes. I saw that the dress had been put upon the rounded figure of a young woman, and that the figure upon which it now hung loose had shrunk to skin and bone. Once, I had been taken to see some ghastly waxwork at the Fair, representing I know not what impossible personage lying in state. Once, I had been taken to one of our old marsh churches to see a skeleton in the ashes of a rich dress that had been dug out of a vault under the church pavement. Now, waxwork and skeleton seemed to have dark eyes that moved and looked at me. I should have cried out, if I could.",
+    ],
+    questions: [
+      {
+        q: "Why was there no daylight in the room?",
+        answer: "The windows were shut away, and the room was lit by candles.",
+        wrong: ["It was the middle of the night.", "A heavy fog had come down outside.", "The candles were brighter than the sun.", "The narrator had entered with his eyes shut."],
+        why: ["\"I entered, therefore, and found myself in a pretty large room, well lighted with wax candles. No glimpse of daylight was to be seen in it.\"", "The absence of daylight is mentioned first, which sets the strangeness before anything else happens."],
+      },
+      {
+        q: "Which THREE of these does the passage say were white?",
+        answers: ["her shoes", "her veil", "her hair"],
+        wrong: ["her jewels", "the candles"],
+        why: ["\"Her shoes were white. And she had a long white veil dependent from her hair... but her hair was white.\"", "The jewels sparkled rather than being white, and the candles are not described by colour."],
+      },
+      {
+        q: "Which word in the passage means brightness or shine?",
+        answer: "lustre",
+        wrong: ["dependent", "splendid", "trinkets", "ghastly"],
+        why: ["\"Had lost its lustre and was faded and yellow.\"", "It is used to describe what the white things no longer have."],
+      },
+      {
+        q: "What is the effect of comparing the lady to waxwork and to a skeleton?",
+        answer: "It makes her seem barely alive.",
+        wrong: ["It shows that she is a statue rather than a person.", "It suggests she is dressed up for a fair.", "It tells the reader she has been buried.", "It shows the narrator has a poor memory."],
+        why: ["Both comparisons are things that look like a person but are not one, and both come from frightening memories.", "The narrator then says the waxwork and skeleton seemed to have eyes that moved, which is what tips it into horror."],
+      },
+      {
+        q: "What does the one shoe and the half-arranged veil suggest?",
+        answer: "She stopped dressing suddenly and never finished.",
+        wrong: ["She was dressing in a great hurry.", "She had been interrupted by the narrator.", "She was too ill to dress herself.", "She had been dressed by somebody else."],
+        why: ["Her watch is not put on, her lace and gloves are heaped about, and half-packed trunks stand around the room.", "Everything is stopped at the same moment, which is the detail the whole description turns on."],
+      },
+      {
+        q: "What does \"confusedly heaped\" mean?",
+        answer: "piled up in a muddle",
+        wrong: ["arranged very neatly", "hidden out of sight", "thrown away", "stacked in boxes"],
+        why: ["The lace, handkerchief, gloves, flowers and Prayer-Book are all lying together around the looking-glass.", "It is the opposite of how a dressing-table would look if somebody had finished with it."],
+      },
+      {
+        q: "Why does the narrator say \"I should have cried out, if I could\"?",
+        answer: "He was so frightened that he could not make a sound.",
+        wrong: ["He had been told to stay silent.", "He did not want to wake the lady.", "He was too far away to be heard.", "He had lost his voice from the cold."],
+        why: ["It comes straight after the waxwork and skeleton seem to look at him, so the fear is at its highest there.", "Saying he could not cry out is stronger than saying he was afraid."],
+      },
+      {
+        q: "What does the passage suggest about how long the room has been like this?",
+        answer: "A very long time, because everything has faded and yellowed.",
+        wrong: ["Only a few hours.", "Since the previous evening.", "About a week.", "It has just been arranged that morning."],
+        why: ["\"Everything within my view which ought to be white, had been white long ago, and had lost its lustre and was faded and yellow.\"", "The bride has withered like the dress and the flowers, which takes years rather than days."],
+      },
+    ],
+  },
+  {
+    id: "ice",
+    title: "The ship is beset",
+    source: "from South by Sir Ernest Shackleton, 1919",
+    paragraphs: [
+      "During the night a moderate north-easterly gale sprang up, and a survey of the position on the 20th showed that the ship was firmly beset. The ice was packed heavily and firmly all round the Endurance in every direction as far as the eye could reach from the masthead. There was nothing to be done till the conditions changed, and we waited through that day and the succeeding days with increasing anxiety. The east-north-easterly gale that had forced us to take shelter behind the stranded berg on the 16th had veered later to the north-east, and it continued with varying intensity until the 22nd. Apparently this wind had crowded the ice into the bight of the Weddell Sea, and the ship was now drifting south-west with the floes which had enclosed it. A slight movement of the ice round the ship caused the rudder to become dangerously jammed on the 21st, and we had to cut away the ice with ice-chisels, heavy pieces of iron with 6-ft. wooden hafts. We kept steam up in readiness for a move if the opportunity offered, and the engines running full speed ahead helped to clear the rudder. Land was in sight to the east and south about sixteen miles distant on the 22nd. The land-ice seemed to be faced with ice-cliffs at most points, but here and there slopes ran down to sea-level. Large crevassed areas in terraces parallel with the coast showed where the ice was moving down over foot-hills. The inland ice appeared for the most part to be undulating, smooth, and easy to march over, but many crevasses might have been concealed from us by the surface snow or by the absence of shadows. I thought that the land probably rose to a height of 5000 ft. forty or fifty miles inland. The accurate estimation of heights and distances in the Antarctic is always difficult, owing to the clear air, the confusing monotony of colouring, and the deceptive effect of mirage and refraction. The land appeared to increase in height to the southward, where we saw a line of land or barrier that must have been seventy miles, and possibly was even more distant.",
+    ],
+    questions: [
+      {
+        q: "What was the name of the ship?",
+        answer: "The Endurance",
+        wrong: ["The Weddell", "The Governor Higginson", "The Beagle", "The Discovery"],
+        why: ["\"The ice was packed heavily and firmly all round the Endurance in every direction.\"", "It is named once, so this rewards reading carefully rather than skimming."],
+      },
+      {
+        q: "Which TWO things did the crew do about the jammed rudder?",
+        answers: ["cut the ice away with ice-chisels", "ran the engines full speed ahead"],
+        wrong: ["lowered a boat to push the ice", "waited for the gale to drop", "tied the rudder in position"],
+        why: ["\"We had to cut away the ice with ice-chisels... and the engines running full speed ahead helped to clear the rudder.\"", "The other three are not in the passage."],
+      },
+      {
+        q: "Which word in the passage means trapped and surrounded by ice?",
+        answer: "beset",
+        wrong: ["stranded", "crevassed", "undulating", "jammed"],
+        why: ["\"A survey of the position on the 20th showed that the ship was firmly beset.\"", "Jammed is used for the rudder, not for the ship, and the other two describe the land."],
+      },
+      {
+        q: "Why was there \"nothing to be done till the conditions changed\"?",
+        answer: "The ice was packed solid all round as far as anyone could see.",
+        wrong: ["The crew had run out of fuel.", "The rudder had been lost completely.", "It was too dark to work.", "The gale made it unsafe to go on deck."],
+        why: ["The ice reached \"in every direction as far as the eye could reach from the masthead\".", "They keep steam up in readiness, which shows they would have moved if they could."],
+      },
+      {
+        q: "How far away was land on the 22nd?",
+        answer: "About sixteen miles.",
+        wrong: ["About five miles.", "About fifty miles.", "About seventy miles.", "About five thousand feet."],
+        why: ["\"Land was in sight to the east and south about sixteen miles distant on the 22nd.\"", "Seventy miles is the distance to a further line of land, and five thousand feet is a height, not a distance."],
+      },
+      {
+        q: "Why is judging heights and distances difficult in the Antarctic?",
+        answer: "The clear air, the sameness of the colours, and mirages.",
+        wrong: ["The constant darkness in winter.", "The height of the waves.", "The lack of any landmarks at all.", "The speed at which the ship is drifting."],
+        why: ["\"Owing to the clear air, the confusing monotony of colouring, and the deceptive effect of mirage and refraction.\"", "He says his own estimate of 5000 ft is only what he thought, which shows he is being careful."],
+      },
+      {
+        q: "What does \"undulating\" mean in the passage?",
+        answer: "gently rising and falling",
+        wrong: ["covered in deep snow", "broken into cliffs", "sloping steeply downwards", "split by wide cracks"],
+        why: ["It is used with smooth and easy to march over, so it cannot mean rough or steep.", "The crevassed terraces are described separately, as the places where the ice is moving."],
+      },
+      {
+        q: "What does \"increasing anxiety\" tell us about the crew?",
+        answer: "They grew more worried as the days passed with no change.",
+        wrong: ["They were arguing about what to do next.", "They were frightened of the wildlife.", "They were running short of food.", "They had given up hope entirely."],
+        why: ["\"We waited through that day and the succeeding days with increasing anxiety.\"", "Nothing else in the passage suggests panic. The worry builds because nothing changes."],
+      },
+    ],
+  },
+  {
+    id: "sea",
+    title: "An enormous thing",
+    source: "from Twenty Thousand Leagues Under the Sea by Jules Verne, 1870",
+    paragraphs: [
+      "The year 1866 was signalised by a remarkable incident, a mysterious and puzzling phenomenon, which doubtless no one has yet forgotten. Not to mention rumours which agitated the maritime population and excited the public mind, even in the interior of continents, seafaring men were particularly excited. Merchants, common sailors, captains of vessels, skippers, both of Europe and America, naval officers of all countries, and the Governments of several states on the two continents, were deeply interested in the matter.",
+      "For some time past, vessels had been met by “an enormous thing,” a long object, spindle-shaped, occasionally phosphorescent, and infinitely larger and more rapid in its movements than a whale.",
+      "The facts relating to this apparition (entered in various log-books) agreed in most respects as to the shape of the object or creature in question, the untiring rapidity of its movements, its surprising power of locomotion, and the peculiar life with which it seemed endowed. If it was a cetacean, it surpassed in size all those hitherto classified in science. Taking into consideration the mean of observations made at divers times, rejecting the timid estimate of those who assigned to this object a length of two hundred feet, equally with the exaggerated opinions which set it down as a mile in width and three in length, we might fairly conclude that this mysterious being surpassed greatly all dimensions admitted by the ichthyologists of the day, if it existed at all. And that it did exist was an undeniable fact; and, with that tendency which disposes the human mind in favour of the marvellous, we can understand the excitement produced in the entire world by this supernatural apparition. As to classing it in the list of fables, the idea was out of the question.",
+      "On the 20th of July, 1866, the steamer Governor Higginson, of the Calcutta and Burnach Steam Navigation Company, had met this moving mass five miles off the east coast of Australia. Captain Baker thought at first that he was in the presence of an unknown sandbank; he even prepared to determine its exact position, when two columns of water, projected by the inexplicable object, shot with a hissing noise a hundred and fifty feet up into the air. Now, unless the sandbank had been submitted to the intermittent eruption of a geyser, the Governor Higginson had to do neither more nor less than with an aquatic mammal, unknown till then, which threw up from its blow-holes columns of water mixed with air and vapour.",
+    ],
+    questions: [
+      {
+        q: "In which year did the strange sightings begin?",
+        answer: "1866",
+        wrong: ["1856", "1876", "1886", "1896"],
+        why: ["\"The year 1866 was signalised by a remarkable incident.\"", "The date of the first sighting, 20th July 1866, is given later in the passage."],
+      },
+      {
+        q: "Which word in the passage means giving off light in the dark?",
+        answer: "phosphorescent",
+        wrong: ["spindle-shaped", "cetacean", "intermittent", "inexplicable"],
+        why: ["\"A long object, spindle-shaped, occasionally phosphorescent.\"", "Spindle-shaped describes its outline, a cetacean is a whale, and the other two describe a geyser and the object itself."],
+      },
+      {
+        q: "Which THREE of these does the passage say were interested in the matter?",
+        answers: ["merchants", "naval officers", "governments"],
+        wrong: ["newspaper editors", "schoolteachers"],
+        why: ["\"Merchants, common sailors, captains of vessels, skippers... naval officers of all countries, and the Governments of several states.\"", "Sailors, captains and skippers were interested too, but the other two are not mentioned at all."],
+      },
+      {
+        q: "What is the effect of putting \"an enormous thing\" in quotation marks?",
+        answer: "It shows that nobody could say what it actually was.",
+        wrong: ["It shows that somebody was lying about it.", "It tells the reader the words come from a poem.", "It suggests the object was not really very big.", "It shows that sailors often exaggerate."],
+        why: ["The phrase is vague on purpose, and the marks show it is what people were saying rather than a description.", "The rest of the paragraph then tries to be precise about shape and speed, which makes the contrast clear."],
+      },
+      {
+        q: "Why did Captain Baker change his mind about the sandbank?",
+        answer: "Two columns of water shot high into the air.",
+        wrong: ["The sandbank began to move towards him.", "He saw the creature's eyes.", "Another ship warned him by signal.", "His charts showed no sandbank there."],
+        why: ["\"Two columns of water, projected by the inexplicable object, shot with a hissing noise a hundred and fifty feet up into the air.\"", "Sandbanks do not spout, which is exactly the reasoning the passage then sets out."],
+      },
+      {
+        q: "What does \"apparition\" mean in the passage?",
+        answer: "something strange that appears",
+        wrong: ["a written record", "a sea captain", "a scientific society", "a kind of whale"],
+        why: ["It is used twice for the object itself: \"The facts relating to this apparition\" and \"this supernatural apparition\".", "The word carries a hint of something ghostly, which suits an object nobody can explain."],
+      },
+      {
+        q: "What does the writer conclude the object must have been?",
+        answer: "An unknown aquatic mammal.",
+        wrong: ["A very large sandbank.", "An underwater geyser.", "A ship of a new design.", "A trick of the light."],
+        why: ["\"Had to do neither more nor less than with an aquatic mammal, unknown till then, which threw up from its blow-holes columns of water.\"", "The geyser is raised only to be dismissed, which is how the argument narrows down."],
+      },
+      {
+        q: "Why does the author list so many different kinds of people who were excited?",
+        answer: "To show how far and how quickly the story spread.",
+        wrong: ["To show that sailors are easily frightened.", "To suggest that most of them were mistaken.", "To explain why the object was never caught.", "To show how many ships were at sea that year."],
+        why: ["Merchants, sailors, captains, officers and whole governments on two continents covers almost everybody who might care.", "He even says the rumours excited the public mind \"even in the interior of continents\", far from any sea."],
       },
     ],
   },

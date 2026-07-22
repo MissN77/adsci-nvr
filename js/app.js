@@ -122,9 +122,44 @@ route();
 
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('sw.js').catch(() => {
+    navigator.serviceWorker.register('sw.js').then((reg) => {
+      // Tell the user when a new version has been installed.
+      //
+      // This app is sold as a link, not a download, so every buyer is always
+      // one page load away from the newest version. The service worker takes
+      // over as soon as it installs, but the page they are looking at was
+      // already drawn from the old files, so without this they would carry on
+      // using the previous version until they next opened the app. A fix
+      // pushed on Tuesday would reach them on Thursday, silently.
+      reg.addEventListener('updatefound', () => {
+        const fresh = reg.installing;
+        if (!fresh) return;
+        fresh.addEventListener('statechange', () => {
+          // controller means this is a replacement, not the very first install.
+          if (fresh.state === 'installed' && navigator.serviceWorker.controller) {
+            showUpdateBar();
+          }
+        });
+      });
+      // Check once an hour in case the app is left open all day.
+      setInterval(() => reg.update(), 60 * 60 * 1000);
+    }).catch(() => {
       // Offline support is a nice to have. A failed registration, usually a
       // file:// origin during local testing, must not stop the app.
     });
+  });
+}
+
+/** A quiet bar offering the new version, rather than reloading underneath a
+ *  child who is halfway through a question. */
+function showUpdateBar() {
+  if (document.getElementById('update-bar')) return;
+  const bar = document.createElement('div');
+  bar.id = 'update-bar';
+  bar.innerHTML = '<span>A new version is ready.</span>'
+    + '<button type="button" id="update-now">Update now</button>';
+  document.body.appendChild(bar);
+  document.getElementById('update-now').addEventListener('click', () => {
+    window.location.reload();
   });
 }

@@ -774,3 +774,36 @@ a { color: var(--teal-dark); }
   padding-top: 8px;
   margin-bottom: 0;
 }
+
+/* ── Update notice ─────────────────────────────────────────────────────── */
+/* The app is sold as a link, so a fix reaches every buyer on their next load.
+   This makes that visible rather than silent, and lets the child finish the
+   question they are on first. */
+#update-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 50;
+  background: #2A7B6F;
+  color: #FFFFFF;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  font-size: 16px;
+}
+
+#update-now {
+  background: #FFFFFF;
+  color: #1A3A4A;
+  border: 0;
+  padding: 10px 18px;
+  font: inherit;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: .03em;
+  cursor: pointer;
+  min-height: 44px;
+}

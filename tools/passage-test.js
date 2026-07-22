@@ -67,9 +67,16 @@ for (const p of PASSAGES) {
       const hay = lower.replace(/[^a-z0-9 ]/g, ' ').replace(/\s+/g, ' ');
       for (const seg of segments) {
         if (seg.length < 15) continue;
-        const quoted = seg.toLowerCase().replace(/[^a-z0-9 ]/g, ' ').replace(/\s+/g, ' ').trim();
-        if (!hay.includes(quoted)) {
-          fail(`${p.id}: explanation quotes "${seg.slice(0, 45)}" which is not in the passage`);
+        // An ellipsis inside a quotation is normal and honest: it means words
+        // have been left out. So each side of it is checked separately, and
+        // every fragment still has to be genuinely in the passage.
+        const parts = seg.split(/\.\.\./).map((x) => x
+          .toLowerCase().replace(/[^a-z0-9 ]/g, ' ').replace(/\s+/g, ' ').trim())
+          .filter((x) => x.length >= 12);
+        for (const part of parts) {
+          if (!hay.includes(part)) {
+            fail(`${p.id}: explanation quotes "${part.slice(0, 45)}" which is not in the passage`);
+          }
         }
       }
     }
