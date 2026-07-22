@@ -12,15 +12,25 @@ Supabase project, or its data.
 
 ## What a parent gets
 
-- **Fourteen question types.** Seven match question types in the official Quest
-  booklet: sequences, grid rotation, reflection (including diagonal mirror
-  lines), matrices (2x2 and 3x3), paper folding (up to three folds, including
-  diagonal ones, with holes punched or pieces cut off), nets to cubes, and
-  nets to solids. The rest, odd one out,
-  similarities, analogies, codes and hidden shapes, are GL-era types that do
-  NOT appear in the Quest non-verbal paper. They are still worth practising
-  for other providers and for most 11+ books, but do not imply otherwise on
-  the listing.
+- **Fifteen question types, in two clearly separated halves.**
+
+  **Bexley test types (8)**, all matching the official Quest familiarisation
+  booklet: sequences, matrices (2x2 and 3x3), reflection (including diagonal
+  mirror lines), grid rotation, paper folding (up to three folds, including
+  diagonal ones, with holes punched or pieces cut off), nets to cubes, nets to
+  solids, complete the shape.
+
+  **General 11+ practice (7)**: odd one out, similarities, analogies, codes,
+  rotation, nets and cubes, hidden shapes. These are the older GL-style
+  families. They are NOT in the current Bexley non-verbal paper, but they
+  appear in other areas' tests and in most practice books.
+
+  The split is visible in the app, on the Learn and Practise menus. It is an
+  honesty measure as much as a navigation one: a parent buying this for Bexley
+  should be able to see which half is which.
+
+- **Mock papers are twenty questions in twenty minutes**, drawn only from the
+  Bexley types, because that is the shape of the real non-verbal section.
 - **Questions are generated, not stored.** There is no bank of 150 questions to
   memorise. Every practice run is newly built, so a child can practise the same
   type every day for months without repeating a paper.
@@ -166,5 +176,10 @@ public write-ups of the Quest paper, and it is included here.
 Static files, no build step. Copy the folder to any host.
 
 **Bump `CACHE_NAME` in `sw.js` on every deploy.** Otherwise the service worker
-keeps serving the old version and buyers never see the fix. Currently
-`adsci-nvr-v13`.
+keeps serving the old version and buyers never see the fix.
+
+Note that bumping it is necessary but was not sufficient: `cache.addAll` reads
+through the browser's own HTTP cache, so a new cache version could be filled
+with stale files. Every precache request now uses `cache: 'reload'`. If an
+update ever appears not to deploy, check that first. Currently
+`adsci-nvr-v16`.
