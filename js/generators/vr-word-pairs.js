@@ -20,7 +20,7 @@
 import { pick, int, shuffle } from '../core/rng.js';
 import { options, LETTERS } from '../core/render.js';
 import { attempt, explain } from './_util.js';
-import { SYNONYMS, ANTONYMS } from '../core/words.js';
+import { POS, POS_AMBIGUOUS, SYNONYMS, ANTONYMS } from '../core/words.js';
 
 export const meta = {
   id: 'vrpair',
@@ -59,8 +59,17 @@ export function generate(rng, difficulty = 2) {
 
     // Two fillers for each bracket. None may relate to anything else on
     // screen, otherwise more than one pairing works.
+    //
+    // They must ALSO match the part of speech of the answer. Without that the
+    // brackets mixed word classes and the question stopped testing vocabulary:
+    // (fragile, dwindle, blunder) holds exactly one adjective, so a child who
+    // knew neither word still scored. Every sampled item leaked this way.
+    const partOfSpeech = POS[left] || POS[right];
+    if (!partOfSpeech) return null;
     const banned = new Set([...relatives(left), ...relatives(right)]);
-    const fillers = shuffle(rng, ALL_WORDS).filter((w) => !banned.has(w));
+    const fillers = shuffle(rng, ALL_WORDS).filter(
+      (w) => !banned.has(w) && !POS_AMBIGUOUS.has(w) && POS[w] === partOfSpeech,
+    );
     if (fillers.length < 4) return null;
 
     const groupA = [left, fillers[0], fillers[1]];

@@ -4,8 +4,10 @@
 // what cannot is listed at the end so it is not mistaken for verified.
 
 import { WORD_TAGS, SENTENCES, LETTER_GAPS, ACTION_OBJECTS } from '../js/core/vocab.js';
-import { SYNONYMS, ANTONYMS } from '../js/core/words.js';
+import { SYNONYMS, ANTONYMS, POS, POS_AMBIGUOUS } from '../js/core/words.js';
 import * as analogy from '../js/generators/vr-analogy.js';
+import * as wordpairs from '../js/generators/vr-word-pairs.js';
+import * as logic from '../js/generators/vr-logic.js';
 import { makeRng } from '../js/core/rng.js';
 
 let failures = 0;
@@ -116,6 +118,51 @@ console.log(`action and object pairs: ${ACTION_OBJECTS.length}`);
   }
   if (bad) fail(`${bad} analogy fillers were words the verb beside them also fits`);
   else console.log('analogy fillers checked over 4000 seeds: none is a second right answer');
+}
+
+// Every word pair bracket must be one part of speech. Without this a set like
+// (fragile, dwindle, blunder) holds exactly one adjective and a child who
+// knows neither word still scores. All four sampled items leaked this way.
+{
+  let mixed = 0;
+  for (let seed = 1; seed <= 4000; seed += 1) {
+    let q;
+    try { q = wordpairs.generate(makeRng(seed), 2); } catch { continue; }
+    if (!q) continue;
+    const words = [...String(q.optionsHTML).matchAll(/class="opt-word">([^<]*)</g)].map((m) => m[1]);
+    // The four words that are legitimately two parts of speech can be answers,
+    // where their own pair fixes the sense, so they are not counted here.
+    const tags = new Set(words.filter((w) => !POS_AMBIGUOUS.has(w)).map((w) => POS[w]));
+    if (tags.size > 1) mixed += 1;
+  }
+  if (mixed) fail(`${mixed} word pair items mix parts of speech in one bracket`);
+  else console.log('word pair brackets checked over 4000 seeds: each is one part of speech');
+}
+
+// No two logic options may be about the same PAIR of people on a must-be-true
+// question. Two reversals contradict, so both are eliminable without reading
+// a single fact.
+{
+  let leak = 0; let must = 0; let cannot = 0;
+  for (let seed = 1; seed <= 4000; seed += 1) {
+    let q;
+    try { q = logic.generate(makeRng(seed), 2); } catch { continue; }
+    if (!q) continue;
+    const isMust = /must also be true/.test(q.prompt);
+    if (isMust) must += 1; else cannot += 1;
+    if (!isMust) continue;
+    const opts = [...String(q.optionsHTML).matchAll(/class="opt-text[^"]*">([^<]*)</g)].map((m) => m[1]);
+    const pairs = opts.map((t) => {
+      const w = t.replace(/\./g, '').trim().split(' ');
+      return [w[0], w[w.length - 1]].sort().join('|');
+    });
+    if (new Set(pairs).size !== pairs.length) leak += 1;
+  }
+  if (leak) fail(`${leak} logic items offer two options about the same pair of people`);
+  else console.log('logic options checked over 4000 seeds: no reversal pairs');
+  const share = cannot / (must + cannot);
+  if (share < 0.2) fail(`cannot-be-true questions are only ${(share * 100).toFixed(0)}% of output`);
+  else console.log(`logic mix: ${Math.round((1 - share) * 100)}% must, ${Math.round(share * 100)}% cannot`);
 }
 
 console.log(`\n${failures === 0 ? '✅ content checks passed' : `❌ ${failures} problems`}`);
