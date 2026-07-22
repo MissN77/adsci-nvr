@@ -398,10 +398,10 @@ export const PASSAGES = [
         why: ["\"But what did Scrooge care! It was the very thing he liked.\"", "This one is stated outright, so you do not have to work it out."],
       },
       {
-        q: "Which TWO of these does the passage say nobody ever did to Scrooge in the street?",
-        answers: ["stopped him to ask how he was", "asked him what the time was"],
-        wrong: ["offered to shake his hand", "wished him a happy birthday", "shouted at him across the street"],
-        why: ["\"Nobody ever stopped him in the street\" with gladsome looks, and \"no children asked him what it was o'clock\".", "The other three are not mentioned anywhere, so they cannot be right however likely they sound."],
+        q: "Which THREE things does the passage say nobody ever did to Scrooge?",
+        answers: ["stopped him to ask how he was", "asked him what the time was", "asked him the way"],
+        wrong: ["offered to shake his hand", "wished him a happy birthday"],
+        why: ["\"Nobody ever stopped him in the street\" with gladsome looks, and \"no children asked him what it was o'clock\".", "The third is \"no man or woman ever once in all his life inquired the way to such and such a place\"."],
       },
     ],
   },
@@ -768,10 +768,10 @@ export const PASSAGES = [
         why: ["\"There weren't any at all about the asylum, only a few poor weeny-teeny things out in front.\"", "She compares the trees there to orphans, which is a strong hint about her own situation."],
       },
       {
-        q: "Why does Anne compare the little trees to orphans?",
-        answer: "Because nobody has looked after them, just as nobody looked after her.",
-        wrong: ["Because they had been planted by orphans.", "Because they were the smallest trees she had seen.", "Because nobody had given them names.", "Because they were about to be cut down."],
-        why: ["\"They just looked like orphans themselves, those trees did. It used to make me want to cry to look at them.\"", "She then tells them she knows exactly how they feel, which only makes sense if she does."],
+        q: "What does Anne say the little trees looked like?",
+        answer: "Orphans.",
+        wrong: ["Soldiers standing in a row.", "A crowd of old women.", "Ghosts in the moonlight.", "A line of green candles."],
+        why: ["\"They just looked like orphans themselves, those trees did. It used to make me want to cry to look at them.\"", "The comparison is Anne's own, said aloud, so it is stated in the passage rather than worked out."],
       },
     ],
   },
@@ -878,7 +878,7 @@ export const PASSAGES = [
       {
         q: "What is the effect of the captain singing about a dead man's chest?",
         answer: "It hints that he has a violent past at sea.",
-        wrong: ["It shows he has been at sea a long time.", "It suggests he is a trained singer.", "It tells the reader he is drunk already.", "It shows he wants to entertain the family."],
+        wrong: ["It shows he is homesick for England.", "It suggests he is a trained singer.", "It tells the reader he is drunk already.", "It shows he wants to entertain the family."],
         why: ["A song about fifteen men on a dead man's chest is not an ordinary sailor's tune, and he sings it often afterwards.", "It arrives before he has said a word to anybody, so it works as a warning to the reader."],
       },
       {
@@ -1011,7 +1011,7 @@ export const PASSAGES = [
       {
         q: "Why was Mother in no hurry to get out of the carriage?",
         answer: "She had grown-up jobs to do and did not share their excitement.",
-        wrong: ["She was unwell after the journey.", "She had lost something in the carriage.", "She was waiting for Father to arrive.", "She had fallen asleep on the way."],
+        wrong: ["She was afraid of the horses.", "She had lost something in the carriage.", "She was waiting for Father to arrive.", "She had fallen asleep on the way."],
         why: ["She saw to the boxes and paid the driver instead of rushing round the garden.", "The narrator says the children \"were wiser, for once\", which is a joke at the grown-ups' expense."],
       },
       {
@@ -1550,7 +1550,7 @@ export const PASSAGES = [
       {
         q: "Which word does the narrator use for the trouble the kitten is in?",
         answer: "disgrace",
-        wrong: ["mischief", "reproachfully", "romps", "manners"],
+        wrong: ["worsted", "reproachfully", "romps", "manners"],
         why: ["\"Giving it a little kiss to make it understand that it was in disgrace.\"", "Reproachfully describes how Alice looks at Dinah, not the trouble the kitten is in."],
       },
       {
@@ -1825,7 +1825,7 @@ export const PASSAGES = [
       {
         q: "What does Father Wolf mean by \"Enter, then, and look, but there is no food here\"?",
         answer: "Tabaqui may come in, but he is not welcome to eat.",
-        wrong: ["The wolves have not hunted for several days.", "Tabaqui should look for food in the village.", "Father Wolf has mistaken Tabaqui for another wolf.", "The cubs have eaten everything already."],
+        wrong: ["The cubs are too young to eat meat.", "Tabaqui should look for food in the village.", "Father Wolf has mistaken Tabaqui for another wolf.", "The cubs have eaten everything already."],
         why: ["\"Enter, then, and look,\" said Father Wolf stiffly.", "Tabaqui finds a bone at the back of the cave anyway, which shows it was not strictly true."],
       },
       {
@@ -2321,10 +2321,10 @@ export const PASSAGES = [
         why: ["\"for strange effects and extraordinary combinations we must go to life itself, which is always far more daring than any effort of the imagination\"", "He offers Mr Wilson's story as the proof of it."],
       },
       {
-        q: "Which TWO things does Holmes do as he settles back into his chair?",
+        q: "Which TWO things does Watson say are Holmes's custom when he is in a judicial mood?",
         answers: ["relapsing into his armchair", "putting his fingertips together"],
         wrong: ["pacing up and down the room", "smoking a pipe", "drawing the curtains"],
-        why: ["\"relapsing into his armchair and putting his fingertips together, as was his custom when in judicial moods\"", "Both are in the same clause, describing one movement into the chair."],
+        why: ["\"relapsing into his armchair and putting his fingertips together, as was his custom when in judicial moods\"", "Watson calls both of them his custom, so the two belong together."],
       },
       {
         q: "What does Watson mean by \"a proposition which I took the liberty of doubting\"?",
@@ -2545,10 +2545,10 @@ export const PASSAGES = [
         why: ["\"I claim the privilege of speaking to juveniles as a juvenile myself.\"", "He says he means to pass away from all those who are seniors amongst us, so the choice is deliberate."],
       },
       {
-        q: "What does \"natural philosophy\" mean in the passage?",
-        answer: "what we would now call science",
-        wrong: ["the study of candles alone", "the study of ancient Greek writers", "the history of great scientists", "the study of law and government"],
-        why: ["\"There is no better, there is no more open door by which you can enter into the study of natural philosophy, than by considering the physical phenomena of a candle.\"", "He talks about chemical action, air, heat and light, which are all science."],
+        q: "What does Faraday say is the best way into the study of natural philosophy?",
+        answer: "Considering the physical phenomena of a candle.",
+        wrong: ["Reading the works of earlier scientists.", "Watching a fire burn in a grate.", "Studying the bogs of Ireland.", "Learning the laws of the universe by heart."],
+        why: ["\"There is no better, there is no more open door by which you can enter into the study of natural philosophy, than by considering the physical phenomena of a candle.\"", "He calls the candle the door you enter by, so the answer is the candle itself."],
       },
       {
         q: "Where does the candle-wood come from?",
