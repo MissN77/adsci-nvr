@@ -629,3 +629,35 @@ a { color: var(--teal-dark); }
 
   .card, .explain { page-break-inside: avoid; }
 }
+
+/* ── Grid rotation ─────────────────────────────────────────────────────── */
+/* Added with the grid rotation question type, which shows a whole shaded
+   grid rather than a single figure. */
+.grid-fig { display: block; }
+
+.grid-stim {
+  align-items: center;
+  gap: 10px;
+}
+
+.grid-turn {
+  font-size: 30px;
+  line-height: 1;
+  color: #2A7B6F;
+}
+
+.opt .grid-fig { max-width: 100%; height: auto; }
+
+/* ── Diagonal mirror lines ─────────────────────────────────────────────── */
+/* The diagonal mirror is drawn across the figure's own box, the way the real
+   paper prints it, rather than as a divider between two tiles. */
+.cell--mirror {
+  position: relative;
+  display: inline-flex;
+}
+
+.cell--mirror .mirror-line {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}

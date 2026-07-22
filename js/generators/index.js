@@ -10,6 +10,7 @@ import * as mat from './matrices.js';
 import * as cod from './codes.js';
 import * as ref from './reflection.js';
 import * as rot from './rotation.js';
+import * as grid from './grid-rotation.js';
 import * as fold from './paper-folding.js';
 import * as cube from './cubes.js';
 import * as hid from './hidden-shapes.js';
@@ -25,6 +26,7 @@ export const REGISTRY = {
   [cod.meta.id]: cod,
   [ref.meta.id]: ref,
   [rot.meta.id]: rot,
+  [grid.meta.id]: grid,
   [fold.meta.id]: fold,
   [cube.meta.id]: cube,
   [hid.meta.id]: hid,

@@ -1,9 +1,7 @@
 // ── Teaching content ──────────────────────────────────────────────────────
 //
 // One entry per question type id in the generator registry. Written for the
-// child, not the parent, so it is short, plain and calm. Six of these types
-// have generators today; ref, rot, fold, cube and hid are here ready for the
-// generators being added next, so the learn screen never opens a blank page.
+// child, not the parent, so it is short, plain and calm.
 //
 // Each entry: { what, steps: [4 short steps], tip }
 
@@ -94,6 +92,17 @@ export const TEACH = {
       'Check the rest of the shape has come with it in the same way.',
     ],
     tip: 'Turning never swaps left and right. If the shape has come out back to front, that option is a reflection and it is wrong.',
+  },
+
+  grid: {
+    what: 'A square grid has some parts shaded to make a pattern. You picture the whole grid turned round and choose how it looks afterwards.',
+    steps: [
+      'Read how far the turn is and which way it goes.',
+      'Find one shaded square you can recognise, usually one near a corner.',
+      'Work out where that one square lands after the turn.',
+      'Check the options and keep only the one where the rest of the pattern fits too.',
+    ],
+    tip: 'A quarter turn sends the top row to one of the sides. If an option has the top row still along the top, it has been flipped rather than turned, and a flip is never the answer here.',
   },
 
   fold: {
