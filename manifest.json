@@ -1,7 +1,7 @@
 {
   "name": "11+ Non-Verbal Reasoning | Advisory Science",
   "short_name": "11+ NVR",
-  "description": "Non-verbal reasoning practice for the 11+, Bexley and GL Assessment style.",
+  "description": "Non-verbal reasoning and spatial reasoning practice for the 11+.",
   "start_url": "./index.html#/home",
   "scope": "./",
   "display": "standalone",

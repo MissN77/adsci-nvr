@@ -1,6 +1,6 @@
 # 11+ Non-Verbal Reasoning, Advisory Science
 
-A standalone practice app for the Bexley / GL Assessment 11+ non-verbal reasoning
+A standalone practice app for the non-verbal reasoning part of the Bexley 11+
 paper. Sold to parents. Works offline once opened, installs to a phone home
 screen, keeps all progress on the device.
 
@@ -12,9 +12,10 @@ Supabase project, or its data.
 
 ## What a parent gets
 
-- **Eleven question types**, the full GL non-verbal range: odd one out,
-  similarities, sequences, analogies, matrices, codes, reflection, rotation,
-  paper folding, nets and cubes, hidden shapes.
+- **Eleven question types** covering the standard non-verbal and spatial
+  reasoning families: odd one out, similarities, sequences, analogies,
+  matrices, codes, reflection, rotation, paper folding, nets and cubes,
+  hidden shapes.
 - **Questions are generated, not stored.** There is no bank of 150 questions to
   memorise. Every practice run is newly built, so a child can practise the same
   type every day for months without repeating a paper.
@@ -136,10 +137,26 @@ Progress never leaves the device. No accounts, no cloud, no personal data of
 other people's children on any server, which keeps this well clear of needing a
 privacy policy or a data processing agreement.
 
+## What the Bexley test actually is, as of the 2026 cycle
+
+Checked against Bexley Council's own admissions page in July 2026.
+
+- The provider is **Quest Assessments**, not GL Assessment. GL ran the paper in
+  earlier cycles and a lot of tutoring sites still say so. Do not put "GL" on
+  the listing.
+- Two papers, both multiple choice, roughly 50 minutes each in one session.
+- Weighting: **verbal ability and English comprehension 50%, numerical
+  reasoning 25%, non-verbal reasoning 25%.**
+
+So this app covers the **25%**. Say that plainly on the listing. Quest does not
+publish a question-type breakdown, so no claim of type-by-type alignment with
+their paper can be made honestly. Cubes and nets is the one type named in
+public write-ups of the Quest paper, and it is included here.
+
 ## Deploying
 
 Static files, no build step. Copy the folder to any host.
 
 **Bump `CACHE_NAME` in `sw.js` on every deploy.** Otherwise the service worker
 keeps serving the old version and buyers never see the fix. Currently
-`adsci-nvr-v2`.
+`adsci-nvr-v4`.
