@@ -30,12 +30,40 @@
 //   Kidnapped,                Robert Louis Stevenson,     1886, died 1894
 //   Pollyanna,                Eleanor H. Porter,          1913, died 1920
 //   Through the Looking-Glass, Lewis Carroll,             1871, died 1898
+//   Peter Pan,                J. M. Barrie,               1911, died 1937
+//   Rebecca of Sunnybrook Farm, Kate Douglas Wiggin,      1903, died 1923
+//   Three Men in a Boat,      Jerome K. Jerome,           1889, died 1927
+//   The Jungle Book,          Rudyard Kipling,            1894, died 1936
+//   Robinson Crusoe,          Daniel Defoe,               1719, died 1731
+//   Just So Stories,          Rudyard Kipling,            1902, died 1936
+//   The Prince and the Pauper, Mark Twain,                1881, died 1910
+//   The Happy Prince,         Oscar Wilde,                1888, died 1900
+//   What Katy Did,            Susan Coolidge,             1872, died 1905
+//   A Little Princess,        Frances Hodgson Burnett,    1905, died 1924
+//   The Story of My Boyhood,  John Muir,                  1913, died 1914
+//   The Red-Headed League,    Arthur Conan Doyle,         1891, died 1930
+//   A Wonder Book,            Nathaniel Hawthorne,        1851, died 1864
+//   At the Back of the North Wind, George MacDonald,      1871, died 1905
+//   The Merry Adventures of Robin Hood, Howard Pyle,      1883, died 1911
+//   The Chemical History of a Candle, Michael Faraday,    1861, died 1867
+//   Wild Animals I Have Known, Ernest Thompson Seton,     1898, died 1946
 //
-// Darwin and Shackleton are non-fiction on purpose. Quest's English paper says
+// The latest death here is Seton in 1946, so every text is clear of life of
+// the author plus seventy years.
+//
+// Five of the forty are non-fiction on purpose: Darwin, Shackleton, Muir,
+// Faraday and Seton. Quest's English paper says
 // questions may cover one or two texts, and a child who has only ever
 // practised on stories meets an information text for the first time on the
-// day. The two read quite differently from each other as well: Darwin is
-// patient observation, Shackleton is a log of things going wrong.
+// day. They also read quite differently from one another: Darwin is patient
+// observation, Shackleton is a log of things going wrong, Muir is memoir,
+// Faraday is a lecture spoken aloud to an audience of children, and Seton is
+// nature writing that borrows the shape of a story.
+//
+// The fiction is deliberately not all Victorian children's novels. There is a
+// fairy tale (Wilde), a Greek myth retold (Hawthorne), a legend (Pyle), a
+// detective story (Conan Doyle) and a piece of comic writing (Jerome), because
+// a child who has only met one register is being trained on half the paper.
 //
 // Extracts screened and rejected, so nobody has to rediscover why:
 //
@@ -43,20 +71,30 @@
 //   Tom Sawyer, whitewashing scene: runs into Jim's dialect speech, and one
 //     line carries a racial slur. The book is fine; that scene is not, so the
 //     extract used is Aunt Polly hunting for Tom instead.
-//   A Little Princess, opening: Lascars on the voyage from Bombay.
+//   A Little Princess, opening: Lascars on the voyage from Bombay. A later
+//     extract from the same chapter IS used. It still carries period words
+//     from a colonial childhood, ayah and salaams and Missee Sahib, used
+//     descriptively rather than unkindly. It is left in because the passage is
+//     standard eleven plus material and the words are worth a parent
+//     explaining, but it is flagged here rather than left to be discovered.
+//   The Water-Babies, opening: Tom is beaten by his master every day of the
+//     week, and the second sentence turns on his never having heard of God or
+//     of Christ. Both are hard to meet alone on a practice paper.
 //
 // One further rejection, for a different reason. The Natural History of
 // Selborne is out of copyright and would have made a third non-fiction text,
 // but it opens with eighteenth-century topographical prose, a list of twelve
 // parish names and the word calcareous. It would punish a ten year old rather
-// than teach one. Hard is fine; unfair is not.
+// than teach one. Hard is fine; unfair is not. Scott's Last Expedition went
+// the same way: the diary is fragmentary and thick with abbreviations, so
+// Muir's boyhood memoir took the place it would have had.
 //
 // The point is that a book is not ruled out by one bad extract. Screen the
 // extract, not the author.
 //
-// Both are far past life of the author plus seventy years, so they are in the
-// public domain in the UK. The text is the author's, not Gutenberg's, and
-// none of Gutenberg's own boilerplate is reproduced.
+// Every text above is past life of the author plus seventy years, so all are
+// in the public domain in the UK. The text is the author's, not Gutenberg's,
+// and none of Gutenberg's own boilerplate is reproduced.
 //
 // One typographic change has been made. Where the original prints a long dash
 // for speech that is cut off, an ellipsis is used instead, because that
@@ -1550,6 +1588,1051 @@ export const PASSAGES = [
         answer: "She is trying to sound cross and not quite succeeding.",
         wrong: ["She has a sore throat.", "She is shouting very loudly.", "She is talking to herself.", "She is imitating her sister."],
         why: ["Managing to sound cross is not the same as being cross, and the phrase admits the effort.", "She has just kissed the kitten, so the reader already knows how she really feels."],
+      },
+    ],
+  },
+  {
+    id: "peterpan",
+    title: "All children, except one",
+    source: "from Peter Pan by J. M. Barrie, 1911",
+    paragraphs: [
+      "All children, except one, grow up. They soon know that they will grow up, and the way Wendy knew was this. One day when she was two years old she was playing in a garden, and she plucked another flower and ran with it to her mother. I suppose she must have looked rather delightful, for Mrs. Darling put her hand to her heart and cried, “Oh, why can’t you remain like this for ever!” This was all that passed between them on the subject, but henceforth Wendy knew that she must grow up. You always know after you are two. Two is the beginning of the end.",
+      "Of course they lived at 14, and until Wendy came her mother was the chief one. She was a lovely lady, with a romantic mind and such a sweet mocking mouth. Her romantic mind was like the tiny boxes, one within the other, that come from the puzzling East, however many you discover there is always one more; and her sweet mocking mouth had one kiss on it that Wendy could never get, though there it was, perfectly conspicuous in the right-hand corner.",
+      "The way Mr. Darling won her was this: the many gentlemen who had been boys when she was a girl discovered simultaneously that they loved her, and they all ran to her house to propose to her except Mr. Darling, who took a cab and nipped in first, and so he got her. He got all of her, except the innermost box and the kiss. He never knew about the box, and in time he gave up trying for the kiss. Wendy thought Napoleon could have got it, but I can picture him trying, and then going off in a passion, slamming the door.",
+      "Mr. Darling used to boast to Wendy that her mother not only loved him but respected him. He was one of those deep ones who know about stocks and shares. Of course no one really knows, but he quite seemed to know, and he often said stocks were up and shares were down in a way that would have made any woman respect him.",
+    ],
+    questions: [
+      {
+        q: "How old was Wendy when she learned she would have to grow up?",
+        answer: "Two years old.",
+        wrong: ["One year old.", "Three years old.", "Five years old.", "Seven years old."],
+        why: ["\"One day when she was two years old she was playing in a garden.\"", "The narrator adds \"You always know after you are two\", which fixes the age."],
+      },
+      {
+        q: "What is the effect of opening with \"All children, except one, grow up\"?",
+        answer: "It makes the reader want to know who the exception is.",
+        wrong: ["It warns the reader the story will be sad.", "It explains where the story takes place.", "It tells the reader Wendy is unusual.", "It shows the narrator dislikes children."],
+        why: ["\"All children, except one, grow up.\"", "The exception is never named in this extract, so the sentence works as a hook rather than an answer."],
+      },
+      {
+        q: "What does \"conspicuous\" mean in the passage?",
+        answer: "easy to see",
+        wrong: ["hidden away", "very small", "brightly coloured", "carefully guarded"],
+        why: ["The kiss was \"perfectly conspicuous in the right-hand corner\", yet Wendy could never get it.", "The joke depends on it being plainly visible and still out of reach."],
+      },
+      {
+        q: "What do the boxes \"that come from the puzzling East\" tell us about Mrs Darling?",
+        answer: "There is always more to her than anyone finds out.",
+        wrong: ["She has travelled a great deal.", "She keeps her belongings very tidy.", "She is difficult to talk to.", "She collects unusual objects."],
+        why: ["\"however many you discover there is always one more\"", "The image is used for her mind, not for anything she owns."],
+      },
+      {
+        q: "Which TWO things did Mr Darling never win from his wife?",
+        answers: ["the innermost box", "the kiss"],
+        wrong: ["her respect", "her romantic mind", "her sweet mocking mouth"],
+        why: ["\"He got all of her, except the innermost box and the kiss.\"", "He is later said to boast that she \"not only loved him but respected him\", so respect is not one of them."],
+      },
+      {
+        q: "Why did Mr Darling reach Mrs Darling before all the other gentlemen?",
+        answer: "He took a cab while the others ran.",
+        wrong: ["He lived nearest to her house.", "He asked her first, before the others thought of it.", "He was the only one she liked.", "He wrote to her instead of calling."],
+        why: ["\"who took a cab and nipped in first, and so he got her\"", "All the others \"ran to her house to propose to her\", which is the contrast."],
+      },
+      {
+        q: "What is the narrator suggesting about Mr Darling and stocks and shares?",
+        answer: "He only appears to understand them.",
+        wrong: ["He has lost a great deal of money.", "He is the cleverest man in the city.", "He refuses to talk about his work.", "He explains them carefully to Wendy."],
+        why: ["\"Of course no one really knows, but he quite seemed to know.\"", "The phrase \"in a way that would have made any woman respect him\" is about the manner, not the knowledge."],
+      },
+      {
+        q: "Which word in the passage describes Mrs Darling's mind?",
+        answer: "romantic",
+        wrong: ["mocking", "conspicuous", "delightful", "puzzling"],
+        why: ["\"She was a lovely lady, with a romantic mind and such a sweet mocking mouth.\"", "Mocking describes her mouth and puzzling describes the East, so neither fits the mind."],
+      },
+    ],
+  },
+  {
+    id: "rebecca",
+    title: "The stage coach to Riverboro",
+    source: "from Rebecca of Sunnybrook Farm by Kate Douglas Wiggin, 1903",
+    paragraphs: [
+      "The old stage coach was rumbling along the dusty road that runs from Maplewood to Riverboro. The day was as warm as midsummer, though it was only the middle of May, and Mr. Jeremiah Cobb was favoring the horses as much as possible, yet never losing sight of the fact that he carried the mail. The hills were many, and the reins lay loosely in his hands as he lolled back in his seat and extended one foot and leg luxuriously over the dashboard. His brimmed hat of worn felt was well pulled over his eyes, and he revolved a quid of tobacco in his left cheek.",
+      "There was one passenger in the coach, a small dark-haired person in a glossy buff calico dress. She was so slender and so stiffly starched that she slid from space to space on the leather cushions, though she braced herself against the middle seat with her feet and extended her cotton-gloved hands on each side, in order to maintain some sort of balance. Whenever the wheels sank farther than usual into a rut, or jolted suddenly over a stone, she bounded involuntarily into the air, came down again, pushed back her funny little straw hat, and picked up or settled more firmly a small pink sun shade, which seemed to be her chief responsibility, unless we except a bead purse, into which she looked whenever the condition of the roads would permit, finding great apparent satisfaction in that its precious contents neither disappeared nor grew less. Mr. Cobb guessed nothing of these harassing details of travel, his business being to carry people to their destinations, not, necessarily, to make them comfortable on the way. Indeed he had forgotten the very existence of this one unnoteworthy little passenger.",
+      "When he was about to leave the post-office in Maplewood that morning, a woman had alighted from a wagon, and coming up to him, inquired whether this were the Riverboro stage, and if he were Mr. Cobb. Being answered in the affirmative, she nodded to a child who was eagerly waiting for the answer, and who ran towards her as if she feared to be a moment too late. The child might have been ten or eleven years old perhaps, but whatever the number of her summers, she had an air of being small for her age. Her mother helped her into the stage coach, deposited a bundle and a bouquet of lilacs beside her, superintended the \"roping on\" behind of an old hair trunk, and finally paid the fare, counting out the silver with great care.",
+    ],
+    questions: [
+      {
+        q: "What was Mr Cobb's job?",
+        answer: "Driving the stage coach and carrying the mail.",
+        wrong: ["Keeping the post office at Maplewood.", "Looking after the horses at Riverboro.", "Selling tickets for the coach.", "Delivering parcels on foot."],
+        why: ["\"never losing sight of the fact that he carried the mail\"", "The opening also has him driving the coach from Maplewood to Riverboro."],
+      },
+      {
+        q: "Which word in the passage tells you the road was not paved?",
+        answer: "dusty",
+        wrong: ["crooked", "narrow", "rutted", "muddy"],
+        why: ["\"The old stage coach was rumbling along the dusty road.\"", "Ruts and stones are mentioned later, but the word describing the road itself is the one asked for."],
+      },
+      {
+        q: "Why did the child slide about on the seat?",
+        answer: "Her dress was so stiffly starched that it slipped on the leather.",
+        wrong: ["The coach was going very fast.", "She was trying to see out of the window.", "She was too small to reach the floor.", "The seat was wet from the rain."],
+        why: ["\"She was so slender and so stiffly starched that she slid from space to space on the leather cushions.\"", "She braces her feet against the middle seat to stop it, which shows the cause is the sliding, not the speed."],
+      },
+      {
+        q: "What did the child keep looking into during the journey?",
+        answer: "A bead purse.",
+        wrong: ["A small pink sun shade.", "A bouquet of lilacs.", "An old hair trunk.", "A letter from her mother."],
+        why: ["\"a bead purse, into which she looked whenever the condition of the roads would permit\"", "She holds the sun shade, but it is the purse she keeps checking."],
+      },
+      {
+        q: "Which TWO things did the child's mother do before the coach set off?",
+        answers: ["helped her into the stage coach", "paid the fare"],
+        wrong: ["gave her a bead purse", "spoke to the other passengers", "drove the wagon to Riverboro"],
+        why: ["\"Her mother helped her into the stage coach, deposited a bundle and a bouquet of lilacs beside her.\"", "\"finally paid the fare, counting out the silver with great care\""],
+      },
+      {
+        q: "What does \"counting out the silver with great care\" suggest about the family?",
+        answer: "Money is short and every coin matters.",
+        wrong: ["The mother does not trust Mr Cobb.", "The fare is unusually expensive.", "The mother is slow at arithmetic.", "They are wealthy and used to paying."],
+        why: ["\"finally paid the fare, counting out the silver with great care\"", "The care is in the counting rather than in the paying, which is what makes the detail tell."],
+      },
+      {
+        q: "Why has Mr Cobb forgotten his passenger?",
+        answer: "He thinks of his job as delivering people, not looking after them.",
+        wrong: ["She has been completely silent the whole way.", "He is angry that she has so much luggage.", "He cannot see into the coach from his seat.", "He is worried about the state of the road."],
+        why: ["\"his business being to carry people to their destinations, not, necessarily, to make them comfortable on the way\"", "The narrator says he guessed nothing of the harassing details of her travel."],
+      },
+      {
+        q: "What does \"whatever the number of her summers\" tell us?",
+        answer: "The narrator is not certain of her exact age.",
+        wrong: ["The child was born in summer.", "The journey lasted several summers.", "The child had never left home before.", "The narrator thinks she is older than she looks."],
+        why: ["\"The child might have been ten or eleven years old perhaps.\"", "The narrator then says \"she had an air of being small for her age\", which is a guess rather than a fact."],
+      },
+    ],
+  },
+  {
+    id: "jerome",
+    title: "The man with every disease",
+    source: "from Three Men in a Boat by Jerome K. Jerome, 1889",
+    paragraphs: [
+      "There were four of us, George, and William Samuel Harris, and myself, and Montmorency. We were sitting in my room, smoking, and talking about how bad we were, bad from a medical point of view I mean, of course.",
+      "We were all feeling seedy, and we were getting quite nervous about it. Harris said he felt such extraordinary fits of giddiness come over him at times, that he hardly knew what he was doing; and then George said that he had fits of giddiness too, and hardly knew what he was doing. With me, it was my liver that was out of order. I knew it was my liver that was out of order, because I had just been reading a patent liver-pill circular, in which were detailed the various symptoms by which a man could tell when his liver was out of order. I had them all.",
+      "It is a most extraordinary thing, but I never read a patent medicine advertisement without being impelled to the conclusion that I am suffering from the particular disease therein dealt with in its most virulent form. The diagnosis seems in every case to correspond exactly with all the sensations that I have ever felt.",
+      "I remember going to the British Museum one day to read up the treatment for some slight ailment of which I had a touch, hay fever, I fancy it was. I got down the book, and read all I came to read; and then, in an unthinking moment, I idly turned the leaves, and began to indolently study diseases, generally. I forget which was the first distemper I plunged into, some fearful, devastating scourge, I know, and, before I had glanced half down the list of “premonitory symptoms,” it was borne in upon me that I had fairly got it.",
+      "I sat for awhile, frozen with horror; and then, in the listlessness of despair, I again turned over the pages. I came to typhoid fever, read the symptoms, discovered that I had typhoid fever, must have had it for months without knowing it, wondered what else I had got; turned up St. Vitus’s Dance, found, as I expected, that I had that too, began to get interested in my case, and determined to sift it to the bottom, and so started alphabetically, read up ague, and learnt that I was sickening for it, and that the acute stage would commence in about another fortnight. Bright’s disease, I was relieved to find, I had only in a modified form, and, so far as that was concerned, I might live for years. Cholera I had, with severe complications; and diphtheria I seemed to have been born with. I plodded conscientiously through the twenty-six letters, and the only malady I could conclude I had not got was housemaid’s knee.",
+    ],
+    questions: [
+      {
+        q: "How many were in the room at the start?",
+        answer: "Four.",
+        wrong: ["Two.", "Three.", "Five.", "Six."],
+        why: ["\"There were four of us, George, and William Samuel Harris, and myself, and Montmorency.\"", "They are all named in the opening sentence."],
+      },
+      {
+        q: "What is the effect of \"bad from a medical point of view I mean, of course\"?",
+        answer: "The narrator corrects himself as though the other meaning were obvious, which is comic.",
+        wrong: ["It shows the narrator is a doctor.", "It warns the reader that the story is serious.", "It explains why the four men are friends.", "It tells the reader they have been behaving badly."],
+        why: ["\"talking about how bad we were, bad from a medical point of view I mean, of course\"", "The of course pretends the reader has already made the mistake, which is where the humour sits."],
+      },
+      {
+        q: "How did the narrator decide that his liver was out of order?",
+        answer: "He read a pill advertisement listing the symptoms and found he had them all.",
+        wrong: ["A doctor examined him at the British Museum.", "George told him he looked unwell.", "He had been feeling giddy for weeks.", "He looked it up in a medical dictionary."],
+        why: ["\"in which were detailed the various symptoms by which a man could tell when his liver was out of order\"", "He then says simply \"I had them all.\""],
+      },
+      {
+        q: "Which single word describes how the narrator studied diseases in the library?",
+        answer: "indolently",
+        wrong: ["carefully", "hastily", "eagerly", "anxiously"],
+        why: ["\"began to indolently study diseases, generally\"", "It matters because he is only browsing, which makes the panic that follows funnier."],
+      },
+      {
+        q: "Which THREE illnesses does the narrator decide he has?",
+        answers: ["typhoid fever", "cholera", "diphtheria"],
+        wrong: ["scarlet fever", "gout"],
+        why: ["\"I came to typhoid fever, read the symptoms, discovered that I had typhoid fever.\"", "\"Cholera I had, with severe complications; and diphtheria I seemed to have been born with.\""],
+      },
+      {
+        q: "Which was the only illness he decided he did not have?",
+        answer: "Housemaid's knee.",
+        wrong: ["Hay fever.", "Ague.", "Bright's disease.", "St Vitus's Dance."],
+        why: ["\"the only malady I could conclude I had not got was housemaid's knee\"", "He says he had Bright's disease in a modified form, so that one does not count as a miss."],
+      },
+      {
+        q: "Why does the narrator work through the diseases alphabetically?",
+        answer: "It makes his panic sound absurdly organised.",
+        wrong: ["The book was arranged that way and he had no choice.", "He wanted to finish before the museum closed.", "He was looking for one disease in particular.", "He was writing a list for his doctor."],
+        why: ["\"and so started alphabetically\"", "\"I plodded conscientiously through the twenty-six letters.\""],
+      },
+      {
+        q: "What does \"premonitory\" mean in the passage?",
+        answer: "giving warning beforehand",
+        wrong: ["extremely painful", "very rare", "easily cured", "hard to explain"],
+        why: ["He had not even read half the list \"before I had glanced half down the list of\" them when he was convinced.", "A premonitory symptom is one that comes first and warns of what follows."],
+      },
+    ],
+  },
+  {
+    id: "jungle",
+    title: "Tabaqui comes to the cave",
+    source: "from The Jungle Book by Rudyard Kipling, 1894",
+    paragraphs: [
+      "It was seven o’clock of a very warm evening in the Seeonee hills when Father Wolf woke up from his day’s rest, scratched himself, yawned, and spread out his paws one after the other to get rid of the sleepy feeling in their tips. Mother Wolf lay with her big gray nose dropped across her four tumbling, squealing cubs, and the moon shone into the mouth of the cave where they all lived. “Augrh!” said Father Wolf. “It is time to hunt again.” He was going to spring down hill when a little shadow with a bushy tail crossed the threshold and whined: “Good luck go with you, O Chief of the Wolves. And good luck and strong white teeth go with noble children that they may never forget the hungry in this world.”",
+      "It was the jackal, Tabaqui, the Dish-licker, and the wolves of India despise Tabaqui because he runs about making mischief, and telling tales, and eating rags and pieces of leather from the village rubbish-heaps. But they are afraid of him too, because Tabaqui, more than anyone else in the jungle, is apt to go mad, and then he forgets that he was ever afraid of anyone, and runs through the forest biting everything in his way. Even the tiger runs and hides when little Tabaqui goes mad, for madness is the most disgraceful thing that can overtake a wild creature. We call it hydrophobia, but they call it dewanee, the madness, and run.",
+      "“Enter, then, and look,” said Father Wolf stiffly, “but there is no food here.”",
+      "“For a wolf, no,” said Tabaqui, “but for so mean a person as myself a dry bone is a good feast. Who are we, the Gidur-log [the jackal people], to pick and choose?” He scuttled to the back of the cave, where he found the bone of a buck with some meat on it, and sat cracking the end merrily.",
+      "“All thanks for this good meal,” he said, licking his lips. “How beautiful are the noble children! How large are their eyes! And so young too! Indeed, indeed, I might have remembered that the children of kings are men from the beginning.”",
+    ],
+    questions: [
+      {
+        q: "At what time does the passage begin?",
+        answer: "Seven o'clock on a warm evening.",
+        wrong: ["Seven o'clock on a cold morning.", "Midnight, when the moon was full.", "Dawn, before the wolves had woken.", "Noon, in the heat of the day."],
+        why: ["\"It was seven o'clock of a very warm evening in the Seeonee hills.\"", "Father Wolf is waking from his day's rest, which fits an evening start."],
+      },
+      {
+        q: "Which word in the passage names the trouble Tabaqui goes about making?",
+        answer: "mischief",
+        wrong: ["dewanee", "hydrophobia", "threshold", "despise"],
+        why: ["\"because he runs about making mischief, and telling tales\"", "Dewanee and hydrophobia are both names for his madness, not for the trouble he stirs up."],
+      },
+      {
+        q: "Why are the wolves afraid of Tabaqui even though they despise him?",
+        answer: "He is likely to go mad and bite everything in his way.",
+        wrong: ["He is stronger than any of them.", "He hunts in a larger pack.", "He is a favourite of Shere Khan.", "He can climb where they cannot follow."],
+        why: ["\"Tabaqui, more than anyone else in the jungle, is apt to go mad.\"", "\"Even the tiger runs and hides when little Tabaqui goes mad.\""],
+      },
+      {
+        q: "Which THREE reasons does the passage give for the wolves despising Tabaqui?",
+        answers: ["he makes mischief", "he tells tales", "he eats rubbish"],
+        wrong: ["he hunts alone", "he steals cubs"],
+        why: ["\"he runs about making mischief, and telling tales, and eating rags and pieces of leather from the village rubbish-heaps\"", "All three are in the same sentence, so this rewards reading it to the end."],
+      },
+      {
+        q: "What is the effect of Tabaqui praising the cubs so lavishly?",
+        answer: "It sounds like flattery from someone who has just been fed.",
+        wrong: ["It shows he is genuinely fond of the family.", "It proves he has come to give a warning.", "It suggests he has cubs of his own.", "It shows he cannot see very well in the dark."],
+        why: ["He has just said \"All thanks for this good meal\" before the compliments begin.", "He has already called himself \"so mean a person as myself\", so the grand language does not fit him."],
+      },
+      {
+        q: "What does \"despise\" mean in the passage?",
+        answer: "look down on with contempt",
+        wrong: ["fear greatly", "fail to notice", "envy secretly", "drive away"],
+        why: ["\"the wolves of India despise Tabaqui\"", "The passage sets it against being afraid of him, so the two are different feelings."],
+      },
+      {
+        q: "What does Father Wolf mean by \"Enter, then, and look, but there is no food here\"?",
+        answer: "Tabaqui may come in, but he is not welcome to eat.",
+        wrong: ["The wolves have not hunted for several days.", "Tabaqui should look for food in the village.", "Father Wolf wants Tabaqui to leave at once.", "The cubs have eaten everything already."],
+        why: ["\"Enter, then, and look,\" said Father Wolf stiffly.", "Tabaqui finds a bone at the back of the cave anyway, which shows it was not strictly true."],
+      },
+      {
+        q: "What did Tabaqui find at the back of the cave?",
+        answer: "The bone of a buck with some meat on it.",
+        wrong: ["A piece of leather from the rubbish-heap.", "Nothing at all.", "One of Father Wolf's cubs.", "A dish of milk."],
+        why: ["\"where he found the bone of a buck with some meat on it, and sat cracking the end merrily\"", "He had been told there was no food there, which is why the detail matters."],
+      },
+    ],
+  },
+  {
+    id: "crusoe",
+    title: "The print on the shore",
+    source: "from Robinson Crusoe by Daniel Defoe, 1719",
+    paragraphs: [
+      "It happened one day, about noon, going towards my boat, I was exceedingly surprised with the print of a man’s naked foot on the shore, which was very plain to be seen on the sand. I stood like one thunderstruck, or as if I had seen an apparition. I listened, I looked round me, but I could hear nothing, nor see anything; I went up to a rising ground to look farther; I went up the shore and down the shore, but it was all one; I could see no other impression but that one. I went to it again to see if there were any more, and to observe if it might not be my fancy; but there was no room for that, for there was exactly the print of a foot, toes, heel, and every part of a foot. How it came thither I knew not, nor could I in the least imagine; but after innumerable fluttering thoughts, like a man perfectly confused and out of myself, I came home to my fortification, not feeling, as we say, the ground I went on, but terrified to the last degree, looking behind me at every two or three steps, mistaking every bush and tree, and fancying every stump at a distance to be a man. Nor is it possible to describe how many various shapes my affrighted imagination represented things to me in, how many wild ideas were found every moment in my fancy, and what strange, unaccountable whimsies came into my thoughts by the way.",
+      "When I came to my castle (for so I think I called it ever after this), I fled into it like one pursued. Whether I went over by the ladder, as first contrived, or went in at the hole in the rock, which I had called a door, I cannot remember; no, nor could I remember the next morning, for never frightened hare fled to cover, or fox to earth, with more terror of mind than I to this retreat.",
+    ],
+    questions: [
+      {
+        q: "What did the narrator see on the shore?",
+        answer: "The print of one bare human foot.",
+        wrong: ["The prints of many bare feet.", "The mark of a boat being dragged up.", "A set of animal tracks.", "The remains of a fire."],
+        why: ["\"I was exceedingly surprised with the print of a man's naked foot on the shore.\"", "\"I could see no other impression but that one.\""],
+      },
+      {
+        q: "Which word describes how he stood at the moment he first saw the print?",
+        answer: "thunderstruck",
+        wrong: ["confused", "terrified", "affrighted", "pursued"],
+        why: ["\"I stood like one thunderstruck, or as if I had seen an apparition.\"", "The other words describe him later, once he has begun to move and think."],
+      },
+      {
+        q: "Why did he walk up and down the shore?",
+        answer: "To find out whether there were any more prints.",
+        wrong: ["To follow the person who had made it.", "To find a safe place to hide.", "To reach his boat before dark.", "To wash the print away with sea water."],
+        why: ["\"I went to it again to see if there were any more, and to observe if it might not be my fancy.\"", "\"I went up the shore and down the shore, but it was all one.\""],
+      },
+      {
+        q: "What is the effect of the short repeated clauses \"I listened, I looked round me\"?",
+        answer: "They copy the quick, jerky movements of a frightened man.",
+        wrong: ["They show he was taking his time.", "They suggest he had done this many times before.", "They prove he was not really afraid.", "They tell the reader how long he searched."],
+        why: ["\"I listened, I looked round me, but I could hear nothing, nor see anything.\"", "Longer, calmer sentences return only once he is safely inside his castle."],
+      },
+      {
+        q: "Which TWO ordinary things did his fear turn into a man?",
+        answers: ["every bush and tree", "every stump at a distance"],
+        wrong: ["the sound of the sea", "the shadow of his boat", "his own footprints"],
+        why: ["\"mistaking every bush and tree, and fancying every stump at a distance to be a man\"", "Both are in the same clause, so both must be found."],
+      },
+      {
+        q: "What does \"fortification\" mean in the passage?",
+        answer: "the defended place where he lived",
+        wrong: ["a weapon he carried", "a high point on the shore", "a store of food", "a boat pulled up on the sand"],
+        why: ["\"I came home to my fortification\"", "He calls the same place his castle: \"When I came to my castle (for so I think I called it ever after this).\""],
+      },
+      {
+        q: "Why can he not remember how he got into his castle?",
+        answer: "He was too frightened to notice what he was doing.",
+        wrong: ["It was completely dark by then.", "He had been struck on the head.", "He had two different doors and always confused them.", "He was asleep when he arrived."],
+        why: ["\"Whether I went over by the ladder\" or through the hole in the rock, \"I cannot remember\".", "He adds that he could not remember the next morning either, which rules out simple tiredness."],
+      },
+      {
+        q: "Why does he compare himself to a hare and a fox?",
+        answer: "Both are hunted animals bolting for safety, and that is how he feels.",
+        wrong: ["Both are animals he had hunted on the island.", "Both are quick, and he wants to show how fast he ran.", "Both live alone, as he does.", "Both are common in England, which he is homesick for."],
+        why: ["\"never frightened hare fled to cover, or fox to earth, with more terror of mind than I to this retreat\"", "He puts himself above them, saying no hunted animal ever fled with more terror than he did."],
+      },
+    ],
+  },
+  {
+    id: "justso",
+    title: "The Elephant's Child",
+    source: "from Just So Stories by Rudyard Kipling, 1902",
+    paragraphs: [
+      "IN the High and Far-Off Times the Elephant, O Best Beloved, had no trunk. He had only a blackish, bulgy nose, as big as a boot, that he could wriggle about from side to side; but he couldn’t pick up things with it. But there was one Elephant, a new Elephant, an Elephant’s Child, who was full of ‘satiable curtiosity, and that means he asked ever so many questions. And he lived in Africa, and he filled all Africa with his ‘satiable curtiosities. He asked his tall aunt, the Ostrich, why her tail-feathers grew just so, and his tall aunt the Ostrich spanked him with her hard, hard claw. He asked his tall uncle, the Giraffe, what made his skin spotty, and his tall uncle, the Giraffe, spanked him with his hard, hard hoof. And still he was full of ‘satiable curtiosity! He asked his broad aunt, the Hippopotamus, why her eyes were red, and his broad aunt, the Hippopotamus, spanked him with her broad, broad hoof; and he asked his hairy uncle, the Baboon, why melons tasted just so, and his hairy uncle, the Baboon, spanked him with his hairy, hairy paw. And still he was full of ‘satiable curtiosity! He asked questions about everything that he saw, or heard, or felt, or smelt, or touched, and all his uncles and his aunts spanked him. And still he was full of ‘satiable curtiosity!",
+      "One fine morning in the middle of the Precession of the Equinoxes this ‘satiable Elephant’s Child asked a new fine question that he had never asked before. He asked, ‘What does the Crocodile have for dinner?’ Then everybody said, ‘Hush!’ in a loud and dretful tone, and they spanked him immediately and directly, without stopping, for a long time.",
+      "By and by, when that was finished, he came upon Kolokolo Bird sitting in the middle of a wait-a-bit thorn-bush, and he said, ‘My father has spanked me, and my mother has spanked me; all my aunts and uncles have spanked me for my ‘satiable curtiosity; and still I want to know what the Crocodile has for dinner!’",
+    ],
+    questions: [
+      {
+        q: "What did the Elephant have instead of a trunk?",
+        answer: "A blackish, bulgy nose as big as a boot.",
+        wrong: ["A long, thin snout like a crocodile's.", "No nose at all.", "A short trunk that could not stretch.", "Two small tusks and nothing else."],
+        why: ["\"He had only a blackish, bulgy nose, as big as a boot.\"", "It could wriggle from side to side \"but he couldn't pick up things with it\"."],
+      },
+      {
+        q: "Which invented word does the author use for the tone in which everybody said \"Hush!\"?",
+        answer: "dretful",
+        wrong: ["loud", "hairy", "broad", "satiable"],
+        why: ["\"Then everybody said, Hush! in a loud and dretful tone.\"", "The author is spelling dreadful the way a small child might say it."],
+      },
+      {
+        q: "Which THREE relatives spanked the Elephant's Child in this passage?",
+        answers: ["the Ostrich", "the Hippopotamus", "the Baboon"],
+        wrong: ["the Crocodile", "the Kolokolo Bird"],
+        why: ["\"He asked his tall aunt, the Ostrich, why her tail-feathers grew just so.\"", "\"his broad aunt, the Hippopotamus\" and \"his hairy uncle, the Baboon\" each spank him in turn."],
+      },
+      {
+        q: "Why does the author repeat \"And still he was full of 'satiable curtiosity!\"?",
+        answer: "To show that nothing anyone does will stop him asking questions.",
+        wrong: ["To remind the reader of the Elephant's name.", "To show that he is slow to learn.", "Because the story is meant to be sung.", "To fill space between the animals."],
+        why: ["\"And still he was full of\" that curiosity, after every single spanking.", "The repetition sets his curiosity against the punishment, and the curiosity keeps winning."],
+      },
+      {
+        q: "Why did everybody say \"Hush!\" when he asked what the Crocodile has for dinner?",
+        answer: "It was a question they were frightened of.",
+        wrong: ["They had answered it many times already.", "They did not know what a Crocodile was.", "It was rude to talk about dinner.", "They were trying to sleep."],
+        why: ["They said it \"in a loud and dretful tone\", and then spanked him \"immediately and directly, without stopping, for a long time\".", "No one gives him an answer, which is what sends him off to find one."],
+      },
+      {
+        q: "What does the author mean by calling the reader \"O Best Beloved\"?",
+        answer: "He is speaking directly to the child listening to the story.",
+        wrong: ["He is talking to the Elephant's Child.", "It is the name of the Kolokolo Bird.", "He is addressing the Crocodile.", "It is an African word for elephant."],
+        why: ["\"In the High and Far-Off Times the Elephant, O Best Beloved, had no trunk.\"", "The phrase breaks into the story to reach the listener, the way a storyteller speaks aloud."],
+      },
+      {
+        q: "Why does the Elephant's Child tell his troubles to the Kolokolo Bird?",
+        answer: "He still wants his answer and everyone else has only spanked him.",
+        wrong: ["The bird had promised to help him.", "The bird was the only one who could speak.", "He was hoping to be given some dinner.", "He wanted to complain about the Crocodile."],
+        why: ["\"all my aunts and uncles have spanked me for my 'satiable curtiosity; and still I want to know what the Crocodile has for dinner\"", "The bird is simply the next creature he meets, which is why he pours it all out."],
+      },
+      {
+        q: "What is the effect of listing the relatives with their hard claws, hooves and paws?",
+        answer: "It builds a pattern of the same thing happening again and again.",
+        wrong: ["It shows how large the family was.", "It explains why elephants live in Africa.", "It proves the relatives were cruel by nature.", "It tells the reader what each animal looks like."],
+        why: ["Each one spanks him with something \"hard, hard\" or \"broad, broad\" of its own.", "The pattern is what makes the ending, when he finally gets his trunk, feel earned."],
+      },
+    ],
+  },
+  {
+    id: "pauper",
+    title: "Two babies, one day",
+    source: "from The Prince and the Pauper by Mark Twain, 1881",
+    paragraphs: [
+      "In the ancient city of London, on a certain autumn day in the second quarter of the sixteenth century, a boy was born to a poor family of the name of Canty, who did not want him. On the same day another English child was born to a rich family of the name of Tudor, who did want him. All England wanted him too. England had so longed for him, and hoped for him, and prayed God for him, that, now that he was really come, the people went nearly mad for joy. Mere acquaintances hugged and kissed each other and cried. Everybody took a holiday, and high and low, rich and poor, feasted and danced and sang, and got very mellow; and they kept this up for days and nights together. By day, London was a sight to see, with gay banners waving from every balcony and housetop, and splendid pageants marching along. By night, it was again a sight to see, with its great bonfires at every corner, and its troops of revellers making merry around them. There was no talk in all England but of the new baby, Edward Tudor, Prince of Wales, who lay lapped in silks and satins, unconscious of all this fuss, and not knowing that great lords and ladies were tending him and watching over him, and not caring, either. But there was no talk about the other baby, Tom Canty, lapped in his poor rags, except among the family of paupers whom he had just come to trouble with his presence.",
+      "Let us skip a number of years.",
+      "London was fifteen hundred years old, and was a great town, for that day. It had a hundred thousand inhabitants, some think double as many. The streets were very narrow, and crooked, and dirty, especially in the part where Tom Canty lived, which was not far from London Bridge. The houses were of wood, with the second story projecting over the first, and the third sticking its elbows out beyond the second. The higher the houses grew, the broader they grew. They were skeletons of strong criss-cross beams, with solid material between, coated with plaster. The beams were painted red or blue or black, according to the owner’s taste, and this gave the houses a very picturesque look. The windows were small, glazed with little diamond-shaped panes, and they opened outward, on hinges, like doors.",
+    ],
+    questions: [
+      {
+        q: "On what day was Tom Canty born?",
+        answer: "The same day as Edward Tudor.",
+        wrong: ["The day Edward Tudor became king.", "Exactly a year before Edward Tudor.", "On the day of a great London fire.", "Fifteen hundred years after London was founded."],
+        why: ["\"On the same day another English child was born to a rich family of the name of Tudor, who did want him.\"", "The whole point of the chapter is that the two lives begin together and go opposite ways."],
+      },
+      {
+        q: "Which word does the passage use for the sort of family Tom was born into?",
+        answer: "paupers",
+        wrong: ["revellers", "acquaintances", "inhabitants", "Tudor"],
+        why: ["\"except among the family of paupers whom he had just come to trouble with his presence\"", "A pauper is a person with no money at all, which sets up the title of the book."],
+      },
+      {
+        q: "What is the effect of describing the two births in the same paragraph?",
+        answer: "It shows how differently two babies born on one day were treated.",
+        wrong: ["It suggests the two boys were related.", "It shows that London was a crowded city.", "It explains why Tom was unhappy.", "It proves the two boys were born in the same house."],
+        why: ["One family \"did not want him\", and of the other the passage says \"All England wanted him too.\"", "The same sentence pattern is used twice with the opposite meaning, which forces the comparison."],
+      },
+      {
+        q: "Which THREE things did the people do to celebrate the prince's birth?",
+        answers: ["feasted", "danced", "sang"],
+        wrong: ["fasted", "worked"],
+        why: ["\"high and low, rich and poor, feasted and danced and sang, and got very mellow\"", "They kept it up for days and nights together, which is why the list is worth reading in full."],
+      },
+      {
+        q: "Why does the narrator say the prince was \"not caring, either\"?",
+        answer: "He was a newborn baby who knew nothing about the fuss.",
+        wrong: ["He was an unkind child from the start.", "He was too ill to notice.", "He wanted to be left alone.", "He had been told to ignore the crowds."],
+        why: ["\"who lay lapped in silks and satins, unconscious of all this fuss\"", "The joke is that all England is delighted and the one person it is about is asleep."],
+      },
+      {
+        q: "What does \"revellers\" mean in the passage?",
+        answer: "people making merry",
+        wrong: ["soldiers on guard", "travellers arriving in the city", "people building bonfires", "musicians paid by the king"],
+        why: ["\"its troops of revellers making merry around them\"", "They are gathered round the bonfires at every corner, which is where celebrating was done."],
+      },
+      {
+        q: "What happened to the London houses as they rose higher?",
+        answer: "They grew broader.",
+        wrong: ["They grew narrower.", "They leaned into the river.", "They were built of stone instead of wood.", "They lost their windows."],
+        why: ["\"The higher the houses grew, the broader they grew.\"", "The second storey projected over the first and the third beyond the second, which is the same idea."],
+      },
+      {
+        q: "What is the effect of using \"lapped\" for both babies?",
+        answer: "The same word shows the same act done with opposite means.",
+        wrong: ["It shows both babies were the same size.", "It suggests the babies were swapped at birth.", "It tells the reader both were loved equally.", "It is a word used only for royal children."],
+        why: ["One is \"lapped in silks and satins\" and the other \"lapped in his poor rags\".", "Repeating the verb and changing only the cloth puts the whole difference into two words."],
+      },
+    ],
+  },
+  {
+    id: "prince",
+    title: "The statue on the column",
+    source: "from The Happy Prince by Oscar Wilde, 1888",
+    paragraphs: [
+      "HIGH above the city, on a tall column, stood the statue of the Happy Prince. He was gilded all over with thin leaves of fine gold, for eyes he had two bright sapphires, and a large red ruby glowed on his sword-hilt.",
+      "He was very much admired indeed. “He is as beautiful as a weathercock,” remarked one of the Town Councillors who wished to gain a reputation for having artistic tastes; “only not quite so useful,” he added, fearing lest people should think him unpractical, which he really was not.",
+      "“Why can’t you be like the Happy Prince?” asked a sensible mother of her little boy who was crying for the moon. “The Happy Prince never dreams of crying for anything.”",
+      "“I am glad there is some one in the world who is quite happy,” muttered a disappointed man as he gazed at the wonderful statue.",
+      "“He looks just like an angel,” said the Charity Children as they came out of the cathedral in their bright scarlet cloaks and their clean white pinafores.",
+      "“How do you know?” said the Mathematical Master, “you have never seen one.”",
+      "“Ah! but we have, in our dreams,” answered the children; and the Mathematical Master frowned and looked very severe, for he did not approve of children dreaming.",
+      "One night there flew over the city a little Swallow. His friends had gone away to Egypt six weeks before, but he had stayed behind, for he was in love with the most beautiful Reed. He had met her early in the spring as he was flying down the river after a big yellow moth, and had been so attracted by her slender waist that he had stopped to talk to her.",
+      "“Shall I love you?” said the Swallow, who liked to come to the point at once, and the Reed made him a low bow. So he flew round and round her, touching the water with his wings, and making silver ripples. This was his courtship, and it lasted all through the summer.",
+    ],
+    questions: [
+      {
+        q: "What glowed on the statue's sword-hilt?",
+        answer: "A large red ruby.",
+        wrong: ["Two bright sapphires.", "A thin leaf of fine gold.", "A small green emerald.", "A silver star."],
+        why: ["\"a large red ruby glowed on his sword-hilt\"", "The sapphires are his eyes, so the two must be kept apart."],
+      },
+      {
+        q: "Which word in the passage describes the man who gazed at the statue and muttered?",
+        answer: "disappointed",
+        wrong: ["sensible", "severe", "practical", "gilded"],
+        why: ["\"muttered a disappointed man as he gazed at the wonderful statue\"", "Sensible describes the mother and severe the Mathematical Master."],
+      },
+      {
+        q: "Why is \"He is as beautiful as a weathercock\" a strange compliment?",
+        answer: "A weathercock is a plain, everyday object, so the praise says very little.",
+        wrong: ["A weathercock is ugly, so it is an insult.", "Weathercocks are made of gold, so it is exact.", "It shows the statue can turn in the wind.", "It means the statue is very tall."],
+        why: ["The Councillor says it to \"gain a reputation for having artistic tastes\", so the aim is to be admired, not to be right.", "He then adds \"only not quite so useful\", which undoes even that."],
+      },
+      {
+        q: "Why did the Councillor add \"only not quite so useful\"?",
+        answer: "He was afraid of being thought impractical.",
+        wrong: ["He had decided the statue was ugly after all.", "He wanted the statue melted down.", "He was answering a question from the crowd.", "He thought weathercocks were better made."],
+        why: ["\"fearing lest people should think him unpractical, which he really was not\"", "The narrator quietly tells us the fear was groundless, which makes him look sillier."],
+      },
+      {
+        q: "Which TWO things did the Mathematical Master do when the children spoke of their dreams?",
+        answers: ["frowned", "looked very severe"],
+        wrong: ["laughed", "agreed with them", "asked them to explain"],
+        why: ["\"the Mathematical Master frowned and looked very severe\"", "Both are in the same short clause, so both must be found."],
+      },
+      {
+        q: "What does the passage suggest about the Mathematical Master?",
+        answer: "He has no patience with imagination.",
+        wrong: ["He is frightened of the Charity Children.", "He is very good at his subject.", "He believes in angels himself.", "He is a friend of the Town Councillor."],
+        why: ["\"he did not approve of children dreaming\"", "His first reply is to challenge the children, not to listen to them."],
+      },
+      {
+        q: "Why had the Swallow not gone to Egypt with his friends?",
+        answer: "He had fallen in love with a Reed.",
+        wrong: ["He had injured his wing.", "He was waiting for the weather to change.", "He wanted to see the Happy Prince.", "He had been left behind by mistake."],
+        why: ["\"he had stayed behind, for he was in love with the most beautiful Reed\"", "His friends had gone six weeks earlier, which shows how long he had lingered."],
+      },
+      {
+        q: "What is amusing about the Swallow's courtship?",
+        answer: "He asks whether he should love her as though it were a piece of business.",
+        wrong: ["He forgets the Reed's name.", "He flies away in the middle of it.", "He asks the Reed to come to Egypt.", "He sings instead of speaking."],
+        why: ["\"Shall I love you?\" said the Swallow, \"who liked to come to the point at once\".", "The Reed answers with a bow rather than a word, which is just as odd."],
+      },
+    ],
+  },
+  {
+    id: "katy",
+    title: "Katy did, Katy didn't",
+    source: "from What Katy Did by Susan Coolidge, 1872",
+    paragraphs: [
+      "I was sitting in the meadows one day, not long ago, at a place where there was a small brook. It was a hot day. The sky was very blue, and white clouds, like great swans, went floating over it to and fro. Just opposite me was a clump of green rushes, with dark velvety spikes, and among them one single tall, red cardinal flower, which was bending over the brook as if to see its own beautiful face in the water. But the cardinal did not seem to be vain.",
+      "The picture was so pretty that I sat a long time enjoying it. Suddenly, close to me, two small voices began to talk, or to sing, for I couldn't tell exactly which it was. One voice was shrill; the other, which was a little deeper, sounded very positive and cross. They were evidently disputing about something, for they said the same words over and over again. These were the words, \"Katy did.\" \"Katy didn't.\" \"She did.\" \"She didn't.\" \"She did.\" \"She didn't.\" \"Did.\" \"Didn't.\" I think they must have repeated them at least a hundred times.",
+      "I got up from my seat to see if I could find the speakers; and sure enough, there on one of the cat-tail bulrushes, I spied two tiny pale-green creatures. Their eyes seemed to be weak, for they both wore black goggles. They had six legs apiece, two short ones, two not so short, and two very long. These last legs had joints like the springs to buggy-tops; and as I watched, they began walking up the rush, and then I saw that they moved exactly like an old-fashioned gig. In fact, if I hadn't been too big, I think I should have heard them creak as they went along. They didn't say anything so long as I was there, but the moment my back was turned they began to quarrel again, and in the same old words, \"Katy did.\" \"Katy didn't.\" \"She did.\" \"She didn't.\"",
+      "As I walked home I fell to thinking about another Katy, a Katy I once knew, who planned to do a great many wonderful things, and in the end did none of them, but something quite different, something she didn't like at all at first, but which, on the whole, was a great deal better than any of the doings she had dreamed about. And as I thought, this little story grew in my head, and I resolved to write it down for you. I have done it; and, in memory of my two little friends on the bulrush, I give it their name. Here it is, the story of What Katy Did.",
+    ],
+    questions: [
+      {
+        q: "What were the two small creatures sitting on?",
+        answer: "A cat-tail bulrush.",
+        wrong: ["The red cardinal flower.", "A clump of green rushes by the brook.", "A swan's back.", "A branch above the water."],
+        why: ["\"there on one of the cat-tail bulrushes, I spied two tiny pale-green creatures\"", "The green rushes and the cardinal flower are described earlier, on the far side of the brook."],
+      },
+      {
+        q: "Which word describes the higher of the two voices?",
+        answer: "shrill",
+        wrong: ["deeper", "positive", "cross", "weak"],
+        why: ["\"One voice was shrill; the other, which was a little deeper, sounded very positive and cross.\"", "Positive and cross both belong to the second voice."],
+      },
+      {
+        q: "Why does the author say the insects wore black goggles?",
+        answer: "It turns them into small comic people.",
+        wrong: ["It shows they were blind.", "It explains why they were quarrelling.", "It tells the reader what species they were.", "It suggests they were hiding from the narrator."],
+        why: ["\"Their eyes seemed to be weak, for they both wore black goggles.\"", "Their legs are then compared to a gig, so the whole description dresses them up as little travellers."],
+      },
+      {
+        q: "Which TWO things are the insects' long legs compared to?",
+        answers: ["the springs to buggy-tops", "an old-fashioned gig"],
+        wrong: ["a pair of scissors", "the necks of swans", "the stalks of cat-tails"],
+        why: ["\"These last legs had joints like the springs to buggy-tops.\"", "\"they moved exactly like an old-fashioned gig\""],
+      },
+      {
+        q: "Why did the insects fall silent while the narrator watched?",
+        answer: "They would only quarrel when they thought nobody was listening.",
+        wrong: ["They were frightened of the brook.", "They had finished their argument.", "They could not see the narrator.", "They were waiting for Katy to arrive."],
+        why: ["\"They didn't say anything so long as I was there, but the moment my back was turned they began to quarrel again.\"", "The narrator has to walk away to hear the rest, which is what sets off the story."],
+      },
+      {
+        q: "What does \"disputing\" mean in the passage?",
+        answer: "arguing",
+        wrong: ["singing together", "complaining of the heat", "asking for help", "counting something"],
+        why: ["\"They were evidently disputing about something, for they said the same words over and over again.\"", "The words repeated are Katy did and Katy didn't, which is a disagreement."],
+      },
+      {
+        q: "What do we learn about the Katy the narrator once knew?",
+        answer: "She planned wonderful things, did none of them, and something better happened instead.",
+        wrong: ["She grew up to write this story.", "She kept insects as pets.", "She never did anything at all.", "She was one of the two creatures on the rush."],
+        why: ["\"a Katy I once knew, who planned to do a great many wonderful things, and in the end did none of them\"", "The narrator says the different thing that happened was on the whole a great deal better."],
+      },
+      {
+        q: "Why does the author begin with the insects instead of with Katy?",
+        answer: "Their quarrel is where the book gets its name.",
+        wrong: ["The insects tell the story themselves.", "She wants to describe a hot summer day.", "The insects appear again at the end.", "She has forgotten how the story begins."],
+        why: ["\"in memory of my two little friends on the bulrush, I give it their name\"", "The last line of the extract is the title of the book, which the insects have been saying all along."],
+      },
+    ],
+  },
+  {
+    id: "sara",
+    title: "The place",
+    source: "from A Little Princess by Frances Hodgson Burnett, 1905",
+    paragraphs: [
+      "She was such a little girl that one did not expect to see such a look on her small face. It would have been an old look for a child of twelve, and Sara Crewe was only seven. The fact was, however, that she was always dreaming and thinking odd things and could not herself remember any time when she had not been thinking things about grown-up people and the world they belonged to. She felt as if she had lived a long, long time.",
+      "At this moment she was remembering the voyage she had just made from Bombay with her father, Captain Crewe. She was thinking of the big ship, of the Lascars passing silently to and fro on it, of the children playing about on the hot deck, and of some young officers' wives who used to try to make her talk to them and laugh at the things she said.",
+      "Principally, she was thinking of what a queer thing it was that at one time one was in India in the blazing sun, and then in the middle of the ocean, and then driving in a strange vehicle through strange streets where the day was as dark as the night. She found this so puzzling that she moved closer to her father.",
+      "\"Papa,\" she said in a low, mysterious little voice which was almost a whisper, \"papa.\"",
+      "\"What is it, darling?\" Captain Crewe answered, holding her closer and looking down into her face. \"What is Sara thinking of?\"",
+      "\"Is this the place?\" Sara whispered, cuddling still closer to him. \"Is it, papa?\"",
+      "\"Yes, little Sara, it is. We have reached it at last.\" And though she was only seven years old, she knew that he felt sad when he said it.",
+      "It seemed to her many years since he had begun to prepare her mind for \"the place,\" as she always called it. Her mother had died when she was born, so she had never known or missed her. Her young, handsome, rich, petting father seemed to be the only relation she had in the world. They had always played together and been fond of each other. She only knew he was rich because she had heard people say so when they thought she was not listening, and she had also heard them say that when she grew up she would be rich, too. She did not know all that being rich meant. She had always lived in a beautiful bungalow, and had been used to seeing many servants who made salaams to her and called her \"Missee Sahib,\" and gave her her own way in everything. She had had toys and pets and an ayah who worshipped her, and she had gradually learned that people who were rich had these things. That, however, was all she knew about it.",
+    ],
+    questions: [
+      {
+        q: "How old was Sara Crewe?",
+        answer: "Seven.",
+        wrong: ["Five.", "Nine.", "Twelve.", "Fourteen."],
+        why: ["\"It would have been an old look for a child of twelve, and Sara Crewe was only seven.\"", "Twelve is mentioned only as a comparison, so it is a trap for hurried reading."],
+      },
+      {
+        q: "Which word does the passage use for the look on Sara's small face?",
+        answer: "old",
+        wrong: ["sad", "puzzled", "mysterious", "strange"],
+        why: ["\"It would have been an old look for a child of twelve.\"", "Mysterious describes her voice and strange describes the streets, so neither belongs to her face."],
+      },
+      {
+        q: "Why does Sara move closer to her father?",
+        answer: "She finds the change from India so puzzling that she wants comfort.",
+        wrong: ["The carriage is cold.", "She has seen something frightening outside.", "She is falling asleep.", "She wants to whisper a secret."],
+        why: ["\"She found this so puzzling that she moved closer to her father.\"", "The puzzle is going from blazing sun to a day as dark as night, which is stated just before."],
+      },
+      {
+        q: "Why does Sara call it \"the place\" instead of naming it?",
+        answer: "She has been prepared for it for years without ever being told what it really is.",
+        wrong: ["She cannot pronounce the name.", "Her father has forbidden her to name it.", "She is hoping they will not stop there.", "It is a secret from the other passengers."],
+        why: ["\"It seemed to her many years since he had begun to prepare her mind for the place, as she always called it.\"", "The vagueness is hers, not the narrator's, which is what makes it uneasy."],
+      },
+      {
+        q: "How do we know Captain Crewe is unhappy about arriving?",
+        answer: "Sara can tell he feels sad, although he says nothing about it.",
+        wrong: ["He refuses to answer her question.", "He tells her he does not want to leave her.", "He looks away from the window.", "He holds her at arm's length."],
+        why: ["\"And though she was only seven years old, she knew that he felt sad when he said it.\"", "His words are cheerful enough, so it is the feeling behind them that she picks up."],
+      },
+      {
+        q: "Which TWO things does the passage tell us about Sara's mother?",
+        answers: ["she died when Sara was born", "Sara had never known her"],
+        wrong: ["she stayed behind in India", "she was often ill", "she wrote to Sara every week"],
+        why: ["\"Her mother had died when she was born, so she had never known or missed her.\"", "The two facts are joined by so, which is why one leads to the other."],
+      },
+      {
+        q: "What does \"petting\" mean in \"her young, handsome, rich, petting father\"?",
+        answer: "fond of spoiling her",
+        wrong: ["strict with her", "often away", "easily worried", "quick to lose his temper"],
+        why: ["\"Her young, handsome, rich, petting father seemed to be the only relation she had in the world.\"", "It sits in a list of things that make him easy to love, not difficult."],
+      },
+      {
+        q: "How did Sara learn that she was rich?",
+        answer: "She overheard people saying so when they thought she was not listening.",
+        wrong: ["Her father told her before they sailed.", "She counted the servants in the bungalow.", "Her ayah explained it to her.", "She read it in one of her father's letters."],
+        why: ["\"she had heard people say so when they thought she was not listening\"", "The passage adds that she did not know all that being rich meant, so nobody had explained it."],
+      },
+    ],
+  },
+  {
+    id: "muir",
+    title: "A boy in Scotland",
+    source: "from The Story of My Boyhood and Youth by John Muir, 1913",
+    paragraphs: [
+      "When I was a boy in Scotland I was fond of everything that was wild, and all my life I’ve been growing fonder and fonder of wild places and wild creatures. Fortunately around my native town of Dunbar, by the stormy North Sea, there was no lack of wildness, though most of the land lay in smooth cultivation. With red-blooded playmates, wild as myself, I loved to wander in the fields to hear the birds sing, and along the seashore to gaze and wonder at the shells and seaweeds, eels and crabs in the pools among the rocks when the tide was low; and best of all to watch the waves in awful storms thundering on the black headlands and craggy ruins of the old Dunbar Castle when the sea and the sky, the waves and the clouds, were mingled together as one. We never thought of playing truant, but after I was five or six years old I ran away to the seashore or the fields almost every Saturday, and every day in the school vacations except Sundays, though solemnly warned that I must play at home in the garden and back yard, lest I should learn to think bad thoughts and say bad words. All in vain. In spite of the sure sore punishments that followed like shadows, the natural inherited wildness in our blood ran true on its glorious course as invincible and unstoppable as stars.",
+      "My earliest recollections of the country were gained on short walks with my grandfather when I was perhaps not over three years old. On one of these walks grandfather took me to Lord Lauderdale’s gardens, where I saw figs growing against a sunny wall and tasted some of them, and got as many apples to eat as I wished. On another memorable walk in a hay-field, when we sat down to rest on one of the haycocks I heard a sharp, prickly, stinging cry, and, jumping up eagerly, called grandfather’s attention to it. He said he heard only the wind, but I insisted on digging into the hay and turning it over until we discovered the source of the strange exciting sound, a mother field mouse with half a dozen naked young hanging to her teats. This to me was a wonderful discovery. No hunter could have been more excited on discovering a bear and her cubs in a wilderness den.",
+    ],
+    questions: [
+      {
+        q: "Where did Muir grow up?",
+        answer: "Dunbar, on the coast of Scotland.",
+        wrong: ["Edinburgh, in the centre of Scotland.", "A farm in Wisconsin.", "A village in the Scottish Highlands.", "London, by the river."],
+        why: ["\"around my native town of Dunbar, by the stormy North Sea\"", "The sea and its storms are the reason he gives for there being no lack of wildness."],
+      },
+      {
+        q: "Which word does Muir use again and again for what he loved?",
+        answer: "wild",
+        wrong: ["stormy", "glorious", "invincible", "natural"],
+        why: ["\"I was fond of everything that was wild, and all my life I've been growing fonder and fonder of wild places and wild creatures.\"", "He uses it of the places, the creatures and his playmates, which is what makes it the key word."],
+      },
+      {
+        q: "Which THREE places did Muir like to go as a boy?",
+        answers: ["the fields", "the seashore", "the pools among the rocks"],
+        wrong: ["the town market", "his grandfather's house"],
+        why: ["\"I loved to wander in the fields to hear the birds sing, and along the seashore to gaze and wonder at the shells and seaweeds, eels and crabs in the pools among the rocks when the tide was low\"", "All three are in one long sentence, so it has to be read to the end."],
+      },
+      {
+        q: "Why did Muir keep running away even though he was punished?",
+        answer: "The pull of wild places was stronger than his fear of punishment.",
+        wrong: ["He was never actually caught.", "His parents secretly approved.", "He did not understand the rule.", "The punishments were very mild."],
+        why: ["\"In spite of the sure sore punishments that followed like shadows\"", "He says the punishments were sure, so he knew exactly what would happen and went anyway."],
+      },
+      {
+        q: "What is the effect of \"as invincible and unstoppable as stars\"?",
+        answer: "It makes his wildness sound like a force of nature nobody could stop.",
+        wrong: ["It shows he only went out at night.", "It suggests he wanted to be an astronomer.", "It tells the reader he was often lost.", "It means his family came from far away."],
+        why: ["\"the natural inherited wildness in our blood ran true on its glorious course as invincible and unstoppable as stars\"", "Comparing a boy to the stars is deliberately far too grand, which is how strongly he felt it."],
+      },
+      {
+        q: "What did Muir hear in the hay-field?",
+        answer: "A sharp, prickly, stinging cry.",
+        wrong: ["The wind in the haycocks.", "A bird singing overhead.", "His grandfather calling him.", "The sea breaking on the rocks."],
+        why: ["\"I heard a sharp, prickly, stinging cry\"", "His grandfather said he heard only the wind, which is what makes the discovery Muir's own."],
+      },
+      {
+        q: "Why was Muir as excited as a hunter finding a bear?",
+        answer: "A small discovery of his own meant as much to him as a great one.",
+        wrong: ["He was frightened of the mouse.", "He hoped to sell the mice.", "He had been searching for the nest all day.", "His grandfather had promised him a reward."],
+        why: ["\"No hunter could have been more excited on discovering a bear and her cubs in a wilderness den.\"", "He calls it a wonderful discovery, though it is only a field mouse and her young."],
+      },
+      {
+        q: "What does \"native town\" mean in the passage?",
+        answer: "the town where he was born",
+        wrong: ["the biggest town nearby", "a town with no roads", "the town where he went to school", "a town by the sea"],
+        why: ["\"around my native town of Dunbar, by the stormy North Sea\"", "Being by the sea is given as a separate fact, so it is not part of the meaning."],
+      },
+    ],
+  },
+  {
+    id: "holmes",
+    title: "A visitor with red hair",
+    source: "from The Red-Headed League by Arthur Conan Doyle, 1891",
+    paragraphs: [
+      "I had called upon my friend, Mr. Sherlock Holmes, one day in the autumn of last year and found him in deep conversation with a very stout, florid-faced, elderly gentleman with fiery red hair. With an apology for my intrusion, I was about to withdraw when Holmes pulled me abruptly into the room and closed the door behind me.",
+      "“You could not possibly have come at a better time, my dear Watson,” he said cordially.",
+      "“I was afraid that you were engaged.”",
+      "“So I am. Very much so.”",
+      "“Then I can wait in the next room.”",
+      "“Not at all. This gentleman, Mr. Wilson, has been my partner and helper in many of my most successful cases, and I have no doubt that he will be of the utmost use to me in yours also.”",
+      "The stout gentleman half rose from his chair and gave a bob of greeting, with a quick little questioning glance from his small fat-encircled eyes.",
+      "“Try the settee,” said Holmes, relapsing into his armchair and putting his fingertips together, as was his custom when in judicial moods. “I know, my dear Watson, that you share my love of all that is bizarre and outside the conventions and humdrum routine of everyday life. You have shown your relish for it by the enthusiasm which has prompted you to chronicle, and, if you will excuse my saying so, somewhat to embellish so many of my own little adventures.”",
+      "“Your cases have indeed been of the greatest interest to me,” I observed.",
+      "“You will remember that I remarked the other day, just before we went into the very simple problem presented by Miss Mary Sutherland, that for strange effects and extraordinary combinations we must go to life itself, which is always far more daring than any effort of the imagination.”",
+      "“A proposition which I took the liberty of doubting.”",
+    ],
+    questions: [
+      {
+        q: "How is Mr Wilson described when Watson first sees him?",
+        answer: "A very stout, florid-faced, elderly gentleman with fiery red hair.",
+        wrong: ["A thin, pale young man with dark hair.", "A tall gentleman in a heavy coat.", "A quiet clerk with spectacles.", "An old soldier with a limp."],
+        why: ["\"in deep conversation with a very stout, florid-faced, elderly gentleman with fiery red hair\"", "His red hair is given last and turns out to matter, which is why it is worth noticing."],
+      },
+      {
+        q: "Why does Holmes pull Watson into the room?",
+        answer: "He believes Watson will be useful to him on the case.",
+        wrong: ["He wants Watson to examine Mr Wilson.", "He is afraid to be alone with Mr Wilson.", "He needs someone to write the story down.", "He has been waiting for Watson all morning."],
+        why: ["\"I have no doubt that he will be of the utmost use to me in yours also\"", "He calls Watson his partner and helper in many of his most successful cases."],
+      },
+      {
+        q: "Which word describes the way Holmes welcomed Watson?",
+        answer: "cordially",
+        wrong: ["abruptly", "stiffly", "coldly", "anxiously"],
+        why: ["\"You could not possibly have come at a better time, my dear Watson,\" he said cordially.", "Abruptly describes how he pulled Watson in, not how he spoke."],
+      },
+      {
+        q: "What does Holmes reveal about Watson by saying \"somewhat to embellish\"?",
+        answer: "He is teasing Watson for making the cases sound grander than they were.",
+        wrong: ["He thinks Watson invents cases entirely.", "He is grateful for Watson's careful accuracy.", "He wants Watson to write more often.", "He is angry that Watson published them."],
+        why: ["\"the enthusiasm which has prompted you to chronicle, and, if you will excuse my saying so, somewhat to embellish so many of my own little adventures\"", "The apology in the middle is what makes it a tease rather than an accusation."],
+      },
+      {
+        q: "What does \"bizarre\" mean in the passage?",
+        answer: "strange and out of the ordinary",
+        wrong: ["dangerous", "dishonest", "very old", "difficult to solve"],
+        why: ["\"you share my love of all that is bizarre and outside the conventions and humdrum routine of everyday life\"", "It is set against humdrum routine, so it must mean the opposite of ordinary."],
+      },
+      {
+        q: "What is Holmes's view of real life compared with imagination?",
+        answer: "Real life throws up stranger things than anyone could invent.",
+        wrong: ["Imagination is more useful to a detective.", "Most crimes are dull and much alike.", "Stories are always better than facts.", "Only small crimes are worth studying."],
+        why: ["\"for strange effects and extraordinary combinations we must go to life itself, which is always far more daring than any effort of the imagination\"", "He offers Mr Wilson's story as the proof of it."],
+      },
+      {
+        q: "Which TWO habits of Holmes does Watson notice?",
+        answers: ["relapsing into his armchair", "putting his fingertips together"],
+        wrong: ["pacing up and down the room", "smoking a pipe", "drawing the curtains"],
+        why: ["\"relapsing into his armchair and putting his fingertips together, as was his custom when in judicial moods\"", "Watson calls it his custom, so it is a habit rather than a one-off."],
+      },
+      {
+        q: "What does Watson mean by \"a proposition which I took the liberty of doubting\"?",
+        answer: "He politely disagreed with Holmes.",
+        wrong: ["He had not understood what Holmes meant.", "He agreed but did not want to say so.", "He thought Holmes was joking.", "He had made the same point himself earlier."],
+        why: ["\"A proposition which I took the liberty of doubting.\"", "Took the liberty is a polite way of admitting he contradicted his friend."],
+      },
+    ],
+  },
+  {
+    id: "midas",
+    title: "The king who loved gold",
+    source: "from A Wonder Book by Nathaniel Hawthorne, 1851",
+    paragraphs: [
+      "Once upon a time, there lived a very rich man, and a king besides, whose name was Midas; and he had a little daughter, whom nobody but myself ever heard of, and whose name I either never knew, or have entirely forgotten. So, because I love odd names for little girls, I choose to call her Marygold.",
+      "This King Midas was fonder of gold than of anything else in the world. He valued his royal crown chiefly because it was composed of that precious metal. If he loved anything better, or half so well, it was the one little maiden who played so merrily around her father's footstool. But the more Midas loved his daughter, the more did he desire and seek for wealth. He thought, foolish man! that the best thing he could possibly do for this dear child would be to bequeath her the immensest pile of yellow, glistening coin, that had ever been heaped together since the world was made. Thus, he gave all his thoughts and all his time to this one purpose. If ever he happened to gaze for an instant at the gold-tinted clouds of sunset, he wished that they were real gold, and that they could be squeezed safely into his strong box. When little Marygold ran to meet him, with a bunch of buttercups and dandelions, he used to say, \"Poh, poh, child! If these flowers were as golden as they look, they would be worth the plucking!\"",
+      "And yet, in his earlier days, before he was so entirely possessed of this insane desire for riches, King Midas had shown a great taste for flowers. He had planted a garden, in which grew the biggest and beautifullest and sweetest roses that any mortal ever saw or smelt. These roses were still growing in the garden, as large, as lovely, and as fragrant, as when Midas used to pass whole hours in gazing at them, and inhaling their perfume. But now, if he looked at them at all, it was only to calculate how much the garden would be worth if each of the innumerable rose-petals were a thin plate of gold. And though he once was fond of music (in spite of an idle story about his ears, which were said to resemble those of an ass), the only music for poor Midas, now, was the chink of one coin against another.",
+    ],
+    questions: [
+      {
+        q: "What does the narrator call the king's daughter?",
+        answer: "Marygold.",
+        wrong: ["Midas.", "Buttercup.", "Marigold Rose.", "She is never given a name."],
+        why: ["\"because I love odd names for little girls, I choose to call her Marygold\"", "He admits the real name is lost, so this one is his own choice."],
+      },
+      {
+        q: "Why does the narrator have to choose a name for her himself?",
+        answer: "Nobody recorded her real name and he cannot remember it.",
+        wrong: ["Her father never gave her one.", "Her name was too difficult to say.", "She had several names already.", "Names were not used in those days."],
+        why: ["\"whose name I either never knew, or have entirely forgotten\"", "He says nobody but himself ever heard of her, which is part of the same joke."],
+      },
+      {
+        q: "Which word describes Midas's desire for riches?",
+        answer: "insane",
+        wrong: ["precious", "immensest", "innumerable", "merry"],
+        why: ["\"before he was so entirely possessed of this insane desire for riches\"", "The other words describe the gold, the pile and the petals, not the desire."],
+      },
+      {
+        q: "What is the effect of \"foolish man!\" breaking into the sentence?",
+        answer: "The narrator judges Midas openly instead of leaving it to the reader.",
+        wrong: ["It shows Midas is speaking to himself.", "It warns that Midas is about to die.", "It tells the reader Midas is not really a king.", "It shows the narrator is frightened of him."],
+        why: ["\"He thought, foolish man! that the best thing he could possibly do for this dear child\"", "The story is being told aloud, so the teller can interrupt himself to disagree."],
+      },
+      {
+        q: "Which TWO things had Midas once loved before gold took over?",
+        answers: ["flowers", "music"],
+        wrong: ["hunting", "travelling", "reading"],
+        why: ["\"in his earlier days\" he \"had shown a great taste for flowers\".", "\"And though he once was fond of music\", the only music left to him is the chink of coins."],
+      },
+      {
+        q: "What does Midas say when Marygold brings him buttercups and dandelions?",
+        answer: "He wishes they were really made of gold.",
+        wrong: ["He asks her to plant more of them.", "He tells her to take them away.", "He says they remind him of her mother.", "He promises to make her a crown of them."],
+        why: ["\"Poh, poh, child! If these flowers were as golden as they look, they would be worth the plucking!\"", "He is looking at their colour and thinking about their price."],
+      },
+      {
+        q: "What does \"bequeath\" mean in the passage?",
+        answer: "leave to someone after your death",
+        wrong: ["hide somewhere safe", "count very carefully", "spend on someone", "earn by hard work"],
+        why: ["\"the best thing he could possibly do for this dear child would be to bequeath her the immensest pile of yellow, glistening coin\"", "He is thinking about what she will have after he is gone, not about giving it now."],
+      },
+      {
+        q: "Why does the passage end on \"the chink of one coin against another\"?",
+        answer: "It shows that money has replaced everything he once enjoyed.",
+        wrong: ["It shows he had become deaf to real music.", "It tells the reader he was counting his gold.", "It suggests his gold was fake.", "It shows he was about to give the money away."],
+        why: ["\"the only music for poor Midas, now, was the chink of one coin against another\"", "It closes a list of losses, roses then music, so it lands as the last thing to go."],
+      },
+    ],
+  },
+  {
+    id: "northwind",
+    title: "The boy in the loft",
+    source: "from At the Back of the North Wind by George MacDonald, 1871",
+    paragraphs: [
+      "I HAVE been asked to tell you about the back of the north wind. An old Greek writer mentions a people who lived there, and were so comfortable that they could not bear it any longer, and drowned themselves. My story is not the same as his. I do not think Herodotus had got the right account of the place. I am going to tell you how it fared with a boy who went there.",
+      "He lived in a low room over a coach-house; and that was not by any means at the back of the north wind, as his mother very well knew. For one side of the room was built only of boards, and the boards were so old that you might run a penknife through into the north wind. And then let them settle between them which was the sharper! I know that when you pulled it out again the wind would be after it like a cat after a mouse, and you would know soon enough you were not at the back of the north wind. Still, this room was not very cold, except when the north wind blew stronger than usual: the room I have to do with now was always cold, except in summer, when the sun took the matter into his own hands. Indeed, I am not sure whether I ought to call it a room at all; for it was just a loft where they kept hay and straw and oats for the horses.",
+      "And when little Diamond, but stop: I must tell you that his father, who was a coachman, had named him after a favourite horse, and his mother had had no objection:, when little Diamond, then, lay there in bed, he could hear the horses under him munching away in the dark, or moving sleepily in their dreams. For Diamond's father had built him a bed in the loft with boards all round it, because they had so little room in their own end over the coach-house; and Diamond's father put old Diamond in the stall under the bed, because he was a quiet horse, and did not go to sleep standing, but lay down like a reasonable creature. But, although he was a surprisingly reasonable creature, yet, when young Diamond woke in the middle of the night, and felt the bed shaking in the blasts of the north wind, he could not help wondering whether, if the wind should blow the house down, and he were to fall through into the manger, old Diamond mightn't eat him up before he knew him in his night-gown. And although old Diamond was very quiet all night long, yet when he woke he got up like an earthquake, and then young Diamond knew what o'clock it was, or at least what was to be done next, which was, to go to sleep again as fast as he could.",
+    ],
+    questions: [
+      {
+        q: "Who was Diamond named after?",
+        answer: "His father's favourite horse.",
+        wrong: ["His grandfather.", "A Greek writer his mother admired.", "The coachman who lived next door.", "A jewel his mother once owned."],
+        why: ["\"his father, who was a coachman, had named him after a favourite horse, and his mother had had no objection\"", "The horse is called old Diamond and the boy young Diamond, which keeps them apart."],
+      },
+      {
+        q: "Which word does the narrator use for the place where Diamond slept?",
+        answer: "loft",
+        wrong: ["coach-house", "manger", "stall", "garret"],
+        why: ["\"it was just a loft where they kept hay and straw and oats for the horses\"", "The coach-house is below and the manger is where he fears he might fall."],
+      },
+      {
+        q: "What is the effect of \"you might run a penknife through into the north wind\"?",
+        answer: "It makes the wind sound like something solid waiting just outside.",
+        wrong: ["It shows the boards were made of paper.", "It suggests Diamond owned a penknife.", "It warns that the house was about to fall.", "It shows how cold the summer was."],
+        why: ["\"the boards were so old that you might run a penknife through into the north wind\"", "The narrator then imagines the wind and the knife settling between them which was sharper, as though both were alive."],
+      },
+      {
+        q: "Why does the narrator mention the old Greek writer?",
+        answer: "To make clear that his own story of the place is a different one.",
+        wrong: ["To prove that the back of the north wind is real.", "To show that he has read a great deal.", "To explain where Diamond's family came from.", "To warn the reader the story is sad."],
+        why: ["\"My story is not the same as his.\"", "\"I do not think Herodotus had got the right account of the place.\""],
+      },
+      {
+        q: "Which TWO things could Diamond hear from his bed?",
+        answers: ["the horses munching in the dark", "the horses moving in their dreams"],
+        wrong: ["the coachman singing below", "the wind whistling in the chimney", "his mother calling him"],
+        why: ["\"he could hear the horses under him munching away in the dark, or moving sleepily in their dreams\"", "Both are in the same sentence, joined by or."],
+      },
+      {
+        q: "What did Diamond worry about when the wind shook his bed?",
+        answer: "That if he fell through into the manger the horse might eat him.",
+        wrong: ["That the horse would escape into the night.", "That his father would not hear him call.", "That the hay would catch fire.", "That the wind would carry the roof away."],
+        why: ["\"old Diamond mightn't eat him up before he knew him in his night-gown\"", "The night-gown is the funny part: the horse would not recognise him out of his day clothes."],
+      },
+      {
+        q: "What does the narrator mean by \"he got up like an earthquake\"?",
+        answer: "The horse rose so noisily that everything shook.",
+        wrong: ["The horse was frightened by a noise.", "The horse got up very slowly.", "The floor of the loft collapsed.", "The horse was ill in the night."],
+        why: ["\"when he woke he got up like an earthquake\"", "It was how Diamond knew what o clock it was, so it happened every morning."],
+      },
+      {
+        q: "Why is it funny that Diamond's response to waking was \"to go to sleep again as fast as he could\"?",
+        answer: "A grand build-up ends in the smallest possible action.",
+        wrong: ["Diamond was always tired.", "He was hiding from his father.", "He had been awake all night.", "The horse had told him to."],
+        why: ["\"young Diamond knew what o'clock it was, or at least what was to be done next, which was, to go to sleep again as fast as he could\"", "An earthquake is announced and then nothing happens, which is where the joke sits."],
+      },
+    ],
+  },
+  {
+    id: "robinhood",
+    title: "How Robin fell foul of the law",
+    source: "from The Merry Adventures of Robin Hood by Howard Pyle, 1883",
+    paragraphs: [
+      "IN MERRY ENGLAND in the time of old, when good King Henry the Second ruled the land, there lived within the green glades of Sherwood Forest, near Nottingham Town, a famous outlaw whose name was Robin Hood. No archer ever lived that could speed a gray goose shaft with such skill and cunning as his, nor were there ever such yeomen as the sevenscore merry men that roamed with him through the greenwood shades. Right merrily they dwelled within the depths of Sherwood Forest, suffering neither care nor want, but passing the time in merry games of archery or bouts of cudgel play, living upon the King's venison, washed down with draughts of ale of October brewing.",
+      "Not only Robin himself but all the band were outlaws and dwelled apart from other men, yet they were beloved by the country people round about, for no one ever came to jolly Robin for help in time of need and went away again with an empty fist.",
+      "And now I will tell how it came about that Robin Hood fell afoul of the law.",
+      "When Robin was a youth of eighteen, stout of sinew and bold of heart, the Sheriff of Nottingham proclaimed a shooting match and offered a prize of a butt of ale to whosoever should shoot the best shaft in Nottinghamshire. \"Now,\" quoth Robin, \"will I go too, for fain would I draw a string for the bright eyes of my lass and a butt of good October brewing.\" So up he got and took his good stout yew bow and a score or more of broad clothyard arrows, and started off from Locksley Town through Sherwood Forest to Nottingham.",
+      "It was at the dawn of day in the merry Maytime, when hedgerows are green and flowers bedeck the meadows; daisies pied and yellow cuckoo buds and fair primroses all along the briery hedges; when apple buds blossom and sweet birds sing, the lark at dawn of day, the throstle cock and cuckoo; when lads and lasses look upon each other with sweet thoughts; when busy housewives spread their linen to bleach upon the bright green grass. Sweet was the greenwood as he walked along its paths, and bright the green and rustling leaves, amid which the little birds sang with might and main: and blithely Robin whistled as he trudged along, thinking of Maid Marian and her bright eyes, for at such times a youth's thoughts are wont to turn pleasantly upon the lass that he loves the best.",
+    ],
+    questions: [
+      {
+        q: "Who ruled England at the time of the story?",
+        answer: "King Henry the Second.",
+        wrong: ["King Richard the First.", "The Sheriff of Nottingham.", "King John.", "Robin Hood himself."],
+        why: ["\"when good King Henry the Second ruled the land\"", "The Sheriff appears later but rules only Nottinghamshire."],
+      },
+      {
+        q: "Which word does the passage use for the men who roamed with Robin?",
+        answer: "yeomen",
+        wrong: ["sheriffs", "housewives", "lasses", "shepherds"],
+        why: ["\"nor were there ever such yeomen as the sevenscore merry men that roamed with him through the greenwood shades\"", "A yeoman was a free countryman, often skilled with a bow."],
+      },
+      {
+        q: "How many merry men roamed with Robin?",
+        answer: "Sevenscore, which is one hundred and forty.",
+        wrong: ["A score, which is twenty.", "Five.", "A thousand.", "Eighteen."],
+        why: ["\"the sevenscore merry men that roamed with him through the greenwood shades\"", "A score is twenty, so sevenscore is seven twenties."],
+      },
+      {
+        q: "Why were the outlaws loved by the country people?",
+        answer: "Nobody who came to them for help was ever turned away empty-handed.",
+        wrong: ["They paid rent to every farmer.", "They protected the town from the King.", "They gave the Sheriff his prize back.", "They never took the King's deer."],
+        why: ["\"no one ever came to jolly Robin for help in time of need and went away again with an empty fist\"", "The passage sets this against the fact that they were outlaws living apart from other men."],
+      },
+      {
+        q: "What does \"fain would I draw a string\" mean?",
+        answer: "I would gladly shoot.",
+        wrong: ["I must repair my bow.", "I refuse to compete.", "I will play music.", "I would rather stay at home."],
+        why: ["\"fain would I draw a string for the bright eyes of my lass and a butt of good October brewing\"", "Drawing the string is pulling back the bow, so it means taking part in the shooting match."],
+      },
+      {
+        q: "Which TWO things did Robin take with him to Nottingham?",
+        answers: ["his good stout yew bow", "a score or more of broad clothyard arrows"],
+        wrong: ["a butt of October ale", "a stout oak cudgel", "a gray goose"],
+        why: ["\"took his good stout yew bow and a score or more of broad clothyard arrows\"", "The ale is the prize he hopes to win, not something he carries there."],
+      },
+      {
+        q: "What is the effect of the long description of the Maytime countryside?",
+        answer: "It makes the world feel bright and safe just before Robin falls foul of the law.",
+        wrong: ["It shows that Robin was in no hurry.", "It explains why the match was held in May.", "It proves the story is set in England.", "It tells the reader how far Nottingham was."],
+        why: ["\"when hedgerows are green and flowers bedeck the meadows\"", "The narrator has just said he will tell how Robin fell afoul of the law, so the sweetness is deliberately placed."],
+      },
+      {
+        q: "What prize did the Sheriff offer?",
+        answer: "A butt of ale.",
+        wrong: ["A purse of gold.", "A yew bow.", "A place among his own archers.", "A pardon for any outlaw."],
+        why: ["\"offered a prize of a butt of ale to whosoever should shoot the best shaft in Nottinghamshire\"", "A butt is a large barrel, which is why it is worth the journey."],
+      },
+    ],
+  },
+  {
+    id: "candle",
+    title: "The chemical history of a candle",
+    source: "from The Chemical History of a Candle by Michael Faraday, 1861",
+    paragraphs: [
+      "I purpose, in return for the honour you do us by coming to see what are our proceedings here, to bring before you, in the course of these lectures, the Chemical History of a Candle. I have taken this subject on a former occasion; and were it left to my own will, I should prefer to repeat it almost every year, so abundant is the interest that attaches itself to the subject, so wonderful are the varieties of outlet which it offers into the various departments of philosophy. There is not a law under which any part of this universe is governed which does not come into play, and is touched upon in these phenomena. There is no better, there is no more open door by which you can enter into the study of natural philosophy, than by considering the physical phenomena of a candle. I trust, therefore, I shall not disappoint you in choosing this for my subject rather than any newer topic, which could not be better, were it even so good.",
+      "And before proceeding, let me say this also, that though our subject be so great, and our intention that of treating it honestly, seriously, and philosophically, yet I mean to pass away from all those who are seniors amongst us. I claim the privilege of speaking to juveniles as a juvenile myself. I have done so on former occasions, and, if you please, I shall do so again. And though I stand here with the knowledge of having the words I utter given to the world, yet that shall not deter me from speaking in the same familiar way to those whom I esteem nearest to me on this occasion.",
+      "And now, my boys and girls, I must first tell you of what candles are made. Some are great curiosities. I have here some bits of timber, branches of trees particularly famous for their burning. And here you see a piece of that very curious substance taken out of some of the bogs in Ireland, called candle-wood, a hard, strong, excellent wood, evidently fitted for good work as a resister of force, and yet withal burning so well that where it is found they make splinters of it, and torches, since it burns like a candle, and gives a very good light indeed. And in this wood we have one of the most beautiful illustrations of the general nature of a candle that I can possibly give. The fuel provided, the means of bringing that fuel to the place of chemical action, the regular and gradual supply of air to that place of action, heat and light, all produced by a little piece of wood of this kind, forming, in fact, a natural candle.",
+    ],
+    questions: [
+      {
+        q: "What subject has Faraday chosen for his lectures?",
+        answer: "The chemical history of a candle.",
+        wrong: ["The history of the Irish bogs.", "The chemistry of burning wood.", "The physics of light and heat.", "The making of torches and splinters."],
+        why: ["\"to bring before you, in the course of these lectures, the Chemical History of a Candle\"", "He says he would prefer to repeat this same subject almost every year."],
+      },
+      {
+        q: "Why would Faraday gladly repeat this subject every year?",
+        answer: "The interest in it is endless and it opens into every part of science.",
+        wrong: ["He has not had time to prepare anything else.", "His audience asks for it each year.", "Candles are cheaper than other equipment.", "It is the only subject he has studied."],
+        why: ["\"so abundant is the interest that attaches itself to the subject, so wonderful are the varieties of outlet which it offers\"", "He adds that there is not a law governing the universe which does not come into play in it."],
+      },
+      {
+        q: "What does Faraday mean by claiming \"the privilege of speaking to juveniles as a juvenile myself\"?",
+        answer: "He wants to talk to the young people as an equal, not talk down to them.",
+        wrong: ["He is younger than most of his audience.", "He has never lectured before.", "He will use no scientific words at all.", "He wants the adults to leave the room."],
+        why: ["\"I claim the privilege of speaking to juveniles as a juvenile myself.\"", "He says he means to pass away from all those who are seniors amongst us, so the choice is deliberate."],
+      },
+      {
+        q: "What does \"natural philosophy\" mean in the passage?",
+        answer: "what we would now call science",
+        wrong: ["the study of candles alone", "a way of thinking about nature poetically", "the history of great scientists", "the study of law and government"],
+        why: ["\"There is no better, there is no more open door by which you can enter into the study of natural philosophy, than by considering the physical phenomena of a candle.\"", "He talks about chemical action, air, heat and light, which are all science."],
+      },
+      {
+        q: "Where does the candle-wood come from?",
+        answer: "Bogs in Ireland.",
+        wrong: ["Forests in Scotland.", "The docks of London.", "Trees grown in the Royal Institution garden.", "Mines in Wales."],
+        why: ["\"a piece of that very curious substance taken out of some of the bogs in Ireland\"", "He calls it a curiosity, which is why he has brought a piece to show."],
+      },
+      {
+        q: "Which THREE things does Faraday say a piece of burning candle-wood provides?",
+        answers: ["the fuel", "a supply of air to the place of action", "heat and light"],
+        wrong: ["a wick of cotton thread", "a glass shade to steady the flame"],
+        why: ["\"The fuel provided, the means of bringing that fuel to the place of chemical action, the regular and gradual supply of air to that place of action, heat and light.\"", "He calls the result a natural candle, made of one piece of wood."],
+      },
+      {
+        q: "Why does Faraday call the candle \"an open door\"?",
+        answer: "One simple object lets a beginner into the whole of science.",
+        wrong: ["Candles were used to light doorways.", "He wants the audience to leave if they are bored.", "A candle must be kept out of a draught.", "It is the first experiment he ever did."],
+        why: ["\"There is no better, there is no more open door by which you can enter into the study of natural philosophy.\"", "He offers it in place of a newer topic, saying the newer one could not be better."],
+      },
+      {
+        q: "Why is candle-wood a surprising thing to burn?",
+        answer: "It is a hard, strong wood that would be useful for building, yet it burns beautifully.",
+        wrong: ["It is far too wet to catch light.", "It is the only wood found in bogs.", "It burns without giving any light.", "It has to be soaked in oil first."],
+        why: ["\"a hard, strong, excellent wood, evidently fitted for good work as a resister of force, and yet withal burning so well\"", "The and yet is doing the work: the two qualities are not ones you expect together."],
+      },
+    ],
+  },
+  {
+    id: "lobo",
+    title: "The king of Currumpaw",
+    source: "from Wild Animals I Have Known by Ernest Thompson Seton, 1898",
+    paragraphs: [
+      "CURRUMPAW is a vast cattle range in northern New Mexico. It is a land of rich pastures and teeming flocks and herds, a land of rolling mesas and precious running waters that at length unite in the Currumpaw River, from which the whole region is named. And the king whose despotic power was felt over its entire extent was an old gray wolf.",
+      "Old Lobo, or the king, as the Mexicans called him, was the gigantic leader of a remarkable pack of gray wolves, that had ravaged the Currumpaw Valley for a number of years. All the shepherds and ranchmen knew him well, and, wherever he appeared with his trusty band, terror reigned supreme among the cattle, and wrath and despair among their owners. Old Lobo was a giant among wolves, and was cunning and strong in proportion to his size. His voice at night was well-known and easily distinguished from that of any of his fellows. An ordinary wolf might howl half the night about the herdsman's bivouac without attracting more than a passing notice, but when the deep roar of the old king came booming down the canon, the watcher bestirred himself and prepared to learn in the morning that fresh and serious inroads had been made among the herds.",
+      "Old Lobo's band was but a small one. This I never quite understood, for usually, when a wolf rises to the position and power that he had, he attracts a numerous following. It may be that he had as many as he desired, or perhaps his ferocious temper prevented the increase of his pack. Certain is it that Lobo had only five followers during the latter part of his reign. Each of these, however, was a wolf of renown, most of them were above the ordinary size, one in particular, the second in command, was a veritable giant, but even he was far below the leader in size and prowess. Several of the band, besides the two leaders, were especially noted. One of those was a beautiful white wolf, that the Mexicans called Blanca; this was supposed to be a female, possibly Lobo's mate. Another was a yellow wolf of remarkable swiftness, which, according to current stories had, on several occasions, captured an antelope for the pack.",
+    ],
+    questions: [
+      {
+        q: "Where is Currumpaw?",
+        answer: "In northern New Mexico.",
+        wrong: ["In northern Mexico.", "In southern Texas.", "In the Rocky Mountains of Canada.", "In southern California."],
+        why: ["\"CURRUMPAW is a vast cattle range in northern New Mexico.\"", "The river of the same name is what gives the whole region its name."],
+      },
+      {
+        q: "Which word does the passage use for the kind of power Lobo held?",
+        answer: "despotic",
+        wrong: ["remarkable", "supreme", "ordinary", "gigantic"],
+        why: ["\"the king whose despotic power was felt over its entire extent was an old gray wolf\"", "A despot rules absolutely and answers to nobody, which is the picture being built."],
+      },
+      {
+        q: "How could the herdsmen tell Lobo's howl from any other wolf's?",
+        answer: "His voice was far deeper and carried much further.",
+        wrong: ["He howled only at midnight.", "He howled three times in a row.", "He never howled near the herds.", "He howled only when the pack had eaten."],
+        why: ["\"His voice at night was well-known and easily distinguished from that of any of his fellows.\"", "\"when the deep roar of the old king came booming down\""],
+      },
+      {
+        q: "Why does the author keep calling Lobo a king?",
+        answer: "It turns him from a large animal into a ruler with subjects.",
+        wrong: ["It was the only name the ranchmen knew.", "Wolves always have a king.", "It shows he was the oldest wolf alive.", "It is a translation of the word Currumpaw."],
+        why: ["\"Old Lobo, or the king, as the Mexicans called him, was the gigantic leader of a remarkable pack.\"", "The passage speaks of his reign and his followers, which keeps the same idea running."],
+      },
+      {
+        q: "How many wolves followed Lobo in the last part of his reign?",
+        answer: "Five.",
+        wrong: ["Two.", "Six.", "Twelve.", "More than twenty."],
+        why: ["\"Certain is it that Lobo had only five followers during the latter part of his reign.\"", "The passage says this was small for a wolf of his power, which is why it is worth noticing."],
+      },
+      {
+        q: "Which TWO reasons does the author suggest for the pack being so small?",
+        answers: ["he had as many followers as he wanted", "his fierce temper kept others away"],
+        wrong: ["the ranchmen had shot the rest", "there were few wolves in the valley", "he had only just become the leader"],
+        why: ["\"It may be that he had as many as he desired, or perhaps his ferocious temper prevented the increase of his pack.\"", "The author admits he never quite understood it, so both are guesses."],
+      },
+      {
+        q: "What was Blanca?",
+        answer: "A beautiful white wolf, thought to be Lobo's mate.",
+        wrong: ["A yellow wolf of remarkable swiftness.", "The second in command, a veritable giant.", "A ranchman's dog.", "The name of the Currumpaw River."],
+        why: ["\"One of those was a beautiful white wolf, that the Mexicans called Blanca.\"", "The giant second in command and the swift yellow wolf are two different animals."],
+      },
+      {
+        q: "What does \"ravaged\" mean in the passage?",
+        answer: "attacked and damaged again and again",
+        wrong: ["travelled across quickly", "hunted in secret", "frightened without harming", "lived quietly in"],
+        why: ["\"a remarkable pack of gray wolves, that had ravaged the Currumpaw Valley for a number of years\"", "The result each morning was that fresh and serious inroads had been made among the herds."],
       },
     ],
   },
