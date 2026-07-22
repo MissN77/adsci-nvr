@@ -13,6 +13,7 @@ import * as rot from './rotation.js';
 import * as grid from './grid-rotation.js';
 import * as fold from './paper-folding.js';
 import * as cube from './cubes.js';
+import * as cube3d from './cube3d.js';
 import * as hid from './hidden-shapes.js';
 
 // Ordered the way a child should meet them: pattern-spotting first, spatial
@@ -29,6 +30,7 @@ export const REGISTRY = {
   [grid.meta.id]: grid,
   [fold.meta.id]: fold,
   [cube.meta.id]: cube,
+  [cube3d.meta.id]: cube3d,
   [hid.meta.id]: hid,
 };
 

@@ -81,6 +81,45 @@ export function foldNet(cells) {
   return faces;
 }
 
+/**
+ * Fold a net and return the full ORIENTATION of the cube at each cell, not
+ * just which face lands there.
+ *
+ * {d, n, e} means: face d lies on this cell, face n points up the page, face
+ * e points right. The extra two vectors are what makes it possible to know
+ * which way up a symbol printed on that cell ends up on the finished cube.
+ */
+export function foldNetFrames(cells) {
+  if (cells.length !== 6) return null;
+  const key = ([c, r]) => `${c},${r}`;
+  const index = new Map(cells.map((c, i) => [key(c), i]));
+  const frames = new Array(cells.length).fill(null);
+  frames[0] = { d: '-z', n: '+y', e: '+x' };
+  const queue = [0];
+  let seen = 1;
+  while (queue.length) {
+    const i = queue.shift();
+    const [c, r] = cells[i];
+    const { d, n, e } = frames[i];
+    const moves = [
+      { at: [c + 1, r], frame: { d: OPPOSITE[e], n, e: d } },
+      { at: [c - 1, r], frame: { d: e, n, e: OPPOSITE[d] } },
+      { at: [c, r - 1], frame: { d: OPPOSITE[n], n: d, e } },
+      { at: [c, r + 1], frame: { d: n, n: OPPOSITE[d], e } },
+    ];
+    for (const m of moves) {
+      const j = index.get(key(m.at));
+      if (j === undefined || frames[j]) continue;
+      frames[j] = m.frame;
+      seen++;
+      queue.push(j);
+    }
+  }
+  if (seen !== 6) return null;
+  if (new Set(frames.map((f) => f.d)).size !== 6) return null;
+  return frames;
+}
+
 export function isValidNet(cells) {
   return foldNet(cells) !== null;
 }
@@ -94,6 +133,8 @@ function normalise(cells) {
 }
 
 const shapeKey = (cells) => JSON.stringify(normalise(cells));
+
+export { normalise, harvest, randomHexomino };
 
 /** Grow a random edge-connected polyomino of six cells. */
 function randomHexomino(rng) {

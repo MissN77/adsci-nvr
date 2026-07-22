@@ -12,10 +12,13 @@ Supabase project, or its data.
 
 ## What a parent gets
 
-- **Eleven question types** covering the standard non-verbal and spatial
-  reasoning families: odd one out, similarities, sequences, analogies,
-  matrices, codes, reflection, rotation, paper folding, nets and cubes,
-  hidden shapes.
+- **Thirteen question types.** Six match question types in the official Quest
+  booklet: sequences, grid rotation, reflection (including diagonal mirror
+  lines), matrices, paper folding, and nets to cubes. The rest, odd one out,
+  similarities, analogies, codes and hidden shapes, are GL-era types that do
+  NOT appear in the Quest non-verbal paper. They are still worth practising
+  for other providers and for most 11+ books, but do not imply otherwise on
+  the listing.
 - **Questions are generated, not stored.** There is no bank of 150 questions to
   memorise. Every practice run is newly built, so a child can practise the same
   type every day for months without repeating a paper.
@@ -103,6 +106,7 @@ The guards that keep questions fair:
 | Odd one out with two possible answers | every set is audited, and thrown away unless exactly one feature singles out exactly one figure |
 | Two options that render identically | `sameFigure` compares what is drawn, not the stored values, and folds mirroring into rotation for shapes where a flip is a turn |
 | Cube net questions with wrong answers | nets are folded by simulation; verified to find exactly the 11 valid nets, and to satisfy the adjacency and opposite-face rules across all 760 placements |
+| A 3D cube option that is secretly correct | all 24 orientations of the folded cube are enumerated and every distractor is checked against them; verified that six distinct symbols give exactly 24 distinct views and six identical symbols give exactly 1 |
 | Paper folding answers guessed by hand | punches are mirrored back across each crease in reverse order, so the answer is correct by construction |
 | A child learning that the answer is usually C | answer position is randomised and the spread is asserted in `tools/validate.js` |
 
@@ -159,4 +163,4 @@ Static files, no build step. Copy the folder to any host.
 
 **Bump `CACHE_NAME` in `sw.js` on every deploy.** Otherwise the service worker
 keeps serving the old version and buyers never see the fix. Currently
-`adsci-nvr-v4`.
+`adsci-nvr-v10`.

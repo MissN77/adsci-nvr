@@ -127,6 +127,17 @@ export const TEACH = {
     tip: 'Opposite faces can never be seen at the same time. If an option shows two faces together that must be opposite, rule it out straight away.',
   },
 
+  cube3d: {
+    what: 'A flat net has a symbol on every face. You work out which of the drawn cubes it folds up into.',
+    steps: [
+      'You can only ever see three faces of a cube at once, so only three symbols need checking.',
+      'Find pairs in the net that end up opposite each other. Those two can never be seen together.',
+      'Rule out any cube showing an impossible pair straight away.',
+      'For the cubes still left, check which way up each symbol sits.',
+    ],
+    tip: 'A cube can show all the right symbols and still be wrong, because one of them has ended up turned the wrong way. Check the turning last, once you have ruled out the impossible pairs.',
+  },
+
   hid: {
     what: 'A small shape is hidden inside a bigger, busier picture. You find the picture that contains it.',
     steps: [
