@@ -244,83 +244,120 @@ function solidSVG(solid, size = 46) {
 const polyPts = (pts) => pts.map(([x, y]) => `${x.toFixed(2)},${y.toFixed(2)}`).join(' ');
 const FACE = 'fill="#FFFFFF" stroke="#1A3A4A" stroke-width="2" stroke-linejoin="round"';
 
-function netSVG(solid, unit = 34) {
+/**
+ * Draw the net.
+ *
+ * Every solid has more than one net, and the same net drawn at a different
+ * angle looks quite different to a ten year old. Without this the whole type
+ * had only ten possible pictures, one per solid, and a child would have met
+ * all of them inside a week. Where a prism's end caps attach, and how the
+ * whole net is turned, both vary.
+ */
+function netSVG(solid, rng, unit = 34) {
   const { kind, n, square } = solid.net;
-  const parts = [];
-  let minX = 0; let minY = 0; let maxX = 0; let maxY = 0;
-  const track = (pts) => pts.forEach(([x, y]) => {
-    minX = Math.min(minX, x); maxX = Math.max(maxX, x);
-    minY = Math.min(minY, y); maxY = Math.max(maxY, y);
-  });
-  const add = (pts, extra = '') => { track(pts); parts.push(`<polygon points="${polyPts(pts)}" ${FACE} ${extra}/>`); };
+  const prims = [];
+  const poly = (pts) => prims.push({ pts });
+  const disc = (cx, cy, r) => prims.push({ circle: [cx, cy, r] });
 
-  if (kind === 'prism' || kind === 'cylinder') {
-    const sides = kind === 'cylinder' ? 1 : n;
+  if (kind === 'prism') {
     const w = unit;
     const h = square === false ? unit * 1.5 : unit;
-    // The band of rectangles that wraps round the solid.
-    for (let i = 0; i < sides; i++) {
-      add([[i * w, 0], [(i + 1) * w, 0], [(i + 1) * w, h], [i * w, h]]);
+    for (let i = 0; i < n; i++) {
+      poly([[i * w, 0], [(i + 1) * w, 0], [(i + 1) * w, h], [i * w, h]]);
     }
-    if (kind === 'cylinder') {
-      const band = w * 2.6;
-      parts.length = 0;
-      minX = 0; maxX = 0; minY = 0; maxY = 0;
-      add([[0, 0], [band, 0], [band, h], [0, h]]);
-      const rr = unit * 0.42;
-      [[-rr - 4, h / 2], [band + rr + 4, h / 2]].forEach(([cx, cy]) => {
-        track([[cx - rr, cy - rr], [cx + rr, cy + rr]]);
-        parts.push(`<circle cx="${cx}" cy="${cy}" r="${rr}" ${FACE}/>`);
-      });
-    } else {
-      // A cap on the top of the first rectangle and one below it.
-      const capR = (w / 2) / Math.sin(Math.PI / n);
-      const capPts = (cy, flip) => [...Array(n)].map((_, i) => {
+    // The two caps can hang off any of the rectangles, one above and one
+    // below, which is what makes the same prism produce many different nets.
+    const capR = (w / 2) / Math.sin(Math.PI / n);
+    const inset = capR * Math.cos(Math.PI / n);
+    const capAt = (col, above) => {
+      const cx = col * w + w / 2;
+      const cy = above ? -inset : h + inset;
+      return [...Array(n)].map((_, i) => {
         const a = (i / n) * Math.PI * 2 - Math.PI / 2 + Math.PI / n;
-        const x = w / 2 + capR * Math.cos(a);
-        const y = cy + (flip ? -1 : 1) * capR * Math.sin(a);
-        return [x, y];
+        return [cx + capR * Math.cos(a), cy + (above ? 1 : -1) * capR * Math.sin(a)];
       });
-      add(capPts(-capR * Math.cos(Math.PI / n), false));
-      add(capPts(h + capR * Math.cos(Math.PI / n), true));
-    }
+    };
+    poly(capAt(int(rng, 0, n - 1), true));
+    poly(capAt(int(rng, 0, n - 1), false));
   } else if (kind === 'pyramid') {
     const r = unit * 0.78;
+    const turn = (int(rng, 0, n - 1) / n) * Math.PI * 2;
     const base = [...Array(n)].map((_, i) => {
-      const a = (i / n) * Math.PI * 2 - Math.PI / 2;
+      const a = (i / n) * Math.PI * 2 - Math.PI / 2 + turn;
       return [r * Math.cos(a), r * Math.sin(a)];
     });
-    add(base);
-    // A triangle folded outwards from every edge of the base.
+    poly(base);
     for (let i = 0; i < n; i++) {
       const a = base[i];
       const b = base[(i + 1) % n];
       const mid = [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2];
       const len = Math.hypot(mid[0], mid[1]) || 1;
-      const out = [mid[0] / len, mid[1] / len];
       const slant = unit * 0.95;
-      add([a, b, [mid[0] + out[0] * slant, mid[1] + out[1] * slant]]);
+      poly([a, b, [mid[0] + (mid[0] / len) * slant, mid[1] + (mid[1] / len) * slant]]);
+    }
+  } else if (kind === 'cylinder') {
+    const band = unit * 2.6;
+    const h = unit;
+    poly([[0, 0], [band, 0], [band, h], [0, h]]);
+    const rr = unit * 0.42;
+    // Both circles on one side, or one at each end.
+    if (rng() < 0.5) {
+      disc(-rr - 4, h / 2, rr);
+      disc(band + rr + 4, h / 2, rr);
+    } else {
+      disc(band * 0.3, -rr - 4, rr);
+      disc(band * 0.7, h + rr + 4, rr);
     }
   } else if (kind === 'cone') {
     const R = unit * 1.35;
-    // A sector, drawn as an arc, plus the circular base beside it.
-    const sweep = Math.PI * 1.25;
-    const start = -Math.PI / 2 - sweep / 2;
-    const end = start + sweep;
-    const p0 = [R * Math.cos(start), R * Math.sin(start)];
-    const p1 = [R * Math.cos(end), R * Math.sin(end)];
-    track([[-R, -R], [R, R]]);
-    parts.push(`<path d="M 0 0 L ${p0[0].toFixed(2)} ${p0[1].toFixed(2)} A ${R} ${R} 0 1 1 ${p1[0].toFixed(2)} ${p1[1].toFixed(2)} Z" ${FACE}/>`);
+    const sweep = Math.PI * (1.05 + rng() * 0.45);
+    const start = -Math.PI / 2 - sweep / 2 + (rng() - 0.5);
+    // The sector is drawn as a fine polygon so it turns with everything else.
+    const arc = [[0, 0]];
+    const steps = 40;
+    for (let i = 0; i <= steps; i++) {
+      const a = start + (i / steps) * sweep;
+      arc.push([R * Math.cos(a), R * Math.sin(a)]);
+    }
+    poly(arc);
     const rr = unit * 0.5;
-    const cx = R + rr + 8;
-    track([[cx - rr, -rr], [cx + rr, rr]]);
-    parts.push(`<circle cx="${cx}" cy="0" r="${rr}" ${FACE}/>`);
+    disc(R + rr + 10, 0, rr);
   }
 
-  const pad = 6;
+  // Turn the whole net. A quarter turn changes the picture a lot without
+  // changing the answer at all.
+  const spin = (int(rng, 0, 3) * Math.PI) / 2;
+  const cs = Math.cos(spin);
+  const sn = Math.sin(spin);
+  const spun = prims.map((pr) => {
+    if (pr.circle) {
+      const [cx, cy, r] = pr.circle;
+      return { circle: [cx * cs - cy * sn, cx * sn + cy * cs, r] };
+    }
+    return { pts: pr.pts.map(([x, y]) => [x * cs - y * sn, x * sn + y * cs]) };
+  });
+
+  let minX = Infinity; let minY = Infinity; let maxX = -Infinity; let maxY = -Infinity;
+  const see = (x, y) => {
+    minX = Math.min(minX, x); maxX = Math.max(maxX, x);
+    minY = Math.min(minY, y); maxY = Math.max(maxY, y);
+  };
+  spun.forEach((pr) => {
+    if (pr.circle) {
+      const [cx, cy, r] = pr.circle;
+      see(cx - r, cy - r); see(cx + r, cy + r);
+    } else pr.pts.forEach(([x, y]) => see(x, y));
+  });
+
+  const parts = spun.map((pr) => (pr.circle
+    ? `<circle cx="${pr.circle[0].toFixed(2)}" cy="${pr.circle[1].toFixed(2)}" r="${pr.circle[2].toFixed(2)}" ${FACE}/>`
+    : `<polygon points="${polyPts(pr.pts)}" ${FACE}/>`));
+
+  const pad = 8;
   const w = maxX - minX + pad * 2;
   const h = maxY - minY + pad * 2;
-  return `<svg viewBox="${minX - pad} ${minY - pad} ${w} ${h}" width="${Math.min(w, 300)}" height="${Math.min(h, 300) * (h / w) / (h / w)}" class="net">${parts.join('')}</svg>`;
+  const scale = Math.min(1, 280 / w, 210 / h);
+  return `<svg viewBox="${minX - pad} ${minY - pad} ${w} ${h}" width="${(w * scale).toFixed(0)}" height="${(h * scale).toFixed(0)}" class="net">${parts.join('')}</svg>`;
 }
 
 // ── Generator ─────────────────────────────────────────────────────────────
@@ -350,7 +387,7 @@ export function generate(rng, difficulty = 2) {
     return {
       type: 'solid',
       prompt: 'Which shape can be made from this net?',
-      stimulus: `<div class="stim-row">${netSVG(correct)}</div>`,
+      stimulus: `<div class="stim-row">${netSVG(correct, rng)}</div>`,
       optionsHTML: options(opts.map((s) => solidSVG(s))),
       answer: idx,
       explain: explain(
