@@ -67,6 +67,63 @@ for (let seed = 1; seed <= RUNS; seed++) {
   } else if ((m = /clock shows (\d+) o'clock/.exec(text))) {
     const raw = Number(m[1]) * 30;
     expected = [raw > 180 ? 360 - raw : raw];
+  } else if (/How many more on/.test(text) || /total for all four days/.test(text)) {
+    // Bar chart: read the bar heights back off the drawing and the axis
+    // labels, then work the answer out from those rather than from the
+    // numbers the generator chose.
+    const svg = q.stimulus;
+    const ticks = [...svg.matchAll(/<text x="28" y="([\d.]+)"[^>]*>(\d+)<\/text>/g)]
+      .map((t) => ({ y: Number(t[1]), v: Number(t[2]) }));
+    const bars = [...svg.matchAll(/<rect x="(\d+)" y="([\d.]+)" width="\d+" height="([\d.]+)"/g)]
+      .map((b) => ({ x: Number(b[1]), h: Number(b[3]) }))
+      .sort((p1, p2) => p1.x - p2.x);
+    const labels = [...svg.matchAll(/text-anchor="middle" font-size="13"[^>]*>([A-Za-z]+)<\/text>/g)].map((t) => t[1]);
+    if (ticks.length >= 2 && bars.length) {
+      // Two axis ticks give the scale: value per pixel.
+      const perPixel = (ticks[1].v - ticks[0].v) / (ticks[0].y - ticks[1].y);
+      const values = bars.map((b) => Math.round(b.h * perPixel));
+      if (/total for all four days/.test(text)) {
+        expected = [values.reduce((x, y) => x + y, 0)];
+      } else {
+        const mm = /How many more on (\w+) than on (\w+)/.exec(text);
+        const hi = labels.indexOf(mm[1]);
+        const lo = labels.indexOf(mm[2]);
+        if (hi >= 0 && lo >= 0) expected = [values[hi] - values[lo]];
+      }
+    }
+  } else if (/area of this shape/.test(text)) {
+    // Compound area: the four side labels are printed on the figure.
+    const nums = [...q.stimulus.matchAll(/font-weight="bold"[^>]*>(\d+)<\/text>/g)].map((t) => Number(t[1]));
+    if (nums.length === 4) {
+      const [wMinusW, H, W, hRest] = nums;
+      // Split into two rectangles, exactly as the child is told to.
+      expected = [wMinusW * H + (W - wMinusW) * hRest];
+    }
+  } else if (/built from/.test(text) && /cubes/.test(text)) {
+    const dims = /is (\d+) cubes long, (\d+) cubes deep and (\d+) cubes high/.exec(q.stimulus);
+    const per = /cubes of volume (\d+) cubic/.exec(text);
+    if (dims) {
+      expected = [Number(dims[1]) * Number(dims[2]) * Number(dims[3]) * (per ? Number(per[1]) : 1)];
+    }
+  } else if (/minutes does Train/.test(text)) {
+    // Timetable: read the printed times out of the table and subtract.
+    const rows = [...q.stimulus.matchAll(/<tr><th>([A-Za-z]+)<\/th>((?:<td>\d\d:\d\d<\/td>)+)<\/tr>/g)]
+      .map((r) => ({ stop: r[1], times: [...r[2].matchAll(/(\d\d:\d\d)/g)].map((t) => t[1]) }));
+    const mm = /Train (\d+) take to (?:travel from|get from) (\w+) to (\w+)/.exec(text);
+    if (rows.length && mm) {
+      const col = Number(mm[1]) - 1;
+      const from = rows.findIndex((r) => r.stop === mm[2]);
+      const to = rows.findIndex((r) => r.stop === mm[3]);
+      const mins = (t) => Number(t.slice(0, 2)) * 60 + Number(t.slice(3));
+      if (from >= 0 && to >= 0) expected = [mins(rows[to].times[col]) - mins(rows[from].times[col])];
+    }
+  } else if ((m = /^(\d*)\?(\d*) \* (\d+) = (\d+)\. Which digit is missing\?$/.exec(text))) {
+    // Long multiplication: divide the product to recover the whole number,
+    // then read off the digit that was hidden.
+    const before = m[1];
+    const after = m[2];
+    const whole = String(Number(m[4]) / Number(m[3]));
+    expected = [Number(whole[before.length])];
   } else if ((m = /common factors of (\d+) and (\d+)/.exec(text))) {
     const a = Number(m[1]);
     const b = Number(m[2]);

@@ -23,6 +23,7 @@ import { pick, int, shuffle } from '../core/rng.js';
 import { options, LETTERS } from '../core/render.js';
 import { attempt, explain } from './_util.js';
 import { DISTRACTOR_COUNT } from '../core/format.js';
+import { barChart, compoundArea, cubeVolume, timetable, missingDigit } from './maths-figures.js';
 
 export const meta = {
   id: 'maths',
@@ -66,6 +67,15 @@ function assemble(rng, { prompt, stimulus, answer, slips, points, chooseAll }) {
 // ── The question kinds ────────────────────────────────────────────────────
 
 const KINDS = {
+  // The second half of the real paper, where a question gives you something
+  // to read rather than only something to calculate. These live in
+  // maths-figures.js because they each need a drawing.
+  barChart,
+  compoundArea,
+  cubeVolume,
+  timetable,
+  missingDigit,
+
   /** 79 - [] = 25. The inverse operation is the whole point. */
   missingBox(rng) {
     const op = pick(rng, ['+', '-', 'x']);
@@ -289,8 +299,9 @@ function commonFactors(rng) {
 export function generate(rng, difficulty = 2) {
   return attempt(() => {
     // Easier papers stay on the bare-calculation half of the paper.
-    const easy = ['missingBox', 'quickCalc', 'placeValue', 'fractionToDecimal'];
-    const harder = [...easy, 'fractionOfAmount', 'equivalentFraction', 'anglesStraightLine', 'clockAngle'];
+    const easy = ['missingBox', 'quickCalc', 'placeValue', 'fractionToDecimal', 'barChart', 'timetable'];
+    const harder = [...easy, 'fractionOfAmount', 'equivalentFraction', 'anglesStraightLine',
+      'clockAngle', 'compoundArea', 'cubeVolume', 'missingDigit'];
     const menu = difficulty === 1 ? easy : harder;
 
     // The multi-answer factor question is part of the real paper, so it turns

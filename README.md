@@ -185,4 +185,4 @@ Note that bumping it is necessary but was not sufficient: `cache.addAll` reads
 through the browser's own HTTP cache, so a new cache version could be filled
 with stale files. Every precache request now uses `cache: 'reload'`. If an
 update ever appears not to deploy, check that first. Currently
-`adsci-nvr-v16`.
+`adsci-nvr-v25`.

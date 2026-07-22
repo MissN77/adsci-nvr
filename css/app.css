@@ -807,3 +807,35 @@ a { color: var(--teal-dark); }
   cursor: pointer;
   min-height: 44px;
 }
+
+/* ── Maths figures ─────────────────────────────────────────────────────── */
+.chart, .figure { display: block; margin: 0 auto 6px; }
+
+.chart-title {
+  text-align: center;
+  font-weight: bold;
+  font-size: 16px;
+  margin: 0 0 6px;
+}
+
+.figure-note {
+  text-align: center;
+  font-size: 14px;
+  color: #6A7A84;
+  margin: 4px 0 12px;
+}
+
+.timetable {
+  border-collapse: collapse;
+  margin: 4px auto 14px;
+  font-size: 16px;
+}
+
+.timetable th, .timetable td {
+  border: 2px solid #1A3A4A;
+  padding: 8px 12px;
+  text-align: center;
+  background: #FFFFFF;
+}
+
+.timetable th { background: #DCE3E8; font-weight: bold; }
