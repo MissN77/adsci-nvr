@@ -80,7 +80,7 @@ function figureSVG(grid, radii, sectors, missing) {
     parts.push(`<path d="${cellPath(radii[0], radii[radii.length - 1], a0, a1)}" fill="#F5CE6A" stroke="#1A3A4A" stroke-width="1.8" stroke-dasharray="5 4"/>`);
   }
   const r = radii[radii.length - 1] + 4;
-  return `<svg viewBox="${-r} ${-r} ${r * 2} ${r * 2}" width="${SIZE}" height="${SIZE}" class="radial">${parts.join('')}</svg>`;
+  return `<svg viewBox="${-r} ${-r} ${r * 2} ${r * 2}" width="${SIZE}" height="${SIZE}" class="radial" role="img" aria-label="a shape built from repeated pieces around a centre">${parts.join('')}</svg>`;
 }
 
 /** A single wedge on its own, cropped to itself. */
@@ -99,7 +99,7 @@ function wedgeSVG(column, radii, sectors, at, size = 74) {
   const span = Math.max(w, h);
   const cx = (b.minX + b.maxX) / 2;
   const cy = (b.minY + b.maxY) / 2;
-  return `<svg viewBox="${cx - span / 2} ${cy - span / 2} ${span} ${span}" width="${size}" height="${size}" class="radial-piece">${parts.join('')}</svg>`;
+  return `<svg viewBox="${cx - span / 2} ${cy - span / 2} ${span} ${span}" width="${size}" height="${size}" class="radial-piece" role="img" aria-label="one piece of a repeating pattern">${parts.join('')}</svg>`;
 }
 
 const columnKey = (c) => c.join('-');

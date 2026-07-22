@@ -205,7 +205,7 @@ function cubeSVG(cube, size = ISO) {
   }
 
   const r = size * 1.15;
-  return `<svg viewBox="${-r} ${-r} ${r * 2} ${r * 2}" width="${size * 1.5}" height="${size * 1.5}" class="cube3d">${parts.join('')}</svg>`;
+  return `<svg viewBox="${-r} ${-r} ${r * 2} ${r * 2}" width="${size * 1.5}" height="${size * 1.5}" class="cube3d" role="img" aria-label="a cube drawn in three dimensions, showing three faces">${parts.join('')}</svg>`;
 }
 
 /** The flat net, with each symbol drawn upright in its cell. */
@@ -232,7 +232,7 @@ function netSVG(cells, symbols, size = 40) {
   });
   const w = cols * size;
   const h = rows * size;
-  return `<svg viewBox="-2 -2 ${w + 4} ${h + 4}" width="${w + 4}" height="${h + 4}" class="net">${parts.join('')}</svg>`;
+  return `<svg viewBox="-2 -2 ${w + 4} ${h + 4}" width="${w + 4}" height="${h + 4}" class="net" role="img" aria-label="a flat net of six squares, each with a shape on it">${parts.join('')}</svg>`;
 }
 
 // ── Damage, to make wrong cubes ───────────────────────────────────────────

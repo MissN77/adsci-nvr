@@ -67,7 +67,7 @@ function sheet(poly, holes, { size = 88, crease = null } = {}) {
     parts.push(`<circle cx="${(x * size).toFixed(1)}" cy="${(y * size).toFixed(1)}" r="${(size * 0.062).toFixed(1)}" fill="#1A3A4A"/>`);
   });
 
-  return `<svg viewBox="-3 -3 ${size + 6} ${size + 6}" width="${size + 6}" height="${size + 6}" class="paper">${parts.join('')}</svg>`;
+  return `<svg viewBox="-3 -3 ${size + 6} ${size + 6}" width="${size + 6}" height="${size + 6}" class="paper" role="img" aria-label="a square of paper, folded and punched">${parts.join('')}</svg>`;
 }
 
 // ── Generator ─────────────────────────────────────────────────────────────

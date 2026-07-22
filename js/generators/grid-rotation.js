@@ -65,7 +65,7 @@ function gridSVG(g, { size = 22, circles = false } = {}) {
       }
     }
   }
-  return `<svg viewBox="-1 -1 ${w + 2} ${w + 2}" width="${w + 2}" height="${w + 2}" class="grid-fig">${cells.join('')}</svg>`;
+  return `<svg viewBox="-1 -1 ${w + 2} ${w + 2}" width="${w + 2}" height="${w + 2}" class="grid-fig" role="img" aria-label="a square grid with shaded and empty cells">${cells.join('')}</svg>`;
 }
 
 export function generate(rng, difficulty = 2) {

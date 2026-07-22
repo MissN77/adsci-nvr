@@ -232,6 +232,7 @@ export function homeScreen() {
           ${focus}
         </div>
 
+        <button class="btn btn--ghost no-print" type="button" data-act="go" data-to="#/settings">Settings, extra time and text size</button>
         <button class="btn btn--ghost no-print" type="button" data-act="go" data-to="#/child">Change who is practising</button>
       </div>
       ${footer()}`,
@@ -435,10 +436,15 @@ export function practiseRunScreen(typeId) {
 
   function body() {
     if (i >= RUN_LENGTH) return summary();
+    const canCheck = !answered && isMulti(q) && chosen.length === needed(q);
     const after = answered
-      ? `<div class="explain">${q.explain}</div>
+      ? `<div class="explain" role="status" aria-live="polite">${q.explain}</div>
          <button class="btn" type="button" data-act="next">${i + 1 >= RUN_LENGTH ? 'See your score' : 'Next question'}</button>`
-      : '';
+      : (canCheck
+        ? '<button class="btn" type="button" data-act="check">Check my answer</button>'
+        : (isMulti(q)
+          ? `<p class="muted">Tap ${needed(q)} answers, then Check. You can change your mind before you check.</p>`
+          : ''));
     return `${header(name, '#/practise')}
       <div class="wrap">
         <div class="qmeta"><span>Question ${i + 1} of ${RUN_LENGTH}</span><span>${right} right</span></div>
@@ -465,12 +471,29 @@ export function practiseRunScreen(typeId) {
         ctx.paint(body());
         return;
       }
+      // On a "choose two" the completing tap used to mark the question
+      // instantly. The child has already changed their mind once, because
+      // toggling is allowed up to that point, and then the door slams on a
+      // misfire with no way back. Multi-answer questions now wait for Check.
+      if (act === 'check' && !answered && isMulti(q) && chosen.length === needed(q)) {
+        commit();
+        return;
+      }
       const opt = el.closest ? el.closest('.opt') : null;
       if (opt && !answered && i < RUN_LENGTH) {
         const tapped = Number(opt.dataset.opt);
         chosen = chosen.includes(tapped)
           ? chosen.filter((v) => v !== tapped) : [...chosen, tapped];
+        if (isMulti(q)) { ctx.paint(body()); paintPicked(ctx.root, chosen); return; }
         if (chosen.length < needed(q)) { paintPicked(ctx.root, chosen); return; }
+        commit();
+      }
+    },
+  };
+
+  function commit() {
+    {
+      {
         const correct = isCorrect(q, chosen);
         if (correct) right += 1;
         Store.recordAnswer({
@@ -483,6 +506,59 @@ export function practiseRunScreen(typeId) {
         ctx.paint(body());
         markOptions(ctx.root, chosen, correctSet(q));
       }
+    }
+  }
+}
+
+// ── Settings ──────────────────────────────────────────────────────────────
+//
+// Extra time is the one that matters. Children with an access arrangement get
+// 25% extra in the real Bexley test, and until now the app could not rehearse
+// the conditions they will actually sit in.
+
+export function settingsScreen() {
+  function body() {
+    const p = Store.getPrefs();
+    const timeBtn = (mins, label) => `
+      <button class="btn ${p.extraTime === mins ? '' : 'btn--ghost'}" type="button"
+        data-act="time" data-mins="${mins}" aria-pressed="${p.extraTime === mins}">${label}</button>`;
+    const sizeBtn = (v, label) => `
+      <button class="btn ${p.textScale === v ? '' : 'btn--ghost'}" type="button"
+        data-act="size" data-scale="${v}" aria-pressed="${p.textScale === v}">${label}</button>`;
+    return `${header('Settings', '#/home')}
+      <div class="wrap">
+        <h2>Extra time</h2>
+        <p class="muted">If your school has agreed extra time for the real test, set it here so
+        practice papers run to the same clock.</p>
+        ${timeBtn(0, 'Standard, 20 minutes')}
+        ${timeBtn(25, '25% extra, 25 minutes')}
+        ${timeBtn(50, '50% extra, 30 minutes')}
+
+        <hr class="rule">
+        <h2>Text size</h2>
+        <p class="muted">Makes every question bigger without zooming the page.</p>
+        ${sizeBtn(1, 'Normal')}
+        ${sizeBtn(1.15, 'Larger')}
+        ${sizeBtn(1.3, 'Largest')}
+
+        <hr class="rule">
+        <h2>The clock</h2>
+        <p class="muted">A ticking clock helps some children and worries others. Hiding it does
+        not stop the paper being timed.</p>
+        <button class="btn ${p.hideTimer ? '' : 'btn--ghost'}" type="button" data-act="clock"
+          aria-pressed="${p.hideTimer}">${p.hideTimer ? 'Clock is hidden' : 'Hide the clock'}</button>
+      </div>
+      ${footer()}`;
+  }
+  return {
+    get html() { return body(); },
+    click(el) {
+      const act = el.dataset.act;
+      if (act === 'time') Store.setPref('extraTime', Number(el.dataset.mins));
+      else if (act === 'size') Store.setPref('textScale', Number(el.dataset.scale));
+      else if (act === 'clock') Store.setPref('hideTimer', !Store.getPrefs().hideTimer);
+      else return;
+      ctx.paint(body());
     },
   };
 }
@@ -493,14 +569,20 @@ export function practiseRunScreen(typeId) {
 // minutes, so a mock paper is that, not a round number chosen for us. Pace is
 // a separate skill from reasoning and it only transfers if the pace is right.
 const PAPER_LENGTH = 20;
-const PAPER_SECONDS = 20 * 60;
+const PAPER_BASE_SECONDS = 20 * 60;
+
+/** Standard time plus whatever extra the settings screen has been given. */
+function paperSeconds() {
+  const extra = Store.getPrefs().extraTime || 0;
+  return Math.round(PAPER_BASE_SECONDS * (1 + extra / 100));
+}
 
 export function paperScreen() {
   let phase = 'intro'; // intro -> running -> done
   let questions = [];
   let answers = [];
   let i = 0;
-  let remaining = PAPER_SECONDS;
+  let remaining = paperSeconds();
   let timer = null;
   let startedAt = 0;
 
@@ -555,7 +637,9 @@ export function paperScreen() {
   function tick() {
     remaining -= 1;
     const el = ctx.root && ctx.root.querySelector('#clock');
-    if (el) el.textContent = secs(Math.max(0, remaining));
+    // A clock that updates every second is exactly the element some children
+    // need to be able to hide. The paper is still timed either way.
+    if (el && !Store.getPrefs().hideTimer) el.textContent = secs(Math.max(0, remaining));
     if (remaining <= 0) finish();
   }
 
@@ -582,7 +666,7 @@ export function paperScreen() {
     Store.recordPaper({
       score,
       total: PAPER_LENGTH,
-      seconds: Math.min(PAPER_SECONDS, Math.round((Date.now() - startedAt) / 1000)),
+      seconds: Math.min(paperSeconds(), Math.round((Date.now() - startedAt) / 1000)),
       breakdown,
     });
     ctx.paint(body());
@@ -607,7 +691,7 @@ export function paperScreen() {
       <div class="wrap">
         <div class="qmeta">
           <span>Question ${i + 1} of ${PAPER_LENGTH}</span>
-          <span id="clock">${secs(Math.max(0, remaining))}</span>
+          <span id="clock">${Store.getPrefs().hideTimer ? "&#9202;" : secs(Math.max(0, remaining))}</span>
         </div>
         ${questionBody(q)}
         <button class="btn btn--ghost no-print" type="button" data-act="stop">Stop and mark it now</button>
@@ -647,7 +731,7 @@ export function paperScreen() {
       <div class="wrap">
         <div class="card card--accent">
           <h3>${score} out of ${PAPER_LENGTH}</h3>
-          <p class="muted">${Math.round((score / PAPER_LENGTH) * 100)}% in ${secs(Math.min(PAPER_SECONDS, PAPER_SECONDS - Math.max(0, remaining)))}</p>
+          <p class="muted">${Math.round((score / PAPER_LENGTH) * 100)}% in ${secs(Math.min(paperSeconds(), paperSeconds() - Math.max(0, remaining)))}</p>
         </div>
         <hr class="rule">
         <h3>By question type</h3>
@@ -675,7 +759,7 @@ export function paperScreen() {
         buildPaper();
         phase = 'running';
         i = 0;
-        remaining = PAPER_SECONDS;
+        remaining = paperSeconds();
         startedAt = Date.now();
         ctx.paint(body());
         startTimer();

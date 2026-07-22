@@ -84,7 +84,7 @@ const KINDS = {
       const answer = int(rng, 3, 12);
       const total = b * answer;
       return {
-        prompt: `${total} &divide; &#9723; = ${b}`,
+        prompt: `${total} &divide; <span class="numbox" aria-label="missing number"></span> = ${b}`,
         answer,
         slips: [total - b, total + b, b, Math.round(total / (b + 1)), answer + 1, answer - 1, total * b],
         points: [
@@ -97,7 +97,7 @@ const KINDS = {
     const answer = int(rng, 8, a - 5);
     const result = op === '+' ? a + answer : a - answer;
     return {
-      prompt: `${a} ${op === '+' ? '+' : '&minus;'} &#9723; = ${result}`,
+      prompt: `${a} ${op === '+' ? '+' : '&minus;'} <span class="numbox" aria-label="missing number"></span> = ${result}`,
       answer,
       slips: [a + result, result - a, a - result + 2, a - result - 2, result, a, Math.abs(result - a) + 10],
       points: [
@@ -187,7 +187,7 @@ const KINDS = {
     const k = int(rng, 3, 12);
     const answer = a * k;
     return {
-      prompt: `${a}/${b} = &#9723;/${num(b * k)}`,
+      prompt: `${a}/${b} = <span class="numbox" aria-label="missing number"></span>/${num(b * k)}`,
       answer,
       slips: [a + k, b * k - a, a * (k + 1), a * (k - 1), b * k - a * k, Math.round((b * k) / a)],
       points: [

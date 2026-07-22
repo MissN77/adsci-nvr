@@ -55,7 +55,7 @@ function buildFigure(rng, shapes) {
     // Outline only: a filled shape would hide whatever sits beneath it.
     return figureMarkup({ ...f, fill: 'none' }, cx, cy, SIZE * 0.3);
   }).join('');
-  return `<svg viewBox="0 0 ${SIZE} ${SIZE}" width="${SIZE}" height="${SIZE}" class="fig fig--big">${markup}</svg>`;
+  return `<svg viewBox="0 0 ${SIZE} ${SIZE}" width="${SIZE}" height="${SIZE}" class="fig fig--big" role="img" aria-label="a pattern of lines with a shape hidden inside it">${markup}</svg>`;
 }
 
 export function generate(rng, difficulty = 2) {

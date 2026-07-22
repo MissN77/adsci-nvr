@@ -12,6 +12,9 @@
   --teal: #2A7B6F;
   --teal-dark: #205C53;
   --coral: #F08080;
+  /* The reflection line is information, not decoration, so it needs 3:1
+     against cream. #F08080 was 2.42:1. This is 4.0:1. */
+  --coral-line: #C0453F;
   --gold: #F5CE6A;
   --lavender: #D4B8E0;
   --mint: #A8D5CF;
@@ -52,10 +55,14 @@ body {
   padding-bottom: 48px;
 }
 
+/* Uppercase was applied to every heading, button, topbar and passage title,
+   which is the whole navigation layer. All caps removes the ascender and
+   descender word-shape that a dyslexic reader relies on, and it is measurably
+   slower for everyone. Kept only on .tag and .fold-cap, which are one or two
+   words of chrome. */
 h1, h2, h3, h4 {
   margin: 0 0 10px;
   color: var(--navy);
-  text-transform: uppercase;
   font-weight: 700;
   letter-spacing: .02em;
   line-height: 1.2;
@@ -90,7 +97,6 @@ a { color: var(--teal-dark); }
   color: var(--white);
   margin: 0;
   font-size: 18px;
-  text-transform: uppercase;
   letter-spacing: .04em;
   font-weight: 700;
   flex: 1;
@@ -102,7 +108,6 @@ a { color: var(--teal-dark); }
   color: var(--white);
   font: inherit;
   font-size: 15px;
-  text-transform: uppercase;
   letter-spacing: .04em;
   min-height: 44px;
   min-width: 60px;
@@ -180,7 +185,6 @@ a { color: var(--teal-dark); }
   font-family: inherit;
   font-size: 18px;
   font-weight: 700;
-  text-transform: uppercase;
   letter-spacing: .03em;
   text-align: left;
   cursor: pointer;
@@ -257,7 +261,6 @@ a { color: var(--teal-dark); }
   font-size: 15px;
   color: var(--muted);
   margin-bottom: 10px;
-  text-transform: uppercase;
   letter-spacing: .04em;
 }
 
@@ -373,14 +376,14 @@ a { color: var(--teal-dark); }
   width: 0;
   align-self: stretch;
   min-height: 110px;
-  border-left: 3px dashed var(--coral);
+  border-left: 3px dashed var(--coral-line);
 }
 
 .mirror--h {
   height: 0;
   width: 100%;
   max-width: 240px;
-  border-top: 3px dashed var(--coral);
+  border-top: 3px dashed var(--coral-line);
 }
 
 .stim-note {
@@ -499,6 +502,16 @@ a { color: var(--teal-dark); }
 
 .opt.is-correct .opt-letter { background: var(--teal); }
 
+/* Colour alone fails WCAG 1.4.1, and in the mock paper no explanation panel is
+   shown, so colour was the ONLY signal of right and wrong. */
+.opt.is-correct .opt-letter::after,
+.opt.is-wrong .opt-letter::after {
+  margin-left: 3px;
+  font-weight: 700;
+}
+.opt.is-correct .opt-letter::after { content: "\2713"; }
+.opt.is-wrong .opt-letter::after { content: "\2717"; }
+
 .opt.is-wrong {
   background: var(--salmon);
   border-color: var(--coral);
@@ -509,8 +522,12 @@ a { color: var(--teal-dark); }
   opacity: 1;
 }
 
+/* opacity .55 dragged navy on cream to about 3.1:1, below the 4.5:1 AA needs
+   for body text, and this is the state a child reads while going over a
+   mistake. An explicit colour keeps it at 4.97:1. */
 .opt[disabled]:not(.is-correct):not(.is-wrong) {
-  opacity: .55;
+  color: #5B6E78;
+  border-color: #C9D3D8;
 }
 
 .explain {
@@ -595,7 +612,12 @@ a { color: var(--teal-dark); }
 
   #app { max-width: none; padding: 0; }
 
-  h1, h2, h3, h4 { color: #000000; }
+  /* Uppercase was applied to every heading, button, topbar and passage title,
+   which is the whole navigation layer. All caps removes the ascender and
+   descender word-shape that a dyslexic reader relies on, and it is measurably
+   slower for everyone. Kept only on .tag and .fold-cap, which are one or two
+   words of chrome. */
+h1, h2, h3, h4 { color: #000000; }
 
   .card,
   .cell,
@@ -673,7 +695,6 @@ a { color: var(--teal-dark); }
 
 .group-head {
   font-size: 17px;
-  text-transform: uppercase;
   letter-spacing: .04em;
   margin: 0;
   padding: 8px 12px;
@@ -702,10 +723,15 @@ a { color: var(--teal-dark); }
   font-size: 16px;
 }
 
+/* A provisional pick used the SAME mint as a confirmed correct answer, so on
+   every "choose two" question a half-made choice was indistinguishable from a
+   right one. Gold, and only gold, means "you have picked this, not finished". */
 .opt.is-picked {
-  background: #A8D5CF;
+  background: #F5CE6A;
+  border-color: #1A3A4A;
   border-width: 4px;
 }
+.opt.is-picked .opt-letter { background: #1A3A4A; }
 
 /* ── Verbal and numerical ──────────────────────────────────────────────── */
 .wordgroups {
@@ -766,12 +792,11 @@ a { color: var(--teal-dark); }
 .passage-title {
   margin: 0 0 10px;
   font-size: 16px;
-  text-transform: uppercase;
   letter-spacing: .04em;
 }
 .passage-source {
   font-size: 14px;
-  color: #6A7A84;
+  color: #5B6E78;               /* was #6A7A84, 4.44:1 on white, below AA */
   border-top: 1px solid #E0D8CB;
   padding-top: 8px;
   margin-bottom: 0;
@@ -804,7 +829,6 @@ a { color: var(--teal-dark); }
   padding: 10px 18px;
   font: inherit;
   font-weight: bold;
-  text-transform: uppercase;
   letter-spacing: .03em;
   cursor: pointer;
   min-height: 44px;
@@ -823,7 +847,7 @@ a { color: var(--teal-dark); }
 .figure-note {
   text-align: center;
   font-size: 14px;
-  color: #6A7A84;
+  color: #5B6E78;               /* was #6A7A84, 4.15:1 on cream, below AA */
   margin: 4px 0 12px;
 }
 
@@ -853,3 +877,51 @@ a { color: var(--teal-dark); }
 /* Sentence options are prose, not codes. .opt-text sets .1em tracking for
    code answers, which made the logic statements read like a number plate. */
 .opt-sentence { letter-spacing: normal; }
+
+/* ── Focus ─────────────────────────────────────────────────────────────────
+   -webkit-tap-highlight-color is transparent, and there was not one :focus
+   rule in the file, so a child on a Bluetooth keyboard or a switch device got
+   only the unstyled browser default. */
+:where(button, a, input, select, textarea):focus-visible {
+  outline: 3px solid #1A3A4A;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+.opt:focus-visible { outline-offset: -4px; }
+
+/* Letter-spacing was there to open up all-caps. Now that these read as
+   sentence case it just loosens the words, so it goes back to normal. */
+h1, h2, h3, h4,
+.topbar h1, .topbar .topbar-title, .topbar .back,
+.btn, .qmeta, .group-head, .passage-title, #update-now {
+  letter-spacing: normal;
+}
+
+/* ── Text size ─────────────────────────────────────────────────────────────
+   -webkit-text-size-adjust: 100% blocks the iOS text-size control, so without
+   this there was no way to make the type bigger except pinch-zoom, which
+   breaks the fixed-width grids. Set by the settings screen. */
+:root { --text-scale: 1; }
+body { font-size: calc(17px * var(--text-scale)); }
+.qprompt { font-size: calc(18px * var(--text-scale)); }
+.opt, .opt-word, .opt-text { font-size: calc(17px * var(--text-scale)); }
+.passage p { font-size: calc(17px * var(--text-scale)); }
+.sentence { font-size: calc(19px * var(--text-scale)); }
+
+/* The update bar is fixed to the bottom and about 68px tall, but #app only
+   reserved 48px, so it could sit over the last row of options. */
+#app { padding-bottom: 96px; }
+
+/* The missing-number box was U+25FB WHITE MEDIUM SQUARE, which is absent from
+   several stock Android font sets and rendered as a tofu box, so the child saw
+   a placeholder where the operand should be and could not tell whether that
+   was the question or a bug. Drawn in CSS instead. */
+.numbox {
+  display: inline-block;
+  width: .82em;
+  height: .82em;
+  border: 2px solid currentColor;
+  border-radius: 2px;
+  vertical-align: -0.08em;
+  margin: 0 .12em;
+}

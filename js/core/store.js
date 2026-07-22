@@ -15,6 +15,35 @@
 const PREFIX = 'adsci_nvr_';
 const K_CHILDREN = `${PREFIX}children`;
 const K_CURRENT = `${PREFIX}current`;
+const K_PREFS = `${PREFIX}prefs`;
+
+// ── Access settings ───────────────────────────────────────────────────────
+//
+// Children with an EHCP get 25% extra time in the real Bexley test. The app
+// had PAPER_SECONDS as a constant, so the one group who most needs to rehearse
+// under their actual conditions was the one group that could not. These are
+// device-wide rather than per child, because they describe the device and the
+// reader, not the practice record.
+const PREF_DEFAULTS = { extraTime: 0, textScale: 1, hideTimer: false, };
+
+function getPrefs() {
+  const raw = readJSON(K_PREFS, null);
+  return { ...PREF_DEFAULTS, ...(raw && typeof raw === 'object' ? raw : {}) };
+}
+
+function setPref(key, value) {
+  if (!(key in PREF_DEFAULTS)) return getPrefs();
+  const next = { ...getPrefs(), [key]: value };
+  writeJSON(K_PREFS, next);
+  applyPrefs(next);
+  return next;
+}
+
+/** Push the text scale onto the document so the CSS can use it. */
+function applyPrefs(prefs = getPrefs()) {
+  if (typeof document === 'undefined') return;
+  document.documentElement.style.setProperty('--text-scale', String(prefs.textScale));
+}
 const childKey = (name) => `${PREFIX}child_${name}`;
 
 // Days older than this are dropped on write. Three months is more than the
@@ -350,6 +379,9 @@ export const Store = {
   exportJSON,
   importJSON,
   dayKey,
+  getPrefs,
+  setPref,
+  applyPrefs,
 };
 
 export default Store;

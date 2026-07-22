@@ -81,7 +81,7 @@ export function textOptions(strs) {
 
 /** Compose several figures into one SVG box, for hidden-shape questions. */
 export function composite(markup, size = 200) {
-  return `<svg viewBox="0 0 ${size} ${size}" width="${size}" height="${size}" class="fig fig--big">${markup}</svg>`;
+  return `<svg viewBox="0 0 ${size} ${size}" width="${size}" height="${size}" class="fig fig--big" role="img" aria-label="a shape">${markup}</svg>`;
 }
 
 export { figureMarkup, figureSVG };

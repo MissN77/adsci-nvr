@@ -19,6 +19,7 @@ import {
   practiseRunScreen,
   paperScreen,
   progressScreen,
+  settingsScreen,
 } from './ui/screens.js';
 
 const root = document.getElementById('app');
@@ -75,6 +76,9 @@ function route() {
     case 'progress':
       mount(progressScreen());
       break;
+    case 'settings':
+      mount(settingsScreen());
+      break;
     case 'child':
       mount(childScreen());
       break;
@@ -118,6 +122,9 @@ window.addEventListener('hashchange', route);
 // Pattern fills live in a single <defs> block, so this must run once before
 // any figure is drawn or hatched shapes render as plain white.
 ensurePatterns();
+// Text size is a stored preference, so it has to be on the document before
+// the first paint, or the first screen renders at the wrong size.
+Store.applyPrefs();
 route();
 
 if ('serviceWorker' in navigator) {

@@ -44,7 +44,7 @@ function barChartSVG(labels, values, step) {
   parts.push(`<line x1="34" y1="20" x2="34" y2="${20 + h}" stroke="${INK}" stroke-width="2"/>`);
 
   const W = 34 + chartW + 10;
-  return `<svg viewBox="0 0 ${W} ${h + 50}" width="${Math.min(W, 320)}" height="${(h + 50) * Math.min(1, 320 / W)}" class="chart">${parts.join('')}</svg>`;
+  return `<svg viewBox="0 0 ${W} ${h + 50}" width="${Math.min(W, 320)}" height="${(h + 50) * Math.min(1, 320 / W)}" class="chart" role="img" aria-label="a bar chart with the value printed above each bar">${parts.join('')}</svg>`;
 }
 
 export function barChart(rng) {
@@ -108,7 +108,7 @@ export function compoundArea(rng) {
   ].map((p) => p.join(',')).join(' ');
 
   const label = (px, py, t) => `<text x="${px}" y="${py}" text-anchor="middle" font-size="13" font-weight="bold" fill="${INK}">${t}</text>`;
-  const svg = `<svg viewBox="0 0 ${x(W) + 40} ${y(0) + 30}" width="${Math.min(x(W) + 40, 300)}" height="${(y(0) + 30) * Math.min(1, 300 / (x(W) + 40))}" class="figure">
+  const svg = `<svg viewBox="0 0 ${x(W) + 40} ${y(0) + 30}" width="${Math.min(x(W) + 40, 300)}" height="${(y(0) + 30) * Math.min(1, 300 / (x(W) + 40))}" class="figure" role="img" aria-label="a diagram with its measurements printed on it">
       <polygon points="${pts}" fill="#EDF1F3" stroke="${INK}" stroke-width="2.5" stroke-linejoin="round"/>
       ${label((x(0) + x(W - w)) / 2, y(H) - 8, W - w)}
       ${label(x(0) - 12, (y(0) + y(H)) / 2, H)}
@@ -163,7 +163,7 @@ export function cubeVolume(rng) {
   const W = Math.max(...xs) - Math.min(...xs) + pad * 2;
   const Hh = Math.max(...ys) - Math.min(...ys) + pad * 2;
 
-  const svg = `<svg viewBox="${minX} ${minY} ${W} ${Hh}" width="${Math.min(W * 1.6, 250)}" height="${Math.min(Hh * 1.6, 250)}" class="figure">${parts.join('')}</svg>`;
+  const svg = `<svg viewBox="${minX} ${minY} ${W} ${Hh}" width="${Math.min(W * 1.6, 250)}" height="${Math.min(Hh * 1.6, 250)}" class="figure" role="img" aria-label="a diagram with its measurements printed on it">${parts.join('')}</svg>`;
 
   return {
     prompt: each === 1

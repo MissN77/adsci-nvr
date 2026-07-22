@@ -237,7 +237,7 @@ function solidSVG(solid, size = 46) {
   }
 
   const r = size * 1.9;
-  return `<svg viewBox="${-r} ${-r} ${r * 2} ${r * 2}" width="${size * 2.4}" height="${size * 2.4}" class="solid">${parts.join('')}</svg>`;
+  return `<svg viewBox="${-r} ${-r} ${r * 2} ${r * 2}" width="${size * 2.4}" height="${size * 2.4}" class="solid" role="img" aria-label="a three dimensional solid">${parts.join('')}</svg>`;
 }
 
 // ── Drawing the net ───────────────────────────────────────────────────────
@@ -358,7 +358,7 @@ function netSVG(solid, rng, unit = 34) {
   const w = maxX - minX + pad * 2;
   const h = maxY - minY + pad * 2;
   const scale = Math.min(1, 280 / w, 210 / h);
-  return `<svg viewBox="${minX - pad} ${minY - pad} ${w} ${h}" width="${(w * scale).toFixed(0)}" height="${(h * scale).toFixed(0)}" class="net">${parts.join('')}</svg>`;
+  return `<svg viewBox="${minX - pad} ${minY - pad} ${w} ${h}" width="${(w * scale).toFixed(0)}" height="${(h * scale).toFixed(0)}" class="net" role="img" aria-label="a flat net that folds into a solid">${parts.join('')}</svg>`;
 }
 
 // ── Generator ─────────────────────────────────────────────────────────────

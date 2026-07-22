@@ -183,7 +183,7 @@ function netSVG(cells, { size = 22, marks = {} } = {}) {
       : '';
     return `<rect x="${c * size}" y="${r * size}" width="${size}" height="${size}" fill="${fill}" stroke="#1A3A4A" stroke-width="2"/>${label}`;
   }).join('');
-  return `<svg viewBox="-2 -2 ${w + 4} ${h + 4}" width="${w + 4}" height="${h + 4}" class="net">${squares}</svg>`;
+  return `<svg viewBox="-2 -2 ${w + 4} ${h + 4}" width="${w + 4}" height="${h + 4}" class="net" role="img" aria-label="a flat net of six squares, each with a shape on it">${squares}</svg>`;
 }
 
 // ── Question forms ────────────────────────────────────────────────────────
