@@ -75,7 +75,10 @@ export const SHAPES = {
   trap: { poly: [[-0.55, -0.75], [0.55, -0.75], [1, 0.75], [-1, 0.75]], sym: 1, chiral: false, label: 'trapezium' },
 
   // ── Chiral shapes: mirror image is NOT any rotation of the original ─────
-  rtri: { poly: [[-0.9, 0.9], [0.9, 0.9], [-0.9, -0.9]], sym: 1, chiral: true, label: 'right-angled triangle' },
+  // Deliberately SCALENE. An isosceles right triangle has a line of symmetry
+  // through its right angle, so its mirror image is just a rotation of it,
+  // which would make every reflection question using it unanswerable.
+  rtri: { poly: [[-0.9, 0.9], [0.9, 0.9], [-0.9, -0.35]], sym: 1, chiral: true, label: 'right-angled triangle' },
 
   flag: {
     poly: [[-0.75, -1], [-0.75, 1], [-0.45, 1], [-0.45, -0.1], [0.9, -0.1],
@@ -91,19 +94,129 @@ export const SHAPES = {
   zed: {
     poly: [[-0.9, -0.9], [0.9, -0.9], [0.9, -0.4], [-0.1, 0.4], [0.9, 0.4],
       [0.9, 0.9], [-0.9, 0.9], [-0.9, 0.4], [0.1, -0.4], [-0.9, -0.4]],
-    sym: 1, chiral: true, label: 'Z-shape',
+    // A Z maps onto itself under a half turn, so its symmetry order is 2,
+    // not 1. Getting this wrong meant a Z and a Z turned 180 degrees were
+    // treated as different figures and could both appear as options.
+    sym: 2, chiral: true, label: 'Z-shape',
   },
 
   para: { poly: [[-0.55, -0.7], [1, -0.7], [0.55, 0.7], [-1, 0.7]], sym: 2, chiral: true, label: 'parallelogram' },
+
+  eff: {
+    poly: [[-0.7, -1], [0.8, -1], [0.8, -0.55], [-0.2, -0.55], [-0.2, -0.15],
+      [0.5, -0.15], [0.5, 0.3], [-0.2, 0.3], [-0.2, 1], [-0.7, 1]],
+    sym: 1, chiral: true, label: 'F-shape',
+  },
+
+  // The steps are deliberately UNEVEN. An even staircase is symmetric about
+  // its own diagonal, which makes it achiral and useless for reflection.
+  step: {
+    poly: [[-0.9, 0.9], [0.9, 0.9], [0.9, 0.2], [0, 0.2], [0, -0.35],
+      [-0.55, -0.35], [-0.55, -0.9], [-0.9, -0.9]],
+    sym: 1, chiral: true, label: 'staircase',
+  },
 };
 
 export const ALL_SHAPES = Object.keys(SHAPES);
+
+/**
+ * For an ACHIRAL shape, flipping it is indistinguishable from turning it by
+ * some fixed angle. That angle is computed here from the geometry, once, so
+ * that a mirrored figure can be reduced to the plain rotation it actually
+ * looks like.
+ *
+ * Without this, an arrow flipped and turned 180 degrees compares as different
+ * from an arrow left alone, even though the two draw the identical picture,
+ * and both can end up in the same set of options.
+ */
+function computeMirrorRot(def) {
+  if (!def.poly) return 0; // circles and ovals are unchanged by a flip
+  const same = (A, B) => {
+    if (A.length !== B.length) return false;
+    const used = new Array(B.length).fill(false);
+    for (const a of A) {
+      let hit = -1;
+      for (let j = 0; j < B.length; j++) {
+        if (used[j]) continue;
+        if (Math.hypot(a[0] - B[j][0], a[1] - B[j][1]) < 1e-6) { hit = j; break; }
+      }
+      if (hit < 0) return false;
+      used[hit] = true;
+    }
+    return true;
+  };
+  const mirrored = def.poly.map(([x, y]) => [-x, y]);
+  for (let d = 0; d < 3600; d++) {
+    const a = ((d / 10) * Math.PI) / 180;
+    const c = Math.cos(a);
+    const s = Math.sin(a);
+    const rot = def.poly.map(([x, y]) => [x * c - y * s, x * s + y * c]);
+    if (same(mirrored, rot)) return d / 10;
+  }
+  return null; // genuinely chiral
+}
+
+/**
+ * How far a shape's mirror image is from the NEAREST rotation of itself,
+ * measured as a fraction of the shape's radius.
+ *
+ * Exact chirality is not enough for a reflection question. A very slightly
+ * scalene right triangle is chiral in pure geometry, but its mirror sits
+ * within one percent of a quarter turn, so on screen the "reflection" and a
+ * "rotation" option are the same picture and both are defensible answers.
+ * Only shapes with a comfortable margin are safe to reflect.
+ */
+function computeChiralMargin(def) {
+  if (!def.poly) return 0;
+  const centre = (P) => {
+    const cx = P.reduce((s, p) => s + p[0], 0) / P.length;
+    const cy = P.reduce((s, p) => s + p[1], 0) / P.length;
+    return P.map(([x, y]) => [x - cx, y - cy]);
+  };
+  const base = centre(def.poly);
+  const radius = Math.max(...base.map(([x, y]) => Math.hypot(x, y)));
+  const mirrored = centre(def.poly.map(([x, y]) => [-x, y]));
+
+  // Distance between two point sets, pairing each point with its nearest
+  // partner, then taking the worst pair.
+  const spread = (A, B) => {
+    let worst = 0;
+    for (const a of A) {
+      let best = Infinity;
+      for (const b of B) best = Math.min(best, Math.hypot(a[0] - b[0], a[1] - b[1]));
+      worst = Math.max(worst, best);
+    }
+    return worst;
+  };
+
+  let closest = Infinity;
+  for (let d = 0; d < 3600; d++) {
+    const a = ((d / 10) * Math.PI) / 180;
+    const c = Math.cos(a);
+    const s = Math.sin(a);
+    const rot = base.map(([x, y]) => [x * c - y * s, x * s + y * c]);
+    closest = Math.min(closest, spread(mirrored, rot));
+  }
+  return closest / radius;
+}
+
+for (const def of Object.values(SHAPES)) {
+  def.mirrorRot = computeMirrorRot(def);
+  def.chiralMargin = computeChiralMargin(def);
+}
+
+/** A mirror image must be at least this far from any rotation to be fair. */
+export const CHIRAL_MARGIN = 0.12;
 
 /** Shapes where EVERY rotation is visible. Rotation rules must use these. */
 export const ROT_SAFE = ALL_SHAPES.filter((s) => SHAPES[s].sym === 1);
 
 /** Shapes whose mirror image is not a rotation. Reflection rules use these. */
-export const CHIRAL = ALL_SHAPES.filter((s) => SHAPES[s].chiral);
+// Chiral in exact geometry AND visibly so on screen. Reflection questions
+// built on anything less have two defensible answers.
+export const CHIRAL = ALL_SHAPES.filter(
+  (s) => SHAPES[s].chiral && SHAPES[s].chiralMargin >= CHIRAL_MARGIN,
+);
 
 /** Regular polygons, ordered by side count, for "number of sides" rules. */
 export const BY_SIDES = { 3: 'tri', 4: 'sq', 5: 'pent', 6: 'hex', 7: 'hept', 8: 'oct' };
@@ -182,13 +295,28 @@ export function sameFigure(a, b) {
     // A circle looks the same at every angle and its mirror is itself.
     return true;
   }
-  const norm = (d) => (((d % step) + step) % step);
-  if (Math.abs(norm(a.rot) - norm(b.rot)) > 0.01) return false;
 
-  // For achiral shapes, mirroring is equivalent to some rotation, which the
-  // check above has already normalised away.
-  if (SHAPES[a.shape].chiral && a.mirrored !== b.mirrored) return false;
-  return true;
+  const def = SHAPES[a.shape];
+
+  // The renderer draws a figure as rotate(rot) then, if mirrored, a flip.
+  // On an achiral shape the flip is itself just a turn, so fold it into the
+  // rotation and drop the flag. Comparing the raw `rot` and `mirrored` values
+  // instead was letting an arrow flipped and turned 180 degrees pass as a
+  // different figure from an arrow left untouched, when they draw the same
+  // picture, which put two identical options in front of the child.
+  const effective = (f) => {
+    if (!f.mirrored) return { rot: f.rot, mirrored: false };
+    if (def.chiral) return { rot: f.rot, mirrored: true };
+    return { rot: f.rot + def.mirrorRot, mirrored: false };
+  };
+
+  const ea = effective(a);
+  const eb = effective(b);
+  if (ea.mirrored !== eb.mirrored) return false;
+
+  const norm = (d) => (((d % step) + step) % step);
+  const diff = Math.abs(norm(ea.rot) - norm(eb.rot));
+  return diff < 0.01 || Math.abs(diff - step) < 0.01;
 }
 
 /** True if any two figures in the list render identically. */
@@ -296,7 +424,11 @@ function dotPositions(n, spread) {
 export function figureSVG(f, size = 100) {
   const c = size / 2;
   const r = size * 0.33;
-  return `<svg viewBox="0 0 ${size} ${size}" class="fig" role="img" aria-label="${describe(f)}">${figureMarkup(f, c, c, r)}</svg>`;
+  // Width and height are written onto the element rather than left to the
+  // stylesheet. An SVG carrying only a viewBox collapses to zero size in
+  // several layout contexts, and a question whose shapes are invisible is
+  // worse than no question at all, so this must not depend on CSS.
+  return `<svg viewBox="0 0 ${size} ${size}" width="${size}" height="${size}" class="fig" role="img" aria-label="${describe(f)}">${figureMarkup(f, c, c, r)}</svg>`;
 }
 
 /** Plain-English description, used as the SVG accessible label. */

@@ -59,13 +59,13 @@ function oddPairs(figs) {
 }
 
 const PHRASE = {
-  shape: () => 'the other three are all the same shape as each other',
-  sides: (p) => `the other three all have ${p.common} sides, but this one has ${p.value}`,
-  fill: () => 'the other three are shaded the same way, but this one is not',
-  rot: () => 'the other three are turned the same way, but this one is not',
-  scale: () => 'the other three are the same size, but this one is not',
-  dots: (p) => `the other three have ${p.common} dot${p.common === 1 ? '' : 's'} inside, but this one has ${p.value}`,
-  stroke: () => 'the other three have the same kind of outline, but this one does not',
+  shape: () => 'The other three are all the same shape as each other. This one is a different shape',
+  sides: (p) => `The other three all have ${p.common} sides. This one has ${p.value}`,
+  fill: () => 'The other three are shaded the same way. This one is shaded differently',
+  rot: () => 'The other three are turned the same way. This one is turned differently',
+  scale: () => 'The other three are the same size. This one is a different size',
+  dots: (p) => `The other three have ${p.common} dot${p.common === 1 ? '' : 's'} inside. This one has ${p.value}`,
+  stroke: () => 'The other three have the same kind of outline. This one is drawn differently',
 };
 
 /** Two rotations of this shape that are visibly different, or null. */

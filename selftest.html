@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NVR self test</title>
+<style>
+  body{background:#FAF7F0;color:#1A3A4A;font-family:"Trebuchet MS",system-ui,sans-serif;margin:0;padding:24px;font-size:17px}
+  h1{text-transform:uppercase;letter-spacing:.02em}
+  table{border-collapse:collapse;width:100%;max-width:900px}
+  th,td{text-align:left;padding:8px 10px;border-bottom:2px solid #E4DCD0}
+  th{text-transform:uppercase;font-size:13px;letter-spacing:.05em;color:#2A7B6F}
+  .pass{color:#2A7B6F;font-weight:bold}
+  .fail{color:#A45D50;font-weight:bold}
+  .note{max-width:900px;color:#556A78}
+  #run{background:#2A7B6F;color:#fff;border:0;padding:14px 22px;font-size:17px;font-family:inherit;cursor:pointer}
+</style>
+</head>
+<body>
+<h1>Question self test</h1>
+<p class="note">
+  Renders questions into the page and measures the shapes the browser actually
+  draws, rather than trusting the code that produced them. This is what catches
+  a question having two right answers, which is invisible to ordinary testing
+  because the two options differ in the markup while looking identical on screen.
+</p>
+<button id="run" type="button">Run the tests</button>
+<div id="out"></div>
+
+<script type="module">
+import { makeRng } from './js/core/rng.js';
+import { SHAPES, CHIRAL, CHIRAL_MARGIN, ensurePatterns } from './js/core/figure.js';
+import { REGISTRY } from './js/generators/index.js';
+
+ensurePatterns();
+
+const host = document.createElement('div');
+host.style.cssText = 'position:absolute;left:-9999px;top:0';
+document.body.appendChild(host);
+
+// ── Geometry read back out of the DOM ─────────────────────────────────────
+function pointsOf(svg) {
+  const g = svg.querySelector('g');
+  const poly = svg.querySelector('polygon');
+  if (!g || !poly) return null;
+  const m = g.transform.baseVal.consolidate().matrix;
+  return [...poly.points].map((p) => [
+    m.a * p.x + m.c * p.y + m.e,
+    m.b * p.x + m.d * p.y + m.f,
+  ]);
+}
+
+// Centre and scale away, so figures drawn at different sizes compare fairly.
+function normalise(P) {
+  const cx = P.reduce((s, p) => s + p[0], 0) / P.length;
+  const cy = P.reduce((s, p) => s + p[1], 0) / P.length;
+  const C = P.map(([x, y]) => [x - cx, y - cy]);
+  const r = Math.max(...C.map(([x, y]) => Math.hypot(x, y)));
+  return C.map(([x, y]) => [x / r, y / r]);
+}
+
+function distance(A, B) {
+  const a = normalise(A);
+  const b = normalise(B);
+  let worst = 0;
+  for (const p of a) {
+    let best = Infinity;
+    for (const q of b) best = Math.min(best, Math.hypot(p[0] - q[0], p[1] - q[1]));
+    worst = Math.max(worst, best);
+  }
+  return worst;
+}
+
+const SAME = 0.02;
+const rotate = (P, d) => {
+  const a = (d * Math.PI) / 180;
+  const c = Math.cos(a);
+  const s = Math.sin(a);
+  return P.map(([x, y]) => [x * c - y * s, x * s + y * c]);
+};
+const mirrorX = (P) => P.map(([x, y]) => [-x, y]);
+const mirrorY = (P) => P.map(([x, y]) => [x, -y]);
+
+const results = [];
+const add = (name, pass, detail) => results.push({ name, pass, detail });
+
+// ── 1. No two options may look the same, in any type ─────────────────────
+function optionSvgs(q) {
+  host.innerHTML = q.optionsHTML;
+  return [...host.querySelectorAll('.opt')].map((o) => o.querySelector('svg'));
+}
+
+/**
+ * Two options are the same only if they occupy the same place, at the same
+ * size, in the same colours. Size and fill must NOT be normalised away here:
+ * a large grey pentagon and a small white pentagon are different options, and
+ * telling them apart is often the whole point of the question.
+ */
+function appearance(svg) {
+  const g = svg.querySelector('g');
+  if (!g) return null;
+  const m = g.transform.baseVal.consolidate().matrix;
+  const place = (x, y) => [
+    (m.a * x + m.c * y + m.e).toFixed(2),
+    (m.b * x + m.d * y + m.f).toFixed(2),
+  ].join(',');
+
+  const marks = [];
+  for (const el of g.querySelectorAll('polygon, circle, ellipse')) {
+    const style = `${el.getAttribute('fill')}/${el.getAttribute('stroke-width')}/${el.getAttribute('stroke-dasharray') || ''}`;
+    if (el.tagName === 'polygon') {
+      marks.push(`p:${[...el.points].map((p) => place(p.x, p.y)).sort().join('|')}:${style}`);
+    } else if (el.tagName === 'circle') {
+      marks.push(`c:${place(+el.getAttribute('cx'), +el.getAttribute('cy'))}:${(+el.getAttribute('r')).toFixed(2)}:${style}`);
+    } else {
+      marks.push(`e:${place(+el.getAttribute('cx'), +el.getAttribute('cy'))}:${(+el.getAttribute('rx')).toFixed(2)}:${(+el.getAttribute('ry')).toFixed(2)}:${style}`);
+    }
+  }
+  return marks.sort().join(';');
+}
+
+function testDuplicateOptions(runs) {
+  for (const gen of Object.values(REGISTRY)) {
+    let dupes = 0;
+    for (let seed = 1; seed <= runs; seed++) {
+      const q = gen.generate(makeRng(seed), (seed % 3) + 1);
+      const keys = optionSvgs(q).map((s) => (s ? appearance(s) : null)).filter(Boolean);
+      for (let i = 0; i < keys.length; i++) {
+        for (let j = i + 1; j < keys.length; j++) if (keys[i] === keys[j]) dupes++;
+      }
+    }
+    add(`${gen.meta.name}: options all look different`, dupes === 0,
+      dupes === 0 ? `${runs} questions checked` : `${dupes} identical pairs`);
+  }
+}
+
+// ── 2. Reflection: exactly one option is the true mirror ─────────────────
+function testReflection(runs) {
+  const ref = REGISTRY.ref;
+  let bad = 0;
+  let wrong = 0;
+  for (let seed = 1; seed <= runs; seed++) {
+    const q = ref.generate(makeRng(seed), (seed % 3) + 1);
+    host.innerHTML = q.stimulus + q.optionsHTML;
+    const stim = pointsOf(host.querySelector('.stim-row svg'));
+    const target = /vertical/.test(q.prompt) ? mirrorX(stim) : mirrorY(stim);
+    const flags = [...host.querySelectorAll('.opt svg')]
+      .map((s) => distance(pointsOf(s), target) < SAME);
+    const n = flags.filter(Boolean).length;
+    if (n !== 1) bad++;
+    else if (!flags[q.answer]) wrong++;
+  }
+  add('Reflection: exactly one option is the true mirror', bad === 0, bad ? `${bad} of ${runs} failed` : `${runs} checked`);
+  add('Reflection: the marked answer is that mirror', wrong === 0, wrong ? `${wrong} wrong` : `${runs} checked`);
+}
+
+// ── 3. Rotation: exactly one option is the true turn ─────────────────────
+function testRotation(runs) {
+  const rot = REGISTRY.rot;
+  let bad = 0;
+  let wrong = 0;
+  for (let seed = 1; seed <= runs; seed++) {
+    const q = rot.generate(makeRng(seed), (seed % 3) + 1);
+    host.innerHTML = q.stimulus + q.optionsHTML;
+    const stim = pointsOf(host.querySelector('.stim-row svg'));
+    if (!stim) continue;
+    const deg = /quarter turn clockwise/.test(q.prompt) ? 90
+      : /half turn/.test(q.prompt) ? 180 : 270;
+    const target = rotate(stim, deg);
+    const flags = [...host.querySelectorAll('.opt svg')]
+      .map((s) => distance(pointsOf(s), target) < SAME);
+    const n = flags.filter(Boolean).length;
+    if (n !== 1) bad++;
+    else if (!flags[q.answer]) wrong++;
+  }
+  add('Rotation: exactly one option is the true turn', bad === 0, bad ? `${bad} of ${runs} failed` : `${runs} checked`);
+  add('Rotation: the marked answer is that turn', wrong === 0, wrong ? `${wrong} wrong` : `${runs} checked`);
+}
+
+// ── 4. Every shape offered for reflection is visibly chiral ──────────────
+function testChiralPool() {
+  const thin = CHIRAL.filter((s) => SHAPES[s].chiralMargin < CHIRAL_MARGIN);
+  add('Reflection shapes are all clearly chiral', thin.length === 0 && CHIRAL.length >= 4,
+    `${CHIRAL.length} shapes: ${CHIRAL.join(', ')}`);
+}
+
+document.getElementById('run').addEventListener('click', () => {
+  results.length = 0;
+  const out = document.getElementById('out');
+  out.innerHTML = '<p>Running, this takes a few seconds.</p>';
+  setTimeout(() => {
+    testChiralPool();
+    testDuplicateOptions(400);
+    testReflection(600);
+    testRotation(600);
+    const failed = results.filter((r) => !r.pass).length;
+    out.innerHTML = `<p class="${failed ? 'fail' : 'pass'}">${
+      failed ? `${failed} checks FAILED` : 'All checks passed'}</p>`
+      + '<table><tr><th>Check</th><th>Result</th><th>Detail</th></tr>'
+      + results.map((r) => `<tr><td>${r.name}</td>`
+        + `<td class="${r.pass ? 'pass' : 'fail'}">${r.pass ? 'pass' : 'FAIL'}</td>`
+        + `<td>${r.detail}</td></tr>`).join('')
+      + '</table>';
+  }, 30);
+});
+</script>
+</body>
+</html>

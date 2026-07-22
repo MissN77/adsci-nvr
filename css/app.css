@@ -353,6 +353,89 @@ a { color: var(--teal-dark); }
 
 .code-tag--q { background: var(--gold); }
 
+.code-target { margin-top: 4px; }
+
+/* ── Reflection: the mirror line ──────────────────────────────────────── */
+
+.reflect { gap: 14px; }
+
+/* The reflection stimulus builds its boxes without an inline size, so the
+   empty answer tile has to be sized here or it collapses to a sliver. */
+.reflect .cell {
+  width: 114px;
+  height: 114px;
+}
+
+/* A horizontal mirror has to sit between the shapes, so the pair stacks. */
+.reflect--h { flex-direction: column; }
+
+.mirror--v {
+  width: 0;
+  align-self: stretch;
+  min-height: 110px;
+  border-left: 3px dashed var(--coral);
+}
+
+.mirror--h {
+  height: 0;
+  width: 100%;
+  max-width: 240px;
+  border-top: 3px dashed var(--coral);
+}
+
+.stim-note {
+  text-align: center;
+  font-size: 15px;
+  color: var(--muted);
+  margin: -8px 0 16px;
+}
+
+.lead--turn {
+  background: var(--gold);
+  color: var(--navy);
+  border: 2px solid var(--navy);
+  font-size: 17px;
+  font-weight: 700;
+  padding: 4px 8px;
+  white-space: nowrap;
+}
+
+/* ── Paper folding ────────────────────────────────────────────────────── */
+
+.fold-row { gap: 6px; align-items: flex-end; }
+
+.fold-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.fold-cap {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  color: var(--muted);
+}
+
+.fold-arrow {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--teal);
+  padding-bottom: 18px;
+}
+
+.paper,
+.net {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.opt-body .paper,
+.opt-body .net { margin: 0 auto; }
+
 /* ── Options ──────────────────────────────────────────────────────────── */
 
 .opts {
@@ -535,7 +618,12 @@ a { color: var(--teal-dark); }
 
   .opt-letter { background: #FFFFFF; color: #000000; border: 1px solid #000000; }
 
-  .lead, .lead--sep { color: #000000; }
+  .lead, .lead--sep, .fold-arrow, .fold-cap, .stim-note { color: #000000; }
+
+  .lead--turn { background: #FFFFFF; color: #000000; border-color: #000000; }
+
+  .mirror--v { border-left-color: #000000; }
+  .mirror--h { border-top-color: #000000; }
 
   .cell--missing, .code-tag--q { background: #FFFFFF; }
 

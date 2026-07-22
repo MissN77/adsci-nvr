@@ -1,7 +1,7 @@
 // ── Analogies ─────────────────────────────────────────────────────────────
 // "A is to B as C is to ?", the same transformation, applied to a new shape.
 
-import { fig, ALL_SHAPES, ROT_SAFE } from '../core/figure.js';
+import { fig, ALL_SHAPES, ROT_SAFE, SHAPES } from '../core/figure.js';
 import { pick, int } from '../core/rng.js';
 import { chooseRules, applyRules, nearMissPool, describeRules } from '../core/rules.js';
 import { analogyRow, figureOptions, LETTERS } from '../core/render.js';
@@ -36,7 +36,14 @@ export function generate(rng, difficulty = 2) {
     const a = mk(shapeA);
     const c = mk(shapeC);
 
-    const rules = chooseRules(rng, a, nRules, RULE_MENU);
+    // Rules are chosen by inspecting A but then applied to C as well, so a
+    // rule only valid for A would break on C. A rotation of an oval, for
+    // instance, is invisible. Offer the rotation rule only when BOTH shapes
+    // can show every turn.
+    const bothRotSafe = SHAPES[shapeA].sym === 1 && SHAPES[shapeC].sym === 1;
+    const menu = bothRotSafe ? RULE_MENU : RULE_MENU.filter((k) => k !== 'rot');
+
+    const rules = chooseRules(rng, a, nRules, menu);
     if (rules.length < nRules) return null;
 
     // A "sides" rule rewrites the shape, which would erase the difference

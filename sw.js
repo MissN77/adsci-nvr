@@ -5,7 +5,7 @@
 // shipping the old app forever unless the name changes. Changing the name is
 // the only signal that tells a returning device to fetch fresh copies.
 
-const CACHE_NAME = 'adsci-nvr-v1';
+const CACHE_NAME = 'adsci-nvr-v2';
 
 // Everything the app needs to run with no network at all. Kept explicit
 // rather than generated, because a missed file means a broken offline start
@@ -32,6 +32,14 @@ const PRECACHE = [
   './js/generators/analogies.js',
   './js/generators/matrices.js',
   './js/generators/codes.js',
+  './js/generators/reflection.js',
+  './js/generators/rotation.js',
+  './js/generators/paper-folding.js',
+  './js/generators/cubes.js',
+  './js/generators/hidden-shapes.js',
+  './icons/icon-192.png',
+  './icons/icon-512.png',
+  './icons/icon-maskable-512.png',
 ];
 
 self.addEventListener('install', (event) => {

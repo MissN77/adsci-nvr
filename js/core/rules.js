@@ -179,8 +179,11 @@ export function chooseRules(rng, base, n, allowed) {
         candidates.push(patternRule(rng, int(rng, 0, 3)));
         break;
       case 'rot':
-        // Only meaningful when every turn of this shape is visible.
-        if (has('rot') || SHAPES[base.shape].sym !== 1) break;
+        // Only meaningful when every turn of this shape is visible. Also
+        // blocked once a side-count rule is in play, because that rule
+        // swaps in regular polygons whose own symmetry would swallow the
+        // turn.
+        if (has('rot') || has('shape') || SHAPES[base.shape].sym !== 1) break;
         candidates.push(rotRule(rng));
         break;
       case 'scale':

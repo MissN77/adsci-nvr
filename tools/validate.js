@@ -15,9 +15,65 @@ const PER_TYPE = Number(process.env.N || 4000);
 // Strip SVG down to the geometry that a child actually sees. If two options
 // reduce to the same string they are indistinguishable on screen, whatever
 // the underlying objects say.
+/**
+ * Reduce an option to what a child actually SEES.
+ *
+ * The first version of this compared the transform attribute as text, which
+ * missed the real bug: a Z-shape and a Z-shape rotated 180 degrees have
+ * different markup but draw the identical picture. So the transform is now
+ * applied to the points and the resulting coordinates are compared. If two
+ * options reduce to the same key, they are indistinguishable on screen no
+ * matter what the underlying objects claim.
+ */
+function renderedKey(html) {
+  const groups = [...html.matchAll(/<g transform="translate\(([-\d.]+),([-\d.]+)\) rotate\(([-\d.]+)\)( scale\(-1,1\))?">(.*?)<\/g>/gs)];
+  if (groups.length === 0) return null;
+
+  const parts = groups.map(([, tx, ty, rot, mir, body]) => {
+    const cx = +tx; const cy = +ty; const a = (+rot * Math.PI) / 180;
+    const m = mir ? -1 : 1;
+    const place = (x, y) => {
+      const px = x * m; // mirror is applied before rotation by the renderer
+      return [
+        (cx + px * Math.cos(a) - y * Math.sin(a)).toFixed(2),
+        (cy + px * Math.sin(a) + y * Math.cos(a)).toFixed(2),
+      ].join(',');
+    };
+
+    const shapes = [];
+    for (const p of body.matchAll(/<polygon points="([^"]*)"([^>]*)>/g)) {
+      const pts = p[1].trim().split(/\s+/).map((pair) => {
+        const [x, y] = pair.split(',').map(Number);
+        return place(x, y);
+      });
+      // Sorted, so the same outline written from a different starting vertex
+      // still compares equal.
+      shapes.push(`poly:${pts.sort().join('|')}${styleOf(p[2])}`);
+    }
+    for (const c of body.matchAll(/<circle cx="([-\d.]+)" cy="([-\d.]+)" r="([-\d.]+)"([^>]*)>/g)) {
+      shapes.push(`circ:${place(+c[1], +c[2])}:${(+c[3]).toFixed(2)}${styleOf(c[4])}`);
+    }
+    for (const e of body.matchAll(/<ellipse cx="([-\d.]+)" cy="([-\d.]+)" rx="([-\d.]+)" ry="([-\d.]+)"([^>]*)>/g)) {
+      shapes.push(`ell:${place(+e[1], +e[2])}:${(+e[3]).toFixed(2)}:${(+e[4]).toFixed(2)}${styleOf(e[5])}`);
+    }
+    return shapes.sort().join(';');
+  });
+
+  return parts.sort().join('##');
+}
+
+function styleOf(attrs) {
+  const fill = /fill="([^"]*)"/.exec(attrs);
+  const sw = /stroke-width="([^"]*)"/.exec(attrs);
+  const dash = /stroke-dasharray="([^"]*)"/.exec(attrs);
+  return `[${fill ? fill[1] : ''}/${sw ? sw[1] : ''}/${dash ? dash[1] : ''}]`;
+}
+
 function visualKey(html) {
-  const shapes = [...html.matchAll(/<(polygon|circle|ellipse)\b[^>]*>/g)].map((m) => m[0]);
-  const groups = [...html.matchAll(/<g transform="([^"]*)"/g)].map((m) => m[1]);
+  const geometric = renderedKey(html);
+  if (geometric !== null) return geometric;
+
+  const shapes = [...html.matchAll(/<(polygon|circle|ellipse|rect|line)\b[^>]*>/g)].map((m) => m[0]);
   if (shapes.length === 0) {
     // Text options (codes, worded answers) carry no geometry, compare the
     // visible text instead, ignoring the A/B/C/D letter chip.
@@ -26,7 +82,9 @@ function visualKey(html) {
       .replace(/\s+/g, ' ')
       .trim();
   }
-  return JSON.stringify([groups, shapes]);
+  // Nets and folded-paper diagrams are drawn from plain rects and lines with
+  // no group transform, so their markup already is their geometry.
+  return shapes.join(';');
 }
 
 function extractOptions(optionsHTML) {
