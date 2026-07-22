@@ -14,8 +14,9 @@ Supabase project, or its data.
 
 - **Fourteen question types.** Seven match question types in the official Quest
   booklet: sequences, grid rotation, reflection (including diagonal mirror
-  lines), matrices (2x2 and 3x3), paper folding, nets to cubes, and nets to
-  solids. The rest, odd one out,
+  lines), matrices (2x2 and 3x3), paper folding (up to three folds, including
+  diagonal ones, with holes punched or pieces cut off), nets to cubes, and
+  nets to solids. The rest, odd one out,
   similarities, analogies, codes and hidden shapes, are GL-era types that do
   NOT appear in the Quest non-verbal paper. They are still worth practising
   for other providers and for most 11+ books, but do not imply otherwise on
@@ -75,6 +76,7 @@ costs you a refund.
 ```bash
 node tools/geometry-test.js      # the shape table matches the actual geometry
 node tools/solids-test.js        # solids are closed, and identified uniquely by their faces
+node tools/paper-test.js         # folding, punching and cutting behave like real paper
 npm run validate                 # generates 30,000 questions per type
 node tools/preview.js 3          # writes preview.html to eyeball the questions
 ```
@@ -85,7 +87,7 @@ actually draws, which is the only way to catch two options that differ in the
 code while looking identical on screen. Both bugs found late in the build were
 of exactly that kind and only this check saw them.
 
-Run all five before any release.
+Run all six before any release.
 
 ---
 
@@ -109,7 +111,7 @@ The guards that keep questions fair:
 | Two options that render identically | `sameFigure` compares what is drawn, not the stored values, and folds mirroring into rotation for shapes where a flip is a turn |
 | Cube net questions with wrong answers | nets are folded by simulation; verified to find exactly the 11 valid nets, and to satisfy the adjacency and opposite-face rules across all 760 placements |
 | A 3D cube option that is secretly correct | all 24 orientations of the folded cube are enumerated and every distractor is checked against them; verified that six distinct symbols give exactly 24 distinct views and six identical symbols give exactly 1 |
-| Paper folding answers guessed by hand | punches are mirrored back across each crease in reverse order, so the answer is correct by construction |
+| Paper folding answers guessed by hand | folds are half-planes, so punches mirror back across each crease and cuts clip the opened square; checked against hand-computable areas, including that one corner cut through two folds removes exactly four corners |
 | A child learning that the answer is usually C | answer position is randomised and the spread is asserted in `tools/validate.js` |
 
 ### The one honest caveat
@@ -165,4 +167,4 @@ Static files, no build step. Copy the folder to any host.
 
 **Bump `CACHE_NAME` in `sw.js` on every deploy.** Otherwise the service worker
 keeps serving the old version and buyers never see the fix. Currently
-`adsci-nvr-v11`.
+`adsci-nvr-v13`.

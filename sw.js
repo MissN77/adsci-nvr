@@ -5,7 +5,7 @@
 // shipping the old app forever unless the name changes. Changing the name is
 // the only signal that tells a returning device to fetch fresh copies.
 
-const CACHE_NAME = 'adsci-nvr-v12';
+const CACHE_NAME = 'adsci-nvr-v13';
 
 // Everything the app needs to run with no network at all. Kept explicit
 // rather than generated, because a missed file means a broken offline start
@@ -23,6 +23,7 @@ const PRECACHE = [
   './js/core/rng.js',
   './js/core/figure.js',
   './js/core/format.js',
+  './js/core/paper.js',
   './js/core/render.js',
   './js/core/rules.js',
   './js/generators/index.js',
