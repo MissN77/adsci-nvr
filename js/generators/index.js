@@ -18,6 +18,7 @@ import * as solid from './solids.js';
 import * as radial from './radial.js';
 import * as vrpair from './vr-word-pairs.js';
 import * as vrlogic from './vr-logic.js';
+import * as comp from './comprehension.js';
 import * as vrsent from './vr-sentence.js';
 import * as vrgap from './vr-letters.js';
 import * as vrodd from './vr-odd-words.js';
@@ -48,6 +49,7 @@ export const REGISTRY = {
   [vrsent.meta.id]: vrsent,
   [vrgap.meta.id]: vrgap,
   [vrlogic.meta.id]: vrlogic,
+  [comp.meta.id]: comp,
   [maths.meta.id]: maths,
   [hid.meta.id]: hid,
 };

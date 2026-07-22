@@ -750,3 +750,27 @@ a { color: var(--teal-dark); }
   color: #A45D50;
   font-weight: bold;
 }
+
+/* ── Reading passage ───────────────────────────────────────────────────── */
+.passage {
+  background: #FFFFFF;
+  border-left: 6px solid #2A7B6F;
+  padding: 14px 16px;
+  margin: 4px 0 16px;
+  max-height: 46vh;
+  overflow-y: auto;
+}
+.passage p { font-size: 17px; line-height: 1.6; margin: 0 0 12px; }
+.passage-title {
+  margin: 0 0 10px;
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+.passage-source {
+  font-size: 14px;
+  color: #6A7A84;
+  border-top: 1px solid #E0D8CB;
+  padding-top: 8px;
+  margin-bottom: 0;
+}

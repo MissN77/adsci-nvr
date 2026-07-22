@@ -89,6 +89,7 @@ node tools/solids-test.js        # solids are closed, and identified uniquely by
 node tools/paper-test.js         # folding, punching and cutting behave like real paper
 node tools/maths-test.js         # every sum re-solved from the printed question
 node tools/vocab-test.js         # authored word content, and what it cannot check
+node tools/passage-test.js       # comprehension questions really match their passage
 npm run validate                 # generates 30,000 questions per type
 node tools/preview.js 3          # writes preview.html to eyeball the questions
 ```
@@ -99,7 +100,7 @@ actually draws, which is the only way to catch two options that differ in the
 code while looking identical on screen. Both bugs found late in the build were
 of exactly that kind and only this check saw them.
 
-Run all eight before any release.
+Run all nine before any release.
 
 ---
 

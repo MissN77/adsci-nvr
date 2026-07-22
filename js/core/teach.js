@@ -237,6 +237,17 @@ export const TEACH = {
     tip: 'Decide the rule first. Trying every combination of six words takes far longer than working out the link and then looking for it.',
   },
 
+  comp: {
+    what: 'You read a passage and answer questions about it. Some ask what happened, some ask what a character is like, and some ask why the author wrote something in a particular way.',
+    steps: [
+      'Read the whole passage once before looking at the questions.',
+      'For each question, go back and find the exact part it is about.',
+      'For a question about effect, ask what the words make you feel or picture.',
+      'Check your answer against the passage, not against what you remember.',
+    ],
+    tip: 'Most marks are lost by answering from memory. The passage stays on the screen the whole time, so use it for every single question, even the easy ones.',
+  },
+
   hid: {
     what: 'A small shape is hidden inside a bigger, busier picture. You find the picture that contains it.',
     steps: [
