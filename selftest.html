@@ -143,7 +143,9 @@ function testReflection(runs) {
     const q = ref.generate(makeRng(seed), (seed % 3) + 1);
     host.innerHTML = q.stimulus + q.optionsHTML;
     const stim = pointsOf(host.querySelector('.stim-row svg'));
-    const target = /vertical/.test(q.prompt) ? mirrorX(stim) : mirrorY(stim);
+    // Reflect in a line at the published angle: mirror in x, then rotate by
+    // twice the angle. Covers the diagonals as well as the upright cases.
+    const target = rotate(mirrorX(stim), 2 * q.mirrorAngle);
     const flags = [...host.querySelectorAll('.opt svg')]
       .map((s) => distance(pointsOf(s), target) < SAME);
     const n = flags.filter(Boolean).length;
@@ -177,7 +179,56 @@ function testRotation(runs) {
   add('Rotation: the marked answer is that turn', wrong === 0, wrong ? `${wrong} wrong` : `${runs} checked`);
 }
 
-// ── 4. Every shape offered for reflection is visibly chiral ──────────────
+// ── 4. Grid rotation: exactly one option is the true turn ────────────────
+// Read the shaded cells straight out of the rendered SVG, rotate them here,
+// and check the marked answer against that. Independent of the generator's
+// own maths.
+function readGrid(svg) {
+  const marks = [];
+  for (const el of svg.querySelectorAll('rect, circle')) {
+    const shaded = el.getAttribute('fill') === '#9AA7B2';
+    const x = el.tagName === 'circle' ? +el.getAttribute('cx') : +el.getAttribute('x');
+    const y = el.tagName === 'circle' ? +el.getAttribute('cy') : +el.getAttribute('y');
+    marks.push({ x, y, shaded, isCircle: el.tagName === 'circle' });
+  }
+  // When circles are drawn there is a backing rect per cell; the circle
+  // carries the state, so prefer circles when any are present.
+  const useCircles = marks.some((m) => m.isCircle);
+  const cells = marks.filter((m) => m.isCircle === useCircles);
+  const xs = [...new Set(cells.map((c) => Math.round(c.x)))].sort((a, b) => a - b);
+  const ys = [...new Set(cells.map((c) => Math.round(c.y)))].sort((a, b) => a - b);
+  const g = ys.map(() => xs.map(() => 0));
+  for (const c of cells) {
+    const r = ys.indexOf(Math.round(c.y));
+    const col = xs.indexOf(Math.round(c.x));
+    if (r >= 0 && col >= 0 && c.shaded) g[r][col] = 1;
+  }
+  return g;
+}
+const gKey = (g) => g.map((r) => r.join('')).join('/');
+const cw = (g) => g[0].map((_, c) => g.map((row) => row[c]).reverse());
+
+function testGridRotation(runs) {
+  const gen = REGISTRY.grid;
+  let bad = 0;
+  let wrong = 0;
+  for (let seed = 1; seed <= runs; seed++) {
+    const q = gen.generate(makeRng(seed), (seed % 3) + 1);
+    host.innerHTML = q.stimulus + q.optionsHTML;
+    const start = readGrid(host.querySelector('.stim-row svg'));
+    let target = cw(start);
+    if (/anticlockwise/.test(q.prompt)) target = cw(cw(cw(start)));
+    else if (/180/.test(q.prompt)) target = cw(cw(start));
+    const flags = [...host.querySelectorAll('.opt svg')].map((s) => gKey(readGrid(s)) === gKey(target));
+    const n = flags.filter(Boolean).length;
+    if (n !== 1) bad++;
+    else if (!flags[q.answer]) wrong++;
+  }
+  add('Grid rotation: exactly one option is the true turn', bad === 0, bad ? `${bad} of ${runs} failed` : `${runs} checked`);
+  add('Grid rotation: the marked answer is that turn', wrong === 0, wrong ? `${wrong} wrong` : `${runs} checked`);
+}
+
+// ── 5. Every shape offered for reflection is visibly chiral ──────────────
 function testChiralPool() {
   const thin = CHIRAL.filter((s) => SHAPES[s].chiralMargin < CHIRAL_MARGIN);
   add('Reflection shapes are all clearly chiral', thin.length === 0 && CHIRAL.length >= 4,
@@ -193,6 +244,7 @@ document.getElementById('run').addEventListener('click', () => {
     testDuplicateOptions(400);
     testReflection(600);
     testRotation(600);
+    testGridRotation(600);
     const failed = results.filter((r) => !r.pass).length;
     out.innerHTML = `<p class="${failed ? 'fail' : 'pass'}">${
       failed ? `${failed} checks FAILED` : 'All checks passed'}</p>`

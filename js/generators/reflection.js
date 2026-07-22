@@ -128,6 +128,11 @@ export function generate(rng, difficulty = 2) {
 
     return {
       type: 'ref',
+      // The mirror angle is published on the question so tests can verify the
+      // answer geometrically. The prompt deliberately does not name the axis,
+      // because Quest's does not either: reading the line off the picture is
+      // part of the question.
+      mirrorAngle: axis.angle,
       prompt: 'Which image shows the reflection of this shape across the line of symmetry?',
       stimulus,
       optionsHTML: figureOptions(opts),
