@@ -5,6 +5,8 @@
 
 import { WORD_TAGS, SENTENCES, LETTER_GAPS, ACTION_OBJECTS } from '../js/core/vocab.js';
 import { SYNONYMS, ANTONYMS } from '../js/core/words.js';
+import * as analogy from '../js/generators/vr-analogy.js';
+import { makeRng } from '../js/core/rng.js';
 
 let failures = 0;
 const fail = (msg) => { failures++; console.log(`✗ ${msg}`); };
@@ -69,7 +71,52 @@ for (const [verb, obj] of ACTION_OBJECTS) {
   verbs.add(verb);
   if (!obj || !verb) fail(`incomplete action pair: ${verb} / ${obj}`);
 }
+// An object must not appear twice, or the same word means two things.
+const objs = new Set();
+for (const [verb, obj] of ACTION_OBJECTS) {
+  if (objs.has(obj)) fail(`duplicate object: ${obj}`);
+  objs.add(obj);
+}
+// The third field lists other objects in the table that the verb ALSO fits.
+// Anything named there must genuinely be in the table, or the exclusion is
+// silently doing nothing.
+for (const [verb, , also] of ACTION_OBJECTS) {
+  if (!Array.isArray(also)) fail(`${verb} has no exclusion list`);
+  for (const o of also || []) {
+    if (!objs.has(o) && !ACTION_OBJECTS.some(([, x]) => x === o)) {
+      fail(`${verb} excludes "${o}", which is not an object in the table`);
+    }
+  }
+}
 console.log(`action and object pairs: ${ACTION_OBJECTS.length}`);
+
+// The check that matters, and the one a blind reader found by hand: no filler
+// in a generated analogy may be something the verb beside it could also take.
+{
+  const EX = new Map(ACTION_OBJECTS.map(([v, , a]) => [v, a || []]));
+  const OBJ = new Set(ACTION_OBJECTS.map(([, o]) => o));
+  let bad = 0;
+  for (let seed = 1; seed <= 4000; seed++) {
+    const q = analogy.generate(makeRng(seed), 2);
+    if (!q) continue;
+    const m = q.stimulus.match(
+      /<strong>(\w+)<\/strong> is to \(([^)]*)\) as <strong>(\w+)<\/strong> is to \(([^)]*)\)/,
+    );
+    if (!m) { fail('could not read an analogy stimulus'); break; }
+    const [, vA, gA, vB, gB] = m;
+    const split = (g) => g.split(',').map((x) => x.trim());
+    for (const w of split(gA)) {
+      if (!OBJ.has(w)) continue;
+      if (w !== ACTION_OBJECTS.find(([v]) => v === vA)[1] && EX.get(vA).includes(w)) bad++;
+    }
+    for (const w of split(gB)) {
+      if (!OBJ.has(w)) continue;
+      if (w !== ACTION_OBJECTS.find(([v]) => v === vB)[1] && EX.get(vB).includes(w)) bad++;
+    }
+  }
+  if (bad) fail(`${bad} analogy fillers were words the verb beside them also fits`);
+  else console.log('analogy fillers checked over 4000 seeds: none is a second right answer');
+}
 
 console.log(`\n${failures === 0 ? '✅ content checks passed' : `❌ ${failures} problems`}`);
 console.log(`

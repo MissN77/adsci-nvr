@@ -24,15 +24,22 @@ export const meta = {
 
 export function generate(rng) {
   return attempt(() => {
-    const picked = shuffle(rng, ACTION_OBJECTS).slice(0, 5);
-    if (picked.length < 5) return null;
-    const [[verbA, objA], [verbB, objB], ...rest] = picked;
+    const deck = shuffle(rng, ACTION_OBJECTS);
+    if (deck.length < 5) return null;
+    const [[verbA, objA, alsoA], [verbB, objB, alsoB]] = deck;
 
     // Fillers are objects from other actions, so they are the right sort of
-    // word and cannot be ruled out by grammar alone.
-    const fillers = rest.map(([, o]) => o);
-    const groupA = shuffle(rng, [objA, fillers[0], fillers[1]]);
-    const groupB = shuffle(rng, [objB, fillers[2], verbA]);
+    // word and cannot be ruled out by grammar alone. But a filler must not be
+    // something the verb beside it could ALSO take, or the question has two
+    // right answers: you can mend a fence, but you can mend a sock too.
+    const pool = deck.slice(2).map(([, o]) => o).filter((o) => o !== objA && o !== objB);
+    const fillA = pool.filter((o) => !alsoA.includes(o)).slice(0, 2);
+    if (fillA.length < 2) return null;
+    const fillB = pool.filter((o) => !alsoB.includes(o) && !fillA.includes(o))[0];
+    if (!fillB) return null;
+
+    const groupA = shuffle(rng, [objA, ...fillA]);
+    const groupB = shuffle(rng, [objB, fillB, verbA]);
 
     const all = [...groupA, ...groupB];
     if (new Set(all).size !== all.length) return null;
