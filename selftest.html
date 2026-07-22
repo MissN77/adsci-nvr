@@ -28,9 +28,14 @@
 <div id="out"></div>
 
 <script type="module">
-import { makeRng } from './js/core/rng.js';
-import { SHAPES, CHIRAL, CHIRAL_MARGIN, ensurePatterns } from './js/core/figure.js';
-import { REGISTRY } from './js/generators/index.js';
+// Imported dynamically with a cache buster. A static import can be served
+// from the browser's HTTP cache, and a stale module makes this page report
+// failures that were already fixed, or worse, pass tests against code that is
+// no longer deployed. A test you cannot trust is worse than no test.
+const bust = `?v=${Date.now()}`;
+const { makeRng } = await import(`./js/core/rng.js${bust}`);
+const { SHAPES, CHIRAL, CHIRAL_MARGIN, ensurePatterns } = await import(`./js/core/figure.js${bust}`);
+const { REGISTRY } = await import(`./js/generators/index.js${bust}`);
 
 ensurePatterns();
 
