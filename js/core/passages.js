@@ -27,6 +27,9 @@
 //   Great Expectations,       Charles Dickens,            1861, died 1870
 //   South,                    Sir Ernest Shackleton,      1919, died 1922
 //   Twenty Thousand Leagues,  Jules Verne,                1870, died 1905
+//   Kidnapped,                Robert Louis Stevenson,     1886, died 1894
+//   Pollyanna,                Eleanor H. Porter,          1913, died 1920
+//   Through the Looking-Glass, Lewis Carroll,             1871, died 1898
 //
 // Darwin and Shackleton are non-fiction on purpose. Quest's English paper says
 // questions may cover one or two texts, and a child who has only ever
@@ -41,6 +44,12 @@
 //     line carries a racial slur. The book is fine; that scene is not, so the
 //     extract used is Aunt Polly hunting for Tom instead.
 //   A Little Princess, opening: Lascars on the voyage from Bombay.
+//
+// One further rejection, for a different reason. The Natural History of
+// Selborne is out of copyright and would have made a third non-fiction text,
+// but it opens with eighteenth-century topographical prose, a list of twelve
+// parish names and the word calcareous. It would punish a ten year old rather
+// than teach one. Hard is fine; unfair is not.
 //
 // The point is that a book is not ruled out by one bad extract. Screen the
 // extract, not the author.
@@ -1349,6 +1358,198 @@ export const PASSAGES = [
         answer: "To show how far and how quickly the story spread.",
         wrong: ["To show that sailors are easily frightened.", "To suggest that most of them were mistaken.", "To explain why the object was never caught.", "To show how many ships were at sea that year."],
         why: ["Merchants, sailors, captains, officers and whole governments on two continents covers almost everybody who might care.", "He even says the rumours excited the public mind \"even in the interior of continents\", far from any sea."],
+      },
+    ],
+  },
+  {
+    id: "kidnapped",
+    title: "The morning I left home",
+    source: "from Kidnapped by Robert Louis Stevenson, 1886",
+    paragraphs: [
+      "I will begin the story of my adventures with a certain morning early in the month of June, the year of grace 1751, when I took the key for the last time out of the door of my father’s house. The sun began to shine upon the summit of the hills as I went down the road; and by the time I had come as far as the manse, the blackbirds were whistling in the garden lilacs, and the mist that hung around the valley in the time of the dawn was beginning to arise and die away.",
+      "Mr. Campbell, the minister of Essendean, was waiting for me by the garden gate, good man! He asked me if I had breakfasted; and hearing that I lacked for nothing, he took my hand in both of his and clapped it kindly under his arm.",
+      "“Well, Davie, lad,” said he, “I will go with you as far as the ford, to set you on the way.” And we began to walk forward in silence.",
+      "“Are ye sorry to leave Essendean?” said he, after awhile.",
+      "“Why, sir,” said I, “if I knew where I was going, or what was likely to become of me, I would tell you candidly. Essendean is a good place indeed, and I have been very happy there; but then I have never been anywhere else. My father and mother, since they are both dead, I shall be no nearer to in Essendean than in the Kingdom of Hungary, and, to speak truth, if I thought I had a chance to better myself where I was going I would go with a good will.”",
+      "“Ay?” said Mr. Campbell. “Very well, Davie. Then it behoves me to tell your fortune; or so far as I may. When your mother was gone, and your father (the worthy, Christian man) began to sicken for his end, he gave me in charge a certain letter, which he said was your inheritance. ‘So soon,’ says he, ‘as I am gone, and the house is redd up and the gear disposed of’ (all which, Davie, hath been done), ‘give my boy this letter into his hand, and start him off to the house of Shaws, not far from Cramond. That is the place I came from,’ he said, ‘and it’s where it befits that my boy should return. He is a steady lad,’ your father said, ‘and a canny goer; and I doubt not he will come safe, and be well liked where he goes.’”",
+    ],
+    questions: [
+      {
+        q: "In which month and year does David begin his journey?",
+        answer: "June 1751",
+        wrong: ["June 1715", "January 1751", "June 1571", "May 1751"],
+        why: ["\"A certain morning early in the month of June, the year of grace 1751.\"", "Both are in the opening sentence, so this rewards reading the first line carefully."],
+      },
+      {
+        q: "Which word in the first paragraph tells you David will not be coming back?",
+        answer: "last",
+        wrong: ["certain", "summit", "dawn", "forward"],
+        why: ["\"When I took the key for the last time out of the door of my father's house.\"", "Taking the key for the last time is a quiet way of saying the house is no longer his."],
+      },
+      {
+        q: "Why does Mr Campbell take David's hand \"in both of his\"?",
+        answer: "To show kindness to a boy leaving home alone.",
+        wrong: ["To stop him from running away.", "To check whether he is cold.", "To lead him back to the house.", "To take the key from him."],
+        why: ["He \"clapped it kindly under his arm\" and walks with him to the ford to set him on his way.", "He also asks whether David has eaten, which is the same sort of care."],
+      },
+      {
+        q: "What is the effect of describing the blackbirds and the rising mist?",
+        answer: "It makes a fresh, hopeful morning of a sad departure.",
+        wrong: ["It shows that a storm is coming.", "It suggests David has overslept.", "It tells the reader the journey will be long.", "It shows the countryside is deserted."],
+        why: ["Sun on the hills, birds singing and mist lifting are all beginnings, set against a boy leaving home for the last time.", "The contrast is the point: the day is opening up just as his old life closes."],
+      },
+      {
+        q: "Which TWO things does David say about Essendean?",
+        answers: ["it is a good place", "he has been very happy there"],
+        wrong: ["he has friends waiting for him there", "he hopes to return within a year", "he has always found it dull"],
+        why: ["\"Essendean is a good place indeed, and I have been very happy there.\"", "He then says he has never been anywhere else, which is why he is willing to go."],
+      },
+      {
+        q: "What does \"candidly\" mean in the passage?",
+        answer: "honestly and openly",
+        wrong: ["quietly", "quickly", "politely", "cheerfully"],
+        why: ["David says he would tell Mr Campbell candidly if only he knew where he was going.", "He then does speak very frankly about his parents and his prospects, which shows the meaning."],
+      },
+      {
+        q: "Why would David leave \"with a good will\"?",
+        answer: "He has nothing left to keep him there and hopes to better himself.",
+        wrong: ["He has been asked to leave by the minister.", "He dislikes the people of Essendean.", "He is being sent away as a punishment.", "He has always wanted to travel."],
+        why: ["Both his parents are dead, so he says he is no nearer them in Essendean than in Hungary.", "He adds \"if I thought I had a chance to better myself where I was going\", which is the condition."],
+      },
+      {
+        q: "What had David's father left for him?",
+        answer: "A letter.",
+        wrong: ["The key to the house.", "A sum of money.", "A map of the road to Cramond.", "His share of the furniture."],
+        why: ["\"He gave me in charge a certain letter, which he said was your inheritance.\"", "The house has been cleared and the goods disposed of, so the letter is all that is left."],
+      },
+    ],
+  },
+  {
+    id: "pollyanna",
+    title: "Miss Polly hurries",
+    source: "from Pollyanna by Eleanor H. Porter, 1913",
+    paragraphs: [
+      "Miss Polly Harrington entered her kitchen a little hurriedly this June morning. Miss Polly did not usually make hurried movements; she specially prided herself on her repose of manner. But to-day she was hurrying, actually hurrying.",
+      "Nancy, washing dishes at the sink, looked up in surprise. Nancy had been working in Miss Polly's kitchen only two months, but already she knew that her mistress did not usually hurry.",
+      "“Nancy!”",
+      "“Yes, ma'am.” Nancy answered cheerfully, but she still continued wiping the pitcher in her hand.",
+      "“Nancy,”, Miss Polly's voice was very stern now, “when I'm talking to you, I wish you to stop your work and listen to what I have to say.”",
+      "Nancy flushed miserably. She set the pitcher down at once, with the cloth still about it, thereby nearly tipping it over, which did not add to her composure.",
+      "“Yes, ma'am; I will, ma'am,” she stammered, righting the pitcher, and turning hastily. “I was only keepin' on with my work 'cause you specially told me this mornin' ter hurry with my dishes, ye know.”",
+      "Her mistress frowned.",
+      "“That will do, Nancy. I did not ask for explanations. I asked for your attention.”",
+      "“Yes, ma'am.” Nancy stifled a sigh. She was wondering if ever in any way she could please this woman. Nancy had never “worked out” before; but a sick mother suddenly widowed and left with three younger children besides Nancy herself, had forced the girl into doing something toward their support, and she had been so pleased when she found a place in the kitchen of the great house on the hill, Nancy had come from “The Corners,” six miles away, and she knew Miss Polly Harrington only as the mistress of the old Harrington homestead, and one of the wealthiest residents of the town. That was two months before. She knew Miss Polly now as a stern, severe-faced woman who frowned if a knife clattered to the floor, or if a door banged, but who never thought to smile even when knives and doors were still.",
+      "“When you've finished your morning work, Nancy,” Miss Polly was saying now, “you may clear the little room at the head of the stairs in the attic, and make up the cot bed. Sweep the room and clean it, of course, after you clear out the trunks and boxes.”",
+    ],
+    questions: [
+      {
+        q: "Why was Nancy surprised when Miss Polly came in?",
+        answer: "Miss Polly was hurrying, which she never did.",
+        wrong: ["Miss Polly had been away for two months.", "Miss Polly was carrying a heavy trunk.", "Miss Polly was smiling for once.", "Miss Polly had come in through the wrong door."],
+        why: ["\"Miss Polly did not usually make hurried movements; she specially prided herself on her repose of manner.\"", "Nancy has only worked there two months but already knows this, which shows how fixed the habit is."],
+      },
+      {
+        q: "Which word describes the calm manner Miss Polly was proud of?",
+        answer: "repose",
+        wrong: ["composure", "stern", "hastily", "miserably"],
+        why: ["\"She specially prided herself on her repose of manner.\"", "Composure is used of Nancy a moment later, not of Miss Polly."],
+      },
+      {
+        q: "Why does Nancy flush \"miserably\"?",
+        answer: "She has been told off and feels she can never please her mistress.",
+        wrong: ["She has broken the pitcher.", "The kitchen is far too hot.", "She has been caught not working.", "She is about to be dismissed."],
+        why: ["She is scolded for carrying on with her work, and the narrator says she wondered if she could ever please this woman.", "She nearly tips the pitcher over afterwards, which the passage says did not help her composure."],
+      },
+      {
+        q: "What is the effect of \"actually hurrying\"?",
+        answer: "It stresses how unusual this behaviour is for Miss Polly.",
+        wrong: ["It shows that Miss Polly is late for something.", "It suggests Miss Polly is unwell.", "It tells the reader Miss Polly is angry with Nancy.", "It shows how fast Miss Polly can move."],
+        why: ["The word actually is doing the work: it invites the reader to be as surprised as Nancy is.", "The sentence before has just told us she never hurries, so the repetition lands harder."],
+      },
+      {
+        q: "Which THREE things is Nancy told to do in the attic room?",
+        answers: ["clear out the trunks and boxes", "make up the cot bed", "sweep and clean it"],
+        wrong: ["paint the walls", "open the window"],
+        why: ["\"You may clear the little room at the head of the stairs in the attic, and make up the cot bed. Sweep the room and clean it, of course, after you clear out the trunks and boxes.\"", "The order matters: the clearing comes before the sweeping."],
+      },
+      {
+        q: "Why had Nancy taken the job at the great house?",
+        answer: "Her family needed the money after her father died.",
+        wrong: ["She wanted to leave The Corners behind.", "She had always admired Miss Polly.", "She was training to be a cook.", "She had been sent by her mother's employer."],
+        why: ["\"A sick mother suddenly widowed and left with three younger children besides Nancy herself, had forced the girl into doing something toward their support.\"", "She had never worked out before, so this was not a career she chose."],
+      },
+      {
+        q: "What does \"composure\" mean in the passage?",
+        answer: "being calm and steady",
+        wrong: ["being quick at work", "being polite to others", "being tidy", "being cheerful"],
+        why: ["Nancy nearly tips the pitcher over, and the narrator says this did not add to her composure.", "She is flustered, which is the opposite of the word."],
+      },
+      {
+        q: "What does \"who never thought to smile even when knives and doors were still\" tell us about Miss Polly?",
+        answer: "She notices faults but never praises anything.",
+        wrong: ["She is hard of hearing.", "She is often away from the house.", "She is frightened of loud noises.", "She smiles only when she is alone."],
+        why: ["She frowns at a clattering knife or a banging door, but silence earns nothing at all.", "The sentence is built to make the absence of the smile the point."],
+      },
+    ],
+  },
+  {
+    id: "kitten",
+    title: "The black kitten",
+    source: "from Through the Looking-Glass by Lewis Carroll, 1871",
+    paragraphs: [
+      "One thing was certain, that the white kitten had had nothing to do with it:, it was the black kitten’s fault entirely. For the white kitten had been having its face washed by the old cat for the last quarter of an hour (and bearing it pretty well, considering); so you see that it couldn’t have had any hand in the mischief.",
+      "The way Dinah washed her children’s faces was this: first she held the poor thing down by its ear with one paw, and then with the other paw she rubbed its face all over, the wrong way, beginning at the nose: and just now, as I said, she was hard at work on the white kitten, which was lying quite still and trying to purr, no doubt feeling that it was all meant for its good.",
+      "But the black kitten had been finished with earlier in the afternoon, and so, while Alice was sitting curled up in a corner of the great arm-chair, half talking to herself and half asleep, the kitten had been having a grand game of romps with the ball of worsted Alice had been trying to wind up, and had been rolling it up and down till it had all come undone again; and there it was, spread over the hearth-rug, all knots and tangles, with the kitten running after its own tail in the middle.",
+      "“Oh, you wicked little thing!” cried Alice, catching up the kitten, and giving it a little kiss to make it understand that it was in disgrace. “Really, Dinah ought to have taught you better manners! You ought, Dinah, you know you ought!” she added, looking reproachfully at the old cat, and speaking in as cross a voice as she could manage, and then she scrambled back into the arm-chair, taking the kitten and the worsted with her, and began winding up the ball again. But she didn’t get on very fast, as she was talking all the time, sometimes to the kitten, and sometimes to herself. Kitty sat very demurely on her knee, pretending to watch the progress of the winding, and now and then putting out one paw and gently touching the ball, as if it would be glad to help, if it might.",
+    ],
+    questions: [
+      {
+        q: "Whose fault was the mischief?",
+        answer: "The black kitten's.",
+        wrong: ["The white kitten's.", "Dinah's.", "Alice's.", "Nobody's."],
+        why: ["\"One thing was certain, that the white kitten had had nothing to do with it: it was the black kitten's fault entirely.\"", "The white kitten has an alibi: it was having its face washed the whole time."],
+      },
+      {
+        q: "Which word does Alice use to tell the kitten it is in trouble?",
+        answer: "disgrace",
+        wrong: ["mischief", "reproachfully", "romps", "manners"],
+        why: ["\"Giving it a little kiss to make it understand that it was in disgrace.\"", "Reproachfully describes how she looks at Dinah, not what she calls the kitten."],
+      },
+      {
+        q: "What is amusing about saying the white kitten could not have had \"any hand\" in the mischief?",
+        answer: "Kittens have paws, not hands.",
+        wrong: ["The white kitten was asleep at the time.", "Alice cannot see the white kitten.", "The mischief happened outdoors.", "The white kitten is much older."],
+        why: ["The narrator uses an everyday expression about people and applies it to a cat, which is where the joke sits.", "Paws are mentioned in the very next paragraph, describing how Dinah washes, which sharpens it."],
+      },
+      {
+        q: "Which TWO things did Dinah do when washing a kitten's face?",
+        answers: ["held it down by its ear with one paw", "rubbed its face the wrong way"],
+        wrong: ["licked it clean all over", "carried it to the fire", "used a damp cloth"],
+        why: ["\"First she held the poor thing down by its ear with one paw, and then with the other paw she rubbed its face all over, the wrong way, beginning at the nose.\"", "The other three are not in the passage."],
+      },
+      {
+        q: "Why did the white kitten lie still and try to purr?",
+        answer: "It believed the washing was meant for its own good.",
+        wrong: ["It was too tired to struggle.", "It was frightened of Alice.", "It enjoyed having its face washed.", "It had been told to keep still."],
+        why: ["\"Which was lying quite still and trying to purr, no doubt feeling that it was all meant for its good.\"", "The narrator is guessing on the kitten's behalf, which is part of the humour."],
+      },
+      {
+        q: "What had the black kitten been playing with?",
+        answer: "A ball of worsted.",
+        wrong: ["Alice's shoelace.", "A ball of paper.", "The old cat's tail.", "A wooden spool."],
+        why: ["\"The kitten had been having a grand game of romps with the ball of worsted Alice had been trying to wind up.\"", "Worsted is wool, which is why it comes undone so easily."],
+      },
+      {
+        q: "Why does Alice kiss the kitten while telling it off?",
+        answer: "She is not really angry with it.",
+        wrong: ["She is saying goodbye to it.", "She wants it to fall asleep.", "She is rewarding it for being still.", "She has mistaken it for the white kitten."],
+        why: ["A kiss is a strange way to make something understand it is in disgrace, and that contradiction is the point.", "She then has to speak in as cross a voice as she can manage, which tells you crossness does not come naturally here."],
+      },
+      {
+        q: "What does \"speaking in as cross a voice as she could manage\" suggest?",
+        answer: "She is trying to sound cross and not quite succeeding.",
+        wrong: ["She has a sore throat.", "She is shouting very loudly.", "She is talking to herself.", "She is imitating her sister."],
+        why: ["Managing to sound cross is not the same as being cross, and the phrase admits the effort.", "She has just kissed the kitten, so the reader already knows how she really feels."],
       },
     ],
   },
