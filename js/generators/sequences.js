@@ -6,6 +6,7 @@ import { pick, int } from '../core/rng.js';
 import { chooseRules, applyRules, nearMissPool, describeRules } from '../core/rules.js';
 import { row, figureOptions, LETTERS } from '../core/render.js';
 import { chooseDistractors, attempt, explain, joinRules } from './_util.js';
+import { DISTRACTOR_COUNT } from '../core/format.js';
 
 const RULE_MENU = ['shade', 'rot', 'scale', 'sides', 'dots', 'pattern', 'stroke'];
 
@@ -48,10 +49,10 @@ export function generate(rng, difficulty = 2) {
 
     const correct = steps[3];
     const pool = nearMissPool(base, rules, 3);
-    const distractors = chooseDistractors(rng, correct, pool, 3);
+    const distractors = chooseDistractors(rng, correct, pool, DISTRACTOR_COUNT);
     if (!distractors) return null;
 
-    const idx = int(rng, 0, 3);
+    const idx = int(rng, 0, DISTRACTOR_COUNT);
     const opts = distractors.slice();
     opts.splice(idx, 0, correct);
 

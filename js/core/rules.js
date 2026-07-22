@@ -147,6 +147,40 @@ export function nearMissPool(base, rules, step) {
     // This rule not applied at all, all others applied correctly.
     if (rules.length > 1) pool.push(partial);
   });
+
+  // A single rule only yields three near misses, which is not enough for a
+  // five option question. Top the pool up with figures that follow every
+  // rule correctly but differ in a feature no rule governs. These are good
+  // distractors precisely because they look right at a glance: the child has
+  // to check the untouched features too, which is what the real paper
+  // rewards.
+  const correct = applyRules(base, rules, step);
+  const governed = new Set(rules.map((r) => r.attr));
+
+  if (!governed.has('fill')) {
+    const i = FILL_SCALE.indexOf(correct.fill);
+    if (i >= 0) {
+      [i - 2, i + 2, i - 1, i + 1].forEach((j) => {
+        if (j >= 0 && j < FILL_SCALE.length) pool.push({ ...correct, fill: FILL_SCALE[j] });
+      });
+    }
+  }
+  if (!governed.has('scale')) {
+    pool.push({ ...correct, scale: +(correct.scale * 0.7).toFixed(3) });
+    pool.push({ ...correct, scale: +(correct.scale * 1.3).toFixed(3) });
+  }
+  if (!governed.has('dots')) {
+    pool.push({ ...correct, dots: correct.dots + 1 });
+    if (correct.dots > 0) pool.push({ ...correct, dots: correct.dots - 1 });
+  }
+  if (!governed.has('rot') && SHAPES[correct.shape].sym === 1) {
+    pool.push({ ...correct, rot: (correct.rot + 90) % 360 });
+    pool.push({ ...correct, rot: (correct.rot + 180) % 360 });
+  }
+  if (!governed.has('stroke')) {
+    STROKES.filter((s) => s !== correct.stroke).forEach((s) => pool.push({ ...correct, stroke: s }));
+  }
+
   return pool;
 }
 

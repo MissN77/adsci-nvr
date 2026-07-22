@@ -20,6 +20,7 @@
 import { pick, int, shuffle } from '../core/rng.js';
 import { options, LETTERS } from '../core/render.js';
 import { attempt, explain } from './_util.js';
+import { DISTRACTOR_COUNT } from '../core/format.js';
 
 export const meta = {
   id: 'cube',
@@ -147,11 +148,11 @@ function netSVG(cells, { size = 22, marks = {} } = {}) {
 
 function validityQuestion(rng) {
   const good = harvest(rng, 1, true);
-  const bad = harvest(rng, 3, false);
+  const bad = harvest(rng, DISTRACTOR_COUNT, false);
   if (!good || !bad) return null;
 
   const correct = good[0];
-  const idx = int(rng, 0, 3);
+  const idx = int(rng, 0, DISTRACTOR_COUNT);
   const opts = bad.slice();
   opts.splice(idx, 0, correct);
 
@@ -196,10 +197,10 @@ function oppositeFaceQuestion(rng) {
   lettered.forEach((cellIdx, i) => { marks[cellIdx] = letters[i]; });
 
   const answerLetter = letters[lettered.indexOf(answerCell)];
-  const wrongLetters = shuffle(rng, letters.slice(0, lettered.length).filter((l) => l !== answerLetter)).slice(0, 3);
-  if (wrongLetters.length < 3) return null;
+  const wrongLetters = shuffle(rng, letters.slice(0, lettered.length).filter((l) => l !== answerLetter)).slice(0, DISTRACTOR_COUNT);
+  if (wrongLetters.length < DISTRACTOR_COUNT) return null;
 
-  const idx = int(rng, 0, 3);
+  const idx = int(rng, 0, DISTRACTOR_COUNT);
   const opts = wrongLetters.slice();
   opts.splice(idx, 0, answerLetter);
 

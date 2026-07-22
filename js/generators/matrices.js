@@ -7,6 +7,7 @@ import { pick, int } from '../core/rng.js';
 import { chooseRules, applyRules, describeRules } from '../core/rules.js';
 import { matrix, figureOptions, LETTERS } from '../core/render.js';
 import { chooseDistractors, attempt, explain } from './_util.js';
+import { DISTRACTOR_COUNT } from '../core/format.js';
 
 export const meta = {
   id: 'mat',
@@ -75,10 +76,10 @@ export function generate(rng, difficulty = 2) {
       applyRules(applyRules(base, rowRules, (hc + 2) % 3), colRules, hr),
       applyRules(applyRules(base, rowRules, hc), colRules, (hr + 2) % 3),
     ];
-    const distractors = chooseDistractors(rng, correct, pool, 3);
+    const distractors = chooseDistractors(rng, correct, pool, DISTRACTOR_COUNT);
     if (!distractors) return null;
 
-    const idx = int(rng, 0, 3);
+    const idx = int(rng, 0, DISTRACTOR_COUNT);
     const opts = distractors.slice();
     opts.splice(idx, 0, correct);
 

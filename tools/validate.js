@@ -9,6 +9,7 @@
 
 import { makeRng } from '../js/core/rng.js';
 import { REGISTRY } from '../js/generators/index.js';
+import { OPTION_COUNT } from '../js/core/format.js';
 
 const PER_TYPE = Number(process.env.N || 4000);
 
@@ -105,7 +106,7 @@ function fail(type, seed, msg, extra = '') {
 
 for (const [id, gen] of Object.entries(REGISTRY)) {
   let generated = 0;
-  const answerCounts = [0, 0, 0, 0, 0];
+  const answerCounts = new Array(OPTION_COUNT).fill(0);
 
   for (let i = 0; i < PER_TYPE; i++) {
     const seed = i + 1;
@@ -122,7 +123,11 @@ for (const [id, gen] of Object.entries(REGISTRY)) {
 
     const opts = extractOptions(q.optionsHTML);
 
-    if (opts.length < 4) fail(id, seed, `only ${opts.length} options`);
+    // The real paper offers five options, A to E. Four would train the wrong
+    // guess rate and the wrong scanning habit, so this is an exact check.
+    if (opts.length !== OPTION_COUNT) {
+      fail(id, seed, `${opts.length} options, expected ${OPTION_COUNT}`);
+    }
     if (!(q.answer >= 0 && q.answer < opts.length)) {
       fail(id, seed, `answer index ${q.answer} out of range (${opts.length} options)`);
       continue;

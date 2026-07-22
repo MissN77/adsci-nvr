@@ -12,6 +12,7 @@ import { pick, int, shuffle } from '../core/rng.js';
 import { sidesOf } from '../core/rules.js';
 import { row, figureOptions, LETTERS } from '../core/render.js';
 import { attempt, explain } from './_util.js';
+import { DISTRACTOR_COUNT } from '../core/format.js';
 
 export const meta = {
   id: 'sim',
@@ -96,7 +97,7 @@ export function generate(rng, difficulty = 2) {
 
     const examples = [make(true), make(true), make(true)];
     const correct = make(true);
-    const distractors = [make(false), make(false), make(false)];
+    const distractors = Array.from({ length: DISTRACTOR_COUNT }, () => make(false));
 
     // ── Audit ────────────────────────────────────────────────────────────
     // Build the full candidate list, then find everything the three examples
@@ -123,7 +124,7 @@ export function generate(rng, difficulty = 2) {
     // And the answer must not simply be a copy of one of the examples.
     if (examples.some((e) => JSON.stringify(e) === JSON.stringify(correct))) return null;
 
-    const idx = int(rng, 0, 3);
+    const idx = int(rng, 0, DISTRACTOR_COUNT);
     const opts = distractors.slice();
     opts.splice(idx, 0, correct);
 

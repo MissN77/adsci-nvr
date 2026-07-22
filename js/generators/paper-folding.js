@@ -11,6 +11,7 @@
 import { pick, int, shuffle } from '../core/rng.js';
 import { options, LETTERS } from '../core/render.js';
 import { attempt, explain } from './_util.js';
+import { DISTRACTOR_COUNT } from '../core/format.js';
 
 export const meta = {
   id: 'fold',
@@ -144,18 +145,22 @@ export function generate(rng, difficulty = 2) {
     pool.push(dedupe(correct.map((p) => [+(1 - p[0]).toFixed(3), p[1]])));
     // Right number of holes, wrong places.
     pool.push(dedupe(correct.map((p) => [p[1], p[0]])));
+    // Mirrored the holes but slid them to the wrong side of the crease.
+    pool.push(dedupe(correct.map((p) => [p[0], +(1 - p[1]).toFixed(3)])));
+    // Doubled the holes once too often.
+    pool.push(unfold(correct, folds));
 
     const distractors = [];
     for (const cand of shuffle(rng, pool)) {
-      if (distractors.length >= 3) break;
+      if (distractors.length >= DISTRACTOR_COUNT) break;
       if (cand.length === 0) continue;
       if (sameHoles(cand, correct)) continue;
       if (distractors.some((d) => sameHoles(d, cand))) continue;
       distractors.push(cand);
     }
-    if (distractors.length < 3) return null;
+    if (distractors.length < DISTRACTOR_COUNT) return null;
 
-    const idx = int(rng, 0, 3);
+    const idx = int(rng, 0, DISTRACTOR_COUNT);
     const opts = distractors.slice();
     opts.splice(idx, 0, correct);
 

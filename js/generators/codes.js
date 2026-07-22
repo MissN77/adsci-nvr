@@ -11,6 +11,7 @@ import { fig, FILL_SCALE, BY_SIDES } from '../core/figure.js';
 import { pick, int, shuffle } from '../core/rng.js';
 import { textOptions, figureSVG, LETTERS } from '../core/render.js';
 import { attempt, explain } from './_util.js';
+import { DISTRACTOR_COUNT } from '../core/format.js';
 
 export const meta = {
   id: 'cod',
@@ -39,9 +40,11 @@ export function generate(rng, difficulty = 2) {
     const d1 = DIMENSIONS[k1];
     const d2 = DIMENSIONS[k2];
 
-    // Harder papers use three values per dimension, so more of the code has
-    // to be inferred from fewer examples.
-    const n = difficulty === 1 ? 2 : 3;
+    // Three values per dimension at every level. Two values only yields
+    // three possible wrong codes, which is not enough now that a question
+    // needs four distractors. Difficulty is carried by how many worked
+    // examples the child is shown instead.
+    const n = 3;
     const v1 = d1.values(rng).slice(0, n);
     const v2 = d2.values(rng).slice(0, n);
     const letters1 = shuffle(rng, POOL_1).slice(0, n);
@@ -65,7 +68,7 @@ export function generate(rng, difficulty = 2) {
     const allPairs = [];
     for (const a of v1) for (const b of v2) if (!(a === ta && b === tb)) allPairs.push([a, b]);
 
-    const exCount = difficulty === 1 ? 3 : 4;
+    const exCount = difficulty === 1 ? 6 : difficulty === 2 ? 5 : 4;
     const chosen = shuffle(rng, allPairs).slice(0, exCount);
     if (chosen.length < exCount) return null;
 
@@ -82,7 +85,7 @@ export function generate(rng, difficulty = 2) {
     const holdersOfTb = new Set(chosen.filter(([, b]) => b === tb).map(([a]) => a));
     // With only two values per dimension there are just three example pairs
     // available, so the evidence bar has to be lower or nothing generates.
-    if (partnersOfTa.size + holdersOfTb.size < (n === 2 ? 2 : 3)) return null;
+    if (partnersOfTa.size + holdersOfTb.size < 3) return null;
 
     const examples = chosen.map(([a, b]) => ({ figure: build(a, b), code: codeOf(a, b) }));
     const target = build(ta, tb);
@@ -101,13 +104,13 @@ export function generate(rng, difficulty = 2) {
 
     const distractors = [];
     for (const p of shuffle(rng, pool)) {
-      if (distractors.length >= 3) break;
+      if (distractors.length >= DISTRACTOR_COUNT) break;
       if (p === correct || distractors.includes(p)) continue;
       distractors.push(p);
     }
-    if (distractors.length < 3) return null;
+    if (distractors.length < DISTRACTOR_COUNT) return null;
 
-    const idx = int(rng, 0, 3);
+    const idx = int(rng, 0, DISTRACTOR_COUNT);
     const opts = distractors.slice();
     opts.splice(idx, 0, correct);
 

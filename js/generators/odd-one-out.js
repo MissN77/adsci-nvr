@@ -15,10 +15,11 @@
 //    a figure.
 
 import { fig, ALL_SHAPES, FILL_SCALE, STROKES, minVisibleRot, BY_SIDES, SHAPES, sameFigure } from '../core/figure.js';
-import { pick, int } from '../core/rng.js';
+import { pick, int, shuffle } from '../core/rng.js';
 import { sidesOf } from '../core/rules.js';
 import { figureOptions, LETTERS } from '../core/render.js';
 import { attempt, explain } from './_util.js';
+import { OPTION_COUNT, DISTRACTOR_COUNT } from '../core/format.js';
 
 export const meta = {
   id: 'ooo',
@@ -68,14 +69,6 @@ const PHRASE = {
   stroke: () => 'The other three have the same kind of outline. This one is drawn differently',
 };
 
-/** Two rotations of this shape that are visibly different, or null. */
-function rotPair(rng, shape) {
-  const step = minVisibleRot(shape);
-  // Below 90 degrees of symmetry step the two angles get too close to call.
-  if (step === Infinity || step < 90) return null;
-  return [0, Math.round(step / 2)];
-}
-
 export function generate(rng, difficulty = 2) {
   return attempt(() => {
     const useSidesRule = rng() < 0.3;
@@ -96,8 +89,8 @@ export function generate(rng, difficulty = 2) {
 
     const shapeFor = () => (useSidesRule ? BY_SIDES[int(rng, 3, 7)] : baseShape);
     const carrier = shapeFor();
-    const figs = [0, 1, 2, 3].map(() => fig(carrier, common));
-    const oddIdx = int(rng, 0, 3);
+    const figs = Array.from({ length: OPTION_COUNT }, () => fig(carrier, common));
+    const oddIdx = int(rng, 0, OPTION_COUNT - 1);
 
     // ── Apply the rule break ─────────────────────────────────────────────
     if (oddAttr === 'fill') {
@@ -122,42 +115,28 @@ export function generate(rng, difficulty = 2) {
       figs[oddIdx] = fig(otherShape, { ...common, dots: figs[0].dots });
     }
 
-    // ── Decoy variety: two attributes, each split two-and-two ────────────
-    // Orthogonal splits give all four figures a unique combination, so no two
-    // are identical, while neither attribute can single anyone out.
-    const decoyMenu = [];
-    const rp = rotPair(rng, carrier);
-    if (rp && oddAttr !== 'shape') decoyMenu.push({ key: 'rot', vals: rp });
-    if (oddAttr !== 'scale') decoyMenu.push({ key: 'scale', vals: [1, 0.78] });
-    if (oddAttr !== 'dots') decoyMenu.push({ key: 'dots', vals: [figs[0].dots, figs[0].dots + 2] });
-    if (oddAttr !== 'stroke') decoyMenu.push({ key: 'stroke', vals: ['thin', 'thick'] });
-    if (oddAttr !== 'fill') {
-      const i = FILL_SCALE.indexOf(common.fill);
-      const partner = FILL_SCALE[i >= 2 ? i - 2 : i + 2];
-      if (partner) decoyMenu.push({ key: 'fill', vals: [common.fill, partner] });
-    }
-    if (decoyMenu.length < 2) return null;
-
-    const [d1, d2] = (() => {
-      const a = int(rng, 0, decoyMenu.length - 1);
-      let b = int(rng, 0, decoyMenu.length - 1);
-      if (b === a) b = (b + 1) % decoyMenu.length;
-      return [decoyMenu[a], decoyMenu[b]];
+    // ── Decoy variety ────────────────────────────────────────────────────
+    // With four figures this used two attributes split two-and-two, so no
+    // value ever belonged to exactly one figure. Five figures cannot be split
+    // evenly, and any 1-4 split would read as a second odd one out.
+    //
+    // So the decoy attribute takes FIVE DIFFERENT values instead. A feature
+    // where every figure differs cannot single anyone out, and it guarantees
+    // all five figures look different from each other.
+    const spread = (() => {
+      if (oddAttr !== 'dots') return { key: 'dots', vals: [0, 1, 2, 3, 4] };
+      // Dots are carrying the rule, so spread something else.
+      if (SHAPES[carrier].sym === 1) return { key: 'rot', vals: [0, 72, 144, 216, 288] };
+      return { key: 'scale', vals: [0.7, 0.85, 1, 1.15, 1.3] };
     })();
 
-    // Split one attribute [X,X,Y,Y] and the other [P,Q,P,Q].
-    figs.forEach((f, i) => {
-      figs[i] = {
-        ...f,
-        [d1.key]: d1.vals[i < 2 ? 0 : 1],
-        [d2.key]: d2.vals[i % 2],
-      };
-    });
+    const order = shuffle(rng, spread.vals);
+    figs.forEach((f, i) => { figs[i] = { ...f, [spread.key]: order[i] }; });
 
     // ── Audit ────────────────────────────────────────────────────────────
     // All four must be visually distinct.
-    for (let i = 0; i < 4; i++) {
-      for (let j = i + 1; j < 4; j++) if (sameFigure(figs[i], figs[j])) return null;
+    for (let i = 0; i < figs.length; i++) {
+      for (let j = i + 1; j < figs.length; j++) if (sameFigure(figs[i], figs[j])) return null;
     }
     // Sizes must stay readable.
     if (figs.some((f) => f.scale < 0.55 || f.scale > 1.3)) return null;

@@ -18,6 +18,7 @@ import { pick, int, shuffle } from '../core/rng.js';
 import { options, LETTERS, figureSVG } from '../core/render.js';
 import { sidesOf } from '../core/rules.js';
 import { attempt, explain } from './_util.js';
+import { DISTRACTOR_COUNT } from '../core/format.js';
 
 export const meta = {
   id: 'hid',
@@ -59,7 +60,7 @@ function buildFigure(rng, shapes) {
 export function generate(rng, difficulty = 2) {
   return attempt(() => {
     const askNotUsed = rng() < 0.5;
-    const nParts = difficulty === 1 ? 2 : difficulty === 2 ? 3 : 3;
+    const nParts = askNotUsed ? DISTRACTOR_COUNT : (difficulty === 1 ? 2 : 3);
 
     const chosen = shuffle(rng, PARTS);
     const used = chosen.slice(0, nParts);
@@ -68,7 +69,7 @@ export function generate(rng, difficulty = 2) {
     // All options must be different kinds, so only one can be traced.
     const usedKinds = new Set(used.map(kindOf));
     const absent = spare.filter((s) => !usedKinds.has(kindOf(s)));
-    if (absent.length < 3) return null;
+    if (absent.length < DISTRACTOR_COUNT) return null;
 
     const figure = buildFigure(rng, used);
 
@@ -76,10 +77,12 @@ export function generate(rng, difficulty = 2) {
 
     if (askNotUsed) {
       // Three of the options ARE in the figure, one is not.
-      if (used.length < 3) return null;
+      // Every other option must genuinely be in the figure, so this variant
+      // needs as many component shapes as there are wrong options.
+      if (used.length < DISTRACTOR_COUNT) return null;
       correct = absent[0];
-      optShapes = [...used.slice(0, 3)];
-      const idx = int(rng, 0, 3);
+      optShapes = [...used.slice(0, DISTRACTOR_COUNT)];
+      const idx = int(rng, 0, DISTRACTOR_COUNT);
       optShapes.splice(idx, 0, correct);
       prompt = 'Which one of these shapes was NOT used to build the figure?';
       points = [
@@ -92,11 +95,11 @@ export function generate(rng, difficulty = 2) {
 
     // Exactly one option IS in the figure.
     correct = pick(rng, used);
-    const wrong = shuffle(rng, absent).slice(0, 3);
-    if (wrong.length < 3) return null;
+    const wrong = shuffle(rng, absent).slice(0, DISTRACTOR_COUNT);
+    if (wrong.length < DISTRACTOR_COUNT) return null;
     if (wrong.some((w) => kindOf(w) === kindOf(correct))) return null;
     optShapes = wrong.slice();
-    const idx = int(rng, 0, 3);
+    const idx = int(rng, 0, DISTRACTOR_COUNT);
     optShapes.splice(idx, 0, correct);
     prompt = 'Which one of these shapes is hidden inside the figure?';
     points = [

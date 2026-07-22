@@ -11,6 +11,7 @@ import { pick, int } from '../core/rng.js';
 import { figureSVG, figureOptions, LETTERS } from '../core/render.js';
 import { reflectVertical, reflectHorizontal } from './reflection.js';
 import { chooseDistractors, attempt, explain } from './_util.js';
+import { DISTRACTOR_COUNT } from '../core/format.js';
 
 export const meta = {
   id: 'rot',
@@ -53,10 +54,10 @@ export function generate(rng, difficulty = 2) {
       reflectHorizontal(base),
     ];
 
-    const distractors = chooseDistractors(rng, correct, pool, 3);
+    const distractors = chooseDistractors(rng, correct, pool, DISTRACTOR_COUNT);
     if (!distractors) return null;
 
-    const idx = int(rng, 0, 3);
+    const idx = int(rng, 0, DISTRACTOR_COUNT);
     const opts = distractors.slice();
     opts.splice(idx, 0, correct);
 
