@@ -282,8 +282,25 @@ export function teachScreen(typeId) {
   }
 
   let q = makeQuestion(typeId, 1, 'teach');
+  const worked = makeQuestion(typeId, 1, 'worked');
   let done = false;
   let picked = [];
+
+  // A question shown already solved: the answer ringed and the explanation
+  // open. A child watches the method applied to a real question once before
+  // being asked to do one. The buttons are disabled so it cannot be tapped.
+  function workedExample(wq) {
+    let opts = wq.optionsHTML;
+    for (const a of correctSet(wq)) {
+      opts = opts.replace(`class="opt" data-opt="${a}"`, `class="opt is-correct" data-opt="${a}" disabled`);
+    }
+    opts = opts.replace(/class="opt" data-opt/g, 'class="opt" disabled data-opt');
+    const stim = wq.noStimulus ? '' : (wq.stimulus || '');
+    return `<div class="worked">
+        <p class="qprompt">${wq.prompt}</p>${stim}${opts}
+        <div class="explain">${wq.explain}</div>
+      </div>`;
+  }
 
   function body() {
     const steps = t ? `<ol>${t.steps.map((s) => `<li>${esc(s)}</li>`).join('')}</ol>` : '';
@@ -303,7 +320,11 @@ export function teachScreen(typeId) {
         ${steps}
         ${tip}
         <hr class="rule">
-        <h3>Try one</h3>
+        <h3>Worked example</h3>
+        <p class="muted">Here is one done for you. Follow how the answer is found, then try one yourself.</p>
+        ${workedExample(worked)}
+        <hr class="rule">
+        <h3>Now you try</h3>
         <div id="qbox">${questionBody(q)}</div>
         ${after}
       </div>
