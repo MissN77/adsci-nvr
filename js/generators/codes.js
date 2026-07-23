@@ -120,6 +120,34 @@ export function generate(rng, difficulty = 2) {
       .join('')}</div>
       <div class="stim-row code-target"><div class="code-item">${figureBox(target)}<span class="code-tag code-tag--q">?</span></div></div>`;
 
+    // The explanation used to hand over the finished mapping, which is the one
+    // part of the question that is actually hard. Instead, show the child how
+    // to CRACK it: find two example codes that share a letter, and the two
+    // shapes they belong to reveal what that letter tracks. Point at real
+    // examples from this question where they exist.
+    // Any two codes that share a letter demonstrate the rule; they need not be
+    // the target's own value. Find a value on each dimension that appears in at
+    // least two example pairs, so the two codes shown genuinely share a letter.
+    const repeatedOn = (dimA) => {
+      const groups = new Map();
+      for (const [a, b] of chosen) {
+        const key = dimA ? a : b;
+        const arr = groups.get(key) || [];
+        arr.push(codeOf(a, b));
+        groups.set(key, arr);
+      }
+      for (const arr of groups.values()) if (arr.length >= 2) return arr;
+      return [];
+    };
+    const sameFirst = repeatedOn(true);
+    const sameSecond = repeatedOn(false);
+    const firstStep = sameFirst.length >= 2
+      ? `Two of the example codes, ${sameFirst[0]} and ${sameFirst[1]}, start with the same letter. Look at their two shapes: the one thing they share is ${d1.label}. So the first letter stands for ${d1.label}.`
+      : `Compare shapes whose codes start with the same letter. What those shapes share is ${d1.label}, so the first letter stands for ${d1.label}.`;
+    const secondStep = sameSecond.length >= 2
+      ? `Now ${sameSecond[0]} and ${sameSecond[1]} end in the same letter, and their shapes share ${d2.label}. So the second letter stands for ${d2.label}.`
+      : `Codes that end in the same letter belong to shapes that share ${d2.label}, so the second letter stands for ${d2.label}.`;
+
     return {
       type: 'cod',
       prompt: 'Work out the code, then choose the code for the last shape.',
@@ -129,9 +157,10 @@ export function generate(rng, difficulty = 2) {
       explain: explain(
         `The answer is <strong>${LETTERS[idx]} (${correct})</strong>.`,
         [
-          `The first letter stands for ${d1.label}. The second letter stands for ${d2.label}.`,
-          `Here, ${map1.get(ta)} is the first letter and ${map2.get(tb)} is the second, giving <strong>${correct}</strong>.`,
-          'Write down what each letter means as you work it out. Do not try to hold it all in your head.',
+          firstStep,
+          secondStep,
+          `The last shape has ${map1.get(ta)} for its first part and ${map2.get(tb)} for its second, giving <strong>${correct}</strong>.`,
+          'Start with the letters that repeat. Crack what each one means before you look at the answer options.',
         ],
       ),
       teachRef: 'cod',

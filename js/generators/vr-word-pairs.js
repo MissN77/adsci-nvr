@@ -102,11 +102,17 @@ export function generate(rng, difficulty = 2) {
       explain: explain(
         `The answer is <strong>${LETTERS[answers[0]]}</strong> and <strong>${LETTERS[answers[1]]}</strong>.`,
         [
+          // The old first line just asserted "these two are synonyms", which
+          // leaves a child who did not know a word exactly where they were.
+          // Model the SUBSTITUTION TEST instead, which is the method a tutor
+          // teaches: swap the two words in one sentence and see if it holds.
           opposite
-            ? `<strong>${left}</strong> and <strong>${right}</strong> are opposites.`
-            : `<strong>${left}</strong> and <strong>${right}</strong> mean the same, or very nearly.`,
-          'Take one word from the first group and try it against all three in the second group, then move on to the next. Working through it in order beats staring at all six.',
-          'Only one pairing works. If two seem to fit, look again at the exact shade of meaning.',
+            ? `Try them in one sentence: if something is <strong>${left}</strong>, it is the opposite of <strong>${right}</strong>. When a sentence stays true with the meaning flipped, you have found the opposite pair.`
+            : `Try them in one sentence: if something is <strong>${left}</strong>, it is also <strong>${right}</strong>. When a sentence stays true after you swap one word for the other, they mean the same.`,
+          'Take one word from the first group and try it against all three in the second, then move to the next. Working through it in order beats staring at all six.',
+          // Replaces "look again at the exact shade of meaning", which a child
+          // cannot act on, with something they can do.
+          'If a word is new to you, say it in a sentence of your own. A word you cannot use in a sentence is usually not the answer.',
         ],
       ),
       teachRef: 'vrpair',

@@ -27,6 +27,20 @@ for (const [word, tags] of Object.entries(WORD_TAGS)) {
 }
 const TAGS = Object.keys(BY_TAG).filter((t) => BY_TAG[t].length >= 4);
 
+// The single most useful thing this explanation can do is NAME the category.
+// It used to say the three linked words are "the same kind of thing", which
+// tells a child who is stuck precisely nothing: the whole skill is naming the
+// link. So each tag gets a plain word a ten year old would use.
+const TAG_NAME = {
+  bird: 'birds', body: 'parts of the body', book: 'kinds of book',
+  building: 'buildings', colour: 'colours', fabric: 'fabrics', fish: 'fish',
+  gem: 'precious stones', instrument: 'musical instruments',
+  kitchen: 'things used in a kitchen', land: 'kinds of land',
+  metal: 'metals', rain: 'kinds of wet weather', rank: 'ranks in the army',
+  red: 'shades of red', shape: 'shapes', time: 'lengths of time',
+  tool: 'tools', tree: 'trees', wind: 'kinds of wind',
+};
+
 /** How many of these words carry each tag. */
 function tagCounts(words) {
   const counts = {};
@@ -87,9 +101,9 @@ export function generate(rng) {
       explain: explain(
         `The answers are <strong>${LETTERS[answers[0]]}</strong> and <strong>${LETTERS[answers[1]]}</strong>.`,
         [
-          `${linked.slice(0, -1).join(', ')} and ${linked[linked.length - 1]} are all the same kind of thing.`,
-          `${odd[0]} and ${odd[1]} are not, so they are the two odd ones out.`,
-          'Look for the group of THREE first. It is quicker than testing each word on its own, and the question always has exactly one group of three.',
+          `${linked.slice(0, -1).join(', ')} and ${linked[linked.length - 1]} are all <strong>${TAG_NAME[tag] || 'the same kind of thing'}</strong>.`,
+          `${odd[0]} and ${odd[1]} do not belong, so they are the two odd ones out.`,
+          'Name the link in ONE word as you find it. If you can say "these are all birds", you have it. If you cannot put a name to it, you have not found the group yet.',
         ],
       ),
       teachRef: 'vrodd',
