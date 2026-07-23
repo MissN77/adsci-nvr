@@ -402,16 +402,30 @@ export function practiseRunScreen(typeId) {
   // questions on it, so a run of ten reads one passage, not ten.
   let queue = null;
 
+  // The questions answered wrong in the current pass, kept so the child can go
+  // back over the exact ones they missed rather than ten fresh questions. When
+  // reviewList is set, the pass IS that review, and getting them wrong again
+  // simply collects them for another go.
+  let wrongThisPass = [];
+  let reviewList = null;
+
+  const total = () => (reviewList ? reviewList.length : RUN_LENGTH);
+  const reviewing = () => reviewList !== null;
+
   function next() {
-    const gen = REGISTRY[typeId];
-    if (typeof gen.generateSet === 'function') {
-      if (!queue) {
-        const rng = makeRng(hashSeed(`set-${typeId}-${Date.now()}-${Math.random()}`));
-        queue = gen.generateSet(rng, RUN_LENGTH);
-      }
-      q = queue[i % queue.length];
+    if (reviewList) {
+      q = reviewList[i];
     } else {
-      q = makeQuestion(typeId, difficultyFor(i), `run-${i}-${Date.now()}`);
+      const gen = REGISTRY[typeId];
+      if (typeof gen.generateSet === 'function') {
+        if (!queue) {
+          const rng = makeRng(hashSeed(`set-${typeId}-${Date.now()}-${Math.random()}`));
+          queue = gen.generateSet(rng, RUN_LENGTH);
+        }
+        q = queue[i % queue.length];
+      } else {
+        q = makeQuestion(typeId, difficultyFor(i), `run-${i}-${Date.now()}`);
+      }
     }
     answered = false;
     chosen = [];
@@ -419,15 +433,26 @@ export function practiseRunScreen(typeId) {
   }
 
   function summary() {
-    const pct = Math.round((right / RUN_LENGTH) * 100);
+    const n = total();
+    const pct = Math.round((right / n) * 100);
+    const missed = wrongThisPass.length;
+    const heading = reviewing()
+      ? (missed === 0 ? 'All correct this time' : 'Review finished')
+      : 'Run finished';
+    const reviewBtn = missed > 0
+      ? `<button class="btn" type="button" data-act="review">Go over the ${missed} you got wrong</button>`
+      : '';
+    // After a clean review, offer a fresh run rather than a dead end.
+    const againLabel = reviewing() ? 'Start a fresh ten' : 'Another ten';
     return `${header(name, '#/practise')}
       <div class="wrap">
-        <h2>Run finished</h2>
+        <h2>${heading}</h2>
         <div class="card card--accent">
-          <h3>${right} out of ${RUN_LENGTH}</h3>
+          <h3>${right} out of ${n}</h3>
           <p class="muted">${pct}% right on ${esc(name)}</p>
         </div>
-        <button class="btn" type="button" data-act="again">Another ten</button>
+        ${reviewBtn}
+        <button class="btn ${reviewBtn ? 'btn--ghost' : ''}" type="button" data-act="again">${againLabel}</button>
         <button class="btn btn--ghost" type="button" data-act="go" data-to="#/learn/${esc(typeId)}">Read the method again</button>
         <button class="btn btn--ghost" type="button" data-act="go" data-to="#/home">Home</button>
       </div>
@@ -435,19 +460,30 @@ export function practiseRunScreen(typeId) {
   }
 
   function body() {
-    if (i >= RUN_LENGTH) return summary();
+    if (i >= total()) return summary();
     const canCheck = !answered && isMulti(q) && chosen.length === needed(q);
+    // On a wrong multi-answer question, say how many of the set they found,
+    // so a child who got two of three is not shown the same as one who got
+    // none. The marking stays strict; only the feedback is kinder.
+    let partial = '';
+    if (answered && isMulti(q) && !isCorrect(q, chosen)) {
+      const found = chosen.filter((c) => correctSet(q).includes(c)).length;
+      partial = `<p class="qpick">You found ${found} of the ${needed(q)}.</p>`;
+    }
     const after = answered
-      ? `<div class="explain" role="status" aria-live="polite">${q.explain}</div>
-         <button class="btn" type="button" data-act="next">${i + 1 >= RUN_LENGTH ? 'See your score' : 'Next question'}</button>`
+      ? `${partial}<div class="explain" role="status" aria-live="polite">${q.explain}</div>
+         <button class="btn" type="button" data-act="next">${i + 1 >= total() ? 'See your score' : 'Next question'}</button>`
       : (canCheck
         ? '<button class="btn" type="button" data-act="check">Check my answer</button>'
         : (isMulti(q)
           ? `<p class="muted">Tap ${needed(q)} answers, then Check. You can change your mind before you check.</p>`
           : ''));
-    return `${header(name, '#/practise')}
+    const counter = reviewing()
+      ? `Going over ${i + 1} of ${total()}`
+      : `Question ${i + 1} of ${total()}`;
+    return `${header(reviewing() ? `${name}, review` : name, '#/practise')}
       <div class="wrap">
-        <div class="qmeta"><span>Question ${i + 1} of ${RUN_LENGTH}</span><span>${right} right</span></div>
+        <div class="qmeta"><span>${counter}</span><span>${right} right</span></div>
         ${questionBody(q)}
         ${after}
       </div>
@@ -461,13 +497,23 @@ export function practiseRunScreen(typeId) {
     click(el) {
       const act = el.dataset.act;
       if (act === 'again') {
-        i = 0; right = 0; queue = null; next();
+        i = 0; right = 0; queue = null; reviewList = null; wrongThisPass = [];
+        next();
+        ctx.paint(body());
+        return;
+      }
+      if (act === 'review') {
+        // Replay the exact questions missed, not ten fresh ones.
+        reviewList = wrongThisPass.slice();
+        wrongThisPass = [];
+        i = 0; right = 0;
+        next();
         ctx.paint(body());
         return;
       }
       if (act === 'next') {
         i += 1;
-        if (i < RUN_LENGTH) next();
+        if (i < total()) next();
         ctx.paint(body());
         return;
       }
@@ -480,7 +526,7 @@ export function practiseRunScreen(typeId) {
         return;
       }
       const opt = el.closest ? el.closest('.opt') : null;
-      if (opt && !answered && i < RUN_LENGTH) {
+      if (opt && !answered && i < total()) {
         const tapped = Number(opt.dataset.opt);
         chosen = chosen.includes(tapped)
           ? chosen.filter((v) => v !== tapped) : [...chosen, tapped];
@@ -492,21 +538,23 @@ export function practiseRunScreen(typeId) {
   };
 
   function commit() {
-    {
-      {
-        const correct = isCorrect(q, chosen);
-        if (correct) right += 1;
-        Store.recordAnswer({
-          type: q.type,
-          correct,
-          difficulty: difficultyFor(i),
-          ms: Date.now() - startedAt,
-        });
-        answered = true;
-        ctx.paint(body());
-        markOptions(ctx.root, chosen, correctSet(q));
-      }
+    const correct = isCorrect(q, chosen);
+    if (correct) right += 1;
+    else wrongThisPass.push(q);
+    // Progress is not recorded during a review pass: these questions were
+    // already counted the first time, and counting them twice would tell a
+    // parent the child answered more than they did.
+    if (!reviewing()) {
+      Store.recordAnswer({
+        type: q.type,
+        correct,
+        difficulty: difficultyFor(i),
+        ms: Date.now() - startedAt,
+      });
     }
+    answered = true;
+    ctx.paint(body());
+    markOptions(ctx.root, chosen, correctSet(q));
   }
 }
 
