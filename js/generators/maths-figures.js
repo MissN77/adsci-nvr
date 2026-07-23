@@ -245,7 +245,10 @@ export function missingDigit(rng) {
   const digits = String(a).split('');
   const hide = int(rng, 0, digits.length - 1);
   const answer = Number(digits[hide]);
-  const shown = digits.map((d, i) => (i === hide ? '&#9723;' : d)).join('');
+  // Same tofu-glyph fix as maths.js: U+25FB is missing from some Android font
+  // sets and renders as an empty box, so the child cannot tell the placeholder
+  // from a bug. Drawn in CSS via .numbox instead.
+  const shown = digits.map((d, i) => (i === hide ? '<span class="numbox" aria-label="missing digit"></span>' : d)).join('');
 
   return {
     prompt: `${shown} &times; ${b} = ${product}. Which digit is missing?`,

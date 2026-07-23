@@ -28,6 +28,8 @@ const optionValues = (html) => html.split('<button class="opt"').slice(1)
     return m ? Number(m[1].replace(/,/g, '')) : NaN;
   });
 
+let negDistractors = 0;
+const negExamples = [];
 let checked = 0;
 let unparsed = 0;
 let wrong = 0;
@@ -38,6 +40,17 @@ for (let seed = 1; seed <= RUNS; seed++) {
   const text = strip(q.prompt);
   const vals = optionValues(q.optionsHTML);
   const marked = correctSet(q).map((i) => vals[i]);
+
+  // No DISTRACTOR may be zero or negative. Every answer here is a positive
+  // quantity, so a non-positive wrong option is one a child never produces and
+  // discriminates nothing. Two shipped this way (a -30 and a contrived 58).
+  const answers = correctSet(q);
+  vals.forEach((v, i) => {
+    if (!answers.includes(i) && Number.isFinite(v) && v <= 0) {
+      negDistractors += 1;
+      if (negExamples.length < 5) negExamples.push({ seed, text, v });
+    }
+  });
 
   let expected = null;
   let m;
@@ -150,4 +163,6 @@ console.log(`${wrong === 0 ? '✅' : '❌'} answers disagreeing with the printed
 for (const e of examples) {
   console.log(`  seed ${e.seed}: "${e.text}" marked ${e.got} but works out as ${e.want}`);
 }
-process.exit(wrong === 0 ? 0 : 1);
+console.log(`${negDistractors === 0 ? '✅' : '❌'} zero-or-negative distractors: ${negDistractors}`);
+for (const e of negExamples) console.log(`  seed ${e.seed}: "${e.text}" has distractor ${e.v}`);
+process.exit(wrong === 0 && negDistractors === 0 ? 0 : 1);

@@ -47,6 +47,11 @@ function assemble(rng, { prompt, stimulus, answer, slips, points, chooseAll }) {
   for (const s of shuffle(rng, slips)) {
     if (wrong.length >= DISTRACTOR_COUNT) break;
     if (s === null || s === undefined || Number.isNaN(s)) continue;
+    // A distractor that is zero or negative is never an error a child makes on
+    // these questions (every answer is a positive quantity), and it stands out
+    // as obviously wrong, so it discriminates nothing. Belt and braces: the
+    // data below avoids them too.
+    if (typeof s === 'number' && s <= 0) continue;
     const k = String(s);
     if (seen.has(k)) continue;
     seen.add(k);
@@ -104,7 +109,11 @@ const KINDS = {
     return {
       prompt: `${a} ${op === '+' ? '+' : '&minus;'} <span class="numbox" aria-label="missing number"></span> = ${result}`,
       answer,
-      slips: [a + result, result - a, a - result + 2, a - result - 2, result, a, Math.abs(result - a) + 10],
+      // Every slip is an error a child could actually make. result - a gave a
+      // NEGATIVE number, which no child produces subtracting two positives, so
+      // it was dead. Now: added instead of subtracted, a carry slip, off by
+      // one either way, and copying the number on the right.
+      slips: [a + result, answer + 10, answer + 1, answer - 1, result],
       points: [
         op === '+'
           ? `Take ${a} away from ${result}: ${result} &minus; ${a} = <strong>${answer}</strong>.`
@@ -137,7 +146,10 @@ const KINDS = {
     return {
       prompt: `${a} &times; ${b} =`,
       answer,
-      slips: [a * (b - 10) + 10, a * b - a, a * b + a, a * b - 10, a * (b + 1), a + b],
+      // a*(b-10)+10 was a contrived value (58 for 8x16) with no route a child
+      // would take. Replaced with real slips: multiplied by the units only,
+      // by the tens only, off by one group, or added instead of multiplied.
+      slips: [a * (b % 10), a * 10, a * b - a, a * b + a, a + b],
       points: [
         `Split the ${b}: ${a} &times; ${b - (b % 10)} = ${a * (b - (b % 10))}, and ${a} &times; ${b % 10} = ${a * (b % 10)}. Add them for <strong>${answer}</strong>.`,
         'Splitting one number into tens and units keeps it in your head without written working.',
@@ -174,7 +186,7 @@ const KINDS = {
       return {
         prompt: `${a} &divide; ${num(by)} =`,
         answer,
-        slips: [a * by, a / (by * 10), a - by, answer * 10, answer / 10],
+        slips: [a * by, a + by, a, by, answer * 10, answer / 10],
         points: [
           `Dividing by ${num(by)} moves every digit ${String(by).length - 1} place${by === 10 ? '' : 's'} to the RIGHT.`,
           `${a} becomes <strong>${num(answer)}</strong>.`,
@@ -190,9 +202,9 @@ const KINDS = {
       answer,
       slips: [
         Math.round((whole + result) * 100) / 100,
-        Math.round((result - whole) * 100) / 100,
         whole, result,
         Math.round((answer + 1) * 100) / 100,
+        Math.round((answer + 0.1) * 100) / 100,
       ],
       points: [
         'The missing number is what you take away, so it is the bigger number minus the answer.',
@@ -354,7 +366,7 @@ const KINDS = {
         : `Angles of ${known.join('&deg;, ')}&deg; and one more angle meet at a point. What is the missing angle?`,
       answer,
       slips: [total + known.reduce((a, b) => a + b, 0), (onLine ? 360 : 180) - known.reduce((a, b) => a + b, 0),
-        answer + 10, answer - 10, 180 - answer, 90 - (answer % 90)],
+        answer + 10, answer - 10, answer + 20, 180 - answer, 90 - (answer % 90)],
       points: [
         onLine
           ? 'Angles on a straight line add up to 180 degrees.'
