@@ -679,7 +679,12 @@ export function paperScreen() {
       const d = frac < 0.4 ? 1 : frac < 0.75 ? 2 : 3;
       return makeQuestion(id, d, `paper-${n}`);
     });
-    answers = questions.map(() => -1);
+    // Empty array, not -1: the tap handler and the scorer both do
+    // `answers[i] || []`, and -1 is TRUTHY, so it slipped through as -1 and
+    // then `.includes` / `.slice` threw. That crashed the paper on the first
+    // option tap, and crashed scoring on any unanswered question. An empty
+    // array reads as "not answered yet" and scores as wrong, which is right.
+    answers = questions.map(() => []);
   }
 
   function tick() {
