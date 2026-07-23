@@ -391,10 +391,20 @@ export function practiseRunScreen(typeId) {
   let startedAt = 0;
 
   // Ramp difficulty across the run so a child warms up before the hard ones.
+  //
+  // The ramp used to reset to easy on every run for ever, so a child on their
+  // fiftieth run of a type still got three difficulty-1 warm-ups and never met
+  // anything harder than run one. Now the whole ramp lifts by one for a child
+  // who has shown they are strong on THIS type, so practice keeps up with them.
+  // A weak child, or a new one, gets the gentle ramp unchanged.
+  const mastered = (() => {
+    const st = Store.stats().byType[typeId];
+    return st && st.attempted >= 20 && st.pct >= 80;
+  })();
+
   function difficultyFor(n) {
-    if (n < 3) return 1;
-    if (n < 7) return 2;
-    return 3;
+    const ramp = n < 3 ? 1 : n < 7 ? 2 : 3;
+    return Math.min(3, ramp + (mastered ? 1 : 0));
   }
 
   // A generator may expose generateSet when its questions belong together.
