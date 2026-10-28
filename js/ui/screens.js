@@ -225,6 +225,9 @@ export function homeScreen() {
         <button class="btn btn--big btn--ghost" type="button" data-act="go" data-to="#/progress">
           Progress<small>Scores, streak and backup</small>
         </button>
+        <a class="btn btn--big btn--ghost" href="print.html">
+          Print Worksheets<small>Non-verbal sheets with the method on every page</small>
+        </a>
 
         <hr class="rule">
         <div class="card card--accent">

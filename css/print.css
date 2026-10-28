@@ -1,0 +1,148 @@
+/* ── Printable worksheets ─────────────────────────────────────────────────
+   A4 pages built from the generators. Ink-light: white backgrounds, navy
+   lines, one teal strip for the method. Each .pp is exactly one page. */
+
+@page { size: A4; margin: 12mm; }
+
+body.print-page {
+  background: var(--cream);
+  color: var(--navy);
+  margin: 0;
+  padding: 16px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ── Controls (screen only) ─────────────────────────────────────────────── */
+
+.pc {
+  max-width: 820px;
+  margin: 0 auto 24px;
+  background: var(--white);
+  border: 2px solid var(--navy);
+  padding: 20px;
+}
+.pc h1 { text-transform: uppercase; margin: 0 0 8px; }
+.pc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  margin: 16px 0;
+}
+.pc-grid label { display: flex; flex-direction: column; gap: 4px; font-weight: 700; font-size: 15px; }
+.pc-grid select, .pc-grid input:not([type=checkbox]) {
+  font: inherit; font-weight: 400; padding: 8px; border: 2px solid var(--navy); background: var(--white);
+}
+.pc-grid .pc-check { flex-direction: row; align-items: center; gap: 8px; font-weight: 400; }
+.pc-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.pc-actions .btn { width: auto; margin: 0; padding: 0 20px; }
+
+/* ── Page ───────────────────────────────────────────────────────────────── */
+
+.pp {
+  width: 186mm;
+  min-height: 273mm;
+  margin: 0 auto 16px;
+  padding: 0;
+  background: var(--white);
+  box-sizing: border-box;
+  break-after: page;
+}
+@media screen {
+  .pp { padding: 10mm; width: 210mm; box-shadow: 0 2px 10px rgba(0,0,0,.12); }
+}
+
+.ph {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 12px;
+  align-items: end;
+  border-bottom: 3px solid var(--coral);
+  padding-bottom: 6px;
+  margin-bottom: 8px;
+}
+.ph-title { margin: 0; text-transform: uppercase; font-size: 11px; letter-spacing: .06em; color: var(--teal); }
+.ph-title strong { font-size: 20px; color: var(--navy); letter-spacing: .01em; }
+.ph-fields { margin: 0; display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 12px; justify-content: flex-end; }
+.ph-fields i, .pq-write i {
+  display: inline-block; min-width: 26mm; border-bottom: 1px solid var(--navy); height: 1em; vertical-align: bottom;
+}
+.ph-code { margin: 0; font-size: 11px; color: var(--muted); }
+
+.pp-run { margin: 0 0 6px; font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
+.pp-type { margin: 0 0 4px; font-weight: 700; text-transform: uppercase; color: var(--teal); }
+
+/* ── Method strip ───────────────────────────────────────────────────────── */
+
+.method {
+  border: 2px solid var(--teal);
+  border-left-width: 8px;
+  padding: 6px 10px;
+  margin-bottom: 10px;
+  font-size: 11.5px;
+  line-height: 1.35;
+}
+.ms-head { margin: 0 0 2px; font-weight: 700; text-transform: uppercase; color: var(--teal); font-size: 11px; letter-spacing: .06em; }
+.method ol { margin: 0; padding-left: 18px; columns: 2; column-gap: 18px; }
+.method li { break-inside: avoid; margin-bottom: 1px; }
+.ms-check { margin: 4px 0 0; }
+.ms-check span { display: inline-block; margin-right: 10px; }
+.ms-rule { margin: 4px 0 0; font-weight: 700; }
+
+/* ── Questions ──────────────────────────────────────────────────────────── */
+
+.pq {
+  break-inside: avoid;
+  border-bottom: 1px dashed var(--line);
+  padding: 4px 0 8px;
+  margin-bottom: 6px;
+}
+.pq:last-child { border-bottom: 0; }
+.pq-prompt { margin: 0 0 4px; font-weight: 700; font-size: 14px; display: flex; gap: 8px; align-items: center; }
+.pq-num {
+  background: var(--navy); color: var(--white); min-width: 24px; height: 24px;
+  display: inline-flex; align-items: center; justify-content: center; font-size: 13px;
+}
+
+/* Shrink the on-screen sizes to fit three to a page. */
+.pq-body { zoom: .78; }
+.pq .q-stim .stim-row, .pq .q-stim .stim-grid { margin-bottom: 8px; }
+.pq .opts { grid-template-columns: repeat(5, 1fr); gap: 8px; margin-bottom: 4px; }
+.pq .opt {
+  background: var(--white);
+  min-height: 0;
+  padding: 6px;
+  cursor: default;
+  opacity: 1;
+}
+.pq .opt[disabled] { opacity: 1; filter: none; }
+.pq .opt-letter { min-width: 24px; min-height: 24px; font-size: 14px; }
+.pq .cell--missing { background: var(--white); }
+
+.pq-write { margin: 4px 0 0; display: flex; justify-content: space-between; gap: 16px; font-size: 12px; }
+.pq-write span:first-child { flex: 1; display: flex; gap: 6px; }
+.pq-write span:first-child i { flex: 1; }
+.pq-ans i { min-width: 16mm; }
+
+/* ── Answer key and tracker ─────────────────────────────────────────────── */
+
+.key-h { text-transform: uppercase; border-bottom: 3px solid var(--coral); padding-bottom: 4px; font-size: 18px; }
+.key { padding-left: 22px; font-size: 11px; columns: 2; column-gap: 18px; }
+.key li { break-inside: avoid; margin-bottom: 6px; }
+.key li > strong { font-size: 14px; }
+.key-ex p { margin: 0; }
+.key-ex .ex-head { display: none; }
+.key-ex ul { margin: 2px 0 0; padding-left: 14px; }
+
+.track { width: 100%; border-collapse: collapse; font-size: 12px; }
+.track th { background: var(--navy); color: var(--white); text-align: left; padding: 6px; }
+.track td { border: 1px solid var(--navy); height: 11mm; }
+
+/* ── Print ──────────────────────────────────────────────────────────────── */
+
+@media print {
+  body.print-page { background: var(--white); padding: 0; }
+  .no-print { display: none !important; }
+  .pp { margin: 0; box-shadow: none; min-height: 0; }
+  .pp:last-child { break-after: auto; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
